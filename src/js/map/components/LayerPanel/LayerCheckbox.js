@@ -43,8 +43,8 @@ export default class LayerCheckbox extends React.Component {
   }
 
   showInfo () {
-    // let layer = this.props.layer;
-    // if (layer.disabled) { return; }
+    let layer = this.props.layer;
+    if (layer.disabled) { return; }
     modalActions.showLayerInfo(this.props.layer.id);
   }
 
