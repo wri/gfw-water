@@ -26,7 +26,7 @@ export default class LayerCheckbox extends React.Component {
     let layer = this.props.layer;
 
     return (
-      <div className={`layer-checkbox relative ${layer.className} ${this.props.checked ? ' active' : ''}`} >
+      <div className={`layer-checkbox relative ${layer.className}${this.props.checked ? ' active' : ''}${layer.disabled ? ' disabled' : ''}`} >
         <span onClick={this.toggleLayer.bind(this)} className='toggle-switch pointer'><span/></span>
         <span onClick={this.toggleLayer.bind(this)} className='layer-checkbox-label pointer'>{layer.label}</span>
         {!layer.sublabel ? null : <div className='layer-checkbox-sublabel'>{layer.sublabel}</div>}
@@ -43,11 +43,14 @@ export default class LayerCheckbox extends React.Component {
   }
 
   showInfo () {
+    // let layer = this.props.layer;
+    // if (layer.disabled) { return; }
     modalActions.showLayerInfo(this.props.layer.id);
   }
 
   toggleLayer () {
     let layer = this.props.layer;
+    if (layer.disabled) { return; }
     if (this.props.checked) {
       layerActions.removeActiveLayer(layer.id);
     } else {

@@ -97,6 +97,11 @@
 .layer-checkbox
   padding-bottom 3px
   margin-top 3px
+  &.disabled
+    & .layer-checkbox-label
+      color $disabledFont
+    & .layer-info
+      background $disabledBackground
   &.active
     & > .toggle-switch
       background $gfwBlue
