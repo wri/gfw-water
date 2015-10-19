@@ -1,0 +1,11 @@
+{
+  "name": "gfw-water",
+  "dependencies": {
+    "alt": "~0.17.3",
+    "babel-polyfill": "~0.0.1",
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1",
+    "react": "~0.13.3",
+    "requirejs": "~2.1.20"
+  }
+}

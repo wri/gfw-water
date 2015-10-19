@@ -1,0 +1,31 @@
+{
+  "name": "gfw-water",
+  "version": "0.0.1",
+  "description": "Global Forest Watch for Water Application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp stylus-base; npm run babel -- -w & gulp start & gulp serve",
+    "test": "intern-client config=tests/intern --reporters=Pretty;eslint src/js/*;",
+    "dist": "rm -rf dist; gulp dist; npm run optimize;",
+    "postinstall": "bower install",
+    "babel": "babel src --modules amd --out-dir build",
+    "optimize": "npm run babel; r.js -o map.build.js; r.js -o home.build.js"
+  },
+  "author": "BlueRaster <http://www.blueraster.com/>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "bower": "^1.5.2",
+    "browser-sync": "^2.9.3",
+    "eslint": "^1.4.3",
+    "eslint-plugin-react": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-stylus": "^2.0.7",
+    "gulp-umd": "^0.2.0",
+    "intern": "^3.0.3",
+    "requirejs": "^2.1.20"
+  }
+}

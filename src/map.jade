@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title #{map.title}
+    include templates/meta.jade
+    style
+      include css/base.css
+    link(rel='stylesheet', href='css/map.css?#{version}')
+    link(rel='stylesheet', href='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css')
+    link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    script(src='vendor/jquery/dist/jquery.min.js')
+    script.
+      var base = location.pathname.replace(/\/[^/]+$/, '');
+      var dojoConfig = {
+        parseOnLoad: false,
+        async: true,
+        cacheBust: '#{version}',
+        packages: [
+          { name: 'js', location: base + '/js/map' },
+          { name: 'vendor', location: base + '/vendor' },
+          { name: 'utils', location: base + '/js/map/utils' },
+          { name: 'stores', location: base + '/js/map/stores' },
+          { name: 'helpers', location: base + '/js/map/helpers' },
+          { name: 'actions', location: base + '/js/map/actions' },
+          { name: 'components', location: base + '/js/map/components' }
+        ],
+        aliases: [
+          //- ['jquery', 'vendor/jquery/dist/jquery.min.js'],
+          //- ['slick', '//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js'],
+          //- ['gfw-assets', 'http://www.globalforestwatch.org/gfw-assets'],
+          ['alt', 'vendor/alt/dist/alt.min'],
+          ['react', 'vendor/react/react.min'],
+          ['lodash', 'vendor/lodash/lodash.min'],
+          ['babel-polyfill', 'vendor/browser-polyfill']
+        ],
+        deps: ['dojo/domReady!'],
+        callback: function () {require(['js/main']);}
+      };
+  body
+    include templates/svgAssets.jade
+    include templates/gfwAssets.jade
+    div#root.layout-content
+    div#layer-modal.modal-wrapper.hidden
+    //- Load this last to try to prevent multupleDefine errors from jQuery loading after the following script
+    script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)

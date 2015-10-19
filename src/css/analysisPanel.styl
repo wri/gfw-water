@@ -1,0 +1,64 @@
+.fifty
+  width 50%
+
+.search-tools
+  background white
+  display flex
+  height 40px
+  width 320px
+  right 20px
+  z-index 6
+  top 20px
+  & .arcgisSearch
+    margin auto auto 0
+    & .searchBtn
+    & .searchInput
+      outline none
+    & .searchGroup .searchInput
+      font-size 12px
+      width 200px
+    & .searchBtn
+      padding 6px
+
+.analysis-tools
+  max-height calc(100% - 215px)
+  flex-direction column
+  overflow hidden
+  display flex
+  width 320px
+  right 20px
+  top 60px
+  & .no-shrink
+    flex-shrink 0
+  & .gfw-btn
+    font-size 14px
+  & .content-container
+    overflow-y auto
+  & > div
+    background white
+    width 100%
+
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+  .analysis-tools
+    box-shadow none
+    bottom 155px
+    & > div
+      box-shadow 0px 4px 0px #fff, 0px 0px 0px #fff, 2px 2px 2px rgba(0,0,0,0.1), 2px 2px 2px rgba(0,0,0,0.15)
+    & div:last-of-type
+      box-shadow 2px 2px 2px rgba(0,0,0,0.25)
+
+.button-wrapper
+  display flex
+  height 45px
+  & .analyze-button
+    border-radius 40px
+    align-items center
+    display flex
+    margin auto
+    & svg
+      margin-right 10px
+      height 20px
+      width 20px
+      fill white
