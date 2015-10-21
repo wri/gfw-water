@@ -12,7 +12,6 @@ class MapStore {
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
     this.lossFromSelectIndex = 0;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
-    this.modalLayerInfo = {};
 
     this.bindListeners({
       setBasemap: mapActions.setBasemap,
