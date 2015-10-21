@@ -25,8 +25,6 @@ var config = {
   },
   stylus: {
     watch: 'src/css/**/*.styl',
-    baseSrc: 'src/css/base.styl',
-    baseBuild: 'src/css',
     src: ['src/css/home.styl', 'src/css/map.styl'],
     build: 'build/css',
     dist: 'dist/css'
@@ -43,21 +41,7 @@ var config = {
 };
 
 gulp.task('stylus-watch', function () {
-  gulp.watch(config.stylus.watch, ['stylus-build', 'stylus-base']);
-});
-
-gulp.task('stylus-base', function () {
-  gulp.src(config.stylus.baseSrc)
-    .pipe(stylus({ linenos: true }))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(config.stylus.baseBuild));
-});
-
-gulp.task('stylus-base-dist', function () {
-  gulp.src(config.stylus.baseSrc)
-    .pipe(stylus({ compress: true }))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest(config.stylus.baseBuild));
+  gulp.watch(config.stylus.watch, ['stylus-build']);
 });
 
 gulp.task('stylus-build', function () {
@@ -78,13 +62,13 @@ gulp.task('jade-watch', function () {
   gulp.watch(config.jade.watch, ['jade-build']);
 });
 
-gulp.task('jade-build', ['stylus-base'], function () {
+gulp.task('jade-build', function () {
   gulp.src(config.jade.src)
     .pipe(jade({ pretty: true, locals: locals }))
     .pipe(gulp.dest(config.jade.build));
 });
 
-gulp.task('jade-dist', ['stylus-base-dist'], function () {
+gulp.task('jade-dist', function () {
   gulp.src(config.jade.src)
     .pipe(jade({ locals: locals }))
     .pipe(gulp.dest(config.jade.dist));

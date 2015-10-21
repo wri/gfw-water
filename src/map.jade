@@ -4,7 +4,8 @@ html
     title #{map.title}
     include templates/meta.jade
     style
-      include css/base.css
+      :stylus
+        @require 'css/base'
     link(rel='stylesheet', href='css/map.css?#{version}')
     link(rel='stylesheet', href='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css')
     link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
