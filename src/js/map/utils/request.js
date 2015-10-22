@@ -15,13 +15,11 @@ const request = {
       url: `${url}/legend`,
       handleAs: 'json',
       callbackParamName: 'callback',
-      content: {
-        dynamicLayers: JSON.stringify(layerIds),
-        f: 'json'
-      }
+      content: { f: 'json' }
     }).then(res => {
       if (res && res.layers && res.layers.length > 0) {
-        let legendInfos = res.layers[layerIds[0]].legend;
+        let layers = res.layers.filter(layer => layerIds.indexOf(layer.layerId) > -1);
+        let legendInfos = layers.length === 1 ? layers[0].legend : layers.map(layer => layer.legend);
         deferred.resolve(legendInfos || []);
       }
     }, err => {

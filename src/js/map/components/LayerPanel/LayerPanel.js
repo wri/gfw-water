@@ -1,4 +1,5 @@
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
+import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import LayerCheckbox from 'components/LayerPanel/LayerCheckbox';
 import FiresControls from 'components/LayerPanel/FiresControls';
 import LossControls from 'components/LayerPanel/LossControls';
@@ -24,10 +25,10 @@ export default class LayerPanel extends React.Component {
   render() {
     return (
       <div className='layer-panel map-component custom-scroll shadow'>
-        <LayerGroup label={layerPanelText.watershed}>
+        <LayerGroup activeLayers={this.state.activeLayers} label={layerPanelText.watershed}>
           {layersConfig.map(this.checkboxMap('watershed'), this)}
         </LayerGroup>
-        <LayerGroup label={layerPanelText.watershedRisk}>
+        <LayerGroup activeLayers={this.state.activeLayers} label={layerPanelText.watershedRisk}>
           {layersConfig.map(this.checkboxMap('watershedRisk'), this)}
         </LayerGroup>
       </div>
@@ -48,6 +49,9 @@ export default class LayerPanel extends React.Component {
       switch (layer.id) {
         case KEYS.waterStress:
           childComponent = <WaterStressLegend url={layer.url} layerIds={layer.layerIds} />;
+          break;
+        case KEYS.sediment:
+          childComponent = <SedimentLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         case KEYS.majorDams:
           childComponent = <DamsLegend url={layer.url} layerIds={layer.layerIds} />;

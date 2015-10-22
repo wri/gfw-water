@@ -95,9 +95,11 @@ export const config = {
     {
       id: KEYS.historicLoss,
       type: 'dynamic',
-      label: 'Historic forest loss',
+      label: 'Original forest',
       group: 'watershedRisk',
-      className: 'historic-loss'
+      className: 'historic-loss',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/forest_cover/MapServer',
+      layerIds: [6]
     },
     // {
     //   id: KEYS.fires,
@@ -126,10 +128,12 @@ export const config = {
     },
     {
       id: KEYS.sediment,
-      type: 'feature',
+      type: 'dynamic',
       label: 'Sedimentation',
       group: 'watershedRisk',
-      className: 'sediment'
+      className: 'sediment',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      layerIds: [4]
     },
     {
       id: KEYS.waterStress,
@@ -176,6 +180,10 @@ export const config = {
         max: 'High',
         arid: 'Arid',
         nodata: 'No Data'
+      },
+      sedimentLegend: {
+        min: 'Low',
+        max: 'Extreme'
       },
       firesOptions: [
         {label: 'Past Week', value: 7},
