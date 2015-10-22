@@ -1,7 +1,10 @@
 # Ignore the build and dist directories
 build
 dist
+
+# Ignore everything in www except for proxy
 www/*
+!www/proxy
 
 # Ignore these, just do it
 node_modules
