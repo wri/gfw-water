@@ -43,5 +43,6 @@ html
     include templates/gfwAssets.jade
     div#root.layout-content
     div#layer-modal.modal-wrapper.hidden
+    div#alerts-modal.modal-wrapper.hidden
     //- Load this last to try to prevent multupleDefine errors from jQuery loading after the following script
     script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)

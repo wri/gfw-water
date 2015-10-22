@@ -14,8 +14,12 @@ class ModalActions {
     }
   }
 
-  hideModal (id) {
-    domClass.add(id, 'hidden');
+  showAlertsModal () {
+    domClass.remove('alerts-modal', 'hidden');
+  }
+
+  hideModal (node) {
+    domClass.add(node, 'hidden');
   }
 
 }

@@ -1,4 +1,5 @@
 import {analysisPanelText} from 'js/config';
+import {modalActions} from 'actions/ModalActions';
 import React from 'react';
 
 let analysisSvg = '<use xlink:href="#icon-analysis" />';
@@ -33,7 +34,7 @@ export default class AnalysisTools extends React.Component {
 
         <div className='no-shrink'>
           <div className='gfw-btn pointer fifty inline-block'>Clear Analysis</div>
-          <div className='gfw-btn poitner fifty inline-block'>Get Alerts</div>
+          <div className='gfw-btn pointer fifty inline-block' onClick={modalActions.showAlertsModal}>Get Alerts</div>
         </div>
       </div>
     );

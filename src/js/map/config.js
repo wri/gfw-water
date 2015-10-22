@@ -220,7 +220,14 @@ export const config = {
       imageryBasemap: 'Imagery'
     },
     modals: {
-      noInfo: 'No Information Available'
+      noInfo: 'No Information Available',
+      alerts: {
+        title: 'Subscribe to GFW Alerts',
+        descriptions: {
+          email: 'Enter your email(s) below to receive fire alerts. Multiple emails must be separated by commas.',
+          phone: 'Enter your phone number below to receive SMS alerts.'
+        }
+      }
     },
     // Fill in below so I can use the keys as Ids
     layerInformation: {}

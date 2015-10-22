@@ -1,6 +1,7 @@
 import babelPolyfill from 'babel-polyfill';
 // import {arcgisConfig} from 'js/config';
 import LayerModal from 'components/Modals/LayerModal';
+import AlertsModal from 'components/Modals/AlertsModal';
 import Map from 'components/Map';
 import React from 'react';
 
@@ -49,6 +50,7 @@ let initializeApp = () => {
   app.debug('main >>> initializeApp');
   React.render(<Map />, document.getElementById('root'));
   React.render(<LayerModal />, document.getElementById('layer-modal'));
+  React.render(<AlertsModal />, document.getElementById('alerts-modal'));
 };
 
 // lazyloadAssets();

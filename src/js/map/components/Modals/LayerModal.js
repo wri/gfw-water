@@ -23,16 +23,16 @@ export default class Modal extends React.Component {
   }
 
   close () {
-    modalActions.hideModal('layer-modal');
+    modalActions.hideModal(React.findDOMNode(this).parentElement)
   }
 
   render () {
     let layerInfo = this.state.layerInfo;
     return (
       <div className='modal-container'>
-        <div className='modal-background' onClick={this.close} />
+        <div className='modal-background' onClick={::this.close} />
         <article className='modal shadow'>
-          <div className='close-icon pointer' onClick={this.close} >
+          <div className='close-icon pointer' onClick={::this.close} >
             <svg dangerouslySetInnerHTML={{ __html: closeSvg }}/>
           </div>
           {!layerInfo.title ? <div className='no-info-available'>{modalText.noInfo}</div> :
