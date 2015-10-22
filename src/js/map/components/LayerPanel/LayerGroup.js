@@ -26,10 +26,6 @@ export default class LayerGroup extends React.Component {
     this.state = { open: true };
   }
 
-  componentWillUpdate(nextProps) {
-    console.log(nextProps);
-  }
-
   render() {
     let styles = { display: this.state.open ? 'block' : 'none' };
     return (
