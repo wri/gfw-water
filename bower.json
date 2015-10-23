@@ -7,6 +7,7 @@
     "jquery": "~2.1.4",
     "lodash": "~3.10.1",
     "requirejs": "~2.1.20",
-    "react": "~0.14.0"
+    "react": "~0.14.0",
+    "formsy-react": "~0.17.0"
   }
 }
