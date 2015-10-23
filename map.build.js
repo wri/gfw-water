@@ -12,6 +12,7 @@
 		'react': 'vendor/react/react.min',
     'lodash': 'vendor/lodash/lodash.min',
 		'babel-polyfill': 'vendor/browser-polyfill',
+		'formsy-react': 'vendor/formsy-react/release/formsy-react',
 		// Configured Packages
 		'js': 'js/map',
 		'vendor': 'vendor',
