@@ -46,6 +46,9 @@ class MapActions {
       // Connect events to the layers that need them
       LayersHelper.connectLayerEvents();
       // Reorder some layers here
+
+      // TODO: DONT DO THIS, GIVE LAYER CONFIG AN ORDER PROOPERTY,
+      // SORT THE LAYERS RETURNED FROM LAYER FACTORY BEFORE WE ADD THEM
       let baselineWaterStressLayer = app.map.getLayer(KEYS.waterStress);
       app.map.reorderLayer(baselineWaterStressLayer, 1);
     });
