@@ -10,6 +10,7 @@
 		// libs
     'alt': 'vendor/alt/dist/alt.min',
 		'react': 'vendor/react/react.min',
+		'react-dom': 'vendor/react/react-dom.min',
     'lodash': 'vendor/lodash/lodash.min',
 		'babel-polyfill': 'vendor/browser-polyfill',
 		'formsy-react': 'vendor/formsy-react/release/formsy-react',
