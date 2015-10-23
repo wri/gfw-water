@@ -6,7 +6,7 @@
     "ion.rangeslider": "ionrangeslider#~2.1.2",
     "jquery": "~2.1.4",
     "lodash": "~3.10.1",
-    "react": "~0.13.3",
-    "requirejs": "~2.1.20"
+    "requirejs": "~2.1.20",
+    "react": "~0.14.0"
   }
 }

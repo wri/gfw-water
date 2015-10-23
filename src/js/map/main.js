@@ -5,6 +5,7 @@ import CanopyModal from 'components/Modals/CanopyModal';
 import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
@@ -58,10 +59,10 @@ let configureApp = () => {
 
 let initializeApp = () => {
   app.debug('main >>> initializeApp');
-  React.render(<Map />, document.getElementById('root'));
-  React.render(<LayerModal />, document.getElementById('layer-modal'));
-  React.render(<AlertsModal />, document.getElementById('alerts-modal'));
-  React.render(<CanopyModal />, document.getElementById('canopy-modal'));
+  ReactDOM.render(<Map />, document.getElementById('root'));
+  ReactDOM.render(<LayerModal />, document.getElementById('layer-modal'));
+  ReactDOM.render(<AlertsModal />, document.getElementById('alerts-modal'));
+  ReactDOM.render(<CanopyModal />, document.getElementById('canopy-modal'));
 };
 
 lazyloadAssets();
