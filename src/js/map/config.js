@@ -47,7 +47,10 @@ export const config = {
       sublabel: '(year 2000, 30m global, Hansen/UMD/Google/USGS/NASA)',
       group: 'watershed',
       className: 'tree-cover',
-      url: 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer'
+      url: 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
+      colormap: [[1, 174, 203, 107]],
+      inputRange: [30, 101],
+      outputRange: [1]
     },
     {
       id: KEYS.majorDams,
@@ -82,7 +85,9 @@ export const config = {
       className: 'loss',
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestCover_lossyear/ImageServer',
-      colormap: [[1, 219, 101, 152]]
+      colormap: [[1, 219, 101, 152]],
+      inputRange: [1, 15],
+      outputRange: [1]
     },
     {
       id: KEYS.gain,

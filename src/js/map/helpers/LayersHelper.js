@@ -68,8 +68,19 @@ let LayersHelper = {
     let fromValue = layerPanelText.lossOptions[fromIndex].value;
     let toValue = layerPanelText.lossOptions[toIndex].value;
     let layerConfig = utils.getObject(layersConfig, 'id', KEYS.loss);
-    let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [fromValue, (toValue + 1)], [1]);
+    let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [fromValue, (toValue + 1)], layerConfig.outputRange);
     let layer = app.map.getLayer(KEYS.loss);
+
+    if (layer) {
+      layer.setRenderingRule(rasterFunction);
+    }
+  },
+
+  updateTreeCoverDefinitions: (densityValue) => {
+    app.debug('LayersHelper >>> updateTreeCoverDefinitions');
+    let layerConfig = utils.getObject(layersConfig, 'id', KEYS.treeCover);
+    let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [densityValue, layerConfig.inputRange[1]], layerConfig.outputRange);
+    let layer = app.map.getLayer(KEYS.treeCover);
 
     if (layer) {
       layer.setRenderingRule(rasterFunction);

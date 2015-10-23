@@ -1,5 +1,7 @@
 import ModalWrapper from 'components/Modals/ModalWrapper';
 import {modalActions} from 'actions/ModalActions';
+import LayersHelper from 'helpers/LayersHelper';
+import {mapStore} from 'stores/MapStore';
 import {modalText} from 'js/config';
 import React from 'react';
 
@@ -10,6 +12,7 @@ export default class CanopyModal extends React.Component {
   }
 
   componentDidMount() {
+    // Build the slider
     $('#tree-cover-slider').ionRangeSlider({
       type: 'double',
       values: modalText.canopy.slider,
@@ -20,13 +23,23 @@ export default class CanopyModal extends React.Component {
       from_max: 7,
       grid: true,
       from: 5,
-      onFinish: this.sliderUpdate,
+      onFinish: this.sliderChanged,
+      onUpdate: this.sliderUpdated,
       prettify: value => (value + '%')
     });
+    // Update with the default values
+    let defaults = mapStore.getState();
+    LayersHelper.updateTreeCoverDefinitions(defaults.canopyDensity);
   }
 
-  sliderUpdate (data) {
+  sliderChanged (data) {
     modalActions.updateCanopyDensity(data.from_value);
+    LayersHelper.updateTreeCoverDefinitions(data.from_value);
+  }
+
+  sliderUpdated (data) {
+    // Component was reset, reset the default definition as well
+    LayersHelper.updateTreeCoverDefinitions(data.from_value);
   }
 
   render() {

@@ -9,6 +9,7 @@ export default {
   * @param {array} outputValues
   */
   getColormapRemap: (colormap, inputRanges, outputValues) => {
+    app.debug('rasterFunctions >>> getColormapRemap');
     return new RasterFunction({
       'rasterFunction': 'Colormap',
       'rasterFunctionArguments': {
