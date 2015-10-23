@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.23",
-    "bower": "^1.5.2",
+    "bower": "^1.6.3",
     "browser-sync": "^2.9.3",
     "eslint": "^1.4.3",
     "eslint-plugin-react": "^3.4.1",
