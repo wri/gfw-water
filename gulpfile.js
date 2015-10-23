@@ -37,7 +37,7 @@ var config = {
   copy: {
     jquery: { src: 'build/vendor/jquery/dist/jquery.min.js', dest: 'dist/vendor/jquery/dist/'},
     rjs: { src: 'build/vendor/requirejs/require.js', dest: 'dist/vendor/requirejs/'},
-    ion: { src: 'build/vendor/ion.rangeslider/*', dest: 'dist/vendor/ion.rangeslider/'}
+    ion: { src: 'build/vendor/ion.rangeslider/**/*', dest: 'dist/vendor/ion.rangeslider/'}
   }
 };
 
