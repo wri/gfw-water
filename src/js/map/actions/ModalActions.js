@@ -18,8 +18,16 @@ class ModalActions {
     domClass.remove('alerts-modal', 'hidden');
   }
 
+  showCanopyModal () {
+    domClass.remove('canopy-modal', 'hidden');
+  }
+
   hideModal (node) {
     domClass.add(node, 'hidden');
+  }
+
+  updateCanopyDensity (newDensity) {
+    this.dispatch(newDensity);
   }
 
 }

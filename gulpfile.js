@@ -36,7 +36,8 @@ var config = {
   },
   copy: {
     jquery: { src: 'build/vendor/jquery/dist/jquery.min.js', dest: 'dist/vendor/jquery/dist/'},
-    rjs: { src: 'build/vendor/requirejs/require.js', dest: 'dist/vendor/requirejs/'}
+    rjs: { src: 'build/vendor/requirejs/require.js', dest: 'dist/vendor/requirejs/'},
+    ion: { src: 'build/vendor/ion.rangeslider/*', dest: 'dist/vendor/ion.rangeslider/'}
   }
 };
 
@@ -103,6 +104,8 @@ gulp.task('copy-assets', function () {
     .pipe(gulp.dest(config.copy.jquery.dest));
   gulp.src(config.copy.rjs.src)
     .pipe(gulp.dest(config.copy.rjs.dest));
+  gulp.src(config.copy.ion.src)
+    .pipe(gulp.dest(config.copy.ion.dest));
 });
 
 gulp.task('browser-sync', function () {

@@ -35,7 +35,7 @@ export default class ModalWrapper extends React.Component {
             <svg dangerouslySetInnerHTML={{ __html: closeSvg }}/>
           </div>
             <div className='modal-content custom-scroll'>
-              <div>{this.props.children || null}</div>
+              {this.props.children}
             </div>
         </article>
       </div>
@@ -43,4 +43,3 @@ export default class ModalWrapper extends React.Component {
   }
 
 }
-

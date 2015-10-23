@@ -24,7 +24,6 @@
   background-color white
   position fixed
   height auto
-  width 500px
   left 50%
   top 50%
   & a
@@ -50,14 +49,62 @@
   color $darkGray
   padding 20px
   height 100%
-  width 100%
 
 .no-info-available
   text-align center
   line-height 40px
   height 40px
 
+//- Canopy Modal specific styling
+.canopy-modal-content
+  width 300px
+  & .irs-line-left
+  & .irs-line-right
+  & .irs-line-mid
+    background white
+  & .irs-grid-pol[style="left: 100%"]
+  & .irs-grid-pol.small
+  & .irs-slider.to
+  & .irs-to
+    display none
+  & .irs-bar
+    background $gfwBlue
+    border-radius 5px
+    height 7px
+  & .irs-grid-pol
+    border-radius 50%
+    height 2px
+    width 2px
+    top -12px
+  & .irs-slider
+    cursor col-resize
+
+.trees
+  margin 30px 10px 10px
+  height 60px
+  width 280px
+
+.tree-icon
+  background url('images/tree.png') no-repeat center
+  margin-top 19px
+  height 41px
+  float left
+  width 25px
+
+.forest-icon
+  background url('images/forest.png') no-repeat center
+  float right
+  height 60px
+  width 91px
+
+.slider-container
+  margin 5px 10px
+  width 280px
+
 //- Layer modal specific styling
+.layer-modal-content
+  width 500px
+
 .source-header
   margin-bottom 5px
 

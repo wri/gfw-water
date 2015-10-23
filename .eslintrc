@@ -10,6 +10,7 @@
     "jsx": true
   },
   "globals": {
+    "$": true,
     "app": true,
     "define": true,
     "require": true,
@@ -60,7 +61,6 @@
     "no-unused-vars": [2, {"vars": "all", "args": "after-used", "argsIgnorePattern": "^_"}],
     "no-use-before-define": 2,
     "no-with": 2,
-    "camelcase": 2,
     "comma-spacing": 2,
     "consistent-return": 2,
     "curly": [2, "all"],

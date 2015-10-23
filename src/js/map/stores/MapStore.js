@@ -1,4 +1,5 @@
 import {layerActions} from 'actions/LayerActions';
+import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
 import {layerPanelText} from 'js/config';
 import KEYS from 'js/constants';
@@ -8,9 +9,10 @@ class MapStore {
 
   constructor () {
     this.activeLayers = [];
+    this.canopyDensity = 30;
+    this.lossFromSelectIndex = 0;
     this.activeBasemap = KEYS.wriBasemap;
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
-    this.lossFromSelectIndex = 0;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
 
     this.bindListeners({
@@ -18,6 +20,7 @@ class MapStore {
       addActiveLayer: layerActions.addActiveLayer,
       removeActiveLayer: layerActions.removeActiveLayer,
       changeFiresTimeline: layerActions.changeFiresTimeline,
+      updateCanopyDensity: modalActions.updateCanopyDensity,
       changeLossToTimeline: layerActions.changeLossToTimeline,
       changeLossFromTimeline: layerActions.changeLossFromTimeline
     });
@@ -63,6 +66,10 @@ class MapStore {
     this.lossToSelectIndex = activeIndex;
   }
 
+  updateCanopyDensity (newDensity) {
+    this.canopyDensity = newDensity;
+  }
+
 }
 
-export const mapStore = alt.createStore(MapStore);
+export const mapStore = alt.createStore(MapStore, 'MapStore');

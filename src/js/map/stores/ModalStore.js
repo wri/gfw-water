@@ -17,4 +17,4 @@ class ModalStore {
 
 }
 
-export const modalStore = alt.createStore(ModalStore);
+export const modalStore = alt.createStore(ModalStore, 'ModalStore');

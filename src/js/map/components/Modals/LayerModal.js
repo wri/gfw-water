@@ -1,9 +1,7 @@
-import {modalActions} from 'actions/ModalActions';
+import ModalWrapper from 'components/Modals/ModalWrapper';
 import {modalStore} from 'stores/ModalStore';
 import {modalText} from 'js/config';
 import React from 'react';
-
-let closeSvg = '<use xlink:href="#shape-close" />';
 
 export default class Modal extends React.Component {
 
@@ -22,40 +20,30 @@ export default class Modal extends React.Component {
     this.setState({ layerInfo: currentState.modalLayerInfo });
   }
 
-  close () {
-    modalActions.hideModal(React.findDOMNode(this).parentElement)
-  }
-
   render () {
     let layerInfo = this.state.layerInfo;
     return (
-      <div className='modal-container'>
-        <div className='modal-background' onClick={::this.close} />
-        <article className='modal shadow'>
-          <div className='close-icon pointer' onClick={::this.close} >
-            <svg dangerouslySetInnerHTML={{ __html: closeSvg }}/>
-          </div>
-          {!layerInfo.title ? <div className='no-info-available'>{modalText.noInfo}</div> :
-            <div className='modal-content custom-scroll'>
-              <div className='source-header'>
-                <strong className='source-title'>{layerInfo.title}</strong>
-                <em className='source-description'>{layerInfo.subtitle}</em>
+      <ModalWrapper>
+        {!layerInfo.title ? <div className='no-info-available'>{modalText.noInfo}</div> :
+          <div className='layer-modal-content'>
+            <div className='source-header'>
+              <strong className='source-title'>{layerInfo.title}</strong>
+              <em className='source-description'>{layerInfo.subtitle}</em>
+            </div>
+            <div className='source-body'>
+              <div className='source-table'>
+                {layerInfo.table.map(this.tableMap)}
               </div>
-              <div className='source-body'>
-                <div className='source-table'>
-                  {layerInfo.table.map(this.tableMap)}
-                </div>
-                <div className='source-summary'>
-                  {layerInfo.overview.map(this.summaryMap)}
-                </div>
-                <div className='source-credits'>
-                  {layerInfo.citation.map(this.paragraphMap)}
-                </div>
+              <div className='source-summary'>
+                {layerInfo.overview.map(this.summaryMap)}
+              </div>
+              <div className='source-credits'>
+                {layerInfo.citation.map(this.paragraphMap)}
               </div>
             </div>
-          }
-        </article>
-      </div>
+          </div>
+        }
+      </ModalWrapper>
     );
   }
 

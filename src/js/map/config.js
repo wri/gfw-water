@@ -2,8 +2,9 @@ import KEYS from 'js/constants';
 
 export const config = {
 
-  arcgis: {
-    css: 'http://js.arcgis.com/3.14/esri/css/esri.css'
+  assets: {
+    ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
+    ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css'
   },
 
   map: {
@@ -206,7 +207,11 @@ export const config = {
         {label: '2012', value: 12},
         {label: '2013', value: 13},
         {label: '2014', value: 14}
-      ]
+      ],
+      treeCover: {
+        densityFirst: 'Displaying loss with',
+        densitySecond: 'canopy density.'
+      }
     },
     analysisPanel: {
       searchAllPlaceholder: 'Search by river, watershed, or city',
@@ -227,6 +232,10 @@ export const config = {
           email: 'Enter your email(s) below to receive fire alerts. Multiple emails must be separated by commas.',
           phone: 'Enter your phone number below to receive SMS alerts.'
         }
+      },
+      canopy: {
+        title: 'Adjust the minimum canopy density for tree cover  and tree cover loss',
+        slider: [0, 10, 15, 20, 25, 30, 50, 75, 100]
       }
     },
     // Fill in below so I can use the keys as Ids
@@ -372,7 +381,7 @@ export const layerPanelText = config.text.layerPanel;
 export const analysisPanelText = config.text.analysisPanel;
 export const controlPanelText = config.text.controlPanel;
 export const modalText = config.text.modals;
-export const arcgisConfig = config.arcgis;
+export const assetUrls = config.assets;
 export const layersConfig = config.layers;
 export const errors = config.text.errors;
 export const mapConfig = config.map;

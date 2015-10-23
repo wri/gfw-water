@@ -1,7 +1,8 @@
 import babelPolyfill from 'babel-polyfill';
-// import {arcgisConfig} from 'js/config';
 import LayerModal from 'components/Modals/LayerModal';
 import AlertsModal from 'components/Modals/AlertsModal';
+import CanopyModal from 'components/Modals/CanopyModal';
+import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import React from 'react';
 
@@ -28,19 +29,28 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-// let loadCSS = (url) => {
-//   var sheet = document.createElement('link');
-//   sheet.rel = 'stylesheet';
-//   sheet.type = 'text/css';
-//   sheet.href = url;
-//   requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
+let loadCSS = (url) => {
+  var sheet = document.createElement('link');
+  sheet.rel = 'stylesheet';
+  sheet.type = 'text/css';
+  sheet.href = url;
+  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
+};
+
+// let loadJS = (url) => {
+//   var script = document.createElement('script');
+//   script.src = url;
+//   script.async = true;
+//   requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(script); });
 // };
 
-// let lazyloadAssets = () => {
-  // app.debug('main >>> lazyloadAssets');
+let lazyloadAssets = () => {
+  app.debug('main >>> lazyloadAssets');
   // This was causing issues so leave this out unless we get bad pagespeed scores
-  // loadCSS(arcgisConfig.css);
-// };
+  loadCSS(assetUrls.ionCSS);
+  loadCSS(assetUrls.ionSkinCSS);
+  //loadJS(assetUrls.ionJS);
+};
 
 let configureApp = () => {
   app.debug('main >>> configureApp');
@@ -51,8 +61,9 @@ let initializeApp = () => {
   React.render(<Map />, document.getElementById('root'));
   React.render(<LayerModal />, document.getElementById('layer-modal'));
   React.render(<AlertsModal />, document.getElementById('alerts-modal'));
+  React.render(<CanopyModal />, document.getElementById('canopy-modal'));
 };
 
-// lazyloadAssets();
+lazyloadAssets();
 configureApp();
 initializeApp();

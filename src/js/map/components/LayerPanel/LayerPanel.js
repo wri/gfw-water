@@ -1,5 +1,6 @@
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
+import DensityDisplay from 'components/LayerPanel/DensityDisplay';
 import LayerCheckbox from 'components/LayerPanel/LayerCheckbox';
 import FiresControls from 'components/LayerPanel/FiresControls';
 import LossControls from 'components/LayerPanel/LossControls';
@@ -61,6 +62,9 @@ export default class LayerPanel extends React.Component {
           break;
         case KEYS.loss:
           childComponent = <LossControls loaded={this.props.loaded} {...this.state} />;
+          break;
+        case KEYS.treeCover:
+          childComponent = <DensityDisplay {...this.state} />;
           break;
         default:
           childComponent = null;

@@ -101,7 +101,11 @@ class MapActions {
 
   reset () {
     app.debug('MapActions >>> reset');
+    // Reset the Store, this will also reset layers, layer definitions, and all React components
     alt.recycle();
+    // Reset the Canopy Density slider
+    var slider = $('#tree-cover-slider').data('ionRangeSlider');
+    if (slider) { slider.reset(); }
   }
 
 }
