@@ -4,8 +4,8 @@ import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
 import {assetUrls} from 'js/config';
 import Map from 'components/Map';
-import React from 'react';
 import ReactDOM from 'react-dom';
+import React from 'react';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 

@@ -22,7 +22,7 @@ export default class Map extends React.Component {
 
   render () {
     return (
-      <div id={mapConfig.id} className={'map' + (this.state.loaded ? '' : ' invisible')}>
+      <div id={mapConfig.id} className={'map'}>
         <div className='gfw-water-logo' />
         <div className='aqueduct-logo' />
         <LayerPanel loaded={this.state.loaded} />

@@ -33,6 +33,7 @@ export const config = {
   layers: [
     {
       id: KEYS.wetlands,
+      order: 5,
       type: 'dynamic',
       label: 'Wetlands',
       group: 'watershed',
@@ -42,6 +43,7 @@ export const config = {
     },
     {
       id: KEYS.treeCover,
+      order: 4,
       type: 'image',
       label: 'Tree cover',
       sublabel: '(year 2000, 30m global, Hansen/UMD/Google/USGS/NASA)',
@@ -54,6 +56,7 @@ export const config = {
     },
     {
       id: KEYS.majorDams,
+      order: 9,
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
@@ -63,6 +66,7 @@ export const config = {
     },
     {
       id: KEYS.waterIntake,
+      order: 10,
       type: 'dynamic',
       label: 'Water withdrawal',
       group: 'watershed',
@@ -79,6 +83,7 @@ export const config = {
     // },
     {
       id: KEYS.loss,
+      order: 6,
       type: 'image',
       label: 'Tree cover loss',
       group: 'watershedRisk',
@@ -91,6 +96,7 @@ export const config = {
     },
     {
       id: KEYS.gain,
+      order: 7,
       type: 'tiled',
       label: 'Tree cover gain',
       group: 'watershedRisk',
@@ -100,6 +106,7 @@ export const config = {
     },
     {
       id: KEYS.historicLoss,
+      order: 3,
       type: 'dynamic',
       label: 'Original forest',
       group: 'watershedRisk',
@@ -116,6 +123,7 @@ export const config = {
     // },
     {
       id: KEYS.activeFires,
+      order: 8,
       type: 'dynamic',
       label: 'Active fires',
       group: 'watershedRisk',
@@ -126,6 +134,7 @@ export const config = {
     },
     {
       id: KEYS.burnScars,
+      order: 1,
       type: 'dynamic',
       label: 'Burn scars (coming soon)',
       group: 'watershedRisk',
@@ -134,6 +143,7 @@ export const config = {
     },
     {
       id: KEYS.sediment,
+      order: 2,
       type: 'dynamic',
       label: 'Sedimentation',
       group: 'watershedRisk',
@@ -144,6 +154,7 @@ export const config = {
     {
       id: KEYS.waterStress,
       type: 'dynamic',
+      order: 1,
       label: 'Baseline water stress',
       group: 'watershedRisk',
       className: 'water-stress',
@@ -154,12 +165,14 @@ export const config = {
     // These layers are not in the UI and should be the top most layers
     {
       id: KEYS.watershed,
+      order: 11,
       type: 'feature',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     {
       id: KEYS.rivers,
+      order: 12,
       type: 'tiled',
       url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
       visible: true
@@ -174,7 +187,7 @@ export const config = {
   text: {
     errors: {
       missingLayerConfig: 'You provided a layer config containing a url but not a type, please specify the layer type in the layer config.',
-      incorrectLayerConfig: type => `You provided an invalid type, the application is not configrued for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
+      incorrectLayerConfig: type => `You provided an invalid type, the application is not configured for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
       geolocationUnavailable: 'Sorry, it looks like your browser does not support geolocation, please try the latest versions of Safari, Chrome, or Firefox.',
       geolocationFailure: message => `Error retrieving location at this time. ${message}`
     },

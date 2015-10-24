@@ -33,9 +33,10 @@ class MapActions {
 
   createLayers () {
     app.debug('MapActions >>> createLayers');
-    let layersToAdd = layersConfig.filter(layer => layer && layer.url);
-    // Generate a list of layers and add it to the map
-    let layers = layersToAdd.map(layerFactory);
+    //- Remove layers from config that have no url
+    //- sort by order from the layer config
+    //- return an arcgis layer for each config object
+    let layers = layersConfig.filter(layer => layer && layer.url).sort((a, b) => a.order - b.order).map(layerFactory);
     app.map.addLayers(layers);
     // If there is an error with a particular layer, handle that here
     app.map.on('layers-add-result', result => {
@@ -45,12 +46,6 @@ class MapActions {
       if (layerErrors.length > 0) { console.error(layerErrors); }
       // Connect events to the layers that need them
       LayersHelper.connectLayerEvents();
-      // Reorder some layers here
-
-      // TODO: DONT DO THIS, GIVE LAYER CONFIG AN ORDER PROOPERTY,
-      // SORT THE LAYERS RETURNED FROM LAYER FACTORY BEFORE WE ADD THEM
-      let baselineWaterStressLayer = app.map.getLayer(KEYS.waterStress);
-      app.map.reorderLayer(baselineWaterStressLayer, 1);
     });
   }
 

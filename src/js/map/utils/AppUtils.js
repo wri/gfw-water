@@ -33,7 +33,12 @@ const utils = {
       }
     });
     return obj;
-  }
+  },
+
+  /**
+  * Return true if the environment is a browser environment
+  */
+  isBrowserEnvironment: () => typeof window !== 'undefined' && typeof document !== 'undefined'
 
 };
 

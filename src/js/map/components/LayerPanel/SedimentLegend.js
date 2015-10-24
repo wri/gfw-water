@@ -10,7 +10,9 @@ export default class SedimentLegend extends React.Component {
     this.state = {
       legendInfo: []
     };
+  }
 
+  componentDidMount() {
     Request.getLegendInfos(this.props.url, this.props.layerIds).then(legendInfos => {
       this.setState({ legendInfo: legendInfos });
     });

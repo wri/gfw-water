@@ -1,4 +1,3 @@
-// import {layerPanelText} from 'js/config';
 import Request from 'utils/request';
 import React from 'react';
 
@@ -10,11 +9,11 @@ export default class DamsLegend extends React.Component {
     this.state = {
       legendInfos: []
     };
+  }
 
+  componentDidMount() {
     Request.getLegendInfos(this.props.url, this.props.layerIds).then(legendInfos => {
-      this.setState({
-        legendInfos: legendInfos
-      });
+      this.setState({ legendInfos: legendInfos });
     });
   }
 

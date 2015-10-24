@@ -11,7 +11,9 @@ export default class WaterStressLegend extends React.Component {
       legendInfoLevels: [],
       legendInfoNoData: []
     };
+  }
 
+  componentDidMount() {
     Request.getLegendInfos(this.props.url, this.props.layerIds).then(legendInfos => {
       this.setState({
         legendInfoLevels: legendInfos.slice(0, legendInfos.length - 2),
