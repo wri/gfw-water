@@ -27,6 +27,9 @@ let generateSearchWidget = () => {
     maxResults: 6,
     maxSuggestions: 6,
     suggestionTemplate: '${maj_name}',
+    outFields: ['*'],
+    searchFields: ['maj_name'],
+    displayField: 'maj_name',
     highlightSymbol: Symbols.getWatershedHoverSymbol(),
     placeholder: analysisPanelText.searchWatershedPlaceholder
   });

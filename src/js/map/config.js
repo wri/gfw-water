@@ -237,10 +237,13 @@ export const config = {
       searchWatershedPlaceholder: 'Search by watershed',
       sourceName: 'Watersheds',
       searchWidgetId: 'esri-search-widget',
-      analysisPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
       analyzeButton: 'Analyze Watershed',
-      currentWatershedTab: 'Current Watershed',
-      customAnalysisTab: 'Custom Analysis',
+      watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
+      watershedTabLabel: 'Current Watershed',
+      watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
+      customTabId: 'customWatershed',
+      customTabLabel: 'Custom Analysis',
+      customTabPlaceholder: 'Do some custom analysis here',
       clearAnalysisButton: 'Clear Analysis',
       getAlertsButton: 'Get Alerts',
       pointType: 'point'

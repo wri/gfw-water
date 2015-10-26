@@ -1,3 +1,4 @@
+import {analysisActions} from 'actions/AnalysisActions';
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import layerFactory from 'helpers/LayerFactory';
 import LayersHelper from 'helpers/LayersHelper';
@@ -104,6 +105,8 @@ class MapActions {
     // Reset the Canopy Density slider
     var slider = $('#tree-cover-slider').data('ionRangeSlider');
     if (slider) { slider.reset(); }
+    //- Reset the map and Esri Search Dijit
+    analysisActions.clearAnalysis();
   }
 
 }

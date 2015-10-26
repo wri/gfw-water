@@ -1,7 +1,9 @@
+import WatershedAnalysis from 'components/AnalysisPanel/WatershedAnalysis';
+import CustomAnalysis from 'components/AnalysisPanel/CustomAnalysis';
 import {analysisActions} from 'actions/AnalysisActions';
+import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
 import {modalActions} from 'actions/ModalActions';
-import {analysisPanelText} from 'js/config';
 import React from 'react';
 
 let analysisSvg = '<use xlink:href="#icon-analysis" />';
@@ -25,44 +27,43 @@ export default class AnalysisTools extends React.Component {
     analysisActions.analyzeFeature('test');
   }
 
+  changeTab (tab) {
+    analysisActions.setAnalysisType(tab);
+  }
+
   render () {
-    let hasFeature = this.state.selectedFeatureId !== undefined;
+    let watershedTabActive = this.state.activeTab === text.watershedTabId;
+    let customTabActive = this.state.activeTab === text.customTabId;
 
     return (
       <div className='analysis-tools map-component shadow'>
         <div className='analyze-button no-shrink'>
           <div className='gfw-btn blue pointer' onClick={this.analyzeContent}>
             <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
-            <span>{analysisPanelText.analyzeButton}</span>
+            <span>{text.analyzeButton}</span>
           </div>
         </div>
 
         <div className='no-shrink tabs'>
-          <div className='gfw-btn pointer inline-block active'>{analysisPanelText.currentWatershedTab}</div>
-          <div className='gfw-btn pointer inline-block'>{analysisPanelText.customAnalysisTab}</div>
+          <div className={`gfw-btn pointer inline-block ${watershedTabActive ? 'active' : ''}`} onClick={this.changeTab.bind(this, text.watershedTabId)}>
+            {text.watershedTabLabel}
+          </div>
+          <div className={`gfw-btn pointer inline-block ${customTabActive ? 'active' : ''}`} onClick={this.changeTab.bind(this, text.customTabId)}>
+            {text.customTabLabel}
+          </div>
         </div>
 
         <div className='content-container custom-scroll'>
-          {!hasFeature ? <p className='analysis-placeholder'>{analysisPanelText.analysisPlaceholder}</p> :
-            <div className='current-watershed-panel'>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-              <div>Test</div>
-            </div>
-          }
+          <WatershedAnalysis active={watershedTabActive} feature={this.state.activeFeature} />
+          <CustomAnalysis active={customTabActive} feature={this.state.activeFeature} />
         </div>
 
-        <div className={`no-shrink button-wrapper ${hasFeature ? '' : 'hidden'}`}>
+        <div className={`no-shrink button-wrapper ${this.state.activeFeature ? '' : 'hidden'}`}>
           <div className='gfw-btn white pointer inline-block' onClick={analysisActions.clearAnalysis}>
-            {analysisPanelText.clearAnalysisButton}
+            {text.clearAnalysisButton}
           </div>
           <div className='gfw-btn white pointer inline-block' onClick={modalActions.showAlertsModal}>
-            {analysisPanelText.getAlertsButton}
+            {text.getAlertsButton}
           </div>
         </div>
       </div>

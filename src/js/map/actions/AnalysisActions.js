@@ -29,6 +29,10 @@ class AnalysisActions {
     registry.byId(analysisPanelText.searchWidgetId).clear();
   }
 
+  setAnalysisType (tabId) {
+    this.dispatch(tabId);
+  }
+
 }
 
 export const analysisActions = alt.createActions(AnalysisActions);
