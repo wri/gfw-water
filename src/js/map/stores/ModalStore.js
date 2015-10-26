@@ -4,15 +4,21 @@ import alt from 'js/alt';
 class ModalStore {
 
   constructor () {
+    this.bitlyUrl = '';
     this.modalLayerInfo = {};
 
     this.bindListeners({
-      showLayerInfo: modalActions.showLayerInfo
+      showLayerInfo: modalActions.showLayerInfo,
+      updateBitlyUrl: modalActions.showShareModal
     });
   }
 
   showLayerInfo (layerInfo) {
     this.modalLayerInfo = layerInfo;
+  }
+
+  updateBitlyUrl (bitlyUrl) {
+    this.bitlyUrl = bitlyUrl;
   }
 
 }

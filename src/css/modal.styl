@@ -42,6 +42,11 @@
       left 50%
       top 50%
 
+.modal-title
+  padding 10px 20px 0
+  text-align center
+  font-size 21px
+
 .modal-content
   overflow-x hidden
   max-height 450px
@@ -54,6 +59,61 @@
   text-align center
   line-height 40px
   height 40px
+
+//- Share Modal
+.share-modal-content
+  width 250px
+  & svg
+    transform translate(-50%, -50%)
+    position absolute
+    height 20px
+    width 20px
+    fill white
+    left 50%
+    top 50%
+  & .share-instructions
+    padding-bottom 10px
+    font-size 13px
+  & .share-items
+    justify-content space-around
+    display flex
+  & .share-card
+    transition all 0.1s ease-in-out
+    position relative
+    height 40px
+    width 40px
+  & .googleplus-modal
+    background $googleRed
+    &:hover
+      background darken($googleRed, 25%)
+  & .facebook-modal
+    background $facebookBlue
+    &:hover
+      background darken($facebookBlue, 25%)
+  & .twitter-modal
+    background $twitterBlue
+    &:hover
+      background darken($twitterBlue, 25%)
+
+.share-input
+  margin-bottom 15px
+  height 40px
+  & input
+    border 1px solid $lightGrayBorder
+    text-align center
+    font-size 13px
+    height 100%
+    width 70%
+  & button
+    text-transform uppercase
+    text-align center
+    line-height 38px
+    font-weight 500
+    font-size 14px
+    outline none
+    height 100%
+    width 30%
+    padding 0
 
 //- Canopy Modal specific styling
 .canopy-modal-content

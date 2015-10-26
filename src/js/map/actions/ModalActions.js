@@ -14,19 +14,30 @@ class ModalActions {
     }
   }
 
+  showShareModal () {
+    app.debug('ModalActions >>> showShareModal');
+    //TODO: Generate a url from bitly that includes Map Store state, this way we can share params
+    this.dispatch(document.location.href);
+    domClass.remove('share-modal', 'hidden');
+  }
+
   showAlertsModal () {
+    app.debug('ModalActions >>> showAlertsModal');
     domClass.remove('alerts-modal', 'hidden');
   }
 
   showCanopyModal () {
+    app.debug('ModalActions >>> showCanopyModal');
     domClass.remove('canopy-modal', 'hidden');
   }
 
   hideModal (node) {
+    app.debug('ModalActions >>> hideModal');
     domClass.add(node, 'hidden');
   }
 
   updateCanopyDensity (newDensity) {
+    app.debug('ModalActions >>> updateCanopyDensity');
     this.dispatch(newDensity);
   }
 

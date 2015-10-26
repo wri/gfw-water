@@ -16,6 +16,8 @@ define(function (require) {
   //- appUtils.getObject
   registerSuite({
 
+    name: 'appUtils.getObject',
+
     'Should retrieve object from the array': function () {
       var result = appUtils.getObject(testArray, 'id', 4);
       expect(result.id).to.equal(4);
@@ -38,6 +40,8 @@ define(function (require) {
   //- appUtils.generateFiresQuery
   registerSuite({
 
+    name: 'appUtils.generateFiresQuery',
+
     'Should return a valid query string': function () {
       var result = appUtils.generateFiresQuery(4);
       var pieces = result.split('\'');
@@ -59,6 +63,28 @@ define(function (require) {
     'Should return 1 = 1 if provided filter equals 7': function () {
       var result = appUtils.generateFiresQuery(7);
       expect(result).to.equal('1 = 1');
+    }
+
+  });
+
+  //- appUtils.supportsExecCommand
+  registerSuite({
+
+    name: 'appUtils.supportsExecCommand',
+
+    'Should return a boolean': function () {
+      expect(typeof appUtils.supportsExecCommand() === 'boolean').to.be.ok;
+    }
+
+  });
+
+  //- appUtils.copySelectionFrom
+  registerSuite({
+
+    name: 'appUtils.copySelectionFrom',
+
+    'Should return a boolean': function () {
+      expect(typeof appUtils.copySelectionFrom() === 'boolean').to.be.ok;
     }
 
   });

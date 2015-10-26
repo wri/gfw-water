@@ -1,3 +1,4 @@
+import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
 import {controlPanelText} from 'js/config';
 import {mapStore} from 'stores/MapStore';
@@ -78,7 +79,7 @@ export default class ControlPanel extends React.Component {
   }
 
   share () {
-
+    modalActions.showShareModal();
   }
 
   reset () {

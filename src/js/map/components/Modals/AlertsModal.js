@@ -9,12 +9,12 @@ export default class AlertModal extends React.Component {
   getInitialState () {
     return {
       validationErrors: {}
-    }
+    };
   }
 
   constructor (props) {
     super(props);
-    this.state = this.getInitialState()
+    this.state = this.getInitialState();
   }
 
   render() {
@@ -34,4 +34,3 @@ export default class AlertModal extends React.Component {
   }
 
 }
-

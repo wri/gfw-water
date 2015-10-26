@@ -1,5 +1,6 @@
 import babelPolyfill from 'babel-polyfill';
 import LayerModal from 'components/Modals/LayerModal';
+import ShareModal from 'components/Modals/ShareModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
 import {assetUrls} from 'js/config';
@@ -61,6 +62,7 @@ let initializeApp = () => {
   app.debug('main >>> initializeApp');
   ReactDOM.render(<Map />, document.getElementById('root'));
   ReactDOM.render(<LayerModal />, document.getElementById('layer-modal'));
+  ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));
   ReactDOM.render(<AlertsModal />, document.getElementById('alerts-modal'));
   ReactDOM.render(<CanopyModal />, document.getElementById('canopy-modal'));
 };

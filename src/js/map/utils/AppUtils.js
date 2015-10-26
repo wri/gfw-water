@@ -36,9 +36,42 @@ const utils = {
   },
 
   /**
-  * Return true if the environment is a browser environment
+  * Return true if the document.execCommand exists
+  * @return {boolean}
   */
-  isBrowserEnvironment: () => typeof window !== 'undefined' && typeof document !== 'undefined'
+  supportsExecCommand: () => typeof document !== 'undefined' && !!document.execCommand,
+
+  /**
+  * Return true if we can succesfully copy item to clipboard, this will query element
+  * and try to put the focus on it so we can copy it correctly
+  * @param {HTML element} el - Element that is an input or text element
+  * @return {boolean}
+  */
+  copySelectionFrom: (el) => {
+    if (!utils.supportsExecCommand()) {
+      return false;
+    }
+
+    // Remove any previous ranges if there are any
+    window.getSelection().removeAllRanges();
+
+    let range = document.createRange();
+    let status = false;
+    // Get a selection object representing the range of text
+    range.selectNode(el);
+    window.getSelection().addRange(range);
+    // This may not work in all scenarios, wrap in a try catch to prevent any errors
+    // and handle accordingly
+    try {
+      status = document.execCommand('copy');
+    } catch (err) {
+      console.error(err);
+    }
+
+    window.getSelection().removeAllRanges();
+
+    return status;
+  }
 
 };
 

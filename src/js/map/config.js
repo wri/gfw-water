@@ -254,6 +254,16 @@ export const config = {
       canopy: {
         title: 'Adjust the minimum canopy density for tree cover  and tree cover loss',
         slider: [0, 10, 15, 20, 25, 30, 50, 75, 100]
+      },
+      share: {
+        title: 'Share this view',
+        linkInstructions: 'Copy the paste the link to share it or use the buttons below to share on social media.',
+        copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
+        copyButton: 'Copy',
+        copiedButton: 'Copied',
+        googleUrl: url => `https://plus.google.com/share?url=${url}`,
+        twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
+        facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
       }
     },
     // Fill in below so I can use the keys as Ids
