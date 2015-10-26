@@ -13,7 +13,7 @@ module.exports = function (filepath, remapPath) {
       map = {};
 
   var filterFunction = function filterFunction (modulePath) {
-    return (modulePath.search('esri') > -1) || (modulePath.search('dojo') > -1);
+    return (modulePath.search('esri') > -1) || (modulePath.search('dojo') > -1) || (modulePath.search('dijit') > -1);
   };
 
   for (var moduleName in dependencies) {

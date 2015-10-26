@@ -236,7 +236,14 @@ export const config = {
       searchEsriPlaceholder: 'Search by city',
       searchWatershedPlaceholder: 'Search by watershed',
       sourceName: 'Watersheds',
-      analyzeButton: 'Analyze Watershed'
+      searchWidgetId: 'esri-search-widget',
+      analysisPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
+      analyzeButton: 'Analyze Watershed',
+      currentWatershedTab: 'Current Watershed',
+      customAnalysisTab: 'Custom Analysis',
+      clearAnalysisButton: 'Clear Analysis',
+      getAlertsButton: 'Get Alerts',
+      pointType: 'point'
     },
     controlPanel: {
       wriBasemap: 'WRI',

@@ -1,6 +1,3 @@
-.fifty
-  width 50%
-
 .search-tools
   background white
   display flex
@@ -30,13 +27,44 @@
   top 60px
   & .no-shrink
     flex-shrink 0
-  & .gfw-btn
-    font-size 14px
   & .content-container
     overflow-y auto
   & > div
     background white
     width 100%
+
+.analysis-tools .tabs .gfw-btn
+.analysis-tools .button-wrapper .gfw-btn
+  font-size 14px
+  width 50%
+
+.analysis-tools .button-wrapper .gfw-btn:first-child
+  border-right none
+
+.analysis-tools .tabs .gfw-btn
+  color $lightGray
+  &.active
+    background $lightGrayHighlight
+    color black
+
+.analyze-button
+  display flex
+  height 55px
+  & .gfw-btn
+    border-radius 40px
+    align-items center
+    display flex
+    margin auto
+    & svg
+      margin-right 10px
+      height 20px
+      width 20px
+      fill white
+
+.analysis-placeholder
+  font-size 14px
+  padding 10px
+  margin 0
 
 
 /* IE10+ CSS styles go here */
@@ -48,17 +76,3 @@
       box-shadow 0px 4px 0px #fff, 0px 0px 0px #fff, 2px 2px 2px rgba(0,0,0,0.1), 2px 2px 2px rgba(0,0,0,0.15)
     & div:last-of-type
       box-shadow 2px 2px 2px rgba(0,0,0,0.25)
-
-.button-wrapper
-  display flex
-  height 45px
-  & .analyze-button
-    border-radius 40px
-    align-items center
-    display flex
-    margin auto
-    & svg
-      margin-right 10px
-      height 20px
-      width 20px
-      fill white
