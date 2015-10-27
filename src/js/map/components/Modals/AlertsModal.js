@@ -62,7 +62,7 @@ export default class AlertsModal extends React.Component {
             <label>{alertsText.descriptions.subscriptionTypes}</label>
             {subscriptionValid === true ? null : <div>Required</div>}
             <CheckboxInput label='Monthly Clearance Alerts' className='tree-cover' checked={this.state.formaSubscription} clickHandle={::this.toggleForma} />
-            <CheckboxInput label='Fire Alerts' className='active-fire' checked={this.state.fireSubscription} clickHandle={::this.togglefire} />
+            <CheckboxInput label='Fire Alerts' className='active-fires' checked={this.state.fireSubscription} clickHandle={::this.togglefire} />
             <br />
             <button className='gfw-btn' type='submit' disabled={!subscriptionValid || !this.state.textValid}>Subscribe</button>
           </Form>
