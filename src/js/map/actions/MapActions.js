@@ -105,7 +105,7 @@ class MapActions {
     // Reset the Canopy Density slider
     var slider = $('#tree-cover-slider').data('ionRangeSlider');
     if (slider) { slider.reset(); }
-    //- Reset the map and Esri Search Dijit
+    //- Reset Esris Search Dijit and clear any graphics
     analysisActions.clearAnalysis();
   }
 

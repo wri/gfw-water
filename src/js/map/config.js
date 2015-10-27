@@ -267,7 +267,7 @@ export const config = {
       },
       share: {
         title: 'Share this view',
-        linkInstructions: 'Copy the paste the link to share it or use the buttons below to share on social media.',
+        linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
         copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
         copyButton: 'Copy',
         copiedButton: 'Copied',
