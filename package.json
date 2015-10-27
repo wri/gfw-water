@@ -31,6 +31,7 @@
     "gulp-stylus": "^2.0.7",
     "gulp-umd": "^0.2.0",
     "jstransformer-stylus": "^1.0.0",
+    "madge": "^0.5.2",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "requirejs": "^2.1.20"

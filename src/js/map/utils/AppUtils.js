@@ -44,22 +44,16 @@ const utils = {
   /**
   * Return true if we can succesfully copy item to clipboard, this will query element
   * and try to put the focus on it so we can copy it correctly
-  * @param {HTML element} el - Element that is an input or text element
+  * @param {HTML element} el - Input element
   * @return {boolean}
   */
-  copySelectionFrom: (el) => {
-    if (!utils.supportsExecCommand()) {
-      return false;
-    }
-
-    // Remove any previous ranges if there are any
-    window.getSelection().removeAllRanges();
-
-    let range = document.createRange();
+  copySelectionFrom: el => {
     let status = false;
-    // Get a selection object representing the range of text
-    range.selectNode(el);
-    window.getSelection().addRange(range);
+    if (!utils.supportsExecCommand()) {
+      return status;
+    }
+    // Highlight the input
+    el.select();
     // This may not work in all scenarios, wrap in a try catch to prevent any errors
     // and handle accordingly
     try {
@@ -67,9 +61,6 @@ const utils = {
     } catch (err) {
       console.error(err);
     }
-
-    window.getSelection().removeAllRanges();
-
     return status;
   }
 
