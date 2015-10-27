@@ -257,8 +257,9 @@ export const config = {
       alerts: {
         title: 'Subscribe to GFW Alerts',
         descriptions: {
-          email: 'Enter your email(s) below to receive fire alerts. Multiple emails must be separated by commas.',
-          phone: 'Enter your phone number below to receive SMS alerts.'
+          email: 'Please enter your email address',
+          subscription: 'Please name your subscription',
+          subscriptionTypes: 'Please select your alert type(s)'
         }
       },
       canopy: {

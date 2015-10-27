@@ -1,6 +1,5 @@
 import {modalActions} from 'actions/ModalActions';
 import {modalStore} from 'stores/ModalStore';
-import {modalText} from 'js/config';
 import React from 'react';
 
 let closeSvg = '<use xlink:href="#shape-close" />';
@@ -23,7 +22,7 @@ export default class ModalWrapper extends React.Component {
   }
 
   close () {
-    modalActions.hideModal(React.findDOMNode(this).parentElement)
+    modalActions.hideModal(React.findDOMNode(this).parentElement);
   }
 
   render() {
