@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
     "test": "intern-client config=tests/intern --reporters=Pretty;eslint src/js/*;",
-    "dist": "rm -rf dist; gulp dist; npm run optimize;",
+    "dist": "rm -rf dist; gulp dist; npm run optimize; node scripts/prerender;",
     "dist-www": "npm run dist; cp -r dist/* www",
     "postinstall": "bower install; if [ \"$NODE_ENV\" = 'production' ]; then npm run dist-www; fi",
     "babel": "babel src --modules amd --out-dir build",
