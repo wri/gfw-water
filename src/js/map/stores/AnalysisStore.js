@@ -19,8 +19,8 @@ class AnalysisStore {
     this.activeFeature = null;
   }
 
-  analyzeFeature (feature) {
-    this.activeFeature = feature;
+  analyzeFeature (featureId) {
+    this.activeFeature = featureId;
   }
 
   setAnalysisType (tabId) {

@@ -24,7 +24,7 @@ export default class AnalysisTools extends React.Component {
   }
 
   analyzeContent () {
-    analysisActions.analyzeFeature('test');
+    analysisActions.analyzeFeature(this.state.activeFeature);
   }
 
   changeTab (tab) {
