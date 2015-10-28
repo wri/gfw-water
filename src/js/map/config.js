@@ -4,7 +4,9 @@ export const config = {
 
   assets: {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
-    ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css'
+    ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
+    highcharts: 'http://code.highcharts.com/highcharts.js',
+    highchartsMore: 'http://code.highcharts.com/highcharts-more.js'
   },
 
   map: {

@@ -39,19 +39,20 @@ let loadCSS = (url) => {
   requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
 };
 
-// let loadJS = (url) => {
-//   var script = document.createElement('script');
-//   script.src = url;
-//   script.async = true;
-//   requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(script); });
-// };
+let loadJS = (url, async) => {
+  var script = document.createElement('script');
+  script.src = url;
+  script.async = async || false;
+  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(script); });
+};
 
 let lazyloadAssets = () => {
   app.debug('main >>> lazyloadAssets');
   // This was causing issues so leave this out unless we get bad pagespeed scores
   loadCSS(assetUrls.ionCSS);
   loadCSS(assetUrls.ionSkinCSS);
-  //loadJS(assetUrls.ionJS);
+  loadJS(assetUrls.highcharts);
+  loadJS(assetUrls.highchartsMore);
 };
 
 let configureApp = () => {
