@@ -13,10 +13,6 @@ export default class WatershedChart extends React.Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps.feature);
-  // }
-
   render () {
     return (
       <div className='watershed-chart'>
