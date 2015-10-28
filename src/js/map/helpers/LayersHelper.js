@@ -19,7 +19,7 @@ let LayersHelper = {
   },
 
   watershedHoverOn: evt => {
-    app.debug('LayersHelper >>> watershedHoverOn');
+    // app.debug('LayersHelper >>> watershedHoverOn');
     let graphic = evt.graphic;
     if (graphic) {
       graphic.setSymbol(Symbols.getWatershedHoverSymbol());
@@ -27,7 +27,7 @@ let LayersHelper = {
   },
 
   watershedHoverOff: evt => {
-    app.debug('LayersHelper >>> watershedHoverOff');
+    // app.debug('LayersHelper >>> watershedHoverOff');
     let graphic = evt.graphic;
     if (graphic) {
       graphic.setSymbol(Symbols.getWatershedDefaultSymbol());

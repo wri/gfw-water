@@ -242,11 +242,16 @@ export const config = {
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
       customTabId: 'customWatershed',
-      customTabLabel: 'Custom Analysis',
+      customTabLabel: 'Custom Area',
       customTabPlaceholder: 'Do some custom analysis here',
       clearAnalysisButton: 'Clear Analysis',
       getAlertsButton: 'Get Alerts',
-      pointType: 'point'
+      pointType: 'point',
+      lossFootnote: '* Tree cover loss ',
+      customAnalysisText: 'To further refine your results go to ',
+      customAnalysisLink: 'Custom Area',
+      fullReportButton: 'Full Report',
+      watershedSummeryInfo: 'Watershed Risk Summary'
     },
     controlPanel: {
       wriBasemap: 'WRI',

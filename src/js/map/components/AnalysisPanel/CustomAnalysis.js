@@ -3,11 +3,11 @@ import React from 'react';
 
 export default class CustomAnalysis extends React.Component {
 
-  componentDidUpdate(prevProps) {
-    if (this.props.feature !== prevProps.feature) {
-      console.log(this.props.feature);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.feature !== prevProps.feature) {
+  //     console.log(this.props.feature);
+  //   }
+  // }
 
   render () {
     return (

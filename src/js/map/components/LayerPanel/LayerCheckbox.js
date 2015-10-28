@@ -30,7 +30,7 @@ export default class LayerCheckbox extends React.Component {
         <span onClick={this.toggleLayer.bind(this)} className='toggle-switch pointer'><span/></span>
         <span onClick={this.toggleLayer.bind(this)} className='layer-checkbox-label pointer'>{layer.label}</span>
         {!layer.sublabel ? null : <div className='layer-checkbox-sublabel'>{layer.sublabel}</div>}
-        <span className='layer-info pointer' onClick={this.showInfo.bind(this)}>
+        <span className='info-icon pointer' onClick={this.showInfo.bind(this)}>
           <svg dangerouslySetInnerHTML={{ __html: useSvg }}/>
         </span>
         {!this.props.children ? null :
