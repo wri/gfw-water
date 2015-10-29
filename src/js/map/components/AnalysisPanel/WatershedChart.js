@@ -17,32 +17,34 @@ let generateChart = featureId => {
       series: { pointStart: 0, pointInterval: 90, events: { legendItemClick: () => false } },
       column: { pointPadding: 0, groupPadding: 0 }
     },
+    // legend: { enabled: false },
+    credits: { enabled: false },
     series: [{
       type: 'column',
       name: 'Tree cover loss',
       data: [2],
-      colors: ['#FD6C98'],
+      color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Sedimentation',
       data: [4],
-      colors: ['#FF0000'],
+      color: '#A79261',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Fire',
       data: [3],
-      colors: ['#EA5A00'],
+      color: '#EA5A00',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Historic forest loss',
       data: [4],
-      colors: ['#D2DF2E'],
+      color: '#D2DF2E',
       pointPlacement: 'between'
     }]
   });

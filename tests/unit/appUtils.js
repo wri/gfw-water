@@ -67,6 +67,30 @@ define(function (require) {
 
   });
 
+  //- appUtils.validLatLng
+  registerSuite({
+
+    name: 'appUtils.validLatLng (-90, 90, -180, 180)',
+
+    'Should return true if lat and lon is within global bounds': function () {
+      expect(appUtils.validLatLng(45, 93)).to.be.ok;
+      expect(appUtils.validLatLng(-45, -93)).to.be.ok;
+    },
+
+    'Should return false if lat or lon is not within global bounds': function () {
+      expect(appUtils.validLatLng(45, 182)).to.not.be.ok;
+      expect(appUtils.validLatLng(-92, 140)).to.not.be.ok;
+      expect(appUtils.validLatLng(-93, -192)).to.not.be.ok;
+    },
+
+    'Should return false if either value is not provided': function () {
+      expect(appUtils.validLatLng(-93)).to.not.be.ok;
+      expect(appUtils.validLatLng(34)).to.not.be.ok;
+      expect(appUtils.validLatLng(undefined, 34)).to.not.be.ok;
+    }
+
+  });
+
   //- appUtils.supportsExecCommand
   registerSuite({
 

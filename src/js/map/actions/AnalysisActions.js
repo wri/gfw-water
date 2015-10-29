@@ -6,9 +6,9 @@ import alt from 'js/alt';
 
 class AnalysisActions {
 
-  findWatershed (point) {
+  findWatershed (pointGeometry) {
     app.debug('AnalysisActions >>> findWatershed');
-    Request.getWatershedByGeometry(point.geometry).then(feature => {
+    Request.getWatershedByGeometry(pointGeometry).then(feature => {
       this.actions.analyzeFeature(feature.attributes.objectid);
       app.map.setExtent(feature.geometry.getExtent(), true);
       //- Add Highlight polygon
@@ -31,6 +31,19 @@ class AnalysisActions {
 
   setAnalysisType (tabId) {
     this.dispatch(tabId);
+  }
+
+  addPoint (geometry) {
+    GraphicsHelper.addPointFromDraw(geometry);
+  }
+
+  /**
+  * GraphicsHelper.addPointFromLatLng returns a point object
+  * This enables the callee of this function to pass that point on to other methods
+  * without having to explicitly create a point and use other methods
+  */
+  addPointFromLatLng (lat, lon) {
+    return GraphicsHelper.addPointFromLatLng(lat, lon);
   }
 
 }
