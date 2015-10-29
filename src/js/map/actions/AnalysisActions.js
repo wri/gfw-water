@@ -33,8 +33,8 @@ class AnalysisActions {
     this.dispatch(tabId);
   }
 
-  addPoint (geometry) {
-    GraphicsHelper.addPointFromDraw(geometry);
+  addPointFromDraw (geometry) {
+    GraphicsHelper.addPoint(geometry);
   }
 
   /**
