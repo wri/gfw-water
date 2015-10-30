@@ -33,8 +33,8 @@ export default class DamsLegend extends React.Component {
     );
   }
 
-  itemMapper (item) {
-    return <div className='legend-cell'>
+  itemMapper (item, index) {
+    return <div className='legend-cell' key={index}>
       <img title={item.label} src={`data:image/png;base64,${item.imageData}`} />
       <div className='legend-label'>{item.label}</div>
     </div>;

@@ -30,8 +30,8 @@ export default class FiresControls extends React.Component {
     </div>;
   }
 
-  optionsMap (item) {
-    return <option value={item.value}>{item.label}</option>;
+  optionsMap (item, index) {
+    return <option key={index} value={item.value}>{item.label}</option>;
   }
 
   changeFiresTimeline (evt) {

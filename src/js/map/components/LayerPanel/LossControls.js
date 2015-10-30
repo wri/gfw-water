@@ -48,9 +48,9 @@ export default class LossControls extends React.Component {
     // and vice versa, disable 'to' options less than the selected value in the 'from' select
     let fromMax = lossOptions[this.props.lossToSelectIndex].value;
     let toMin = lossOptions[this.props.lossFromSelectIndex].value;
-    return item => {
+    return (item, index) => {
       let disabled = selectType === 'from' ? item.value >= fromMax : item.value <= toMin;
-      return <option value={item.value} disabled={disabled}>{item.label}</option>;
+      return <option key={index} value={item.value} disabled={disabled}>{item.label}</option>;
     };
   }
 
