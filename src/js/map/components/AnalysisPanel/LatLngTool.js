@@ -11,6 +11,11 @@ export default class LatLngTool extends React.Component {
     let lat = parseFloat(latInput.value);
     let lon = parseFloat(lonInput.value);
 
+    // If the draw toolbar is active, deactivate it at this point
+    if (this.props.toolbarActive) {
+      analysisActions.toggleDrawToolbar(false);
+    }
+
     if (utils.validLatLng(lat, lon)) {
       let point = analysisActions.addPointFromLatLng(lat, lon);
       analysisActions.findWatershed(point);
@@ -26,8 +31,8 @@ export default class LatLngTool extends React.Component {
         <div className='flex lat-lng-form'>
           <input ref='latInput' type='text' placeholder={text.latPlaceholder} />
           <input ref='lonInput' type='text' placeholder={text.lonPlaceholder} />
+          <div className='gfw-btn blue pointer lat-lng-btn' onClick={::this.analyzeLatLng}>{text.latLngGoButton}</div>
         </div>
-        <div className='gfw-btn blue pointer lat-lng-btn' onClick={::this.analyzeLatLng}>{text.latLngGoButton}</div>
       </div>
     );
   }

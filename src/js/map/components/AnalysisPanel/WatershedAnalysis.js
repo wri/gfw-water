@@ -18,10 +18,10 @@ export default class WatershedAnalysis extends React.Component {
   render () {
     return (
       <div className={`watershed-analysis ${this.props.active ? '' : 'hidden'}`}>
-        {!this.props.feature ? <p className='analysis-placeholder'>{text.watershedTabPlaceholder}</p> :
+        {!this.props.activeFeature ? <p className='analysis-placeholder'>{text.watershedTabPlaceholder}</p> :
           <div>
             <div className='feature-title'>United States, North Atlantic Coast</div>
-            <div className='watershed-summary'>
+            <div className='watershed-summary flex'>
               <span className='watershed-summary-label relative'>
                 {text.watershedSummeryInfo}
                 <span className='info-icon pointer'>
@@ -29,7 +29,7 @@ export default class WatershedAnalysis extends React.Component {
                 </span>
               </span>
             </div>
-            <WatershedChart feature={this.props.feature} />
+            <WatershedChart feature={this.props.activeFeature} />
             <LossFootnote />
             <CustomAnalysisLink />
             <div className='full-report-button gfw-btn blue pointer'>{text.fullReportButton}</div>

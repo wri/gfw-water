@@ -37,6 +37,10 @@ class AnalysisActions {
     GraphicsHelper.addPoint(geometry);
   }
 
+  toggleDrawToolbar (status) {
+    this.dispatch(status);
+  }
+
   /**
   * GraphicsHelper.addPointFromLatLng returns a point object
   * This enables the callee of this function to pass that point on to other methods

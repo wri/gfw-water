@@ -34,12 +34,27 @@
     width 100%
 
 .analysis-tools .tabs .gfw-btn
-.analysis-tools .button-wrapper .gfw-btn
+.analysis-footer > div
   font-size 14px
   width 50%
 
-.analysis-tools .button-wrapper .gfw-btn:first-child
-  border-right none
+.analysis-footer
+  & svg
+    fill $darkGray
+    margin 0 5px
+    height 20px
+    width 20px
+  & > div
+    border-top 1px solid $lightGrayBorder
+    transition background 0.25s linear
+    justify-content center
+    text-align center
+    padding 7px 10px
+    color $darkGray
+    &:hover
+      background darken(white, 10%)
+    &:first-child
+      border-right 1px solid $lightGrayBorder
 
 .analysis-tools .tabs .gfw-btn
   //$lightGrayBorder is slightly ligher then $lightGray, making it better fit for unactive tab
@@ -54,19 +69,17 @@
   height 5px
   width 50%
 
-.analyze-button
+.analyze-header
+  justify-content center
+  align-items center
+  color $gfwBlue
   display flex
-  height 55px
-  & .gfw-btn
-    border-radius 40px
-    align-items center
-    display flex
-    margin auto
-    & svg
-      margin-right 10px
-      height 20px
-      width 20px
-      fill white
+  height 40px
+  & svg
+    margin-right 10px
+    height 20px
+    width 20px
+    fill $gfwBlue
 
 .lat-lng-tool
   & .lat-lng-form
@@ -76,13 +89,18 @@
     border 1px solid $lightGrayBorder
     padding 5px 10px
     font-size 13px
-    margin 0 20px
+    margin 0 5px
     outline none
     width 90px
+
+.lat-lng-btn
+  margin 0 5px
 
 .add-point-btn
   margin 20px auto 10px
   width 120px
+  &.active
+    background darken($gfwBlue, 25%)
 
 .custom-analysis-spacer
   margin 5px 0
@@ -90,13 +108,10 @@
 .lat-lng-instructions
   font-size 14px
 
-.lat-lng-btn
-  display inline-block
-  margin 10px 0
-
 .analysis-placeholder
+  text-align center
   background white
-  font-size 14px
+  font-size 16px
   padding 10px
   margin 0
 
@@ -129,27 +144,28 @@
 
 .custom-analysis-link
   justify-content center
+  margin 5px 0 10px
   font-size 12px
-  margin 15px 0
   & .custom-analysis-link-label
     padding-right 3px
 
 .full-report-button
-  border-radius 5px
-  margin 10px auto
+  margin 5px auto 10px
   width 180px
 
 .watershed-summary
-  text-align center
-  margin 10px 0
+  justify-content center
+  align-items center
+  margin 5px 0
   & .watershed-summary-label
     padding-right 34px
     font-size 13px
-    margin 0 auto
+    & .info-icon
+      top 3px
 
 .feature-title
   padding 0 10px
-  margin 10px 0
+  margin 5px 0
 
 .watershed-chart
   margin 0 10px

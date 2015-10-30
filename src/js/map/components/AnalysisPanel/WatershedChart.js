@@ -12,7 +12,7 @@ let generateChart = featureId => {
       max: 360,
       labels: { enabled: false }
     },
-    yAxis: { min: 0, max: 5 },
+    yAxis: { min: 0, max: 5, labels: { enabled: false } },
     plotOptions: {
       series: { pointStart: 0, pointInterval: 90, events: { legendItemClick: () => false } },
       column: { pointPadding: 0, groupPadding: 0 }

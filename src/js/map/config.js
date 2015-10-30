@@ -256,7 +256,7 @@ export const config = {
       watershedSummeryInfo: 'Watershed Risk Summary',
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
-      latLngGoButton: 'Find watershed',
+      latLngGoButton: 'Go',
       latPlaceholder: 'Lat',
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
