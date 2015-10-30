@@ -37,7 +37,7 @@ export default class LayerPanel extends React.Component {
   }
 
   checkboxMap (group) {
-    return function (layer) {
+    return layer => {
       let activeLayers = this.state.activeLayers;
       // Exclude Layers not part of this group
       if (layer.group !== group) { return null; }

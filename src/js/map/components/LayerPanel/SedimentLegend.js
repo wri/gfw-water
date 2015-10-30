@@ -38,8 +38,8 @@ export default class SedimentLegend extends React.Component {
     );
   }
 
-  imgMapper (legendInfo) {
-    return <img title={legendInfo.label} src={`data:image/png;base64,${legendInfo.imageData}`} />;
+  imgMapper (legendInfo, index) {
+    return <img key={index} title={legendInfo.label} src={`data:image/png;base64,${legendInfo.imageData}`} />;
   }
 
 }
