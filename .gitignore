@@ -5,6 +5,7 @@ dist
 # Ignore everything in www except for proxy
 www/*
 !www/proxy
+!www/.htaccess
 
 # Ignore these, just do it
 node_modules
