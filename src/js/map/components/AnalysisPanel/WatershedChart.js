@@ -1,7 +1,7 @@
 import React from 'react';
 
-let generateChart = featureId => {
-  console.log(featureId);
+let generateChart = feature => {
+  console.log(feature);
   $('#watershed-chart').highcharts({
     chart: { polar: true },
     title: { text: '' },
@@ -64,9 +64,7 @@ export default class WatershedChart extends React.Component {
 
   render () {
     return (
-      <div className='watershed-chart' id='watershed-chart'>
-        {this.props.feature}
-      </div>
+      <div className='watershed-chart' id='watershed-chart' />
     );
   }
 }

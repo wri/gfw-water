@@ -46,7 +46,7 @@ let generateSearchWidget = () => {
         analysisActions.findWatershed(feature.geometry);
       } else {
         app.map.setExtent(evt.result.extent, true);
-        analysisActions.analyzeFeature(feature.attributes.objectid);
+        analysisActions.analyzeFeature(feature);
       }
     }
   });
