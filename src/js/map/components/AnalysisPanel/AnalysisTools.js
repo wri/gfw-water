@@ -1,5 +1,6 @@
 import WatershedAnalysis from 'components/AnalysisPanel/WatershedAnalysis';
 import CustomAnalysis from 'components/AnalysisPanel/CustomAnalysis';
+import TabControls from 'components/AnalysisPanel/TabControls';
 import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
@@ -7,6 +8,8 @@ import {modalActions} from 'actions/ModalActions';
 import React from 'react';
 
 let analysisSvg = '<use xlink:href="#icon-analysis" />';
+let removeSvg = '<use xlink:href="#icon-remove" />';
+let alertsSvg = '<use xlink:href="#icon-alerts" />';
 
 export default class AnalysisTools extends React.Component {
 
@@ -27,42 +30,26 @@ export default class AnalysisTools extends React.Component {
     analysisActions.analyzeFeature(this.state.activeFeature);
   }
 
-  changeTab (tab) {
-    analysisActions.setAnalysisType(tab);
-  }
-
   render () {
-    let watershedTabActive = this.state.activeTab === text.watershedTabId;
-    let customTabActive = this.state.activeTab === text.customTabId;
-
     return (
       <div className='analysis-tools map-component shadow'>
-        <div className='analyze-button no-shrink'>
-          <div className='gfw-btn blue pointer' onClick={this.analyzeContent}>
-            <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
-            <span>{text.analyzeButton}</span>
-          </div>
+        <div className='analyze-header no-shrink'>
+          <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
+          <span>{text.analyzeButton}</span>
         </div>
 
-        <div className='no-shrink tabs'>
-          <div className={`gfw-btn pointer inline-block ${watershedTabActive ? 'active' : ''}`} onClick={this.changeTab.bind(this, text.watershedTabId)}>
-            {text.watershedTabLabel}
-          </div>
-          <div className={`gfw-btn pointer inline-block ${customTabActive ? 'active' : ''}`} onClick={this.changeTab.bind(this, text.customTabId)}>
-            {text.customTabLabel}
-          </div>
+        <TabControls activeTab={this.state.activeTab} />
+        <div className='tab-container custom-scroll'>
+          <WatershedAnalysis active={this.state.activeTab === text.watershedTabId} {...this.state} />
+          <CustomAnalysis active={this.state.activeTab === text.customTabId} {...this.state} />
         </div>
-
-        <div className='content-container custom-scroll'>
-          <WatershedAnalysis active={watershedTabActive} feature={this.state.activeFeature} />
-          <CustomAnalysis active={customTabActive} feature={this.state.activeFeature} />
-        </div>
-
-        <div className={`no-shrink button-wrapper ${this.state.activeFeature ? '' : 'hidden'}`}>
-          <div className='gfw-btn white pointer inline-block' onClick={analysisActions.clearAnalysis}>
+        <div className={`no-shrink analysis-footer flex${this.state.activeFeature ? '' : ' hidden'}`}>
+          <div className='clear-analysis pointer flex' onClick={analysisActions.clearAnalysis}>
+            <svg dangerouslySetInnerHTML={{ __html: removeSvg }}/>
             {text.clearAnalysisButton}
           </div>
-          <div className='gfw-btn white pointer inline-block' onClick={modalActions.showAlertsModal}>
+          <div className='analysis-alerts pointer flex' onClick={modalActions.showAlertsModal}>
+            <svg dangerouslySetInnerHTML={{ __html: alertsSvg }}/>
             {text.getAlertsButton}
           </div>
         </div>

@@ -7,16 +7,19 @@ class AnalysisStore {
   constructor () {
     this.activeFeature = null;
     this.activeTab = analysisPanelText.watershedTabId;
+    this.toolbarActive = false;
 
     this.bindListeners({
       clearAnalysis: analysisActions.clearAnalysis,
       analyzeFeature: analysisActions.analyzeFeature,
-      setAnalysisType: analysisActions.setAnalysisType
+      setAnalysisType: analysisActions.setAnalysisType,
+      toggleDrawToolbar: analysisActions.toggleDrawToolbar
     });
   }
 
   clearAnalysis () {
     this.activeFeature = null;
+    this.toolbarActive = false;
   }
 
   analyzeFeature (featureId) {
@@ -25,6 +28,10 @@ class AnalysisStore {
 
   setAnalysisType (tabId) {
     this.activeTab = tabId;
+  }
+
+  toggleDrawToolbar (status) {
+    this.toolbarActive = status;
   }
 
 }

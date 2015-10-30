@@ -1,3 +1,4 @@
+import PictureMarkerSymbol from 'esri/symbols/PictureMarkerSymbol';
 import SimpleMarkerSymbol from 'esri/symbols/SimpleMarkerSymbol';
 import SimpleFillSymbol from 'esri/symbols/SimpleFillSymbol';
 import SimpleLineSymbol from 'esri/symbols/SimpleLineSymbol';
@@ -7,7 +8,8 @@ import Color from 'esri/Color';
 
 let watershedHoverSymbol,
     watershedDefaultSymbol,
-    svgMarkerSymbol;
+    svgMarkerSymbol,
+    pointSymbol;
 
 const Symbols = {
 
@@ -37,6 +39,18 @@ const Symbols = {
     svgMarkerSymbol.setOutline(null);
     svgMarkerSymbol.setSize(24);
     return svgMarkerSymbol;
+  },
+
+  getPointSymbol: () => {
+    if (pointSymbol) { return pointSymbol; }
+    pointSymbol = new PictureMarkerSymbol({
+      url: symbolConfig.pointUrl,
+      xoffset: 6,
+      yoffset: 6,
+      height: 27, //approx 36px
+      width: 27
+    });
+    return pointSymbol;
   }
 
 };

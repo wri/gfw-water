@@ -43,7 +43,7 @@ let generateSearchWidget = () => {
       //- If the feature is a point, then they searched the world geocoder and we still need to find the watershed
       //- else, they searched the watersheds layer and we can start analysis right away
       if (feature.geometry.type === analysisPanelText.pointType) {
-        analysisActions.findWatershed(feature);
+        analysisActions.findWatershed(feature.geometry);
       } else {
         app.map.setExtent(evt.result.extent, true);
         analysisActions.analyzeFeature(feature.attributes.objectid);
