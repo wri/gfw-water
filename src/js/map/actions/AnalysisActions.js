@@ -9,16 +9,16 @@ class AnalysisActions {
   findWatershed (pointGeometry) {
     app.debug('AnalysisActions >>> findWatershed');
     Request.getWatershedByGeometry(pointGeometry).then(feature => {
-      this.actions.analyzeFeature(feature.attributes.objectid);
+      this.actions.analyzeFeature(feature);
       app.map.setExtent(feature.geometry.getExtent(), true);
       //- Add Highlight polygon
       GraphicsHelper.addActiveWatershed(feature);
     }, console.error);
   }
 
-  analyzeFeature (featureId) {
+  analyzeFeature (feature) {
     app.debug('AnalysisActions >>> analyzeFeature');
-    this.dispatch(featureId);
+    this.dispatch(feature);
   }
 
   clearAnalysis () {

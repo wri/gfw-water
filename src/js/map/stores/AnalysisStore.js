@@ -22,8 +22,8 @@ class AnalysisStore {
     this.toolbarActive = false;
   }
 
-  analyzeFeature (featureId) {
-    this.activeFeature = featureId;
+  analyzeFeature (feature) {
+    this.activeFeature = feature;
   }
 
   setAnalysisType (tabId) {
