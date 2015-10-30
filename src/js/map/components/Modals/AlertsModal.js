@@ -1,9 +1,12 @@
-import {modalText} from 'js/config';
+import {modalText, alertsModalConfig} from 'js/config';
 import ModalWrapper from 'components/Modals/ModalWrapper';
 import TextInput from 'components/Forms/TextInput';
 import CheckboxInput from 'components/Forms/CheckboxInput';
+import {clone} from 'utils/AppUtils';
+import GeoHelper from 'helpers/GeoHelper';
 import React from 'react';
 import {Form} from 'formsy-react';
+import Deferred from 'dojo/Deferred';
 
 const alertsText = modalText.alerts;
 export default class AlertsModal extends React.Component {
@@ -34,18 +37,83 @@ export default class AlertsModal extends React.Component {
     this.setState({fireSubscription: !this.state.fireSubscription});
   }
 
-  formaSubmit() {
-    console.log('forma');
+  formaSubmit (geoJson, subscriptionName, email) {
+    var deferred = new Deferred(),
+        url = alertsModalConfig.requests.forma.url,
+        options = clone(alertsModalConfig.requests.forma.options),
+        data = JSON.stringify({
+          topic: options.data.topic,
+          email: email,
+          geom: '{"type": "' + geoJson.type + '", "coordinates":[' + JSON.stringify(geoJson.geom) + ']}'
+        }),
+        request = new XMLHttpRequest(),
+        self = this;
+
+    request.onreadystatechange = function () {
+      if (request.readyState === 4) {
+        deferred.resolve((JSON.parse(request.response).subscribe) ? 'messagesConfig.formaSuccess' : 'messagesConfig.formaFail');
+      }
+    };
+    request.addEventListener('error', function () {
+      deferred.resolve(false);
+    }, false);
+    request.open(options.method, url, true);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // request.send(data);
+
+    // Analytics.sendEvent('Subscribe', 'Monthly Clearance Alerts', 'User is subscribing to Monthly Clearance Alerts.');
+
+    debugger
+    return deferred.promise;
   }
 
-  fireSubmit() {
-    console.log('fire');
+  fireSubmit (unionedPolygon, subscriptionName, email) {
+    var deferred = new Deferred(),
+        // messagesConfig = TEXT.messages,
+        firesConfig = alertsModalConfig.requests.fires,
+        url = firesConfig.url,
+        options = clone(firesConfig.options); 
+
+    options.data.features = JSON.stringify({
+      rings: unionedPolygon.rings,
+      spatialReference: unionedPolygon.spatialReference
+    });
+    options.data.msg_addr = email;
+    options.data.area_name = subscriptionName;
+
+    //xhr(url, options).then(function (response) {
+    //  deferred.resolve((response.message && response.message === firesConfig.successMessage) ? 'messagesConfig.fireSuccess' : 'messagesConfig.fireFail');
+    //});
+
+    //Analytics.sendEvent('Subscribe', 'Fire Alerts', 'User is subscribing to Fire Alerts.');
+
+    debugger
+    return deferred.promise;
   }
 
   submit (model) {
     console.log(model)
-    if (this.state.formaSubscription === true) {this.formaSubmit();}
-    if (this.state.fireSubscription === true) {this.fireSubmit();}
+    let subscriptions = [],
+        features = [],
+        feature,
+        polygons;
+
+    feature = get subscription feature from store?
+
+    if (this.state.formaSubscription === true) {
+      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature), model['subscription-name'], model['email']));
+      // use feature directly?
+      // subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature), model['subscription-name'], model['email']));
+    }
+    if (this.state.fireSubscription === true) {
+      subscriptions.push(this.fireSubmit(feature, model['subscription-name'], model['email']));
+      // use feature directly?
+      // subscriptions.push(this.fireSubmit(feature, model['subscription-name'], model['email']));
+    }
+
+    all(subscriptions).then(function (responses) {
+      alert(responses.join('\n'));
+    });
   }
 
   render () {
@@ -72,3 +140,4 @@ export default class AlertsModal extends React.Component {
   }
 
 }
+// TODO: move static text to config

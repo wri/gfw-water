@@ -64,6 +64,10 @@ const utils = {
     return status;
   }
 
+  simpleClone: (sourceObject) => {
+    return JSON.parse(JSON.stringify(sourceObject));
+  }
+
 };
 
 export { utils as default };

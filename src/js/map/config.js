@@ -27,7 +27,8 @@ export const config = {
         id: KEYS.wriBasemap,
         visible: true
       }
-    }
+    },
+    geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
   // This config is for both the layers and the layer list, if no url is present, the layer will not be rendered
@@ -184,6 +185,39 @@ export const config = {
   symbol: {
     gfwBlue: [64, 153, 206],
     svgPath: 'M16,3.5c-4.142,0-7.5,3.358-7.5,7.5c0,4.143,7.5,18.121,7.5,18.121S23.5,15.143,23.5,11C23.5,6.858,20.143,3.5,16,3.5z M16,14.584c-1.979,0-3.584-1.604-3.584-3.584S14.021,7.416,16,7.416S19.584,9.021,19.584,11S17.979,14.584,16,14.584z'
+  },
+
+  alertsModal: {
+    requests: {
+      fires: {
+        url: 'https://gfw-fires.wri.org/subscribe_by_polygon',
+        options: {
+          method: 'POST',
+          handleAs: 'json',
+          headers: {
+            'X-Requested-With': null
+          },
+          data: {
+            msg_type: 'email',
+            msg_addr: null,
+            area_name: null,
+            features: null
+          }
+        },
+        successMessage: 'subscription successful'
+      },
+      forma: {
+        url: 'http://gfw-apis.appspot.com/subscribe',
+        options: {
+          method: 'POST',
+          data: {
+            topic: 'updates/forma',
+            geom: null,
+            email: null
+          }
+        }
+      }
+    }
   },
 
   text: {
@@ -433,3 +467,4 @@ export const errors = config.text.errors;
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
 export const layerInformation = config.text.layerInformation;
+export const alertsModalConfig = config.alertsModal;
