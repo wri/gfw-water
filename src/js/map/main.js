@@ -8,8 +8,8 @@ import Map from 'components/Map';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import GeoProcessor from 'esri/tasks/Geoprocessor';
-import SR from 'esri/SpatialReference';
+// import GeoProcessor from 'esri/tasks/Geoprocessor';
+// import SR from 'esri/SpatialReference';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
