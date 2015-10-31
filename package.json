@@ -29,6 +29,7 @@
     "gulp-autoprefixer": "^3.0.1",
     "gulp-imagemin": "^2.3.0",
     "gulp-jade": "^1.1.0",
+    "gulp-minify-inline": "^0.1.1",
     "gulp-stylus": "^2.0.7",
     "gulp-umd": "^0.2.0",
     "jstransformer-stylus": "^1.0.0",

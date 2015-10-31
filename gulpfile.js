@@ -1,3 +1,4 @@
+var minifyInline = require('gulp-minify-inline');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync');
 var imagemin = require('gulp-imagemin');
@@ -72,6 +73,7 @@ gulp.task('jade-build', function () {
 gulp.task('jade-dist', function () {
   gulp.src(config.jade.src)
     .pipe(jade({ locals: locals }))
+    .pipe(minifyInline())
     .pipe(gulp.dest(config.jade.dist));
 });
 

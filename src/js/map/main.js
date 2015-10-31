@@ -3,6 +3,7 @@ import LayerModal from 'components/Modals/LayerModal';
 import ShareModal from 'components/Modals/ShareModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
+import {loadCSS, loadJS} from 'utils/loaders';
 import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import ReactDOM from 'react-dom';
@@ -34,21 +35,6 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-let loadCSS = (url) => {
-  var sheet = document.createElement('link');
-  sheet.rel = 'stylesheet';
-  sheet.type = 'text/css';
-  sheet.href = url;
-  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
-};
-
-let loadJS = (url, async) => {
-  var script = document.createElement('script');
-  script.src = url;
-  script.async = async || false;
-  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(script); });
-};
-
 let lazyloadAssets = () => {
   app.debug('main >>> lazyloadAssets');
   // This was causing issues so leave this out unless we get bad pagespeed scores
@@ -71,10 +57,9 @@ let initializeApp = () => {
   ReactDOM.render(<CanopyModal />, document.getElementById('canopy-modal'));
 };
 
-lazyloadAssets();
 configureApp();
 initializeApp();
-
+lazyloadAssets();
 
 
 // let test = () => {
