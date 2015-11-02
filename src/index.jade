@@ -8,15 +8,33 @@ html
         @require 'css/base'
     link(rel='stylesheet', href='css/home.css?#{version}')
     link(rel='stylesheet', href='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     script(src='vendor/jquery/dist/jquery.min.js')
   body
     include templates/gfwAssets.jade
     div#headerGfw
-    div.homeCarousel
-      img(src='http://www.globalforestwatch.org/assets/backgrounds/home-slider/bg_slide3.png')
-      img(src='http://gfw.blog.s3.amazonaws.com/Carousel/6800195654_c25cfa30a8_o.jpg')
-      img(src='http://gfw.blog.s3.amazonaws.com/Carousel/Indonesia%20Fires%20Carousel%20Image.JPG')
-      img(src='http://www.globalforestwatch.org/assets/backgrounds/home-slider/bg_slide1.png')
+    section.relative.home-slider-container
+      nav.mobile-hidden.home-nav
+        h2.shadow Explore the Map!
+          div.inline-block
+            a(href='./map.html', title='EXPLORE THE MAP', alt='Explore the Map')
+              div.gfw-btn.blue.pointer click here!
+      ul.home-slider
+        li.slide1
+          div.inner.relative
+            aside
+              h2 explore
+              h3 explore data on forest change
+        li.slide2
+          div.inner.relative
+            aside
+              h2 explore
+              h3 explore data on forest change
+        li.slide3
+          div.inner.relative
+            aside
+              h2 explore
+              h3 explore data on forest change
     div#footerGfw
     script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.

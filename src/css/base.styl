@@ -42,6 +42,9 @@ a
 .text-center
   text-align center
 
+.mobile-hidden
+  display none
+
 .custom-scroll::-webkit-scrollbar
   height 8px
   width 8px
@@ -103,3 +106,7 @@ a
     color $darkGray
     &:hover
       background darken(white, 10%)
+
+@media (min-width: 850px)
+  .mobile-hidden
+    display block

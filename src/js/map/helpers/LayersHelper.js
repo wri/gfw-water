@@ -20,6 +20,9 @@ let LayersHelper = {
       watershedLayer.on('mouse-over', LayersHelper.watershedHoverOn);
       watershedLayer.on('mouse-out', LayersHelper.watershedHoverOff);
       watershedLayer.on('click', LayersHelper.watershedClicked);
+      //- Testing to see if this stops the request cancelled errors in the console
+      watershedLayer.on('zoom-start', () => { watershedLayer.setVisibility(false); });
+      watershedLayer.on('zoom-end', () => { watershedLayer.setVisibility(true); });
     }
   },
 
