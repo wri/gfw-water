@@ -1,9 +1,9 @@
 import ModalWrapper from 'components/Modals/ModalWrapper';
 import {modalActions} from 'actions/ModalActions';
 import LayersHelper from 'helpers/LayersHelper';
+import {modalText, assetUrls} from 'js/config';
 import {mapStore} from 'stores/MapStore';
 import {loadJS} from 'utils/loaders';
-import {modalText} from 'js/config';
 import React from 'react';
 
 export default class CanopyModal extends React.Component {
@@ -13,7 +13,7 @@ export default class CanopyModal extends React.Component {
   }
 
   componentDidMount() {
-    loadJS('vendor/ion.rangeslider/js/ion.rangeSlider.min.js').then(() => {
+    loadJS(assetUrls.rangeSlider).then(() => {
       $('#tree-cover-slider').ionRangeSlider({
         type: 'double',
         values: modalText.canopy.slider,
