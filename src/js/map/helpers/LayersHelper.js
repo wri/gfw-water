@@ -1,6 +1,10 @@
+import {analysisActions} from 'actions/AnalysisActions';
 import {layerPanelText, layersConfig} from 'js/config';
+import GraphicsHelper from 'helpers/GraphicsHelper';
+import {analysisStore} from 'stores/AnalysisStore';
 import rasterFuncs from 'utils/rasterFunctions';
 import Symbols from 'helpers/Symbols';
+import Request from 'utils/request';
 import utils from 'utils/AppUtils';
 import KEYS from 'js/constants';
 
@@ -15,6 +19,31 @@ let LayersHelper = {
     if (watershedLayer) {
       watershedLayer.on('mouse-over', LayersHelper.watershedHoverOn);
       watershedLayer.on('mouse-out', LayersHelper.watershedHoverOff);
+      watershedLayer.on('click', LayersHelper.watershedClicked);
+    }
+  },
+
+  watershedClicked: evt => {
+    app.debug('LayerHelper >>> watershedClicked');
+    //- Don't do anything if the drawtoolbar is active
+    let {activeFeature, toolbarActive} = analysisStore.getState();
+    let graphic = evt.graphic;
+    if (graphic && !toolbarActive) {
+      //- If we currently have a feature in analysis, clear the analyis, then run the query
+      if (activeFeature) { analysisActions.clearAnalysis(); }
+      let objectid = graphic.attributes.objectid;
+      Request.getWatershedById(objectid).then(featureJSON => {
+        //- Convert JSON to feature
+        let feature = GraphicsHelper.generateGraphic(featureJSON);
+        //- Start the analysis process
+        analysisActions.analyzeFeature(feature);
+        //- Add some cues to the map to highlight the feature and add a point
+        GraphicsHelper.addPoint(evt.mapPoint);
+        GraphicsHelper.addActiveWatershed(feature);
+        app.map.setExtent(feature.geometry.getExtent(), true);
+      }, err => {
+        console.log(err);
+      });
     }
   },
 
@@ -68,6 +97,7 @@ let LayersHelper = {
     let fromValue = layerPanelText.lossOptions[fromIndex].value;
     let toValue = layerPanelText.lossOptions[toIndex].value;
     let layerConfig = utils.getObject(layersConfig, 'id', KEYS.loss);
+    //- [fromValue, toValue] is inclusive, exclusive, which is why the + 1 is present
     let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [fromValue, (toValue + 1)], layerConfig.outputRange);
     let layer = app.map.getLayer(KEYS.loss);
 

@@ -6,7 +6,8 @@ export const config = {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
     ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
     highcharts: 'http://code.highcharts.com/highcharts.js',
-    highchartsMore: 'http://code.highcharts.com/highcharts-more.js'
+    highchartsMore: 'http://code.highcharts.com/highcharts-more.js',
+    rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js'
   },
 
   map: {
@@ -55,7 +56,8 @@ export const config = {
       url: 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
       colormap: [[1, 174, 203, 107]],
       inputRange: [30, 101],
-      outputRange: [1]
+      outputRange: [1],
+      opacity: 0.8
     },
     {
       id: KEYS.majorDams,
@@ -184,6 +186,7 @@ export const config = {
 
   symbol: {
     gfwBlue: [64, 153, 206],
+    upstreamSymbol: [255, 0, 0],
     svgPath: 'M16,3.5c-4.142,0-7.5,3.358-7.5,7.5c0,4.143,7.5,18.121,7.5,18.121S23.5,15.143,23.5,11C23.5,6.858,20.143,3.5,16,3.5z M16,14.584c-1.979,0-3.584-1.604-3.584-3.584S14.021,7.416,16,7.416S19.584,9.021,19.584,11S17.979,14.584,16,14.584z',
     pointUrl: 'http://js.arcgis.com/3.14/esri/dijit/Search/images/search-pointer.png'
   },
@@ -221,12 +224,28 @@ export const config = {
     }
   },
 
+  analysis: {
+    upstream: {
+      url: 'http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed',
+      params: {
+        f: 'json',
+        Generalize: true,
+        SnapDistance: 5000,
+        SnapDistanceUnits: 'Meters',
+        DataSourceResolution: '90m'
+      },
+      outputSR: 102100,
+      jobId: 'WatershedArea'
+    }
+  },
+
   text: {
     errors: {
       missingLayerConfig: 'You provided a layer config containing a url but not a type, please specify the layer type in the layer config.',
       incorrectLayerConfig: type => `You provided an invalid type, the application is not configured for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
       geolocationUnavailable: 'Sorry, it looks like your browser does not support geolocation, please try the latest versions of Safari, Chrome, or Firefox.',
-      geolocationFailure: message => `Error retrieving location at this time. ${message}`
+      geolocationFailure: message => `Error retrieving location at this time. ${message}`,
+      featureNotFound: 'We could not find a feature available at this point. Please try again.'
     },
     layerPanel: {
       watershed: 'Know your watershed',
@@ -264,7 +283,7 @@ export const config = {
         {label: '2014', value: 14}
       ],
       treeCover: {
-        densityFirst: 'Displaying loss with',
+        densityFirst: 'Displaying',
         densitySecond: 'canopy density.'
       }
     },
@@ -473,5 +492,6 @@ export const layersConfig = config.layers;
 export const errors = config.text.errors;
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
+export const analysisConfig = config.analysis;
 export const layerInformation = config.text.layerInformation;
 export const alertsModalConfig = config.alertsModal;

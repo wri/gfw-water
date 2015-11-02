@@ -3,13 +3,14 @@ import LayerModal from 'components/Modals/LayerModal';
 import ShareModal from 'components/Modals/ShareModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
+import {loadCSS, loadJS} from 'utils/loaders';
 import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import GeoProcessor from 'esri/tasks/Geoprocessor';
-import SR from 'esri/SpatialReference';
+// import GeoProcessor from 'esri/tasks/Geoprocessor';
+// import SR from 'esri/SpatialReference';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
@@ -34,21 +35,6 @@ window.requestAnimationFrame = (function () {
     function (callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
-let loadCSS = (url) => {
-  var sheet = document.createElement('link');
-  sheet.rel = 'stylesheet';
-  sheet.type = 'text/css';
-  sheet.href = url;
-  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(sheet); });
-};
-
-let loadJS = (url, async) => {
-  var script = document.createElement('script');
-  script.src = url;
-  script.async = async || false;
-  requestAnimationFrame(function () { document.getElementsByTagName('head')[0].appendChild(script); });
-};
-
 let lazyloadAssets = () => {
   app.debug('main >>> lazyloadAssets');
   // This was causing issues so leave this out unless we get bad pagespeed scores
@@ -71,34 +57,33 @@ let initializeApp = () => {
   ReactDOM.render(<CanopyModal />, document.getElementById('canopy-modal'));
 };
 
-lazyloadAssets();
 configureApp();
 initializeApp();
+lazyloadAssets();
 
 
-
-let test = () => {
-  let params = {
-    'SnapDistance': '5000',
-    'SnapDistanceUnits': 'Meters',
-    'DataSourceResolution': '90m',
-    'Generalize': 'True',
-    'f': 'json',
-    'InputPoints': '{"geometryType":"esriGeometryPoint","features":[{"geometry":{"x":11058950.018714607,"y":192244.0469047035,"spatialReference":{"wkid":102100,"latestWkid":3857}}}],"sr":{"wkid":102100,"latestWkid":3857}}'
-  };
-
-  let geoprocessor = new GeoProcessor('http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed');
-  geoprocessor.setOutputSpatialReference(new SR(102100));
-  geoprocessor.submitJob(params, results => {
-    console.log(results);
-    geoprocessor.getResultData(results.jobId, 'WatershedArea', data => {
-      console.log('getResultData');
-      console.log(data);
-    });
-  }, status => {
-    console.log(status);
-  });
-
-};
+// let test = () => {
+//   let params = {
+//     'SnapDistance': '5000',
+//     'SnapDistanceUnits': 'Meters',
+//     'DataSourceResolution': '90m',
+//     'Generalize': 'True',
+//     'f': 'json',
+//     'InputPoints': '{"geometryType":"esriGeometryPoint","features":[{"geometry":{"x":11058950.018714607,"y":192244.0469047035,"spatialReference":{"wkid":102100,"latestWkid":3857}}}],"sr":{"wkid":102100,"latestWkid":3857}}'
+//   };
+//
+//   let geoprocessor = new GeoProcessor('http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed');
+//   geoprocessor.setOutputSpatialReference(new SR(102100));
+//   geoprocessor.submitJob(params, results => {
+//     console.log(results);
+//     geoprocessor.getResultData(results.jobId, 'WatershedArea', data => {
+//       console.log('getResultData');
+//       console.log(data);
+//     });
+//   }, status => {
+//     console.log(status);
+//   });
+//
+// };
 
 // test();

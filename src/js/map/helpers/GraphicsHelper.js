@@ -1,3 +1,5 @@
+import SpatialReference from 'esri/SpatialReference';
+import Polygon from 'esri/geometry/Polygon';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Graphic from 'esri/graphic';
@@ -11,6 +13,18 @@ const graphicsHelper = {
     app.map.graphics.add(new Graphic(
       feature.geometry,
       Symbols.getWatershedHoverSymbol(),
+      feature.attributes
+    ));
+  },
+
+  /**
+  * Add upstream watershed to the map
+  * @param {Feature} feature - Esri feature returned from GeoProcessor.submitJob
+  */
+  addUpstreamGraphic: feature => {
+    app.map.graphics.add(new Graphic(
+      feature.geometry,
+      Symbols.getUpstreamSymbol(),
       feature.attributes
     ));
   },
@@ -36,6 +50,20 @@ const graphicsHelper = {
     let point = new Point(lon, lat);
     graphicsHelper.addPoint(point);
     return point;
+  },
+
+  /**
+  * Generate a Graphic from the provided feature JSON
+  * @param {object} feature - must have geometry and should have attributes
+  * @return {Graphic} - return an Esri Graphic object that can be used for future methods
+  */
+  generateGraphic: feature => {
+    if (!feature.geometry.spatialReference) { feature.geometry.spatialReference = { wkid: 102100 }; }
+    return new Graphic(
+      new Polygon(feature.geometry),
+      null, //- No symbol necessary
+      feature.attributes || {}
+    );
   },
 
   /**

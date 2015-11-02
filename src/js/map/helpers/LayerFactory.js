@@ -28,6 +28,7 @@ export default (layer) => {
     case 'image':
       options.id = layer.id;
       options.visible = layer.visible || false;
+      options.opacity = layer.opacity || 1;
       esriLayer = new ImageLayer(layer.url, options);
     break;
     case 'dynamic':

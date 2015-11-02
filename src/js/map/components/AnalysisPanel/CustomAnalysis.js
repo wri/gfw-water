@@ -33,8 +33,12 @@ export default class CustomAnalysis extends React.Component {
         // Deactivate toolbar, update store, then add point to map to show location and find watershed around point
         toolbar.deactivate();
         analysisActions.toggleDrawToolbar(false);
-        analysisActions.addPointFromDraw(evt.geometry);
-        analysisActions.findWatershed(evt.geometry);
+        analysisActions.findWatershed(evt.geometry).then(() => {
+          analysisActions.addPointFromDraw(evt.geometry);
+          analysisActions.getUpstreamAnalysis(evt.geometry);
+        }, () => {
+          // Feature not found
+        });
       });
     }
 

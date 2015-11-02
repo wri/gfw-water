@@ -1,1 +1,29 @@
+@require 'config'
 
+.homeCarousel
+  position relative
+  top 0
+  & .slick-dots
+    position absolute
+    list-style none
+    bottom 20px
+    right 20px
+    padding 0
+    margin 0
+    & li
+      display inline-block
+      padding 5px 10px
+      &.slick-active button
+        transform scale(2)
+        opacity 1
+    & button
+      transition all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+      text-indent -10000px
+      border-radius 50%
+      background white
+      outline none
+      border none
+      opacity 0.8
+      height 8px
+      width 8px
+      padding 0
