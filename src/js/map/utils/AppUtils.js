@@ -87,6 +87,10 @@ const utils = {
       console.error(err);
     }
     return status;
+  },
+
+  clone: (sourceObject) => {
+    return JSON.parse(JSON.stringify(sourceObject));
   }
 
 };

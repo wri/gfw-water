@@ -9,16 +9,17 @@ export default class TextInput extends React.Component {
   }
 
   render () {
-    let errorMessage = this.props.isValid() === true ? null : (
-      <span>{this.props.getErrorMessage() || 'Required'}</span>
-    );
+    let className = this.props.isValid() === true ? '' : 'invalid',
+        errorMessage = this.props.isValid() === true ? null : (
+          <span>{this.props.getErrorMessage() || 'Required'}</span>
+        );
 
     return (
       <div>
         <label>{this.props.label}</label>
         <br />
         {errorMessage}
-        <input className='fill__wide' type={this.props.type || 'text'} name={this.props.name} value={this.props.getValue()} onChange={::this.changeValue} placeholder={this.props.placeholder || ''} />
+        <input className={className} type={this.props.type || 'text'} name={this.props.name} value={this.props.getValue()} onChange={::this.changeValue} placeholder={this.props.placeholder || ''} />
       </div>
     );
   }
