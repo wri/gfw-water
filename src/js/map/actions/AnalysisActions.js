@@ -30,7 +30,11 @@ class AnalysisActions {
   }
 
   getUpstreamAnalysis (geometry) {
-    Request.getUpstreamAnalysis(geometry);
+    Request.getUpstreamAnalysis(geometry).then(dataValue => {
+      dataValue.features.forEach(feature => {
+        GraphicsHelper.addUpstreamGraphic(feature);
+      });
+    }, console.error);
   }
 
   analyzeFeature (feature) {

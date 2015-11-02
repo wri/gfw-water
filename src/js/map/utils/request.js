@@ -106,11 +106,9 @@ const request = {
     params.InputPoints = utils.formatInputPointsForUpstream(geometry);
     geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
     geoprocessor.submitJob(params, results => {
-      console.log(results);
       geoprocessor.getResultData(results.jobId, jobId, data => {
-        console.log('Get Results Data');
-        console.log(data);
-      });
+        deferred.resolve(data.value);
+      }, deferred.reject);
     }, status => {
       console.debug(status);
     });

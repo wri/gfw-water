@@ -18,6 +18,18 @@ const graphicsHelper = {
   },
 
   /**
+  * Add upstream watershed to the map
+  * @param {Feature} feature - Esri feature returned from GeoProcessor.submitJob
+  */
+  addUpstreamGraphic: feature => {
+    app.map.graphics.add(new Graphic(
+      feature.geometry,
+      Symbols.getUpstreamSymbol(),
+      feature.attributes
+    ));
+  },
+
+  /**
   * Add a point to the map from the draw tool, or any valid point geometry
   * @param {object} geometry - Esri Point geometry
   */

@@ -9,6 +9,7 @@ import Color from 'esri/Color';
 let watershedHoverSymbol,
     watershedDefaultSymbol,
     svgMarkerSymbol,
+    upstreamSymbol,
     pointSymbol;
 
 const Symbols = {
@@ -21,6 +22,16 @@ const Symbols = {
       new Color([210, 210, 210, 0.25])
     );
     return watershedHoverSymbol;
+  },
+
+  getUpstreamSymbol: () => {
+    if (upstreamSymbol) { return upstreamSymbol; }
+    upstreamSymbol = new SimpleFillSymbol(
+      SimpleFillSymbol.STYLE_SOLID,
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color(symbolConfig.upstreamSymbol), 2),
+      new Color([210, 210, 210, 0.25])
+    );
+    return upstreamSymbol;
   },
 
   getWatershedDefaultSymbol: () => {
