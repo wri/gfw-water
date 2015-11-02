@@ -4,8 +4,9 @@ import Point from 'esri/geometry/Point';
 import SpatialReference from 'esri/SpatialReference';
 import GeometryService from 'esri/tasks/GeometryService';
 import webMercatorUtils from 'esri/geometry/webMercatorUtils';
+import geoEngine from 'esri/geometry/geometryEngine';
 
-export default class GeoHelper = {
+class GeoHelper {
 
   constructor () {
     this.geometryService = null
@@ -47,7 +48,7 @@ export default class GeoHelper = {
     // and start adding coordinates to the new newRings array
     function sameCoords(arr, coords) {
         var result = false;
-        arrayUtils.forEach(arr, function(item) {
+        arr.forEach((item) => {
             if (item[0] === coords[0] && item[1] === coords[1]) {
                 result = true;
             }
@@ -55,8 +56,8 @@ export default class GeoHelper = {
         return result;
     }
 
-    geometry.rings.forEach(function(ringers) {
-        ringers.forEach(function(ring) {
+    geometry.rings.forEach((ringers) => {
+        ringers.forEach((ring) => {
             point = new Point(ring, this.getSpatialReference());
             lngLat = webMercatorUtils.xyToLngLat(point.x, point.y);
             if (sameCoords(newRings, lngLat)) {
@@ -69,24 +70,15 @@ export default class GeoHelper = {
         });
     });
 
-    //arrayUtils.forEach(geometry.rings, function(ringers) {
-    //    arrayUtils.forEach(ringers, function(ring) {
-    //        point = new Point(ring, self.getSpatialReference());
-    //        lngLat = webMercatorUtils.xyToLngLat(point.x, point.y);
-    //        if (sameCoords(newRings, lngLat)) {
-    //            newRings.push(lngLat);
-    //            geometryArray.push(newRings);
-    //            newRings = [];
-    //        } else {
-    //            newRings.push(lngLat);
-    //        }
-    //    });
-    //});
-
     return {
         geom: geometryArray.length > 1 ? geometryArray : geometryArray[0],
         type: geometryArray.length > 1 ? "MultiPolygon" : "Polygon"
     };
   }
+
+  simplify (geometry) {
+    return geoEngine.simplify(geometry)
+  }
 };
 
+export default new GeoHelper()

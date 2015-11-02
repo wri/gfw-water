@@ -72,9 +72,9 @@ const utils = {
       console.error(err);
     }
     return status;
-  }
+  },
 
-  simpleClone: (sourceObject) => {
+  clone: (sourceObject) => {
     return JSON.parse(JSON.stringify(sourceObject));
   }
 

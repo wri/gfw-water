@@ -4,9 +4,14 @@ import TextInput from 'components/Forms/TextInput';
 import CheckboxInput from 'components/Forms/CheckboxInput';
 import {clone} from 'utils/AppUtils';
 import GeoHelper from 'helpers/GeoHelper';
+import {analysisStore} from 'stores/AnalysisStore';
+
 import React from 'react';
 import {Form} from 'formsy-react';
 import Deferred from 'dojo/Deferred';
+import all from 'dojo/promise/all';
+import Graphic from 'esri/graphic';
+import xhr from 'dojo/request/xhr';
 
 const alertsText = modalText.alerts;
 export default class AlertsModal extends React.Component {
@@ -59,15 +64,13 @@ export default class AlertsModal extends React.Component {
     }, false);
     request.open(options.method, url, true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // request.send(data);
+    request.send(data);
 
     // Analytics.sendEvent('Subscribe', 'Monthly Clearance Alerts', 'User is subscribing to Monthly Clearance Alerts.');
-
-    debugger
     return deferred.promise;
   }
 
-  fireSubmit (unionedPolygon, subscriptionName, email) {
+  fireSubmit (feature, subscriptionName, email) {
     var deferred = new Deferred(),
         // messagesConfig = TEXT.messages,
         firesConfig = alertsModalConfig.requests.fires,
@@ -75,40 +78,31 @@ export default class AlertsModal extends React.Component {
         options = clone(firesConfig.options); 
 
     options.data.features = JSON.stringify({
-      rings: unionedPolygon.rings,
-      spatialReference: unionedPolygon.spatialReference
+      rings: feature.geometry.rings,
+      spatialReference: feature.geometry.spatialReference
     });
     options.data.msg_addr = email;
     options.data.area_name = subscriptionName;
 
-    //xhr(url, options).then(function (response) {
-    //  deferred.resolve((response.message && response.message === firesConfig.successMessage) ? 'messagesConfig.fireSuccess' : 'messagesConfig.fireFail');
-    //});
+    xhr(url, options).then(function (response) {
+      deferred.resolve((response.message && response.message === firesConfig.successMessage) ? 'messagesConfig.fireSuccess' : 'messagesConfig.fireFail');
+    });
 
     //Analytics.sendEvent('Subscribe', 'Fire Alerts', 'User is subscribing to Fire Alerts.');
-
-    debugger
     return deferred.promise;
   }
 
   submit (model) {
-    console.log(model)
     let subscriptions = [],
-        features = [],
-        feature,
-        polygons;
+        feature = analysisStore.getState().activeFeature;
 
-    feature = get subscription feature from store?
+    feature = new Graphic(GeoHelper.simplify(feature.geometry))
 
     if (this.state.formaSubscription === true) {
-      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature), model['subscription-name'], model['email']));
-      // use feature directly?
-      // subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature), model['subscription-name'], model['email']));
+      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), model['subscription-name'], model['email']));
     }
     if (this.state.fireSubscription === true) {
       subscriptions.push(this.fireSubmit(feature, model['subscription-name'], model['email']));
-      // use feature directly?
-      // subscriptions.push(this.fireSubmit(feature, model['subscription-name'], model['email']));
     }
 
     all(subscriptions).then(function (responses) {
@@ -123,7 +117,7 @@ export default class AlertsModal extends React.Component {
         <div className='alerts-modal'>
           <div>{alertsText.title}</div>
           <Form onSubmit={::this.submit} onChange={this.validateForm} onValid={::this.validateText} onInvalid={::this.invalidateText}>
-            <TextInput name='email' type='text' label={alertsText.descriptions.email} placeholder='your_address@email.com' validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
+            <TextInput name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
             <br />
             <TextInput name='subscription-name' type='text' label={alertsText.descriptions.subscription} value='My Subscription' required />
             <br />
