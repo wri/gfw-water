@@ -6,9 +6,6 @@ html
     style
       :stylus
         @require 'css/base'
-        @require 'css/layerPanel'
-        @require 'css/controlPanel'
-        @require 'css/analysisPanel'
     link(rel='stylesheet', href='css/map.css?#{version}')
     link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
@@ -45,6 +42,8 @@ html
   body
     include templates/svgAssets.jade
     include templates/gfwAssets.jade
+    div#headerGfw
+    div#footerGfw
     div#root.layout-content
     div#layer-modal.modal-wrapper.hidden
     div#share-modal.modal-wrapper.hidden

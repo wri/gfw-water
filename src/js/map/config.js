@@ -55,7 +55,8 @@ export const config = {
       url: 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
       colormap: [[1, 174, 203, 107]],
       inputRange: [30, 101],
-      outputRange: [1]
+      outputRange: [1],
+      opacity: 0.8
     },
     {
       id: KEYS.majorDams,
@@ -188,12 +189,28 @@ export const config = {
     pointUrl: 'http://js.arcgis.com/3.14/esri/dijit/Search/images/search-pointer.png'
   },
 
+  analysis: {
+    upstream: {
+      url: 'http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed',
+      params: {
+        f: 'json',
+        Generalize: true,
+        SnapDistance: 5000,
+        SnapDistanceUnits: 'Meters',
+        DataSourceResolution: '90m'
+      },
+      outputSR: 102100,
+      jobId: 'WatershedArea'
+    }
+  },
+
   text: {
     errors: {
       missingLayerConfig: 'You provided a layer config containing a url but not a type, please specify the layer type in the layer config.',
       incorrectLayerConfig: type => `You provided an invalid type, the application is not configured for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
       geolocationUnavailable: 'Sorry, it looks like your browser does not support geolocation, please try the latest versions of Safari, Chrome, or Firefox.',
-      geolocationFailure: message => `Error retrieving location at this time. ${message}`
+      geolocationFailure: message => `Error retrieving location at this time. ${message}`,
+      featureNotFound: 'We could not find a feature available at this point. Please try again.'
     },
     layerPanel: {
       watershed: 'Know your watershed',
@@ -440,4 +457,5 @@ export const layersConfig = config.layers;
 export const errors = config.text.errors;
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
+export const analysisConfig = config.analysis;
 export const layerInformation = config.text.layerInformation;

@@ -18,7 +18,9 @@ export default class LatLngTool extends React.Component {
 
     if (utils.validLatLng(lat, lon)) {
       let point = analysisActions.addPointFromLatLng(lat, lon);
-      analysisActions.findWatershed(point);
+      analysisActions.findWatershed(point).then(() => {
+        analysisActions.getUpstreamAnalysis(point);
+      }, console.error);
     } else {
       alert(text.invalidLatLng);
     }

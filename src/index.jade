@@ -11,6 +11,13 @@ html
     script(src='vendor/jquery/dist/jquery.min.js')
   body
     include templates/gfwAssets.jade
+    div#headerGfw
+    div.homeCarousel
+      img(src='http://www.globalforestwatch.org/assets/backgrounds/home-slider/bg_slide3.png')
+      img(src='http://gfw.blog.s3.amazonaws.com/Carousel/6800195654_c25cfa30a8_o.jpg')
+      img(src='http://gfw.blog.s3.amazonaws.com/Carousel/Indonesia%20Fires%20Carousel%20Image.JPG')
+      img(src='http://www.globalforestwatch.org/assets/backgrounds/home-slider/bg_slide1.png')
+    div#footerGfw
     script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.
       var base = location.pathname.replace(/\/[^/]+$/, '');
