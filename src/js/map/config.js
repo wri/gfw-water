@@ -324,9 +324,15 @@ export const config = {
       alerts: {
         title: 'Subscribe to GFW Alerts',
         descriptions: {
-          email: 'Please enter your email address',
-          subscription: 'Please name your subscription',
-          subscriptionTypes: 'Please select your alert type(s)'
+          email: 'Your email address',
+          subscription: 'Name your subscription area',
+          subscriptionTypes: 'Select your subscriptions'
+        },
+        messages: {
+          formaSuccess: 'Thank you for subscribing to Forma Alerts.\nYou should receive a confirmation email soon.',
+          formaFail: 'There was an error with your request to subscribe to Forma alerts.\rPlease try again later.',
+          fireSuccess: 'Thank you for subscribing to Fires Alerts.\rYou should receive a confirmation email soon.',
+          fireFail: 'There was an error with your request to subscribe to Fires alerts.\rPlease try again later.'
         }
       },
       canopy: {

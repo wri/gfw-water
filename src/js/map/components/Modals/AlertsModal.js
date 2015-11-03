@@ -56,7 +56,7 @@ export default class AlertsModal extends React.Component {
 
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
-        deferred.resolve((JSON.parse(request.response).subscribe) ? 'messagesConfig.formaSuccess' : 'messagesConfig.formaFail');
+        deferred.resolve((JSON.parse(request.response).subscribe) ? alertsText.messages.formaSuccess : alertsText.messages.formaFail);
       }
     };
     request.addEventListener('error', function () {
@@ -72,7 +72,6 @@ export default class AlertsModal extends React.Component {
 
   fireSubmit (feature, subscriptionName, email) {
     var deferred = new Deferred(),
-        // messagesConfig = TEXT.messages,
         firesConfig = alertsModalConfig.requests.fires,
         url = firesConfig.url,
         options = clone(firesConfig.options); 
@@ -85,7 +84,7 @@ export default class AlertsModal extends React.Component {
     options.data.area_name = subscriptionName;
 
     xhr(url, options).then(function (response) {
-      deferred.resolve((response.message && response.message === firesConfig.successMessage) ? 'messagesConfig.fireSuccess' : 'messagesConfig.fireFail');
+      deferred.resolve((response.message && response.message === firesConfig.successMessage) ? alertsText.messages.fireSuccess : alertsText.messages.fireFail);
     });
 
     //Analytics.sendEvent('Subscribe', 'Fire Alerts', 'User is subscribing to Fire Alerts.');
@@ -94,15 +93,16 @@ export default class AlertsModal extends React.Component {
 
   submit (model) {
     let subscriptions = [],
-        feature = analysisStore.getState().activeFeature;
+        feature = analysisStore.getState().activeFeature,
+        subscriptionName = model['subscription-name'] || 'My Subscription';
 
     feature = new Graphic(GeoHelper.simplify(feature.geometry))
 
     if (this.state.formaSubscription === true) {
-      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), model['subscription-name'], model['email']));
+      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), subscriptionName, model['email']));
     }
     if (this.state.fireSubscription === true) {
-      subscriptions.push(this.fireSubmit(feature, model['subscription-name'], model['email']));
+      subscriptions.push(this.fireSubmit(feature, subscriptionName, model['email']));
     }
 
     all(subscriptions).then(function (responses) {
@@ -119,14 +119,14 @@ export default class AlertsModal extends React.Component {
           <Form onSubmit={::this.submit} onChange={this.validateForm} onValid={::this.validateText} onInvalid={::this.invalidateText}>
             <TextInput name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
             <br />
-            <TextInput name='subscription-name' type='text' label={alertsText.descriptions.subscription} value='My Subscription' required />
+            <TextInput name='subscription-name' type='text' label={alertsText.descriptions.subscription} placeholder='My Subscription'/>
             <br />
             <label>{alertsText.descriptions.subscriptionTypes}</label>
-            {subscriptionValid === true ? null : <div>Required</div>}
             <CheckboxInput label='Monthly Clearance Alerts' className='tree-cover' checked={this.state.formaSubscription} clickHandle={::this.toggleForma} />
             <CheckboxInput label='Fire Alerts' className='active-fires' checked={this.state.fireSubscription} clickHandle={::this.togglefire} />
+            {subscriptionValid === true ? null : <div className='alerts-modal__error-label'>Required</div>}
             <br />
-            <button className='gfw-btn' type='submit' disabled={!subscriptionValid || !this.state.textValid}>Subscribe</button>
+            <button className='alerts-modal__button--blue' type='submit' disabled={!subscriptionValid || !this.state.textValid}>Subscribe</button>
           </Form>
         </div>
       </ModalWrapper>

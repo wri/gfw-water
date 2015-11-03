@@ -11,15 +11,14 @@ export default class TextInput extends React.Component {
   render () {
     let className = this.props.isValid() === true ? '' : 'invalid',
         errorMessage = this.props.isValid() === true ? null : (
-          <span>{this.props.getErrorMessage() || 'Required'}</span>
+          <div className='alerts-modal__error-label'>{this.props.getErrorMessage() || 'Required'}</div>
         );
 
     return (
       <div>
         <label>{this.props.label}</label>
-        <br />
-        {errorMessage}
         <input className={className} type={this.props.type || 'text'} name={this.props.name} value={this.props.getValue()} onChange={::this.changeValue} placeholder={this.props.placeholder || ''} />
+        {errorMessage}
       </div>
     );
   }

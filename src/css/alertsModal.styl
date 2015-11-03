@@ -6,5 +6,19 @@
     transition .25s border, .25s background-color
 
   input.invalid
-    border 1px solid #B24D49
+    border 1px solid #E03029
     background-color #EFDADA
+
+  &__button
+    &, &--blue
+      border none
+      padding 10px 10px
+    
+    &--blue
+      color #FFF
+      border-radius 35px
+      background-color $gfwBlue
+
+  &__error-label
+    color #E03029 
+
