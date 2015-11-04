@@ -12,5 +12,6 @@
 		'vendor': 'vendor',
 	},
 	name: 'js/main',
-	out: 'dist/js/home/main.js'
+	out: 'dist/js/home/main.js',
+	insertRequire: ['js/main']
 });
