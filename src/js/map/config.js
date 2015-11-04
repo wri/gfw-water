@@ -73,7 +73,7 @@ export const config = {
       id: KEYS.waterIntake,
       order: 10,
       type: 'dynamic',
-      label: 'Water withdrawal',
+      label: 'Urban water intake',
       group: 'watershed',
       className: 'intake',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
@@ -113,7 +113,7 @@ export const config = {
       id: KEYS.historicLoss,
       order: 3,
       type: 'dynamic',
-      label: 'Original forest',
+      label: 'Potential forest',
       group: 'watershedRisk',
       className: 'historic-loss',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/forest_cover/MapServer',
@@ -357,11 +357,98 @@ export const config = {
 };
 
 // Layer Information
-// config.text.layerInformation[KEYS.wetlands] = {};
-// config.text.layerInformation[KEYS.majorDams] = {};
-// config.text.layerInformation[KEYS.waterIntake] = {};
 // config.text.layerInformation[KEYS.sediment] = {};
-// config.text.layerInformation[KEYS.waterStress] = {};
+
+config.text.layerInformation[KEYS.wetlands] = {
+  title: 'Lakes and Wetlands',
+  table: [
+    {label: 'Function', html: 'This datasets shows global distribution of large lakes and reservoirs, smaller water bodies, and wetlands.'},
+    {label: 'Resolution/Scale', html: '30 x 30 arc second'},
+    {label: 'Geographic Coverage', html: 'Global '},
+    {label: 'Source Data', html: 'WWF Global Lakes and Wetlands Database'},
+    {label: 'Frequency of Updates', html: 'None planned'},
+    {label: 'Date of Content', html: '2004'},
+    {label: 'Cautions', html: 'The extent of wetlands and lakes may vary seasonally. The dataset may serve as an estimate of maximum extents of wetlands and to identify large-scale wetland distribution and important wetland complexes.'},
+    {label: 'License', html: ''}
+  ],
+  overview: [
+    '<a href="https://www.worldwildlife.org/pages/global-lakes-and-wetlands-database" target="_blank" alt="The Global Lakes and Wetlands Database">The Global Lakes and Wetlands Database</a> combines best available sources for lakes and wetlands on a global scale (1:1 to 1:3 million resolution), and the application of GIS functionality enabled the generation of a database on: 3067 large lakes (area >=50 km2) and reservoirs (storage capacity ≥ 0.5 km3), permanent open water bodies with a surface area ≥ 0.1 km2, and maximum extents and types of wetlands.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>Lehner, B. and Döll, P. (2004): Development and validation of a global database of lakes, reservoirs and wetlands. Journal of Hydrology 296/1-4: 1-22.'
+  ]
+};
+
+config.text.layerInformation[KEYS.waterIntake] = {
+  title: 'Urban water intake',
+  table: [
+    {label: 'Function', html: 'Identifies water withdrawal locations for over 250 cities with a population greater than 750,000.'},
+    {label: 'Resolution/Scale', html: 'Varies by country'},
+    {label: 'Geographic Coverage', html: 'This data set is not global. The data is confined to over 250  cities with a population greater than 750,000.'},
+    {label: 'Source Data', html: 'Water withdrawal locations for over 250 cities with population greater than 750,000 were identified, which were surveyed as part of the World Urbanization Prospects (<a href="http://www.un.org/en/development/desa/population/publications/pdf/urbanization/WUP2011_Report.pdf" target="_blank">UNPD, 2011</a>). Water withdrawal locations were identified through research on water utilities or agencies and their annual reports. For each withdrawal location, spatial location was recorded. For freshwater withdrawal points, they were adjusted to match the underlying hydrographic river system.'},
+    {label: 'Frequency of Updates', html: 'As new data becomes available'},
+    {label: 'Date of Content', html: '2014'},
+    {label: 'Cautions', html: 'Information is restricted by availability. Some cases of interbasin transfer for water supply may not be reflected.'},
+    {label: 'License', html: ''}
+  ],
+  overview: [
+    'This data set contains over 1000 water withdrawal locations determined by latitude and longitude coordinates from the first global survey of the water sources for over 250 large cities (population >750,000). The data set was created and published by The Nature Conservancy in 2014. These locations come from research on water utilities and their annual reports. The locations were recorded as accurately as possible and freshwater withdrawal points were adjusted to match the underlying hydrographic river system. Some withdrawal points serve multiple water utilities and cities.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>Robert I. McDonald, Katherine Weber, Julie Padowski, Martina Flörke, Christof Schneider, Pamela A. Green, Thomas Gleeson, Stephanie Eckman, Bernhard Lehner, Deborah Balk, Timothy Boucher, Günther Grill, Mark Montgomery, Water on an urban planet: Urbanization and the reach of urban water infrastructure, Global Environmental Change, Volume 27, July 2014, Pages 96-105, ISSN 0959-3780, <a href="http://dx.doi.org/10.1016/j.gloenvcha.2014.04.022" target="_blank">http://dx.doi.org/10.1016/j.gloenvcha.2014.04.022</a>.<a href="http://www.sciencedirect.com/science/article/pii/S0959378014000880" target="_blank">(http://www.sciencedirect.com/science/article/pii/S0959378014000880)</a>'
+  ]
+};
+
+config.text.layerInformation[KEYS.waterStress] = {
+  title: 'Baseline Water Stress',
+  table: [
+    {label: 'Function', html: 'This dataset measures relative water demand. Higher values indicate more competition among users.'},
+    {label: 'Resolution/Scale', html: ''},
+    {label: 'Geographic Coverage', html: 'Global land (excluding Antarctica and Arctic islands)'},
+    {label: 'Source Data', html: '<p>Based on a combination of various sources: Food and Agriculture Organization of the United Nations (FAO) AQUASTAT 2008-2012, National Aeronautics and Space Administration (NASA) GLDAS-2 2012, <a href="http://catdir.loc.gov/catdir/samples/cam034/2002031201.pdf" alt="Shiklomanov and Rodda 2004">Shiklomanov and Rodda 2004</a>, <a href="http://www.sciencedirect.com/science/article/pii/S0959378012001318" alt="Flörke et al. 2012">Flörke et al. 2012</a>, and <a href="http://www.cger.nies.go.jp/db/gdbd/" alt="cger">Matsutomi et al. 2009</a>.</p>'},
+    {label: 'Frequency of Updates', html: 'None planned'},
+    {label: 'Date of Content', html: '2014'},
+    {label: 'Cautions', html: 'The scoring of baseline water stress indicators, based on established guidelines, is subjective. Meanings were assigned to the ratio values. To understand the relationship between raw values and categories, see description below.'},
+    {label: 'License', html: ''}
+  ],
+  overview: [
+    'Baseline water stress (BWS) measures the ratio of total annual water withdrawals (Ut) to total available annual renewable supply (Ba), accounting for upstream consumptive use. A long time series of supply (1950–2010) was used to reduce the effect of multi-year climate cycles and ignore complexities of short-term water storage (e.g., dams, floodplains) for which global operational data is nonexistent. Baseline water stress thus measures chronic stress rather than drought stress. Catchments with less than 0.012 m/m2 /year of withdrawal and 0.03 m/m2 /year of available blue water was masked as “arid and low water use” since catchments with low values were more prone to error in the estimates of baseline water stress. Additionally, although current use in such catchments is low, any new withdrawals could easily push them into higher stress categories.',
+    'The raw indicator value (r) is calculated using the following function:',
+    'r(BWS) = Ut(2010)/mean[1950,2010](Ba)',
+    'The raw indictor values are normalized over a set of thresholds that were chosen to divide raw indicators into five categories. The thresholds for BWS reflect those used by other withdrawal-to-availability indicators. Raw values were normalized to scores x between 0 and 5, using the following continuous function:',
+    'x = max(0, min(5, [(ln(r) – ln(0.1))/ln(2)]+1))',
+    'Raw values of BWS of less than 10% correspond to the lowest category (x=<1) and raw values of greater than 80% correspond to the highest category (x>4).'
+  ],
+  moreContent: [
+    '<p class="read-more"><em><a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Click to learn more about the Aqueduct Project</a></em></p>'
+  ]
+};
+
+config.text.layerInformation[KEYS.majorDams] = {
+  title: 'Major Dams',
+  table: [
+    {label: 'Function', html: 'Identifies dam locations for the world’s 50 major river basins.'},
+    {label: 'Resolution/Scale', html: 'Varies by country'},
+    {label: 'Geographic Coverage', html: 'This data set is not global. The data is confined to the world’s 50 major river basins.'},
+    {label: 'Source Data', html: 'Dams data are compiled from various sources, including: the <a href="http://atlas.gwsp.org/index.php?option=com_content&amp;task=view&amp;id=207&amp;Itemid=68">Global Reservoir and Dam (GRanD) Database</a>, the <a href="http://waterandfood.org/">Consultative Group on International Agricultural Research (CGIAR) Challenge Program on Water and Food - Mekong</a> (for Mekong basin dams only), the <a href="http://geo.usace.army.mil/pgis/f?p=397:101:32175502090367::NO:::">United States National Inventory of Dams (NID)</a>, other government dam inventories, and original data collection by International Rivers.'},
+    {label: 'Frequency of Updates', html: 'As new data becomes available'},
+    {label: 'Date of Content', html: '2014'},
+    {label: 'Cautions', html: 'Data results are biased towards public available data, so gaps may exist.'}
+  ],
+  overview: [
+    'The <a href="http://www.v-c-s.org">State of the World\'s Rivers</a> is an interactive web database that illustrates data on ecological health in the world’s 50 major river basins. Indicators of ecosystem health are grouped into the categories of river fragmentation, biodiversity, and water quality. The database was created and published by International Rivers in 2014.',
+    'The Dam Hotspots data contains over 5,000 dam locations determined by latitude and longitude coordinates. These locations were confined to the world’s 50 major river basins. The data set comes from multiple sources, and was corrected for location errors by International Rivers. The “project status”—a moving target—was determined by acquiring official government data, as well as through primary research from Berkeley and five International Rivers’ regional offices.'
+  ],
+  customContent: [
+    '<div class="layer-details layer-details-dam_hotspots"><ul class="layer-colors"><li><i class="circle" style="color:#F78300;"></i>Operational: Already existing dams.</li><li><i class="circle" style="color:#D5CB12;"></i>Under construction: Dams which are currently being constructed.</li><li><i class="circle" style="color:#1F78B4;"></i>Planned: Dams whose studies or licensing have been completed, but construction has yet to begin.</li><li><i class="circle" style="color:#85AB63;"></i>Inventoried: Dams whose potential site has been selected, but neither studies nor licensing have occurred.</li><li><i class="circle" style="color:#E31A1C;"></i>Suspended: Dams which have been temporarily or permanently suspended, deactivated, cancelled, or revoked.</li><li><i class="circle" style="color:#746969;"></i>Unknown: No data are currently available.</li></ul></div>'
+  ],
+  citation: [
+    '<strong>Citation:</strong>International Rivers, The State of the World’s Rivers, August 2014 available at <a href="http://tryse.net/googleearth/irivers-dev3/">http://tryse.net/googleearth/irivers-dev3/</a>.'
+  ],
+  moreContent: [
+    '<p class="read-more"><em><a href="http://data.globalforestwatch.org/datasets/537361e2df59486e898cd4e024af57ea_0" class="download-mobile-link" target="_blank">Learn more or download data.</a></em></p>'
+  ]
+};
 
 config.text.layerInformation[KEYS.treeCover] = {
   title: 'Tree Cover',

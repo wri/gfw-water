@@ -37,9 +37,17 @@ export default class Modal extends React.Component {
               <div className='source-summary'>
                 {layerInfo.overview.map(this.summaryMap)}
               </div>
-              <div className='source-credits'>
-                {layerInfo.citation.map(this.paragraphMap)}
-              </div>
+              {!layerInfo.customContent ? null :
+                layerInfo.customContent.map(this.htmlContentMap)
+              }
+              {!layerInfo.citation ? null :
+                <div className='source-credits'>
+                  {layerInfo.citation.map(this.paragraphMap)}
+                </div>
+              }
+              {!layerInfo.moreContent ? null :
+                layerInfo.moreContent.map(this.htmlContentMap)
+              }
             </div>
           </div>
         }
@@ -70,6 +78,10 @@ export default class Modal extends React.Component {
 
   paragraphMap (item) {
     return <p dangerouslySetInnerHTML={{ __html: item }} />;
+  }
+
+  htmlContentMap (item) {
+    return <div dangerouslySetInnerHTML={{ __html: item }} />;
   }
 
 }
