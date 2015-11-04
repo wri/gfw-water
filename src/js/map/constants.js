@@ -20,7 +20,8 @@ const KEYS = {
   waterIntake: 'intake',
   treeCover: 'tree-cover',
   wetlands: 'wetlands',
-  historicLoss: 'historic-loss'
+  historicLoss: 'historic-loss',
+  landCover: 'land-cover'
 };
 
 export { KEYS as default };

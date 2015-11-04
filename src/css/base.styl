@@ -42,8 +42,11 @@ a
 .text-center
   text-align center
 
-.mobile-hidden
+.mobile-hide
   display none
+
+.mobile-show
+  display block
 
 .custom-scroll::-webkit-scrollbar
   height 8px
@@ -108,5 +111,7 @@ a
       background darken(white, 10%)
 
 @media (min-width: 850px)
-  .mobile-hidden
+  .mobile-hide
     display block
+  .mobile-show
+    display none

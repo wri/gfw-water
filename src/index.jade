@@ -14,27 +14,36 @@ html
     include templates/gfwAssets.jade
     div#headerGfw
     section.relative.home-slider-container
-      nav.mobile-hidden.home-nav
+      nav.mobile-hide.home-nav
         h2.shadow Explore the Map!
           div.inline-block
             a(href='./map.html', title='EXPLORE THE MAP', alt='Explore the Map')
               div.gfw-btn.blue.pointer click here!
       ul.home-slider
-        li.slide1
+        li.slide1.slide.pointer
           div.inner.relative
             aside
               h2 explore
               h3 explore data on forest change
-        li.slide2
+              div.slide-link
+                span.mobile-hide more info
+                span.mobile-show +
+        li.slide2.slide.pointer
           div.inner.relative
             aside
               h2 explore
               h3 explore data on forest change
-        li.slide3
+              div.slide-link
+                span.mobile-hide more info
+                span.mobile-show +
+        li.slide3.slide.pointer
           div.inner.relative
             aside
               h2 explore
               h3 explore data on forest change
+              div.slide-link
+                span.mobile-hide more info
+                span.mobile-show +
     div#footerGfw
     script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.

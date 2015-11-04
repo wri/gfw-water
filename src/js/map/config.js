@@ -34,10 +34,25 @@ export const config = {
 
   // This config is for both the layers and the layer list, if no url is present, the layer will not be rendered
   // and is strictly for the UI, if no group is present, the layer will not appear in the UI, just be added to the map
+  /**
+  * Layer Config Options
+  * id - {string} - layer Id, must be unique
+  * order - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
+  * type - {string} - layer type (dynamic, image, feature, tiled)
+  * label - {string} - label in the layer list in the UI
+  * group - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
+  * className - {string} - Used for the checkbox so you can give it a background color to match the data
+  * url - {string} - Url for the map service, if present the app will attempt to add to the map via the LayerFactory,
+  * disabled - {boolean} - grey the checkbox out in the UI and prevent user from using it
+  * - can also be updated dynamically if a layer fails to be added to the map to block the user from interacting with a service that is down
+  * miscellaneuos layer params, layerIds, opacity, colormap, inputRange, outputRange
+  * - Add any extra layer params as needed, check LayerFactory to see which ones are supported and feel free to add more if necessary
+  * - type should be what the layer contructor expects, these are directly passed to Esri JavaScript layer constructors
+  */
   layers: [
     {
       id: KEYS.wetlands,
-      order: 5,
+      order: 6,
       type: 'dynamic',
       label: 'Wetlands',
       group: 'watershed',
@@ -47,7 +62,7 @@ export const config = {
     },
     {
       id: KEYS.treeCover,
-      order: 4,
+      order: 5,
       type: 'image',
       label: 'Tree cover',
       sublabel: '(year 2000, 30m global, Hansen/UMD/Google/USGS/NASA)',
@@ -60,8 +75,18 @@ export const config = {
       opacity: 0.8
     },
     {
+      id: KEYS.landCover,
+      order: 3,
+      type: 'dynamic',
+      label: 'Land cover',
+      group: 'watershed',
+      className: 'land-cover',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      layerIds: [6]
+    },
+    {
       id: KEYS.majorDams,
-      order: 9,
+      order: 10,
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
@@ -71,7 +96,7 @@ export const config = {
     },
     {
       id: KEYS.waterIntake,
-      order: 10,
+      order: 11,
       type: 'dynamic',
       label: 'Urban water intake',
       group: 'watershed',
@@ -88,7 +113,7 @@ export const config = {
     // },
     {
       id: KEYS.loss,
-      order: 6,
+      order: 7,
       type: 'image',
       label: 'Tree cover loss',
       group: 'watershedRisk',
@@ -101,7 +126,7 @@ export const config = {
     },
     {
       id: KEYS.gain,
-      order: 7,
+      order: 8,
       type: 'tiled',
       label: 'Tree cover gain',
       group: 'watershedRisk',
@@ -111,7 +136,7 @@ export const config = {
     },
     {
       id: KEYS.historicLoss,
-      order: 3,
+      order: 4,
       type: 'dynamic',
       label: 'Potential forest',
       group: 'watershedRisk',
@@ -128,7 +153,7 @@ export const config = {
     // },
     {
       id: KEYS.activeFires,
-      order: 8,
+      order: 9,
       type: 'dynamic',
       label: 'Active fires',
       group: 'watershedRisk',
@@ -139,7 +164,7 @@ export const config = {
     },
     {
       id: KEYS.burnScars,
-      order: 1,
+      order: 12,
       type: 'dynamic',
       label: 'Burn scars (coming soon)',
       group: 'watershedRisk',
@@ -170,14 +195,14 @@ export const config = {
     // These layers are not in the UI and should be the top most layers
     {
       id: KEYS.watershed,
-      order: 11,
+      order: 13,
       type: 'feature',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     {
       id: KEYS.rivers,
-      order: 12,
+      order: 14,
       type: 'tiled',
       url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
       visible: true

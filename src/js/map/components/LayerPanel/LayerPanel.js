@@ -1,4 +1,5 @@
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
+import LandCoverLegend from 'components/LayerPanel/LandCoverLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import DensityDisplay from 'components/LayerPanel/DensityDisplay';
 import LayerCheckbox from 'components/LayerPanel/LayerCheckbox';
@@ -65,6 +66,9 @@ export default class LayerPanel extends React.Component {
           break;
         case KEYS.treeCover:
           childComponent = <DensityDisplay {...this.state} />;
+          break;
+        case KEYS.landCover:
+          childComponent = <LandCoverLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         default:
           childComponent = null;

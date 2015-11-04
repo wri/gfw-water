@@ -56,7 +56,26 @@
       font-weight 300
       line-height 15px
       font-size 15px
-  & .slick-slide
+  & .slide-link
+    text-transform uppercase
+    text-decoration none
+    background $darkGray
+    display inline-block
+    position absolute
+    font-size 30px
+    color white
+    height 100%
+    width 44px
+    right 0
+    top 0
+    &:hover
+      background $gfwBlue
+    & .mobile-show
+      transform translate(-50%, -50%)
+      position absolute
+      left 50%
+      top 50%
+  & .slide
     background-position center
     background-size cover
     height 230px
@@ -123,10 +142,18 @@
         padding 10px 5px 5px
         line-height 31px
         font-size 31px
+    & .slide-link
+      position relative
+      padding 8px 30px
+      font-size 17px
+      height auto
+      width auto
+      right auto
+      top auto
   .home-slider-container
     min-height 620px
   .home-slider
-    & .slick-slide
+    & .slide
       height 620px
     & .slick-dots
       bottom 20px
