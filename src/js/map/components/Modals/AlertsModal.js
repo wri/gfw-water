@@ -115,7 +115,8 @@ export default class AlertsModal extends React.Component {
     return (
       <ModalWrapper>
         <div className='alerts-modal'>
-          <div>{alertsText.title}</div>
+          <div><strong>{alertsText.title}</strong></div>
+          <br />
           <Form onSubmit={::this.submit} onChange={this.validateForm} onValid={::this.validateText} onInvalid={::this.invalidateText}>
             <TextInput name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
             <br />
