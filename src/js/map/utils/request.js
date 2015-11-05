@@ -105,9 +105,11 @@ const request = {
     let geoprocessor = new GeoProcessor(url);
     let deferred = new Deferred();
     let pointGraphic = GraphicsHelper.generatePointGraphic(geometry);
+    let features = [];
     let featureSet = new FeatureSet();
 
-    featureSet.features = [pointGraphic];
+    features.push(pointGraphic);
+    featureSet.features = features;
     params.InputPoints = featureSet;
 
     geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
