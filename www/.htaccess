@@ -1,3 +1,9 @@
+# Basic Authentication, .htpasswd file is dynamically created - npm script dist-www creates it using the HTPASSWD env variable
+AuthType Basic
+AuthName "Authentiation Required"
+AuthUserFile "/app/.htpasswd"
+Require valid-user
+
 # Enable Compression
 SetOutputFilter DEFLATE
 
@@ -13,3 +19,4 @@ SetOutputFilter DEFLATE
   ExpiresByType text/javascript M1209600
   ExpiresByType application/x-javascript M1209600
 </IfModule>
+
