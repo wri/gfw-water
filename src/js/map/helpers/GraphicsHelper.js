@@ -1,4 +1,3 @@
-import SpatialReference from 'esri/SpatialReference';
 import Polygon from 'esri/geometry/Polygon';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
@@ -41,15 +40,13 @@ const graphicsHelper = {
   },
 
   /**
-  * Add a point to the map from the lat/lon inputs, or any valid lat/lon
+  * Generate a point from the lat/lon inputs, or any valid lat/lon
   * @param {number} lat - Valid latitude between -90 and 90
   * @param {number} lon - Valid longitude between -180 and 180
   * @return {point} point - return an esri point object that can be used for future methods
   */
-  addPointFromLatLng: (lat, lon) => {
-    let point = new Point(lon, lat);
-    graphicsHelper.addPoint(point);
-    return point;
+  generatePointFromLatLng: (lat, lon) => {
+    return new Point(lon, lat);
   },
 
   /**
@@ -85,6 +82,7 @@ const graphicsHelper = {
   * and if present, remove only that feature, otherwise remove all
   */
   clearFeatures: () => {
+    // Need to clear the appropriate graphics layer, will need to add one as well
     app.map.graphics.clear();
   }
 

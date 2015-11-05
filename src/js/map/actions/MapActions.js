@@ -106,7 +106,8 @@ class MapActions {
     var slider = $('#tree-cover-slider').data('ionRangeSlider');
     if (slider) { slider.reset(); }
     //- Reset Esris Search Dijit and clear any graphics
-    analysisActions.clearAnalysis();
+    analysisActions.clearCustomArea();
+    analysisActions.clearActiveWatershed();
   }
 
 }

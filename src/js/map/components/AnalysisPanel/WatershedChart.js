@@ -2,7 +2,7 @@ import {analysisPanelText as text} from 'js/config';
 import React from 'react';
 
 let generateChart = feature => {
-  console.log(feature);
+  // console.log(feature);
   $('#watershed-chart').highcharts({
     chart: { polar: true },
     title: { text: '' },
@@ -18,7 +18,14 @@ let generateChart = feature => {
       series: { pointStart: 0, pointInterval: 90, events: { legendItemClick: () => false } },
       column: { pointPadding: 0, groupPadding: 0 }
     },
-    legend: { align: 'right', layout: 'vertical' },
+    legend: {
+      align: 'right',
+      layout: 'vertical',
+      verticalAlign: 'middle',
+      itemStyle: {
+        width: 70
+      }
+    },
     tooltip: {
       formatter: function () {
         return `${this.series.name} - ${this.y}<br>${text.chartLookup[this.y]}`;

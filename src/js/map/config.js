@@ -345,7 +345,8 @@ export const config = {
         3: 'Medium Risk',
         4: 'Medium - High Risk',
         5: 'Extreme Risk'
-      }
+      },
+      getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name'
     },
     controlPanel: {
       wriBasemap: 'WRI',

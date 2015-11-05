@@ -26,11 +26,19 @@ export default class AnalysisTools extends React.Component {
     this.setState(newState);
   }
 
-  analyzeContent () {
-    analysisActions.analyzeFeature(this.state.activeFeature);
+  clearAnalysis () {
+    if (this.state.activeTab === text.customTabId) {
+      analysisActions.clearCustomArea();
+    } else {
+      analysisActions.clearActiveWatershed();
+    }
   }
 
   render () {
+    let customTabActive = this.state.activeTab === text.customTabId;
+    let watershedTabActive = this.state.activeTab === text.watershedTabId;
+    let showOptions = (this.state.activeWatershed && watershedTabActive) || (this.state.activeCustomArea && customTabActive);
+
     return (
       <div className='analysis-tools map-component shadow'>
         <div className='analyze-header no-shrink'>
@@ -40,17 +48,17 @@ export default class AnalysisTools extends React.Component {
 
         <TabControls activeTab={this.state.activeTab} />
         <div className='tab-container custom-scroll'>
-          <WatershedAnalysis active={this.state.activeTab === text.watershedTabId} {...this.state} />
-          <CustomAnalysis active={this.state.activeTab === text.customTabId} {...this.state} />
+          <WatershedAnalysis active={watershedTabActive} {...this.state} />
+          <CustomAnalysis active={customTabActive} {...this.state} />
         </div>
-        <div className={`no-shrink analysis-footer flex${this.state.activeFeature ? '' : ' hidden'}`}>
-          <div className='clear-analysis pointer flex' onClick={analysisActions.clearAnalysis}>
+        <div className={`no-shrink analysis-footer flex${showOptions ? '' : ' hidden'}`}>
+          <div className='clear-analysis pointer flex' onClick={::this.clearAnalysis}>
             <svg dangerouslySetInnerHTML={{ __html: removeSvg }}/>
-            {text.clearAnalysisButton}
+            <span className='analysis-action-label'>{text.clearAnalysisButton}</span>
           </div>
           <div className='analysis-alerts pointer flex' onClick={modalActions.showAlertsModal}>
             <svg dangerouslySetInnerHTML={{ __html: alertsSvg }}/>
-            {text.getAlertsButton}
+            <span className='analysis-action-label'>{text.getAlertsButton}</span>
           </div>
         </div>
       </div>
