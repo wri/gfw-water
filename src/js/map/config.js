@@ -254,10 +254,9 @@ export const config = {
       url: 'http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed',
       params: {
         f: 'json',
-        Generalize: 'True',
-        SnapDistance: '5000',
-        SnapDistanceUnits: 'Meters',
-        SourceDatabase: 'FINEST'
+        Generalize: true,
+        SnapDistance: 5000,
+        SnapDistanceUnits: 'Meters'
       },
       outputSR: 102100,
       jobId: 'WatershedArea'
