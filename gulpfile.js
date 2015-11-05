@@ -48,14 +48,14 @@ gulp.task('stylus-watch', function () {
 });
 
 gulp.task('stylus-build', function () {
-  gulp.src(config.stylus.src)
+  return gulp.src(config.stylus.src)
     .pipe(stylus({ linenos: true }))
     .pipe(autoprefixer())
     .pipe(gulp.dest(config.stylus.build));
 });
 
 gulp.task('stylus-dist', function () {
-  gulp.src(config.stylus.src)
+  return gulp.src(config.stylus.src)
     .pipe(stylus({ compress: true }))
     .pipe(autoprefixer())
     .pipe(gulp.dest(config.stylus.dist));
@@ -66,26 +66,26 @@ gulp.task('jade-watch', function () {
 });
 
 gulp.task('jade-build', function () {
-  gulp.src(config.jade.src)
+  return gulp.src(config.jade.src)
     .pipe(jade({ pretty: true, locals: locals }))
     .pipe(gulp.dest(config.jade.build));
 });
 
 gulp.task('jade-dist', function () {
-  gulp.src(config.jade.src)
+  return gulp.src(config.jade.src)
     .pipe(jade({ locals: locals }))
     .pipe(minifyInline())
     .pipe(gulp.dest(config.jade.dist));
 });
 
 gulp.task('imagemin-build', function () {
-  gulp.src(config.imagemin.src)
+  return gulp.src(config.imagemin.src)
     .pipe(imagemin({ optimizationLevel: 1 }))
     .pipe(gulp.dest(config.imagemin.build));
 });
 
 gulp.task('imagemin-dist', function () {
-  gulp.src(config.imagemin.src)
+  return gulp.src(config.imagemin.src)
     .pipe(imagemin({
       optimizationLevel: 5,
       progressive: true
@@ -94,7 +94,7 @@ gulp.task('imagemin-dist', function () {
 });
 
 gulp.task('babel-polyfill', function () {
-  gulp.src(config.polyfill.src)
+  return gulp.src(config.polyfill.src)
     .pipe(umd({
       exports: function () { return '_babelPolyfill'; },
       namespace: function () { return 'window._babelPolyfill'; }
