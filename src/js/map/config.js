@@ -337,7 +337,15 @@ export const config = {
       latPlaceholder: 'Lat',
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
-      customTabPlaceholder: 'Summary stats coming soon!'
+      customTabPlaceholder: 'Summary stats coming soon!',
+      chartLookup: {
+        0: 'No Risk',
+        1: 'Low Risk',
+        2: 'Low - Medium Risk',
+        3: 'Medium Risk',
+        4: 'Medium - High Risk',
+        5: 'Extreme Risk'
+      }
     },
     controlPanel: {
       wriBasemap: 'WRI',

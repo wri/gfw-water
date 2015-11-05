@@ -1,3 +1,4 @@
+import {analysisPanelText as text} from 'js/config';
 import React from 'react';
 
 let generateChart = feature => {
@@ -17,11 +18,16 @@ let generateChart = feature => {
       series: { pointStart: 0, pointInterval: 90, events: { legendItemClick: () => false } },
       column: { pointPadding: 0, groupPadding: 0 }
     },
-    // legend: { enabled: false },
+    legend: { align: 'right', layout: 'vertical' },
+    tooltip: {
+      formatter: function () {
+        return `${this.series.name} - ${this.y}<br>${text.chartLookup[this.y]}`;
+      }
+    },
     credits: { enabled: false },
     series: [{
       type: 'column',
-      name: 'Tree cover loss',
+      name: 'Recent tree cover loss',
       data: [2],
       color: '#FF6097',
       pointPlacement: 'between'
@@ -42,7 +48,7 @@ let generateChart = feature => {
     },
     {
       type: 'column',
-      name: 'Historic forest loss',
+      name: 'Historic tree cover loss',
       data: [4],
       color: '#D2DF2E',
       pointPlacement: 'between'
