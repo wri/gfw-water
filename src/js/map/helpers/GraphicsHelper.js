@@ -36,7 +36,7 @@ const graphicsHelper = {
   addPoint: geometry => {
     app.map.graphics.add(new Graphic(
       geometry,
-      Symbols.getPointSymbol()
+      Symbols.getSVGPointSymbol()
     ));
   },
 
@@ -57,12 +57,25 @@ const graphicsHelper = {
   * @param {object} feature - must have geometry and should have attributes
   * @return {Graphic} - return an Esri Graphic object that can be used for future methods
   */
-  generateGraphic: feature => {
+  generatePolygonGraphic: feature => {
     if (!feature.geometry.spatialReference) { feature.geometry.spatialReference = { wkid: 102100 }; }
     return new Graphic(
       new Polygon(feature.geometry),
       null, //- No symbol necessary
       feature.attributes || {}
+    );
+  },
+
+  /**
+  * Generate a Graphic from the provided feature JSON
+  * @param {object} feature - must have geometry and should have attributes
+  * @return {Graphic} - return an Esri Graphic object that can be used for future methods
+  */
+  generatePointGraphic: (geometry, attributes) => {
+    return new Graphic(
+      new Point(geometry),
+      Symbols.getSVGPointSymbol(),
+      attributes || null
     );
   },
 

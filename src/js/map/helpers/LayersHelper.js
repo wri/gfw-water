@@ -37,11 +37,10 @@ let LayersHelper = {
       let objectid = graphic.attributes.objectid;
       Request.getWatershedById(objectid).then(featureJSON => {
         //- Convert JSON to feature
-        let feature = GraphicsHelper.generateGraphic(featureJSON);
+        let feature = GraphicsHelper.generatePolygonGraphic(featureJSON);
         //- Start the analysis process
         analysisActions.analyzeFeature(feature);
         //- Add some cues to the map to highlight the feature and add a point
-        GraphicsHelper.addPoint(evt.mapPoint);
         GraphicsHelper.addActiveWatershed(feature);
         app.map.setExtent(feature.geometry.getExtent(), true);
       }, err => {

@@ -256,8 +256,8 @@ export const config = {
         f: 'json',
         Generalize: true,
         SnapDistance: 5000,
-        SnapDistanceUnits: 'Meters',
-        DataSourceResolution: '90m'
+        SourceDatabase: '90m',
+        SnapDistanceUnits: 'Meters'
       },
       outputSR: 102100,
       jobId: 'WatershedArea'
@@ -321,7 +321,7 @@ export const config = {
       analyzeButton: 'Analyze Watershed',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
-      watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
+      watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
       customTabId: 'customWatershed',
       customTabLabel: 'Custom Area',
       clearAnalysisButton: 'Clear Analysis',
@@ -383,6 +383,25 @@ export const config = {
 
 // Layer Information
 // config.text.layerInformation[KEYS.sediment] = {};
+
+config.text.layerInformation[KEYS.landCover] = {
+  title: 'Land Cover',
+  table: [
+    {label: 'Function', html: 'Displays land cover classified by type.'},
+    {label: 'Resolution/Scale', html: '300m'},
+    {label: 'Geographic Coverage', html: 'Global'},
+    {label: 'Source Data', html: 'GlobCover Land Cover v2 2008'},
+    {label: 'Frequency of Updates', html: 'None'},
+    {label: 'Date of Content', html: '2008'},
+    {label: 'Cautions', html: 'Unmasked clouds may remain in the imagery. Additionally some pixels surrounding permanent snow areas may appear as snow even during no-snow periods. Some water masking occurs in which land is clipped in inland water areas, and the process for removing haze leaves some areas with patchy step changes. Last, some bright surface areas that appear as strong reflectors or deserts may be omitted as clouds.'}
+  ],
+  overview: [
+    'At 300 m resolution, GlobCover Land Cover v2 provides high resolution imagery of global land cover. The data contain 22 classes of land cover, drawing on the UN Land Cover Classification System. Satellite imagery comes from the ENVISAT satellite mission’s MERIS sensor, covering the period from December 2004 to June 2006.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>Bontemps, Sophie, Pierre Defourney, Eric Van Bogaert, Olivier Arion, Vasileios Kalogirou, and Jose Ramos Perez. 2009. “GLOBCOVER 2009: Product Description and Validation Report.” Available online at: <a href="http://dup.esrin.esa.int/page_globcover.php" target="_blank">http://dup.esrin.esa.int/page_globcover.php</a>'
+  ]
+};
 
 config.text.layerInformation[KEYS.wetlands] = {
   title: 'Lakes and Wetlands',

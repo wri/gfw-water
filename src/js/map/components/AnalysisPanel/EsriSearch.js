@@ -10,6 +10,7 @@ let generateSearchWidget = () => {
   let searchWidget = new Search({
     map: app.map,
     autoNavigate: false,
+    enableHighlight: false,
     showInfoWindowOnSelect: false,
     allPlaceholder: analysisPanelText.searchAllPlaceholder
   }, analysisPanelText.searchWidgetId);

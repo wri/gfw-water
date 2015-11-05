@@ -23,7 +23,7 @@ export default class Map extends React.Component {
   render () {
     return (
       <div id={mapConfig.id} className={'map'}>
-        <div className='gfw-water-logo' />
+        <a href='/' alt='Global Forest Watch - Water Home'><div className='gfw-water-logo' /></a>
         <div className='aqueduct-logo' />
         <LayerPanel loaded={this.state.loaded} />
         <ControlPanel />
