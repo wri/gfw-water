@@ -256,7 +256,6 @@ export const config = {
         f: 'json',
         Generalize: true,
         SnapDistance: 5000,
-        SourceDatabase: '90m',
         SnapDistanceUnits: 'Meters'
       },
       outputSR: 102100,
