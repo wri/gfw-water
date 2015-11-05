@@ -102,7 +102,7 @@ gulp.task('babel-polyfill', function () {
     .pipe(gulp.dest(config.polyfill.build));
 });
 
-gulp.task('copy-assets', function () {
+gulp.task('copy-assets', ['babel-polyfill'], function () {
   gulp.src(config.copy.jquery.src)
     .pipe(gulp.dest(config.copy.jquery.dest));
   gulp.src(config.copy.rjs.src)
