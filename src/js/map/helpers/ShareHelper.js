@@ -7,7 +7,7 @@ import KEYS from 'js/constants';
 const ShareHelper = {
 
   applyStateFromUrl (state) {
-    let {activeLayers, activeBasemap} = state;
+    let {activeLayers, activeBasemap, x, y, z} = state;
 
     if (activeLayers) {
       let layerIds = activeLayers.split(',');
@@ -18,6 +18,10 @@ const ShareHelper = {
 
     if (activeBasemap) {
       mapActions.setBasemap(activeBasemap);
+    }
+
+    if (app.map.loaded && (x && y && z)) {
+      app.map.centerAndZoom([x, y], z);
     }
 
   },
@@ -34,6 +38,12 @@ const ShareHelper = {
     if (activeBasemap !== KEYS.wriBasemap) {
       shareObject.activeBasemap = activeBasemap;
     }
+
+    //- Set X, Y, and Zoom
+    let centerPoint = app.map.extent.getCenter();
+    shareObject.x = Math.round(centerPoint.getLongitude());
+    shareObject.y = Math.round(centerPoint.getLatitude());
+    shareObject.z = app.map.getLevel();
 
     return params.toQuery(shareObject);
   }

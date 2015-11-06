@@ -24,7 +24,8 @@ let generateChart = feature => {
       verticalAlign: 'middle',
       itemStyle: {
         width: '70px',
-        fontWeight: 300
+        fontWeight: 300,
+        fontFamily: '\'Fira Sans\', Georgia, serif'
       }
     },
     tooltip: {

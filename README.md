@@ -1,5 +1,4 @@
-# GFW Water
-> Add description here
+# GFW Water [![Code Climate](https://codeclimate.com/github/wri/gfw-water/badges/gpa.svg)](https://codeclimate.com/github/wri/gfw-water)
 
 ### Getting Started
 Before you can begin, make sure you have [node.js](https://nodejs.org/en/) and [gulp](http://gulpjs.com/) installed.
