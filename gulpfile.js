@@ -33,7 +33,7 @@ var config = {
   server: {
     files: ['build/**/*.html', 'build/**/*.js', 'build/**/*.css'],
     port: process.env.PORT || 3000,
-    url: 'build'
+    baseDir: 'build'
   },
   copy: {
     jquery: { src: 'build/vendor/jquery/dist/jquery.min.js', dest: 'dist/vendor/jquery/dist/'},
@@ -115,8 +115,8 @@ gulp.task('copy-assets', ['babel-polyfill'], function () {
 
 gulp.task('browser-sync', function () {
   browserSync({
+    server: config.server.baseDir,
     files: config.server.files,
-    server: config.server.url,
     port: config.server.port,
     reloadOnRestart: false,
     logFileChanges: false,

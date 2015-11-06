@@ -1,4 +1,6 @@
 import {analysisActions} from 'actions/AnalysisActions';
+import AnalysisHelper from 'helpers/AnalysisHelper';
+import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisPanelText as text} from 'js/config';
 import utils from 'utils/AppUtils';
 import React from 'react';
@@ -17,10 +19,12 @@ export default class LatLngTool extends React.Component {
     }
 
     if (utils.validLatLng(lat, lon)) {
-      let point = analysisActions.addPointFromLatLng(lat, lon);
-      analysisActions.findWatershed(point).then(() => {
-        analysisActions.getUpstreamAnalysis(point);
-      }, console.error);
+      let point = GraphicsHelper.generatePointFromLatLng(lat, lon);
+      // Find out if this point is in a watershed
+      AnalysisHelper.findWatershed(point).then(() => {
+        analysisActions.analyzeCustomArea(point);
+        AnalysisHelper.performUpstreamAnalysis(point);
+      });
     } else {
       alert(text.invalidLatLng);
     }

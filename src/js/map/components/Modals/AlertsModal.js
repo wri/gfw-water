@@ -51,8 +51,7 @@ export default class AlertsModal extends React.Component {
           email: email,
           geom: '{"type": "' + geoJson.type + '", "coordinates":[' + JSON.stringify(geoJson.geom) + ']}'
         }),
-        request = new XMLHttpRequest(),
-        self = this;
+        request = new XMLHttpRequest();
 
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
@@ -74,7 +73,7 @@ export default class AlertsModal extends React.Component {
     var deferred = new Deferred(),
         firesConfig = alertsModalConfig.requests.fires,
         url = firesConfig.url,
-        options = clone(firesConfig.options); 
+        options = clone(firesConfig.options);
 
     options.data.features = JSON.stringify({
       rings: feature.geometry.rings,
@@ -96,13 +95,13 @@ export default class AlertsModal extends React.Component {
         feature = analysisStore.getState().activeFeature,
         subscriptionName = model['subscription-name'] || 'My Subscription';
 
-    feature = new Graphic(GeoHelper.simplify(feature.geometry))
+    feature = new Graphic(GeoHelper.simplify(feature.geometry));
 
     if (this.state.formaSubscription === true) {
-      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), subscriptionName, model['email']));
+      subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), subscriptionName, model.email));
     }
     if (this.state.fireSubscription === true) {
-      subscriptions.push(this.fireSubmit(feature, subscriptionName, model['email']));
+      subscriptions.push(this.fireSubmit(feature, subscriptionName, model.email));
     }
 
     all(subscriptions).then(function (responses) {

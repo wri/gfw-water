@@ -32,20 +32,20 @@ export const config = {
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
-  // This config is for both the layers and the layer list, if no url is present, the layer will not be rendered
-  // and is strictly for the UI, if no group is present, the layer will not appear in the UI, just be added to the map
   /**
-  * Layer Config Options
+  * Layer Config Options, brackets are optional
+  * if type is anything other than graphic and the layer is not disabled, it must have a url
   * id - {string} - layer Id, must be unique
-  * order - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
+  * [order] - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
   * type - {string} - layer type (dynamic, image, feature, tiled)
-  * label - {string} - label in the layer list in the UI
-  * group - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
-  * className - {string} - Used for the checkbox so you can give it a background color to match the data
-  * url - {string} - Url for the map service, if present the app will attempt to add to the map via the LayerFactory,
-  * disabled - {boolean} - grey the checkbox out in the UI and prevent user from using it
+  * [label] - {string} - label in the layer list in the UI
+  * [group] - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
+  * - No group means it won't show in the UI
+  * [className] - {string} - Used for the checkbox so you can give it a background color to match the data
+  * [url] - {string} - Url for the map service, if present the app will attempt to add to the map via the LayerFactory,
+  * [disabled] - {boolean} - grey the checkbox out in the UI and prevent user from using it
   * - can also be updated dynamically if a layer fails to be added to the map to block the user from interacting with a service that is down
-  * miscellaneuos layer params, layerIds, opacity, colormap, inputRange, outputRange
+  * [miscellaneous layer params], layerIds, opacity, colormap, inputRange, outputRange
   * - Add any extra layer params as needed, check LayerFactory to see which ones are supported and feel free to add more if necessary
   * - type should be what the layer contructor expects, these are directly passed to Esri JavaScript layer constructors
   */
@@ -206,6 +206,16 @@ export const config = {
       type: 'tiled',
       url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
       visible: true
+    },
+    {
+      id: KEYS.watershedAnalysis,
+      type: 'graphic',
+      visible: true
+    },
+    {
+      id: KEYS.customAnalysis,
+      type: 'graphic',
+      visible: true
     }
   ],
 
@@ -337,7 +347,16 @@ export const config = {
       latPlaceholder: 'Lat',
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
-      customTabPlaceholder: 'Summary stats coming soon!'
+      customTabPlaceholder: 'Summary stats coming soon!',
+      chartLookup: {
+        0: 'No Risk',
+        1: 'Low Risk',
+        2: 'Low - Medium Risk',
+        3: 'Medium Risk',
+        4: 'Medium - High Risk',
+        5: 'Extreme Risk'
+      },
+      getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name'
     },
     controlPanel: {
       wriBasemap: 'WRI',

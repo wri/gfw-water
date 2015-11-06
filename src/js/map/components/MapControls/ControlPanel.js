@@ -1,3 +1,4 @@
+import {prepareStateForUrl} from 'helpers/ShareHelper';
 import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
 import {controlPanelText} from 'js/config';
@@ -79,7 +80,7 @@ export default class ControlPanel extends React.Component {
   }
 
   share () {
-    modalActions.showShareModal();
+    modalActions.showShareModal(prepareStateForUrl());
   }
 
   reset () {

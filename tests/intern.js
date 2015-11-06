@@ -54,7 +54,7 @@ define({
 	},
 
 	// Non-functional test suite(s) to run in each browser
-	suites: [ 'tests/unit/appUtils'],
+	suites: ['tests/unit/appUtils', 'tests/unit/configTest', 'tests/unit/paramsTest'],
 
 	// Functional test suite(s) to execute against each browser once non-functional tests are completed
 	functionalSuites: [ /* 'myPackage/tests/functional' */ ],
