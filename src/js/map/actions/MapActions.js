@@ -109,7 +109,7 @@ class MapActions {
     analysisActions.clearCustomArea();
     analysisActions.clearActiveWatershed();
     //- Reset the Map to its original zoom and location
-    console.log(mapConfig.options);
+    app.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
   }
 
 }
