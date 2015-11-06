@@ -1,8 +1,8 @@
+import {layersConfig, errors, mapConfig} from 'js/config';
 import {analysisActions} from 'actions/AnalysisActions';
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import layerFactory from 'helpers/LayerFactory';
 import LayersHelper from 'helpers/LayersHelper';
-import {layersConfig, errors} from 'js/config';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Deferred from 'dojo/Deferred';
@@ -34,10 +34,10 @@ class MapActions {
 
   createLayers () {
     app.debug('MapActions >>> createLayers');
-    //- Remove layers from config that have no url
+    //- Remove layers from config that have no url unless they are of type graphic(which have no url)
     //- sort by order from the layer config
     //- return an arcgis layer for each config object
-    let layers = layersConfig.filter(layer => layer && layer.url).sort((a, b) => a.order - b.order).map(layerFactory);
+    let layers = layersConfig.filter(layer => layer && (layer.url || layer.type === 'graphic')).sort((a, b) => a.order - b.order).map(layerFactory);
     app.map.addLayers(layers);
     // If there is an error with a particular layer, handle that here
     app.map.on('layers-add-result', result => {
@@ -108,6 +108,8 @@ class MapActions {
     //- Reset Esris Search Dijit and clear any graphics
     analysisActions.clearCustomArea();
     analysisActions.clearActiveWatershed();
+    //- Reset the Map to its original zoom and location
+    console.log(mapConfig.options);
   }
 
 }

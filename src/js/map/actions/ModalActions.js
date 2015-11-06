@@ -14,10 +14,11 @@ class ModalActions {
     }
   }
 
-  showShareModal () {
+  showShareModal (params) {
     app.debug('ModalActions >>> showShareModal');
     //TODO: Generate a url from bitly that includes Map Store state, this way we can share params
-    this.dispatch(document.location.href);
+    let url = document.location.href.split('?')[0];
+    this.dispatch(`${url}?${params}`);
     domClass.remove('share-modal', 'hidden');
   }
 

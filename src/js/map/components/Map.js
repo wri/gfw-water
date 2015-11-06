@@ -2,7 +2,9 @@ import AnalysisTools from 'components/AnalysisPanel/AnalysisTools';
 import EsriSearch from 'components/AnalysisPanel/EsriSearch';
 import ControlPanel from 'components/MapControls/ControlPanel';
 import LayerPanel from 'components/LayerPanel/LayerPanel';
+import {applyStateFromUrl} from 'helpers/ShareHelper';
 import {mapActions} from 'actions/MapActions';
+import {getUrlParams} from 'utils/params';
 import {mapConfig} from 'js/config';
 import React from 'react';
 
@@ -14,9 +16,16 @@ export default class Map extends React.Component {
   }
 
   componentDidMount() {
-    mapActions.createMap(mapConfig).then(() => {
+    let urlParams = getUrlParams(location.search);
+    //- Mixin the map config with the url params, make sure to create a new object and not
+    //- overwrite the mapConfig, again so reset sets the state back to default and not shared
+    let newMapConfig = Object.assign({}, mapConfig);
+    mapActions.createMap(newMapConfig).then(() => {
       this.setState({ loaded: true });
       mapActions.createLayers();
+      //- Use the helper to take the params and use actions to apply shared state, don't set these params
+      //- as default state, otherwise the reset button will reset to shared state and not default state
+      applyStateFromUrl(urlParams);
     });
   }
 

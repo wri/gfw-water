@@ -2,6 +2,7 @@ import DynamicLayer from 'esri/layers/ArcGISDynamicMapServiceLayer';
 import TiledLayer from 'esri/layers/ArcGISTiledMapServiceLayer';
 import ImageLayer from 'esri/layers/ArcGISImageServiceLayer';
 import ImageParameters from 'esri/layers/ImageParameters';
+import GraphicsLayer from 'esri/layers/GraphicsLayer';
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import {errors} from 'js/config';
 
@@ -15,7 +16,7 @@ import {errors} from 'js/config';
 *   - FeatureLayer
 */
 export default (layer) => {
-  if (!layer.url || !layer.type) { throw new Error(errors.missingLayerConfig); }
+  if ((!layer.url && layer.type !== 'graphic') || !layer.type) { throw new Error(errors.missingLayerConfig); }
 
   let esriLayer, options = {};
 
@@ -48,6 +49,11 @@ export default (layer) => {
       options.id = layer.id;
       options.visible = layer.visible || false;
       esriLayer = new FeatureLayer(layer.url, options);
+    break;
+    case 'graphic':
+      options.id = layer.id;
+      options.visible = layer.visible || false;
+      esriLayer = new GraphicsLayer(options);
     break;
     default:
       throw new Error(errors.incorrectLayerConfig(layer.type));

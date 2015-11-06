@@ -2,6 +2,7 @@ import Polygon from 'esri/geometry/Polygon';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Graphic from 'esri/graphic';
+import KEYS from 'js/constants';
 
 const graphicsHelper = {
   /**
@@ -9,11 +10,14 @@ const graphicsHelper = {
   * @param {Graphic} feature - Esri Feature object returned from a query
   */
   addActiveWatershed: feature => {
-    app.map.graphics.add(new Graphic(
-      feature.geometry,
-      Symbols.getWatershedHoverSymbol(),
-      feature.attributes
-    ));
+    let layer = app.map.getLayer(KEYS.watershedAnalysis);
+    if (layer) {
+      layer.add(new Graphic(
+        feature.geometry,
+        Symbols.getWatershedHoverSymbol(),
+        feature.attributes
+      ));
+    }
   },
 
   /**
@@ -21,22 +25,28 @@ const graphicsHelper = {
   * @param {Feature} feature - Esri feature returned from GeoProcessor.submitJob
   */
   addUpstreamGraphic: feature => {
-    app.map.graphics.add(new Graphic(
-      feature.geometry,
-      Symbols.getUpstreamSymbol(),
-      feature.attributes
-    ));
+    let layer = app.map.getLayer(KEYS.customAnalysis);
+    if (layer) {
+      layer.add(new Graphic(
+        feature.geometry,
+        Symbols.getUpstreamSymbol(),
+        feature.attributes
+      ));
+    }
   },
 
   /**
-  * Add a point to the map from the draw tool, or any valid point geometry
+  * Add a point to the map from the draw tool or lat long tool, this is for CustomArea Analysis ONLY
   * @param {object} geometry - Esri Point geometry
   */
-  addPoint: geometry => {
-    app.map.graphics.add(new Graphic(
-      geometry,
-      Symbols.getSVGPointSymbol()
-    ));
+  addCustomPoint: geometry => {
+    let layer = app.map.getLayer(KEYS.customAnalysis);
+    if (layer) {
+      layer.add(new Graphic(
+        geometry,
+        Symbols.getSVGPointSymbol()
+      ));
+    }
   },
 
   /**
@@ -77,12 +87,26 @@ const graphicsHelper = {
   },
 
   /**
-  * Clear features from the map
-  * TODO: If the need to remove individual features arises, add a ids param to this
-  * and if present, remove only that feature, otherwise remove all
+  * Clear features from the custom analysis graphics layer
   */
-  clearFeatures: () => {
-    // Need to clear the appropriate graphics layer, will need to add one as well
+  clearActiveWatersheds () {
+    let layer = app.map.getLayer(KEYS.watershedAnalysis);
+    if (layer) { layer.clear(); }
+  },
+
+  /**
+  * Clear features from the custom analysis graphics layer
+  */
+  clearCustomAreas () {
+    let layer = app.map.getLayer(KEYS.customAnalysis);
+    if (layer) { layer.clear(); }
+  },
+
+  /**
+  * Clear all features from the map
+  * TODO: May be able to delete this as this may not be necessary
+  */
+  clearFeatures () {
     app.map.graphics.clear();
   }
 

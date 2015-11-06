@@ -13,7 +13,7 @@ class AnalysisActions {
 
   analyzeCustomArea (feature) {
     app.debug('AnalysisActions >>> analyzeCustomArea');
-    GraphicsHelper.addPoint(feature);
+    GraphicsHelper.addCustomPoint(feature);
     this.dispatch(feature);
   }
 
@@ -21,7 +21,7 @@ class AnalysisActions {
     app.debug('AnalysisActions >>> clearActiveWatershed');
     this.dispatch();
     //- Clear Highlight Polygons
-    GraphicsHelper.clearFeatures();
+    GraphicsHelper.clearActiveWatersheds();
     registry.byId(analysisPanelText.searchWidgetId).clear();
   }
 
@@ -29,7 +29,7 @@ class AnalysisActions {
     app.debug('AnalysisActions >>> clearCustomArea');
     this.dispatch();
     //- Clear Highlight Polygons
-    GraphicsHelper.clearFeatures();
+    GraphicsHelper.clearCustomAreas();
     registry.byId(analysisPanelText.searchWidgetId).clear();
   }
 
