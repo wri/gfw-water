@@ -33,6 +33,19 @@ export const config = {
   },
 
   /**
+  * These are passed to various stores, make sure they match the format in the stores/*.js files
+  * For default active layers, set the visible to true below in layers as well
+  * activeBasemap controls the UI only, so if you need to change it
+  * set the customBasemap.options.visible property to false and add a basemap property to map.options
+  */
+  defaults: {
+    activeLayers: [KEYS.loss, KEYS.gain],
+    canopyDensity: 30,
+    lossFromSelectIndex: 0,
+    activeBasemap: KEYS.wriBasemap
+  },
+
+  /**
   * Layer Config Options, brackets are optional
   * if type is anything other than graphic and the layer is not disabled, it must have a url
   * id - {string} - layer Id, must be unique
@@ -118,6 +131,7 @@ export const config = {
       label: 'Tree cover loss',
       group: 'watershedRisk',
       className: 'loss',
+      visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestCover_lossyear/ImageServer',
       colormap: [[1, 219, 101, 152]],
@@ -131,6 +145,7 @@ export const config = {
       label: 'Tree cover gain',
       group: 'watershedRisk',
       className: 'gain',
+      visible: true,
       sublabel: '(12 years, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestGain_2000_2012_map/MapServer'
     },
@@ -643,6 +658,7 @@ export const analysisPanelText = config.text.analysisPanel;
 export const controlPanelText = config.text.controlPanel;
 export const modalText = config.text.modals;
 export const assetUrls = config.assets;
+export const defaults = config.defaults;
 export const layersConfig = config.layers;
 export const errors = config.text.errors;
 export const mapConfig = config.map;
