@@ -1,17 +1,16 @@
+import {layerPanelText, defaults} from 'js/config';
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
-import {layerPanelText} from 'js/config';
-import KEYS from 'js/constants';
 import alt from 'js/alt';
 
 class MapStore {
 
   constructor () {
-    this.activeLayers = [];
-    this.canopyDensity = 30;
-    this.lossFromSelectIndex = 0;
-    this.activeBasemap = KEYS.wriBasemap;
+    this.activeLayers = defaults.activeLayers;
+    this.canopyDensity = defaults.canopyDensity;
+    this.lossFromSelectIndex = defaults.lossFromSelectIndex;
+    this.activeBasemap = defaults.activeBasemap;
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
 

@@ -5,16 +5,18 @@ import alt from 'js/alt';
 class AnalysisStore {
 
   constructor () {
+    this.toolbarActive = false;
     this.activeWatershed = null;
     this.activeCustomArea = null;
     this.activeTab = analysisPanelText.watershedTabId;
-    this.toolbarActive = false;
+    this.customAreaName = analysisPanelText.customAreaNamePlaceholder;
 
     this.bindListeners({
       clearCustomArea: analysisActions.clearCustomArea,
       setAnalysisType: analysisActions.setAnalysisType,
       toggleDrawToolbar: analysisActions.toggleDrawToolbar,
       analyzeCustomArea: analysisActions.analyzeCustomArea,
+      setCustomAreaName: analysisActions.setCustomAreaName,
       clearActiveWatershed: analysisActions.clearActiveWatershed,
       analyzeCurrentWatershed: analysisActions.analyzeCurrentWatershed
     });
@@ -36,6 +38,10 @@ class AnalysisStore {
 
   analyzeCustomArea (feature) {
     this.activeCustomArea = feature;
+  }
+
+  setCustomAreaName (newName) {
+    this.customAreaName = newName;
   }
 
   setAnalysisType (tabId) {
