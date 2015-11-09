@@ -17,7 +17,7 @@ let WatershedAnalysis = props => {
         <div>
           <div className='feature-title'>{text.getWatershedTitle(props.activeWatershed)}</div>
           <WatershedSummary />
-          <WatershedChart feature={props.activeWatershed} />
+          <WatershedChart id='currentWatershedChart' feature={props.activeWatershed} />
           <LossFootnote />
           <CustomAnalysisLink />
           <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>
