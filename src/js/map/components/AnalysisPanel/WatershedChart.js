@@ -57,7 +57,7 @@ let generateChart = (id, feature) => {
     },
     {
       type: 'column',
-      name: 'Historic tree cover loss',
+      name: 'Historical tree cover loss',
       data: [4],
       color: '#D2DF2E',
       pointPlacement: 'between'
