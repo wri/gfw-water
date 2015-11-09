@@ -1,11 +1,14 @@
 import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
+import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
 import LossFootnote from 'components/AnalysisPanel/LossFootnote';
 import {analysisPanelText as text} from 'js/config';
 import React from 'react';
 
-// Info Icon Markup for innerHTML
-let useSvg = '<use xlink:href="#shape-info" />';
+// Temporary for the Prototype
+let runReport = () => {
+  window.open('http://data.wri.org/gfw-water/sample-report.pdf');
+};
 
 let WatershedAnalysis = props => {
   return (
@@ -13,18 +16,11 @@ let WatershedAnalysis = props => {
       {!props.activeWatershed ? <p className='analysis-placeholder'>{text.watershedTabPlaceholder}</p> :
         <div>
           <div className='feature-title'>{text.getWatershedTitle(props.activeWatershed)}</div>
-          <div className='watershed-summary flex'>
-            <span className='watershed-summary-label relative'>
-              {text.watershedSummeryInfo}
-              <span className='info-icon pointer'>
-                <svg dangerouslySetInnerHTML={{ __html: useSvg }}/>
-              </span>
-            </span>
-          </div>
+          <WatershedSummary />
           <WatershedChart feature={props.activeWatershed} />
           <LossFootnote />
           <CustomAnalysisLink />
-          <div className='full-report-button gfw-btn blue pointer'>{text.fullReportButton}</div>
+          <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>
         </div>
       }
     </div>

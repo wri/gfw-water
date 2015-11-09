@@ -362,7 +362,7 @@ export const config = {
       latPlaceholder: 'Lat',
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
-      customTabPlaceholder: 'Summary stats coming soon!',
+      customAreaNamePlaceholder: 'Custom Area',
       chartLookup: {
         0: 'No Risk',
         1: 'Low Risk',

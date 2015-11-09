@@ -116,7 +116,7 @@
   text-align center
   background white
   font-size 16px
-  padding 10px
+  padding 30px
   margin 0
 
 .loss-footnote
@@ -168,6 +168,7 @@
       top 3px
 
 .feature-title
+.custom-area-title
   padding 0 10px
   margin 5px 0
 
@@ -177,6 +178,21 @@
   width 300px
   padding 0
 
+.custom-area-title
+  & input
+    padding 10px 0 10px 30px
+    -webkit-appearance none
+    font-size 16px
+    outline none
+    border none
+  & .custom-area-title-edit
+    position absolute
+    left 15px
+    top 9px
+    & svg
+      fill $gfwBlue
+      height 20px
+      width 20px
 
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)

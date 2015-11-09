@@ -4,7 +4,7 @@ import React from 'react';
 let generateChart = feature => {
   console.log(feature);
   $('#watershed-chart').highcharts({
-    chart: { polar: true },
+    chart: { polar: true, spacingBottom: 0, spacingLeft: 0, spacingRight: 0, spacingTop: 0 },
     title: { text: '' },
     pane: { startAngle: 0, endAngle: 360 },
     xAxis: {
@@ -23,7 +23,7 @@ let generateChart = feature => {
       layout: 'vertical',
       verticalAlign: 'middle',
       itemStyle: {
-        width: '70px',
+        width: '130px',
         fontWeight: 300,
         fontFamily: '\'Fira Sans\', Georgia, serif'
       }

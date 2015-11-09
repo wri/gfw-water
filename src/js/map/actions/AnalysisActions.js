@@ -33,6 +33,11 @@ class AnalysisActions {
     registry.byId(analysisPanelText.searchWidgetId).clear();
   }
 
+  setCustomAreaName (newName) {
+    app.debug('AnalysisActions >>> setCustomAreaName');
+    this.dispatch(newName);
+  }
+
   setAnalysisType (tabId) {
     this.dispatch(tabId);
   }
