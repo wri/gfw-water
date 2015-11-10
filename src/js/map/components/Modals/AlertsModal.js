@@ -1,5 +1,6 @@
 import {modalText, alertsModalConfig} from 'js/config';
 import ModalWrapper from 'components/Modals/ModalWrapper';
+import {modalActions} from 'actions/ModalActions';
 import TextInput from 'components/Forms/TextInput';
 import CheckboxInput from 'components/Forms/CheckboxInput';
 import {clone} from 'utils/AppUtils';
@@ -40,6 +41,10 @@ export default class AlertsModal extends React.Component {
 
   togglefire () {
     this.setState({fireSubscription: !this.state.fireSubscription});
+  }
+
+  close () {
+    modalActions.hideModal(React.findDOMNode(this).parentElement);
   }
 
   formaSubmit (geoJson, subscriptionName, email) {
@@ -107,6 +112,8 @@ export default class AlertsModal extends React.Component {
     all(subscriptions).then(function (responses) {
       alert(responses.join('\n'));
     });
+
+    ::this.close()
   }
 
   render () {
