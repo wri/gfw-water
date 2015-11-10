@@ -150,16 +150,23 @@
 @media (min-width: 850px)
   #headerGfw
     height 34px
-  .home-slider .inner
-    max-width 1024px
-    width 95%
+  .home-slider
     & .attribution-link
       background rgba(200, 200, 200, 0.9)
       position absolute
       padding 5px 10px
       font-size 12px
+      display block
       bottom 0
       left 0
+    & .slide
+      height 620px
+    & .slick-dots
+      bottom 20px
+      top auto
+    & .inner
+      max-width 1024px
+      width 95%
     & aside
       transform translate(0, -50%)
       background none
@@ -187,9 +194,3 @@
       top auto
   .home-slider-container
     min-height 620px
-  .home-slider
-    & .slide
-      height 620px
-    & .slick-dots
-      bottom 20px
-      top auto
