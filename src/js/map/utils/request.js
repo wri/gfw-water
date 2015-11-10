@@ -3,6 +3,7 @@ import SpatialReference from 'esri/SpatialReference';
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import GeoProcessor from 'esri/tasks/Geoprocessor';
 import FeatureSet from 'esri/tasks/FeatureSet';
+import QueryTask from 'esri/tasks/QueryTask';
 import esriRequest from 'esri/request';
 import Query from 'esri/tasks/query';
 import Deferred from 'dojo/Deferred';
@@ -45,19 +46,22 @@ const request = {
   */
   getWatershedByGeometry: geometry => {
     app.debug('Request >>> getWatershedByGeometry');
-    let layer = app.map.getLayer(KEYS.watershed);
+    let config = utils.getObject(layersConfig, 'id', KEYS.watershed);
+    let task = new QueryTask(config.url);
     let deferred = new Deferred();
     let query = new Query();
 
+    query.returnGeometry = true;
     query.geometry = geometry;
+    query.outFields = ['*'];
 
-    if (layer) {
-      layer.queryFeatures(query, featureSet => {
-        deferred.resolve(featureSet.features[0]);
-      }, deferred.reject);
-    } else {
-      deferred.reject(false);
-    }
+    task.execute(query, results => {
+      if (results.features.length > 0) {
+        deferred.resolve(results.features[0]);
+      } else {
+        deferred.reject(errors.featureNotFound);
+      }
+    }, deferred.reject);
 
     return deferred;
   },
@@ -104,7 +108,7 @@ const request = {
     let {url, params, outputSR, jobId} = analysisConfig.upstream;
     let geoprocessor = new GeoProcessor(url);
     let deferred = new Deferred();
-    let pointGraphic = GraphicsHelper.generatePointGraphic(geometry);
+    let pointGraphic = GraphicsHelper.makePoint(geometry);
     let features = [];
     let featureSet = new FeatureSet();
 

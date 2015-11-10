@@ -10,6 +10,7 @@ const graphicsHelper = {
   * @param {Graphic} feature - Esri Feature object returned from a query
   */
   addActiveWatershed: feature => {
+    console.log(feature);
     let layer = app.map.getLayer(KEYS.watershedAnalysis);
     if (layer) {
       layer.add(new Graphic(
@@ -64,7 +65,7 @@ const graphicsHelper = {
   * @param {object} feature - must have geometry and should have attributes
   * @return {Graphic} - return an Esri Graphic object that can be used for future methods
   */
-  generatePolygonGraphic: feature => {
+  makePolygon: feature => {
     if (!feature.geometry.spatialReference) { feature.geometry.spatialReference = { wkid: 102100 }; }
     return new Graphic(
       new Polygon(feature.geometry),
@@ -78,7 +79,7 @@ const graphicsHelper = {
   * @param {object} feature - must have geometry and should have attributes
   * @return {Graphic} - return an Esri Graphic object that can be used for future methods
   */
-  generatePointGraphic: (geometry, attributes) => {
+  makePoint: (geometry, attributes) => {
     return new Graphic(
       new Point(geometry),
       Symbols.getSVGPointSymbol(),

@@ -3,13 +3,13 @@
 ### Getting Started
 Before you can begin, make sure you have [node.js](https://nodejs.org/en/) and [gulp](http://gulpjs.com/) installed.
 
-Now install all the front end dependencies.
+Install all the front end dependencies.
 
 ```
 npm install
 ```
 
-Finally, start the server and test the app at [http://localhost:3000](http://localhost:3000). You can test the various pages at localhost:3000/index.html and localhost:3000/map.html.
+Then start the server and your ready to go.  The app will be served at [http://localhost:3000](http://localhost:3000). You can test the various pages at localhost:3000/index.html and localhost:3000/map.html.
 
 
 ```
