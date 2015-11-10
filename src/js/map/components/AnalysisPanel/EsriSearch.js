@@ -1,9 +1,11 @@
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
+import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisStore} from 'stores/AnalysisStore';
 import {analysisPanelText} from 'js/config';
 import Search from 'esri/dijit/Search';
 import Symbols from 'helpers/Symbols';
+import Request from 'utils/request';
 import KEYS from 'js/constants';
 import React from 'react';
 
@@ -53,8 +55,10 @@ let generateSearchWidget = () => {
           analysisActions.analyzeCurrentWatershed(watershed);
         });
       } else {
-        app.map.setExtent(evt.result.extent, true);
-        analysisActions.analyzeCurrentWatershed(feature);
+        Request.getWatershedById(feature.attributes.objectid).then((watershed) => {
+          app.map.setExtent(evt.result.extent, true);
+          analysisActions.analyzeCurrentWatershed(GraphicsHelper.makePolygon(watershed));
+        });
       }
     }
   });
