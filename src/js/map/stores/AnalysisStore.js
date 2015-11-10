@@ -5,25 +5,43 @@ import alt from 'js/alt';
 class AnalysisStore {
 
   constructor () {
-    this.activeFeature = null;
-    this.activeTab = analysisPanelText.watershedTabId;
     this.toolbarActive = false;
+    this.activeWatershed = null;
+    this.activeCustomArea = null;
+    this.activeTab = analysisPanelText.watershedTabId;
+    this.customAreaName = analysisPanelText.customAreaNamePlaceholder;
 
     this.bindListeners({
-      clearAnalysis: analysisActions.clearAnalysis,
-      analyzeFeature: analysisActions.analyzeFeature,
+      clearCustomArea: analysisActions.clearCustomArea,
       setAnalysisType: analysisActions.setAnalysisType,
-      toggleDrawToolbar: analysisActions.toggleDrawToolbar
+      toggleDrawToolbar: analysisActions.toggleDrawToolbar,
+      analyzeCustomArea: analysisActions.analyzeCustomArea,
+      setCustomAreaName: analysisActions.setCustomAreaName,
+      clearActiveWatershed: analysisActions.clearActiveWatershed,
+      analyzeCurrentWatershed: analysisActions.analyzeCurrentWatershed
     });
   }
 
-  clearAnalysis () {
-    this.activeFeature = null;
+  clearActiveWatershed () {
     this.toolbarActive = false;
+    this.activeWatershed = null;
   }
 
-  analyzeFeature (feature) {
-    this.activeFeature = feature;
+  clearCustomArea () {
+    this.toolbarActive = false;
+    this.activeCustomArea = null;
+  }
+
+  analyzeCurrentWatershed (feature) {
+    this.activeWatershed = feature;
+  }
+
+  analyzeCustomArea (feature) {
+    this.activeCustomArea = feature;
+  }
+
+  setCustomAreaName (newName) {
+    this.customAreaName = newName;
   }
 
   setAnalysisType (tabId) {

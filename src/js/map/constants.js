@@ -8,10 +8,8 @@ const KEYS = {
   //- Layers and Layer Categories
   fires: 'fires',
   treeCoverChange: 'tcc',
-  watershed: 'watersheds',
   waterStress: 'water-stress',
   majorDams: 'dams',
-  rivers: 'rivers',
   activeFires: 'active-fires',
   burnScars: 'burn-scars',
   sediment: 'sediment',
@@ -21,7 +19,12 @@ const KEYS = {
   treeCover: 'tree-cover',
   wetlands: 'wetlands',
   historicLoss: 'historic-loss',
-  landCover: 'land-cover'
+  landCover: 'land-cover',
+  //- Layers not in UI
+  watershed: 'watersheds',
+  rivers: 'rivers',
+  watershedAnalysis: 'watershedAnalysis',
+  customAnalysis: 'customAnalysis'
 };
 
 export { KEYS as default };

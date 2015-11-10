@@ -32,20 +32,33 @@ export const config = {
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
-  // This config is for both the layers and the layer list, if no url is present, the layer will not be rendered
-  // and is strictly for the UI, if no group is present, the layer will not appear in the UI, just be added to the map
   /**
-  * Layer Config Options
+  * These are passed to various stores, make sure they match the format in the stores/*.js files
+  * For default active layers, set the visible property to true below in layers, thats how the store
+  * determines the activeLayers
+  * activeBasemap controls the UI only, so if you need to change it
+  * set the customBasemap.options.visible property to false and add a basemap property to map.options
+  */
+  defaults: {
+    canopyDensity: 30,
+    lossFromSelectIndex: 0,
+    activeBasemap: KEYS.wriBasemap
+  },
+
+  /**
+  * Layer Config Options, brackets are optional
+  * if type is anything other than graphic and the layer is not disabled, it must have a url
   * id - {string} - layer Id, must be unique
-  * order - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
+  * [order] - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
   * type - {string} - layer type (dynamic, image, feature, tiled)
-  * label - {string} - label in the layer list in the UI
-  * group - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
-  * className - {string} - Used for the checkbox so you can give it a background color to match the data
-  * url - {string} - Url for the map service, if present the app will attempt to add to the map via the LayerFactory,
-  * disabled - {boolean} - grey the checkbox out in the UI and prevent user from using it
+  * [label] - {string} - label in the layer list in the UI
+  * [group] - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
+  * - No group means it won't show in the UI
+  * [className] - {string} - Used for the checkbox so you can give it a background color to match the data
+  * [url] - {string} - Url for the map service, if present the app will attempt to add to the map via the LayerFactory,
+  * [disabled] - {boolean} - grey the checkbox out in the UI and prevent user from using it
   * - can also be updated dynamically if a layer fails to be added to the map to block the user from interacting with a service that is down
-  * miscellaneuos layer params, layerIds, opacity, colormap, inputRange, outputRange
+  * [miscellaneous layer params], layerIds, opacity, colormap, inputRange, outputRange
   * - Add any extra layer params as needed, check LayerFactory to see which ones are supported and feel free to add more if necessary
   * - type should be what the layer contructor expects, these are directly passed to Esri JavaScript layer constructors
   */
@@ -118,6 +131,7 @@ export const config = {
       label: 'Tree cover loss',
       group: 'watershedRisk',
       className: 'loss',
+      visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestCover_lossyear/ImageServer',
       colormap: [[1, 219, 101, 152]],
@@ -131,6 +145,7 @@ export const config = {
       label: 'Tree cover gain',
       group: 'watershedRisk',
       className: 'gain',
+      visible: true,
       sublabel: '(12 years, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestGain_2000_2012_map/MapServer'
     },
@@ -206,6 +221,16 @@ export const config = {
       type: 'tiled',
       url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
       visible: true
+    },
+    {
+      id: KEYS.watershedAnalysis,
+      type: 'graphic',
+      visible: true
+    },
+    {
+      id: KEYS.customAnalysis,
+      type: 'graphic',
+      visible: true
     }
   ],
 
@@ -256,8 +281,7 @@ export const config = {
         f: 'json',
         Generalize: true,
         SnapDistance: 5000,
-        SnapDistanceUnits: 'Meters',
-        DataSourceResolution: '90m'
+        SnapDistanceUnits: 'Meters'
       },
       outputSR: 102100,
       jobId: 'WatershedArea'
@@ -321,7 +345,7 @@ export const config = {
       analyzeButton: 'Analyze Watershed',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
-      watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click the map to find your location of interest.',
+      watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
       customTabId: 'customWatershed',
       customTabLabel: 'Custom Area',
       clearAnalysisButton: 'Clear Analysis',
@@ -338,7 +362,16 @@ export const config = {
       latPlaceholder: 'Lat',
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
-      customTabPlaceholder: 'Summary stats coming soon!'
+      customAreaNamePlaceholder: 'Custom Area',
+      chartLookup: {
+        0: 'No Risk',
+        1: 'Low Risk',
+        2: 'Low - Medium Risk',
+        3: 'Medium Risk',
+        4: 'Medium - High Risk',
+        5: 'Extreme Risk'
+      },
+      getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name'
     },
     controlPanel: {
       wriBasemap: 'WRI',
@@ -383,6 +416,25 @@ export const config = {
 
 // Layer Information
 // config.text.layerInformation[KEYS.sediment] = {};
+
+config.text.layerInformation[KEYS.landCover] = {
+  title: 'Land Cover',
+  table: [
+    {label: 'Function', html: 'Displays land cover classified by type.'},
+    {label: 'Resolution/Scale', html: '300m'},
+    {label: 'Geographic Coverage', html: 'Global'},
+    {label: 'Source Data', html: 'GlobCover Land Cover v2 2008'},
+    {label: 'Frequency of Updates', html: 'None'},
+    {label: 'Date of Content', html: '2008'},
+    {label: 'Cautions', html: 'Unmasked clouds may remain in the imagery. Additionally some pixels surrounding permanent snow areas may appear as snow even during no-snow periods. Some water masking occurs in which land is clipped in inland water areas, and the process for removing haze leaves some areas with patchy step changes. Last, some bright surface areas that appear as strong reflectors or deserts may be omitted as clouds.'}
+  ],
+  overview: [
+    'At 300 m resolution, GlobCover Land Cover v2 provides high resolution imagery of global land cover. The data contain 22 classes of land cover, drawing on the UN Land Cover Classification System. Satellite imagery comes from the ENVISAT satellite mission’s MERIS sensor, covering the period from December 2004 to June 2006.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>Bontemps, Sophie, Pierre Defourney, Eric Van Bogaert, Olivier Arion, Vasileios Kalogirou, and Jose Ramos Perez. 2009. “GLOBCOVER 2009: Product Description and Validation Report.” Available online at: <a href="http://dup.esrin.esa.int/page_globcover.php" target="_blank">http://dup.esrin.esa.int/page_globcover.php</a>'
+  ]
+};
 
 config.text.layerInformation[KEYS.wetlands] = {
   title: 'Lakes and Wetlands',
@@ -606,6 +658,7 @@ export const analysisPanelText = config.text.analysisPanel;
 export const controlPanelText = config.text.controlPanel;
 export const modalText = config.text.modals;
 export const assetUrls = config.assets;
+export const defaults = config.defaults;
 export const layersConfig = config.layers;
 export const errors = config.text.errors;
 export const mapConfig = config.map;

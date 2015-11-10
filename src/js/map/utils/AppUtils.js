@@ -18,21 +18,6 @@ const utils = {
   },
 
   /**
-  * @param {Point} point - Esri Point object
-  * @return {string} result - String ready to drop into the request InputPoints param
-  */
-  formatInputPointsForUpstream: point => {
-    let result = {
-      geometryType: 'esriGeometryPoint',
-      features: [{
-        geometry: { x: point.x, y: point.y, spatialReference: point.spatialReference }
-      }],
-      sr: { wkid: 102100, latestWkid: 3857 }
-    };
-    return JSON.stringify(result);
-  },
-
-  /**
   * Retrieve the object from a given array based on id and value
   * @param {array} - items - Array to search
   * @param {string} - field - Property of unique identifier in object

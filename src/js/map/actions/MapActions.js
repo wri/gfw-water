@@ -1,8 +1,8 @@
+import {layersConfig, errors, mapConfig} from 'js/config';
 import {analysisActions} from 'actions/AnalysisActions';
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import layerFactory from 'helpers/LayerFactory';
 import LayersHelper from 'helpers/LayersHelper';
-import {layersConfig, errors} from 'js/config';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Deferred from 'dojo/Deferred';
@@ -17,27 +17,31 @@ let userLocation;
 
 class MapActions {
 
-  createMap (mapConfig) {
+  /**
+  * @param {object} mapconfig - May not be the same mapConfig from above, it is initially but map options
+  * may be merged into this in the Map component on app load, if url params are present
+  */
+  createMap (mapconfig) {
     app.debug('MapActions >>> createMap');
     let deferred = new Deferred();
-    app.map = new EsriMap(mapConfig.id, mapConfig.options);
+    app.map = new EsriMap(mapconfig.id, mapconfig.options);
     app.map.on('load', () => {
       // Clear out the phantom graphic that esri adds to the graphics layer before resolving
       app.map.graphics.clear();
       deferred.resolve();
     });
     // Add a custom web tiled layer as a basemap
-    let customBasemap = new WebTiledLayer(mapConfig.customBasemap.url, mapConfig.customBasemap.options);
+    let customBasemap = new WebTiledLayer(mapconfig.customBasemap.url, mapconfig.customBasemap.options);
     app.map.addLayers([customBasemap]);
     return deferred;
   }
 
   createLayers () {
     app.debug('MapActions >>> createLayers');
-    //- Remove layers from config that have no url
+    //- Remove layers from config that have no url unless they are of type graphic(which have no url)
     //- sort by order from the layer config
     //- return an arcgis layer for each config object
-    let layers = layersConfig.filter(layer => layer && layer.url).sort((a, b) => a.order - b.order).map(layerFactory);
+    let layers = layersConfig.filter(layer => layer && (layer.url || layer.type === 'graphic')).sort((a, b) => a.order - b.order).map(layerFactory);
     app.map.addLayers(layers);
     // If there is an error with a particular layer, handle that here
     app.map.on('layers-add-result', result => {
@@ -106,7 +110,10 @@ class MapActions {
     var slider = $('#tree-cover-slider').data('ionRangeSlider');
     if (slider) { slider.reset(); }
     //- Reset Esris Search Dijit and clear any graphics
-    analysisActions.clearAnalysis();
+    analysisActions.clearCustomArea();
+    analysisActions.clearActiveWatershed();
+    //- Reset the Map to its original zoom and location
+    app.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
   }
 
 }

@@ -9,8 +9,8 @@ import geoEngine from 'esri/geometry/geometryEngine';
 class GeoHelper {
 
   constructor () {
-    this.geometryService = null
-    this.spatialReference = null
+    this.geometryService = null;
+    this.spatialReference = null;
   }
 
   getSpatialReference () {
@@ -72,13 +72,13 @@ class GeoHelper {
 
     return {
         geom: geometryArray.length > 1 ? geometryArray : geometryArray[0],
-        type: geometryArray.length > 1 ? "MultiPolygon" : "Polygon"
+        type: geometryArray.length > 1 ? 'MultiPolygon' : 'Polygon'
     };
   }
 
   simplify (geometry) {
-    return geoEngine.simplify(geometry)
+    return geoEngine.simplify(geometry);
   }
-};
+}
 
-export default new GeoHelper()
+export default new GeoHelper();

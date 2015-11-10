@@ -15,7 +15,8 @@
     "app": true,
     "define": true,
     "require": true,
-    "navigator": true
+    "navigator": true,
+    "_babelPolyfill": true
   },
   "plugins": [
     "react"

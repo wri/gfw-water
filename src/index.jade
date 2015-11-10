@@ -9,11 +9,13 @@ html
     link(rel='stylesheet', href='css/home.css?#{version}')
     link(rel='stylesheet', href='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    script(src='vendor/browser-polyfill.js')
     script(src='vendor/jquery/dist/jquery.min.js')
   body
     include templates/gfwAssets.jade
     div#headerGfw
     section.relative.home-slider-container
+      div.gfw-water-logo
       nav.mobile-hide.home-nav
         h2.shadow Explore the Map!
           div.inline-block
@@ -21,29 +23,44 @@ html
               div.gfw-btn.blue.pointer click here!
       ul.home-slider
         li.slide1.slide.pointer
-          div.inner.relative
-            aside
-              h2 explore
-              h3 explore data on forest change
-              div.slide-link
-                span.mobile-hide more info
-                span.mobile-show +
-        li.slide2.slide.pointer
-          div.inner.relative
-            aside
-              h2 explore
-              h3 explore data on forest change
-              div.slide-link
-                span.mobile-hide more info
-                span.mobile-show +
-        li.slide3.slide.pointer
-          div.inner.relative
-            aside
-              h2 explore
-              h3 explore data on forest change
-              div.slide-link
-                span.mobile-hide more info
-                span.mobile-show +
+          a(href='./map.html')
+            div.inner.relative
+              aside
+                h2 explore
+                h3 explore the interactive map
+                div.slide-link
+                  span.mobile-hide more info
+                  span.mobile-show +
+        li.slide2.slide.pointer(title='Photo By: Philadelphiaift.org')
+          a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog')
+            div.inner.relative
+              aside
+                h2 blogs & news
+                h3 Read recent blogs and news about natural infrastructure
+                div.slide-link
+                  span.mobile-hide more info
+                  span.mobile-show +
+        li.slide3.slide.pointer(title='Photo By: Steve Dunleavy - North Kohala Stream, Big Island, Hawaii')
+          div.attribution-link
+            span Photo By: #[a.gfw-link(href='https://www.flickr.com/photos/stevedunleavy/5885138296/in/photolist-9Y3SzE-8x6Umu-7TvQ2L-iEVzum-91SB4n-fuo6N9-7gY6FG-7TjVDu-rGbFdE-pmuFpw-gnqcCj-enr7pG-m9ZoCi-hA4hoZ-z7UtVq-iEShgC-rYDiKQ-r3g3Pz-5CLJaP-7kgUf7-bFYVma-o3tmZo-cHpQvd-r5cpkg-8yyhWE-6bREJ9-m89Dsx-dbniUZ-q4CsXu-9KQmju-9KzvAN-6uTYRJ-dvEsLa-m6QyD4-d4pab5-6FYhUW-eJfYke-arDLBV-dHaaUb-oLffPu-owdjDL-9SRkU2-6uTZho-doENPM-aHgjE2-xBekek-7RbS5n-iERX1z-ygutLj-i27ZYe') Steve Dunleavy]
+            |  licensed under #[a.gfw-link(href='https://creativecommons.org/licenses/by-nc-nd/2.0/') CC BY-NC-ND 2.0]
+          a(href='http://www.wri.org/our-work/project/natural-infrastructure-water')
+            div.inner.relative
+              aside
+                h2 visit our project page
+                h3 Learn about natural infrastructure for water
+                div.slide-link
+                  span.mobile-hide more info
+                  span.mobile-show +
+        li.slide4.slide.pointer
+          a(href='http://www.wri.org/applications/maps/aqueduct-atlas/')
+            div.inner.relative
+              aside
+                h2 aqueduct
+                h3 Check out Aqueduct's global water risk mapping tool
+                div.slide-link
+                  span.mobile-hide more info
+                  span.mobile-show +
     div#footerGfw
     script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.
@@ -53,13 +70,5 @@ html
         packages: [
           {name: 'js', location: base + '/js/home'},
           {name: 'vendor', location: base + '/vendor'},
-        ],
-        map: {
-          '*': {
-            //- '$': base + 'vendor/jquery/dist/jquery.min.js',
-            //- 'slick': '//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js',
-            //- 'gfw-assets': 'http://www.globalforestwatch.org/gfw-assets',
-            'babel-polyfill': base + 'vendor/browser-polyfill.js'
-          }
-        }
+        ]
       };

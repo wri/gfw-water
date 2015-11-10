@@ -1,41 +1,30 @@
 import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
+import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
 import LossFootnote from 'components/AnalysisPanel/LossFootnote';
 import {analysisPanelText as text} from 'js/config';
 import React from 'react';
 
-// Info Icon Markup for innerHTML
-let useSvg = '<use xlink:href="#shape-info" />';
+// Temporary for the Prototype
+let runReport = () => {
+  window.open('http://data.wri.org/gfw-water/sample-report.pdf');
+};
 
-export default class WatershedAnalysis extends React.Component {
+let WatershedAnalysis = props => {
+  return (
+    <div className={`watershed-analysis ${props.active ? '' : 'hidden'}`}>
+      {!props.activeWatershed ? <p className='analysis-placeholder'>{text.watershedTabPlaceholder}</p> :
+        <div>
+          <div className='feature-title'>{text.getWatershedTitle(props.activeWatershed)}</div>
+          <WatershedSummary />
+          <WatershedChart id='currentWatershedChart' feature={props.activeWatershed} />
+          <LossFootnote />
+          <CustomAnalysisLink />
+          <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>
+        </div>
+      }
+    </div>
+  );
+};
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.feature !== prevProps.feature && this.props.feature) {
-  //     console.log(this.props.feature);
-  //   }
-  // }
-
-  render () {
-    return (
-      <div className={`watershed-analysis ${this.props.active ? '' : 'hidden'}`}>
-        {!this.props.activeFeature ? <p className='analysis-placeholder'>{text.watershedTabPlaceholder}</p> :
-          <div>
-            <div className='feature-title'>United States, North Atlantic Coast</div>
-            <div className='watershed-summary flex'>
-              <span className='watershed-summary-label relative'>
-                {text.watershedSummeryInfo}
-                <span className='info-icon pointer'>
-                  <svg dangerouslySetInnerHTML={{ __html: useSvg }}/>
-                </span>
-              </span>
-            </div>
-            <WatershedChart feature={this.props.activeFeature} />
-            <LossFootnote />
-            <CustomAnalysisLink />
-            <div className='full-report-button gfw-btn blue pointer'>{text.fullReportButton}</div>
-          </div>
-        }
-      </div>
-    );
-  }
-}
+export { WatershedAnalysis as default };

@@ -1,4 +1,6 @@
 import {analysisActions} from 'actions/AnalysisActions';
+import AnalysisHelper from 'helpers/AnalysisHelper';
+import {analysisStore} from 'stores/AnalysisStore';
 import {analysisPanelText} from 'js/config';
 import Search from 'esri/dijit/Search';
 import Symbols from 'helpers/Symbols';
@@ -10,6 +12,7 @@ let generateSearchWidget = () => {
   let searchWidget = new Search({
     map: app.map,
     autoNavigate: false,
+    enableHighlight: false,
     showInfoWindowOnSelect: false,
     allPlaceholder: analysisPanelText.searchAllPlaceholder
   }, analysisPanelText.searchWidgetId);
@@ -40,13 +43,18 @@ let generateSearchWidget = () => {
   searchWidget.on('select-result', evt => {
     if (evt.result) {
       let feature = evt.result.feature;
+      let {activeWatershed} = analysisStore.getState();
+      //- Clear out any previous analysis
+      if (activeWatershed) { analysisActions.clearActiveWatershed(); }
       //- If the feature is a point, then they searched the world geocoder and we still need to find the watershed
       //- else, they searched the watersheds layer and we can start analysis right away
       if (feature.geometry.type === analysisPanelText.pointType) {
-        analysisActions.findWatershed(feature.geometry);
+        AnalysisHelper.findWatershed(feature.geometry).then(watershed => {
+          analysisActions.analyzeCurrentWatershed(watershed);
+        });
       } else {
         app.map.setExtent(evt.result.extent, true);
-        analysisActions.analyzeFeature(feature);
+        analysisActions.analyzeCurrentWatershed(feature);
       }
     }
   });

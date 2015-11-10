@@ -31,16 +31,25 @@ body
   z-index 5
   left 20px
   top 0
+  &:after
+    background url('images/beta.png')
+    position absolute
+    display block
+    bottom -5px
+    height 18px
+    width 30px
+    right -5px
+    content ''
 
 .aqueduct-logo
   background url('http://www.wri.org/sites/default/files/styles/large/public/logo.png') no-repeat center
-  background-size auto 80px
+  background-size auto 65px
   position absolute
-  height 90px
-  width 310px
-  left 120px
+  height 50px
+  width 250px
+  left 125px
   z-index 5
-  top 0
+  top 20px
 
 // Require any Map Content
 @require 'modal'

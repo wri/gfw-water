@@ -1,6 +1,8 @@
 import {analysisConfig, layersConfig, errors} from 'js/config';
 import SpatialReference from 'esri/SpatialReference';
+import GraphicsHelper from 'helpers/GraphicsHelper';
 import GeoProcessor from 'esri/tasks/Geoprocessor';
+import FeatureSet from 'esri/tasks/FeatureSet';
 import esriRequest from 'esri/request';
 import Query from 'esri/tasks/query';
 import Deferred from 'dojo/Deferred';
@@ -102,8 +104,14 @@ const request = {
     let {url, params, outputSR, jobId} = analysisConfig.upstream;
     let geoprocessor = new GeoProcessor(url);
     let deferred = new Deferred();
+    let pointGraphic = GraphicsHelper.generatePointGraphic(geometry);
+    let features = [];
+    let featureSet = new FeatureSet();
 
-    params.InputPoints = utils.formatInputPointsForUpstream(geometry);
+    features.push(pointGraphic);
+    featureSet.features = features;
+    params.InputPoints = featureSet;
+
     geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
     geoprocessor.submitJob(params, results => {
       geoprocessor.getResultData(results.jobId, jobId, data => {

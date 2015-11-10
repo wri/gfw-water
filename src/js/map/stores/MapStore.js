@@ -1,17 +1,19 @@
+import {layerPanelText, defaults, layersConfig} from 'js/config';
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
-import {layerPanelText} from 'js/config';
-import KEYS from 'js/constants';
 import alt from 'js/alt';
 
 class MapStore {
 
   constructor () {
-    this.activeLayers = [];
-    this.canopyDensity = 30;
-    this.lossFromSelectIndex = 0;
-    this.activeBasemap = KEYS.wriBasemap;
+    //- activeLayers defaults should be the id's of whatever layers
+    //- are configured to be visible in layersConfig, filter out layers with no group
+    //- because those layers are not in the ui and should not be in this list
+    this.activeLayers = layersConfig.filter(l => l.visible && l.group).map(l => l.id);
+    this.canopyDensity = defaults.canopyDensity;
+    this.lossFromSelectIndex = defaults.lossFromSelectIndex;
+    this.activeBasemap = defaults.activeBasemap;
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
 

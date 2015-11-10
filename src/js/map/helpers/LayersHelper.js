@@ -29,20 +29,17 @@ let LayersHelper = {
   watershedClicked: evt => {
     app.debug('LayerHelper >>> watershedClicked');
     //- Don't do anything if the drawtoolbar is active
-    let {activeFeature, toolbarActive} = analysisStore.getState();
+    let {activeWatershed, toolbarActive} = analysisStore.getState();
     let graphic = evt.graphic;
     if (graphic && !toolbarActive) {
       //- If we currently have a feature in analysis, clear the analyis, then run the query
-      if (activeFeature) { analysisActions.clearAnalysis(); }
+      if (activeWatershed) { analysisActions.clearActiveWatershed(); }
       let objectid = graphic.attributes.objectid;
       Request.getWatershedById(objectid).then(featureJSON => {
         //- Convert JSON to feature
-        let feature = GraphicsHelper.generateGraphic(featureJSON);
+        let feature = GraphicsHelper.generatePolygonGraphic(featureJSON);
         //- Start the analysis process
-        analysisActions.analyzeFeature(feature);
-        //- Add some cues to the map to highlight the feature and add a point
-        GraphicsHelper.addPoint(evt.mapPoint);
-        GraphicsHelper.addActiveWatershed(feature);
+        analysisActions.analyzeCurrentWatershed(feature);
         app.map.setExtent(feature.geometry.getExtent(), true);
       }, err => {
         console.log(err);
