@@ -8,8 +8,9 @@ class MapStore {
 
   constructor () {
     //- activeLayers defaults should be the id's of whatever layers
-    //- are configured to be visible in layersConfig
-    this.activeLayers = layersConfig.filter(l => l.visible).map(l => l.id);
+    //- are configured to be visible in layersConfig, filter out layers with no group
+    //- because those layers are not in the ui and should not be in this list
+    this.activeLayers = layersConfig.filter(l => l.visible && l.group).map(l => l.id);
     this.canopyDensity = defaults.canopyDensity;
     this.lossFromSelectIndex = defaults.lossFromSelectIndex;
     this.activeBasemap = defaults.activeBasemap;
