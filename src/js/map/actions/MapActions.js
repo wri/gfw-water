@@ -17,17 +17,21 @@ let userLocation;
 
 class MapActions {
 
-  createMap (mapConfig) {
+  /**
+  * @param {object} mapconfig - May not be the same mapConfig from above, it is initially but map options
+  * may be merged into this in the Map component on app load, if url params are present
+  */
+  createMap (mapconfig) {
     app.debug('MapActions >>> createMap');
     let deferred = new Deferred();
-    app.map = new EsriMap(mapConfig.id, mapConfig.options);
+    app.map = new EsriMap(mapconfig.id, mapconfig.options);
     app.map.on('load', () => {
       // Clear out the phantom graphic that esri adds to the graphics layer before resolving
       app.map.graphics.clear();
       deferred.resolve();
     });
     // Add a custom web tiled layer as a basemap
-    let customBasemap = new WebTiledLayer(mapConfig.customBasemap.url, mapConfig.customBasemap.options);
+    let customBasemap = new WebTiledLayer(mapconfig.customBasemap.url, mapconfig.customBasemap.options);
     app.map.addLayers([customBasemap]);
     return deferred;
   }

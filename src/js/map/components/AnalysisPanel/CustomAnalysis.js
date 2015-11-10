@@ -62,6 +62,7 @@ export default class CustomAnalysis extends React.Component {
 
   selectAreaTitle () {
     this.refs.customAreaTitle.focus();
+    this.refs.customAreaTitle.select();
   }
 
   render () {
@@ -78,13 +79,14 @@ export default class CustomAnalysis extends React.Component {
           :
           <div>
             <div className='custom-area-title relative'>
-              <input ref='customAreaTitle' type='text' placeholder={text.customAreaNamePlaceholder} value={this.props.customAreaName} onChange={this.nameChanged} />
-              <div className='custom-area-title-edit' onClick={::this.selectAreaTitle}>
+              <input ref='customAreaTitle' name='customAreaTitle' type='text' placeholder={text.customAreaNamePlaceholder}
+                value={this.props.customAreaName} onChange={this.nameChanged} />
+              <div className='custom-area-title-edit pointer' onClick={::this.selectAreaTitle}>
                 <svg viewBox="0 0 528.899 528.899" dangerouslySetInnerHTML={{ __html: editSvg }}/>
               </div>
             </div>
             <WatershedSummary />
-            <WatershedChart feature={this.props.activeCustomArea} />
+            <WatershedChart id='customAreaChart' feature={this.props.activeCustomArea} />
             <LossFootnote />
             <CustomAnalysisLink />
             <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>

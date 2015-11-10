@@ -14,6 +14,16 @@ const ShareHelper = {
       layerIds.forEach(id => {
         layerActions.addActiveLayer(id);
       });
+
+      // Loss is on by default, we need to turn it off if not present in the shared state
+      if (layerIds.indexOf(KEYS.loss) === -1) {
+        layerActions.removeActiveLayer(KEYS.loss);
+      }
+
+      // Gain is on by default, we need to turn it off if not present in the shared state
+      if (layerIds.indexOf(KEYS.gain) === -1) {
+        layerActions.removeActiveLayer(KEYS.gain);
+      }
     }
 
     if (activeBasemap) {
