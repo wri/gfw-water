@@ -120,7 +120,7 @@ export default class AlertsModal extends React.Component {
           <Form onSubmit={::this.submit} onChange={this.validateForm} onValid={::this.validateText} onInvalid={::this.invalidateText}>
             <TextInput name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
             <br />
-            <TextInput name='subscription-name' type='text' label={alertsText.descriptions.subscription} placeholder='My Subscription'/>
+            <TextInput name='subscription-name' type='text' label={alertsText.descriptions.subscription} placeholder='My Subscription' maxLength={50}/>
             <br />
             <label>{alertsText.descriptions.subscriptionTypes}</label>
             <CheckboxInput label='Monthly Clearance Alerts' className='tree-cover' checked={this.state.formaSubscription} clickHandle={::this.toggleForma} />
