@@ -92,7 +92,7 @@ export default class AlertsModal extends React.Component {
 
   submit (model) {
     let subscriptions = [],
-        feature = analysisStore.getState().activeFeature,
+        feature = analysisStore.getState().activeWatershed,
         subscriptionName = model['subscription-name'] || 'My Subscription';
 
     feature = new Graphic(GeoHelper.simplify(feature.geometry));
