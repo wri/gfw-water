@@ -1,4 +1,4 @@
-import {layerPanelText, defaults} from 'js/config';
+import {layerPanelText, defaults, layersConfig} from 'js/config';
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
@@ -7,7 +7,9 @@ import alt from 'js/alt';
 class MapStore {
 
   constructor () {
-    this.activeLayers = defaults.activeLayers;
+    //- activeLayers defaults should be the id's of whatever layers
+    //- are configured to be visible in layersConfig
+    this.activeLayers = layersConfig.filter(l => l.visible).map(l => l.id);
     this.canopyDensity = defaults.canopyDensity;
     this.lossFromSelectIndex = defaults.lossFromSelectIndex;
     this.activeBasemap = defaults.activeBasemap;

@@ -34,12 +34,12 @@ export const config = {
 
   /**
   * These are passed to various stores, make sure they match the format in the stores/*.js files
-  * For default active layers, set the visible to true below in layers as well
+  * For default active layers, set the visible property to true below in layers, thats how the store
+  * determines the activeLayers
   * activeBasemap controls the UI only, so if you need to change it
   * set the customBasemap.options.visible property to false and add a basemap property to map.options
   */
   defaults: {
-    activeLayers: [KEYS.loss, KEYS.gain],
     canopyDensity: 30,
     lossFromSelectIndex: 0,
     activeBasemap: KEYS.wriBasemap
