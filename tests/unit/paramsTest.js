@@ -43,6 +43,11 @@ define(function (require) {
       expect(result.foo).to.equal('bar');
       expect(result.key).to.not.exist;
       expect(result.some).to.not.exist;
+    },
+
+    'should return an empty object if no querystring is provided': function () {
+      var result = params.toObject();
+      expect(result).to.be.an('object').and.to.be.empty;
     }
 
   });
@@ -80,7 +85,7 @@ define(function (require) {
 
     'should return an empty object if no path is provided': function () {
       var result = params.getUrlParams();
-      expect(result).to.be.an('object');
+      expect(result).to.be.an('object').and.to.be.empty;
     },
 
     'should return a dictionary matching keys and values in the provided path': function () {

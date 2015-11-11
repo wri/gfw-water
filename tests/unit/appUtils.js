@@ -13,7 +13,6 @@ define(function (require) {
     { id: 5 }
   ];
 
-  //- appUtils.getObject
   registerSuite({
 
     name: 'appUtils.getObject',
@@ -35,39 +34,6 @@ define(function (require) {
 
   });
 
-  var queryStart = 'ACQ_DATE > date';
-
-  //- appUtils.generateFiresQuery
-  registerSuite({
-
-    name: 'appUtils.generateFiresQuery',
-
-    'Should return a valid query string': function () {
-      var result = appUtils.generateFiresQuery(4);
-      var pieces = result.split('\'');
-      expect(pieces.length).to.equal(3);
-      var startString = pieces[0];
-      var timeInfo = pieces[1].split(' ');
-      var dateArray = timeInfo[0].split('-');
-      var timeArray = timeInfo[1].split(':');
-      expect(startString.startsWith(queryStart)).to.be.ok;
-      expect(dateArray.length).to.equal(3);
-      expect(timeArray.length).to.equal(3);
-    },
-
-    'Should default to 1 = 1 if provided an invalid input': function () {
-      var result = appUtils.generateFiresQuery(12);
-      expect(result).to.equal('1 = 1');
-    },
-
-    'Should return 1 = 1 if provided filter equals 7': function () {
-      var result = appUtils.generateFiresQuery(7);
-      expect(result).to.equal('1 = 1');
-    }
-
-  });
-
-  //- appUtils.validLatLng
   registerSuite({
 
     name: 'appUtils.validLatLng (-90, 90, -180, 180)',
@@ -91,7 +57,6 @@ define(function (require) {
 
   });
 
-  //- appUtils.supportsExecCommand
   registerSuite({
 
     name: 'appUtils.supportsExecCommand',
@@ -102,13 +67,24 @@ define(function (require) {
 
   });
 
-  //- appUtils.copySelectionFrom
   registerSuite({
 
     name: 'appUtils.copySelectionFrom',
 
     'Should return a boolean': function () {
       expect(typeof appUtils.copySelectionFrom() === 'boolean').to.be.ok;
+    }
+
+  });
+
+  registerSuite({
+
+    name: 'appUtils.clone',
+
+    'Should return a boolean': function () {
+      var testObject = { foo: 'bar' };
+      expect(appUtils.clone(testObject)).to.not.equal(testObject);
+      expect(appUtils.clone(testObject).foo).to.equal('bar');
     }
 
   });

@@ -63,6 +63,39 @@ define(function (require) {
 
   registerSuite({
 
+    name: 'config functions',
+
+    'should return a string with the provided text embedded into the share url': function () {
+      var shareConfig = config.modalText.share;
+
+      expect(shareConfig.facebookUrl('testing')).to.contain('testing').and.to.contain('facebook.com');
+      expect(shareConfig.twitterUrl('testing')).to.contain('testing').and.to.contain('twitter.com');
+      expect(shareConfig.googleUrl('testing')).to.contain('testing').and.to.contain('google.com');
+    },
+
+    'should return a descriptive error message containing the provided text': function () {
+      var errors = config.errors;
+
+      expect(errors.incorrectLayerConfig('testing')).to.contain('testing');
+      expect(errors.geolocationFailure('testing')).to.contain('testing');
+    },
+
+    'should return a name of the feature from attributes.maj_name or a string description, no null or undefined': function () {
+      var analysisPanelConfig = config.analysisPanelText;
+
+      expect(analysisPanelConfig.getWatershedTitle({
+        attributes: { maj_name: 'Testing' }
+      })).to.equal('Testing');
+
+      expect(analysisPanelConfig.getWatershedTitle({
+        attrs: { maj_name: 'Testing' }
+      })).to.be.an('string').and.not.to.equal('Testing');
+    }
+
+  });
+
+  registerSuite({
+
     name: 'config.layerInformation',
 
     'each entry should have title and table properties': function () {

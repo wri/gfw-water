@@ -10,7 +10,7 @@ import KEYS from 'js/constants';
 
 let LayersHelper = {
 
-  connectLayerEvents: () => {
+  connectLayerEvents () {
     app.debug('LayersHelper >>> connectLayerEvents');
     // Enable Mouse Events for al graphics layers
     app.map.graphics.enableMouseEvents();
@@ -26,7 +26,7 @@ let LayersHelper = {
     }
   },
 
-  watershedClicked: evt => {
+  watershedClicked (evt) {
     app.debug('LayerHelper >>> watershedClicked');
     //- Don't do anything if the drawtoolbar is active
     let {activeWatershed, toolbarActive} = analysisStore.getState();
@@ -47,7 +47,7 @@ let LayersHelper = {
     }
   },
 
-  watershedHoverOn: evt => {
+  watershedHoverOn (evt) {
     // app.debug('LayersHelper >>> watershedHoverOn');
     let graphic = evt.graphic;
     if (graphic) {
@@ -55,7 +55,7 @@ let LayersHelper = {
     }
   },
 
-  watershedHoverOff: evt => {
+  watershedHoverOff (evt) {
     // app.debug('LayersHelper >>> watershedHoverOff');
     let graphic = evt.graphic;
     if (graphic) {
@@ -63,13 +63,18 @@ let LayersHelper = {
     }
   },
 
-  showLayer: layerId => {
+  /**
+  * @param {string} layerId - id of layer to show
+  */
+  showLayer (layerId) {
     app.debug(`LayersHelper >>> showLayer - ${layerId}`);
     let layer = app.map.getLayer(layerId);
     if (layer) { layer.show(); }
   },
-
-  hideLayer: layerId => {
+  /**
+  * @param {string} layerId - id of layer to hide
+  */
+  hideLayer (layerId) {
     app.debug(`LayersHelper >>> hideLayer - ${layerId}`);
     let layer = app.map.getLayer(layerId);
     if (layer) { layer.hide(); }
@@ -79,10 +84,10 @@ let LayersHelper = {
   * @param {number} optionIndex - Index of the selected option in the UI, see js/config
   * @param {boolean} dontRefresh - Whether or not to not fetch a new image
   */
-  updateFiresLayerDefinitions: (optionIndex, dontRefresh) => {
+  updateFiresLayerDefinitions (optionIndex, dontRefresh) {
     app.debug('LayersHelper >>> updateFiresLayerDefinitions');
     let value = layerPanelText.firesOptions[optionIndex].value || 1; // 1 is the default value, means last 24 hours
-    let queryString = utils.generateFiresQuery(value);
+    let queryString = this.generateFiresQuery(value);
     let firesLayer = app.map.getLayer(KEYS.activeFires);
     let defs = [];
 
@@ -92,7 +97,11 @@ let LayersHelper = {
     }
   },
 
-  updateLossLayerDefinitions: (fromIndex, toIndex) => {
+  /**
+  * @param {number} fromIndex - selected index of first tree cover loss select
+  * @param {number} toIndex - selected index of second tree cover loss select
+  */
+  updateLossLayerDefinitions (fromIndex, toIndex) {
     app.debug('LayersHelper >>> updateLossLayerDefinitions');
     let fromValue = layerPanelText.lossOptions[fromIndex].value;
     let toValue = layerPanelText.lossOptions[toIndex].value;
@@ -106,7 +115,10 @@ let LayersHelper = {
     }
   },
 
-  updateTreeCoverDefinitions: (densityValue) => {
+  /**
+  * @param {number} densityValue - Tree cover density value from slider, must be between 1 and 100
+  */
+  updateTreeCoverDefinitions (densityValue) {
     app.debug('LayersHelper >>> updateTreeCoverDefinitions');
     let layerConfig = utils.getObject(layersConfig, 'id', KEYS.treeCover);
     let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [densityValue, layerConfig.inputRange[1]], layerConfig.outputRange);
@@ -115,6 +127,25 @@ let LayersHelper = {
     if (layer) {
       layer.setRenderingRule(rasterFunction);
     }
+  },
+
+  /**
+  * Generate a date query for active fires layers
+  * @param {number} filterValue - Numeric value representing the number of days to show in the output query
+  * @return {string} Query String to use for Fires Filter
+  */
+  generateFiresQuery (filterValue) {
+    app.debug('LayersHelper >>> generateFiresQuery');
+    // The service only has data for the last week, so if filter is 7 days, just set to 1 = 1
+    if (filterValue >= 7) {
+      return '1 = 1';
+    }
+
+    let date = new Date();
+    // Set the date to filterValue amount of days before today
+    date.setDate(date.getDate() - filterValue);
+    let dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    return 'ACQ_DATE > date \'' + dateString + '\'';
   }
 
 };
