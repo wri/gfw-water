@@ -41,7 +41,6 @@ html
       };
   body
     include templates/svgAssets.jade
-    include templates/gfwAssets.jade
     div#headerGfw
     div#footerGfw
     div#root.layout-content
@@ -51,3 +50,4 @@ html
     div#canopy-modal.modal-wrapper.hidden
     //- Load this last to try to prevent multupleDefine errors from jQuery loading after the following script
     script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
+    include templates/gfwAssets.jade
