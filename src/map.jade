@@ -11,7 +11,7 @@ html
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     script(src='vendor/jquery/dist/jquery.min.js')
     script.
-      var base = location.pathname.replace(/\/[^/]+$/, '');
+      var base = location.href.replace(/\/[^/]+$/, '');
       var dojoConfig = {
         parseOnLoad: false,
         async: true,

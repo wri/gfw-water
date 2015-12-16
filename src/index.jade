@@ -64,7 +64,7 @@ html
     div#footerGfw
     script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.
-      var base = location.pathname.replace(/\/[^/]+$/, '');
+      var base = location.href.replace(/\/[^/]+$/, '');
       window.require = {
         baseUrl: base,
         packages: [
