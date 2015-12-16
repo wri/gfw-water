@@ -37,7 +37,7 @@ const Symbols = {
   getWatershedDefaultSymbol: () => {
     if (watershedDefaultSymbol) { return watershedDefaultSymbol; }
     // Get a reference to the default symbol for this layer
-    let watershedLayer = app.map.getLayer(KEYS.watershed);
+    let watershedLayer = brApp.map.getLayer(KEYS.watershed);
     watershedDefaultSymbol = watershedLayer.renderer.getSymbol();
     return watershedDefaultSymbol;
   },

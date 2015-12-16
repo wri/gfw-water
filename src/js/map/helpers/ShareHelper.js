@@ -30,8 +30,8 @@ const ShareHelper = {
       mapActions.setBasemap(activeBasemap);
     }
 
-    if (app.map.loaded && (x && y && z)) {
-      app.map.centerAndZoom([x, y], z);
+    if (brApp.map.loaded && (x && y && z)) {
+      brApp.map.centerAndZoom([x, y], z);
     }
 
   },
@@ -50,10 +50,10 @@ const ShareHelper = {
     }
 
     //- Set X, Y, and Zoom
-    let centerPoint = app.map.extent.getCenter();
+    let centerPoint = brApp.map.extent.getCenter();
     shareObject.x = Math.round(centerPoint.getLongitude());
     shareObject.y = Math.round(centerPoint.getLatitude());
-    shareObject.z = app.map.getLevel();
+    shareObject.z = brApp.map.getLevel();
 
     return params.toQuery(shareObject);
   }

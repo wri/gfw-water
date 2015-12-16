@@ -6,12 +6,12 @@ import {errors} from 'js/config';
 const AnalysisHelper = {
 
   findWatershed: pointGeometry => {
-    app.debug('AnalysisActions >>> findWatershed');
+    brApp.debug('AnalysisActions >>> findWatershed');
     let deferred = new Deferred();
     Request.getWatershedByGeometry(pointGeometry).then(feature => {
       if (feature) {
         deferred.resolve(feature);
-        app.map.setExtent(feature.geometry.getExtent(), true);
+        brApp.map.setExtent(feature.geometry.getExtent(), true);
       } else {
         deferred.reject(errors.featureNotFound);
       }

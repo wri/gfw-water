@@ -11,7 +11,7 @@ const graphicsHelper = {
   */
   addActiveWatershed: feature => {
     console.log(feature);
-    let layer = app.map.getLayer(KEYS.watershedAnalysis);
+    let layer = brApp.map.getLayer(KEYS.watershedAnalysis);
     if (layer) {
       layer.add(new Graphic(
         feature.geometry,
@@ -26,7 +26,7 @@ const graphicsHelper = {
   * @param {Feature} feature - Esri feature returned from GeoProcessor.submitJob
   */
   addUpstreamGraphic: feature => {
-    let layer = app.map.getLayer(KEYS.customAnalysis);
+    let layer = brApp.map.getLayer(KEYS.customAnalysis);
     if (layer) {
       layer.add(new Graphic(
         feature.geometry,
@@ -41,7 +41,7 @@ const graphicsHelper = {
   * @param {object} geometry - Esri Point geometry
   */
   addCustomPoint: geometry => {
-    let layer = app.map.getLayer(KEYS.customAnalysis);
+    let layer = brApp.map.getLayer(KEYS.customAnalysis);
     if (layer) {
       layer.add(new Graphic(
         geometry,
@@ -91,7 +91,7 @@ const graphicsHelper = {
   * Clear features from the custom analysis graphics layer
   */
   clearActiveWatersheds () {
-    let layer = app.map.getLayer(KEYS.watershedAnalysis);
+    let layer = brApp.map.getLayer(KEYS.watershedAnalysis);
     if (layer) { layer.clear(); }
   },
 
@@ -99,7 +99,7 @@ const graphicsHelper = {
   * Clear features from the custom analysis graphics layer
   */
   clearCustomAreas () {
-    let layer = app.map.getLayer(KEYS.customAnalysis);
+    let layer = brApp.map.getLayer(KEYS.customAnalysis);
     if (layer) { layer.clear(); }
   },
 
@@ -108,7 +108,7 @@ const graphicsHelper = {
   * TODO: May be able to delete this as this may not be necessary
   */
   clearFeatures () {
-    app.map.graphics.clear();
+    brApp.map.graphics.clear();
   }
 
 };

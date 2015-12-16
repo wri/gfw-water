@@ -40,7 +40,7 @@ export default class CustomAnalysis extends React.Component {
   addPoint () {
     // Create the toolbar if necessary
     if (!toolbar) {
-      toolbar = new Draw(app.map);
+      toolbar = new Draw(brApp.map);
       toolbar.on('draw-end', evt => {
         // Deactivate toolbar, update store, then add point to map to show location and find watershed around point
         toolbar.deactivate();

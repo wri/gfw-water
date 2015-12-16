@@ -6,19 +6,19 @@ import alt from 'js/alt';
 class AnalysisActions {
 
   analyzeCurrentWatershed (feature) {
-    app.debug('AnalysisActions >>> analyzeCurrentWatershed');
+    brApp.debug('AnalysisActions >>> analyzeCurrentWatershed');
     GraphicsHelper.addActiveWatershed(feature);
     this.dispatch(feature);
   }
 
   analyzeCustomArea (feature) {
-    app.debug('AnalysisActions >>> analyzeCustomArea');
+    brApp.debug('AnalysisActions >>> analyzeCustomArea');
     GraphicsHelper.addCustomPoint(feature);
     this.dispatch(feature);
   }
 
   clearActiveWatershed () {
-    app.debug('AnalysisActions >>> clearActiveWatershed');
+    brApp.debug('AnalysisActions >>> clearActiveWatershed');
     this.dispatch();
     //- Clear Highlight Polygons
     GraphicsHelper.clearActiveWatersheds();
@@ -26,7 +26,7 @@ class AnalysisActions {
   }
 
   clearCustomArea () {
-    app.debug('AnalysisActions >>> clearCustomArea');
+    brApp.debug('AnalysisActions >>> clearCustomArea');
     this.dispatch();
     //- Clear Highlight Polygons
     GraphicsHelper.clearCustomAreas();
@@ -34,7 +34,7 @@ class AnalysisActions {
   }
 
   setCustomAreaName (newName) {
-    app.debug('AnalysisActions >>> setCustomAreaName');
+    brApp.debug('AnalysisActions >>> setCustomAreaName');
     this.dispatch(newName);
   }
 

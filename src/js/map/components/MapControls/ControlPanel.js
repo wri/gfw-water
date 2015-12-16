@@ -72,11 +72,11 @@ export default class ControlPanel extends React.Component {
   }
 
   zoomIn () {
-    app.map.setZoom(app.map.getZoom() + 1);
+    brApp.map.setZoom(brApp.map.getZoom() + 1);
   }
 
   zoomOut () {
-    app.map.setZoom(app.map.getZoom() - 1);
+    brApp.map.setZoom(brApp.map.getZoom() - 1);
   }
 
   share () {

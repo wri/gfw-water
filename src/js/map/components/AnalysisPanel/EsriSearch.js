@@ -12,7 +12,7 @@ import React from 'react';
 let generateSearchWidget = () => {
 
   let searchWidget = new Search({
-    map: app.map,
+    map: brApp.map,
     autoNavigate: false,
     enableHighlight: false,
     showInfoWindowOnSelect: false,
@@ -24,7 +24,7 @@ let generateSearchWidget = () => {
   sources[0].placeholder = analysisPanelText.searchEsriPlaceholder;
   // Add some new sources so this widget can search across our feature layer
   sources.push({
-    featureLayer: app.map.getLayer(KEYS.watershed),
+    featureLayer: brApp.map.getLayer(KEYS.watershed),
     exactMatch: false,
     name: analysisPanelText.sourceName,
     enableSuggestions: true,
@@ -56,7 +56,7 @@ let generateSearchWidget = () => {
         });
       } else {
         Request.getWatershedById(feature.attributes.objectid).then((watershed) => {
-          app.map.setExtent(evt.result.extent, true);
+          brApp.map.setExtent(evt.result.extent, true);
           analysisActions.analyzeCurrentWatershed(GraphicsHelper.makePolygon(watershed));
         });
       }

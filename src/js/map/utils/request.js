@@ -18,7 +18,7 @@ const request = {
   * @return {Deferred} deferred - A promise, will return either an array of layerInfos or an empty array
   */
   getLegendInfos: (url, layerIds) => {
-    app.debug('Request >>> getLegendInfos');
+    brApp.debug('Request >>> getLegendInfos');
     let deferred = new Deferred();
 
     esriRequest({
@@ -45,7 +45,7 @@ const request = {
   * @return {Deferred} deferred
   */
   getWatershedByGeometry: geometry => {
-    app.debug('Request >>> getWatershedByGeometry');
+    brApp.debug('Request >>> getWatershedByGeometry');
     let config = utils.getObject(layersConfig, 'id', KEYS.watershed);
     let task = new QueryTask(config.url);
     let deferred = new Deferred();
@@ -71,7 +71,7 @@ const request = {
   * @return {Deferred} deferred
   */
   getWatershedById: objectid => {
-    app.debug('Request >>> getWatershedById');
+    brApp.debug('Request >>> getWatershedById');
     let config = utils.getObject(layersConfig, 'id', KEYS.watershed);
     let deferred = new Deferred();
     let content = {
@@ -104,7 +104,7 @@ const request = {
   * @return {Deferred} - promise
   */
   getUpstreamAnalysis: geometry => {
-    app.debug('Request >>> getUpstreamAnalysis');
+    brApp.debug('Request >>> getUpstreamAnalysis');
     let {url, params, outputSR, jobId} = analysisConfig.upstream;
     let geoprocessor = new GeoProcessor(url);
     let deferred = new Deferred();

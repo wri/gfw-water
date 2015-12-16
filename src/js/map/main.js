@@ -15,7 +15,7 @@ import React from 'react';
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
 // Set up globals
-window.app = {
+window.brApp = {
   debugEnabled: true,
   debug: function (message) {
     if (this.debugEnabled) {
@@ -36,7 +36,7 @@ window.requestAnimationFrame = (function () {
 })();
 
 let lazyloadAssets = () => {
-  app.debug('main >>> lazyloadAssets');
+  brApp.debug('main >>> lazyloadAssets');
   // This was causing issues so leave this out unless we get bad pagespeed scores
   loadCSS(assetUrls.ionCSS);
   loadCSS(assetUrls.ionSkinCSS);
@@ -45,11 +45,11 @@ let lazyloadAssets = () => {
 };
 
 let configureApp = () => {
-  app.debug('main >>> configureApp');
+  brApp.debug('main >>> configureApp');
 };
 
 let initializeApp = () => {
-  app.debug('main >>> initializeApp');
+  brApp.debug('main >>> initializeApp');
   ReactDOM.render(<Map />, document.getElementById('root'));
   ReactDOM.render(<LayerModal />, document.getElementById('layer-modal'));
   ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));

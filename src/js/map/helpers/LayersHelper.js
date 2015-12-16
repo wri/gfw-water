@@ -11,11 +11,11 @@ import KEYS from 'js/constants';
 let LayersHelper = {
 
   connectLayerEvents () {
-    app.debug('LayersHelper >>> connectLayerEvents');
+    brApp.debug('LayersHelper >>> connectLayerEvents');
     // Enable Mouse Events for al graphics layers
-    app.map.graphics.enableMouseEvents();
+    brApp.map.graphics.enableMouseEvents();
     // Get the watershed layer and add mouse events to it
-    let watershedLayer = app.map.getLayer(KEYS.watershed);
+    let watershedLayer = brApp.map.getLayer(KEYS.watershed);
     if (watershedLayer) {
       watershedLayer.on('mouse-over', LayersHelper.watershedHoverOn);
       watershedLayer.on('mouse-out', LayersHelper.watershedHoverOff);
@@ -27,7 +27,7 @@ let LayersHelper = {
   },
 
   watershedClicked (evt) {
-    app.debug('LayerHelper >>> watershedClicked');
+    brApp.debug('LayerHelper >>> watershedClicked');
     //- Don't do anything if the drawtoolbar is active
     let {activeWatershed, toolbarActive} = analysisStore.getState();
     let graphic = evt.graphic;
@@ -40,7 +40,7 @@ let LayersHelper = {
         let feature = GraphicsHelper.makePolygon(featureJSON);
         //- Start the analysis process
         analysisActions.analyzeCurrentWatershed(feature);
-        app.map.setExtent(feature.geometry.getExtent(), true);
+        brApp.map.setExtent(feature.geometry.getExtent(), true);
       }, err => {
         console.log(err);
       });
@@ -48,7 +48,7 @@ let LayersHelper = {
   },
 
   watershedHoverOn (evt) {
-    // app.debug('LayersHelper >>> watershedHoverOn');
+    // brApp.debug('LayersHelper >>> watershedHoverOn');
     let graphic = evt.graphic;
     if (graphic) {
       graphic.setSymbol(Symbols.getWatershedHoverSymbol());
@@ -56,7 +56,7 @@ let LayersHelper = {
   },
 
   watershedHoverOff (evt) {
-    // app.debug('LayersHelper >>> watershedHoverOff');
+    // brApp.debug('LayersHelper >>> watershedHoverOff');
     let graphic = evt.graphic;
     if (graphic) {
       graphic.setSymbol(Symbols.getWatershedDefaultSymbol());
@@ -67,16 +67,16 @@ let LayersHelper = {
   * @param {string} layerId - id of layer to show
   */
   showLayer (layerId) {
-    app.debug(`LayersHelper >>> showLayer - ${layerId}`);
-    let layer = app.map.getLayer(layerId);
+    brApp.debug(`LayersHelper >>> showLayer - ${layerId}`);
+    let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.show(); }
   },
   /**
   * @param {string} layerId - id of layer to hide
   */
   hideLayer (layerId) {
-    app.debug(`LayersHelper >>> hideLayer - ${layerId}`);
-    let layer = app.map.getLayer(layerId);
+    brApp.debug(`LayersHelper >>> hideLayer - ${layerId}`);
+    let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.hide(); }
   },
 
@@ -85,10 +85,10 @@ let LayersHelper = {
   * @param {boolean} dontRefresh - Whether or not to not fetch a new image
   */
   updateFiresLayerDefinitions (optionIndex, dontRefresh) {
-    app.debug('LayersHelper >>> updateFiresLayerDefinitions');
+    brApp.debug('LayersHelper >>> updateFiresLayerDefinitions');
     let value = layerPanelText.firesOptions[optionIndex].value || 1; // 1 is the default value, means last 24 hours
     let queryString = this.generateFiresQuery(value);
-    let firesLayer = app.map.getLayer(KEYS.activeFires);
+    let firesLayer = brApp.map.getLayer(KEYS.activeFires);
     let defs = [];
 
     if (firesLayer) {
@@ -102,13 +102,13 @@ let LayersHelper = {
   * @param {number} toIndex - selected index of second tree cover loss select
   */
   updateLossLayerDefinitions (fromIndex, toIndex) {
-    app.debug('LayersHelper >>> updateLossLayerDefinitions');
+    brApp.debug('LayersHelper >>> updateLossLayerDefinitions');
     let fromValue = layerPanelText.lossOptions[fromIndex].value;
     let toValue = layerPanelText.lossOptions[toIndex].value;
     let layerConfig = utils.getObject(layersConfig, 'id', KEYS.loss);
     //- [fromValue, toValue] is inclusive, exclusive, which is why the + 1 is present
     let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [fromValue, (toValue + 1)], layerConfig.outputRange);
-    let layer = app.map.getLayer(KEYS.loss);
+    let layer = brApp.map.getLayer(KEYS.loss);
 
     if (layer) {
       layer.setRenderingRule(rasterFunction);
@@ -119,10 +119,10 @@ let LayersHelper = {
   * @param {number} densityValue - Tree cover density value from slider, must be between 1 and 100
   */
   updateTreeCoverDefinitions (densityValue) {
-    app.debug('LayersHelper >>> updateTreeCoverDefinitions');
+    brApp.debug('LayersHelper >>> updateTreeCoverDefinitions');
     let layerConfig = utils.getObject(layersConfig, 'id', KEYS.treeCover);
     let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [densityValue, layerConfig.inputRange[1]], layerConfig.outputRange);
-    let layer = app.map.getLayer(KEYS.treeCover);
+    let layer = brApp.map.getLayer(KEYS.treeCover);
 
     if (layer) {
       layer.setRenderingRule(rasterFunction);
@@ -135,7 +135,7 @@ let LayersHelper = {
   * @return {string} Query String to use for Fires Filter
   */
   generateFiresQuery (filterValue) {
-    app.debug('LayersHelper >>> generateFiresQuery');
+    brApp.debug('LayersHelper >>> generateFiresQuery');
     // The service only has data for the last week, so if filter is 7 days, just set to 1 = 1
     if (filterValue >= 7) {
       return '1 = 1';
