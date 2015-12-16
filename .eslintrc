@@ -12,7 +12,7 @@
   },
   "globals": {
     "$": true,
-    "app": true,
+    "brApp": true,
     "define": true,
     "require": true,
     "navigator": true,
