@@ -39,11 +39,22 @@ class AnalysisActions {
   }
 
   setAnalysisType (tabId) {
+    brApp.debug('AnalysisActions >>> setAnalysisType');
     this.dispatch(tabId);
   }
 
   toggleDrawToolbar (status) {
+    brApp.debug('AnalysisActions >>> toggleDrawToolbar');
     this.dispatch(status);
+  }
+
+  /**
+  * @param {string} featureId - Id to be passed to report, format is W_{objectid} or C_{objectid}
+  * @param {number} canopyDensity - Current Tree Canopy Density
+  */
+  launchReport (featureId, canopyDensity) {
+    brApp.debug('AnalysisActions >>> launchReport');
+    window.open(`report.html?fid=${featureId}&canopyDensity=${canopyDensity}`);
   }
 
 }
