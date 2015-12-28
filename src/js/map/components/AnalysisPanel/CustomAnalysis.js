@@ -1,3 +1,4 @@
+import CustomAreaHeader from 'components/AnalysisPanel/CustomAreaHeader';
 import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
@@ -78,6 +79,7 @@ export default class CustomAnalysis extends React.Component {
       <div className={`custom-analysis ${this.props.active ? '' : 'hidden'}`}>
         {!this.props.activeCustomArea ?
           <div>
+            <CustomAreaHeader />
             <div className={`gfw-btn blue pointer add-point-btn ${this.props.toolbarActive ? 'active' : ''}`} onClick={::this.addPoint}>
               {text.addPointButton}
             </div>

@@ -18,8 +18,8 @@ const Symbols = {
     if (watershedHoverSymbol) { return watershedHoverSymbol; }
     watershedHoverSymbol = new SimpleFillSymbol(
       SimpleFillSymbol.STYLE_SOLID,
-      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color(symbolConfig.gfwBlue), 2),
-      new Color([210, 210, 210, 0.25])
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color(symbolConfig.gfwBlue), 3),
+      new Color([210, 210, 210, 0.0])
     );
     return watershedHoverSymbol;
   },

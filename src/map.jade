@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='css/map.css?#{version}')
     link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    link(rel='icon', href='css/images/favicon.ico')
     script(src='vendor/jquery/dist/jquery.min.js')
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
@@ -49,5 +50,5 @@ html
     div#alerts-modal.modal-wrapper.hidden
     div#canopy-modal.modal-wrapper.hidden
     //- Load this last to try to prevent multupleDefine errors from jQuery loading after the following script
-    script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)
     include templates/gfwAssets.jade
+    script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)

@@ -14,7 +14,7 @@ var config = {
     build: 'build/vendor'
   },
   imagemin: {
-    src: 'src/**/*.{png,jpg,gif,svg}',
+    src: 'src/**/*.{png,jpg,gif,svg,ico}',
     build: 'build',
     dist: 'dist'
   },

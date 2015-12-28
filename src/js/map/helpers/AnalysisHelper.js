@@ -6,12 +6,12 @@ import {errors} from 'js/config';
 const AnalysisHelper = {
 
   findWatershed: pointGeometry => {
-    brApp.debug('AnalysisActions >>> findWatershed');
+    brApp.debug('AnalysisHelper >>> findWatershed');
     let deferred = new Deferred();
     Request.getWatershedByGeometry(pointGeometry).then(feature => {
       if (feature) {
         deferred.resolve(feature);
-        brApp.map.setExtent(feature.geometry.getExtent(), true);
+        brApp.map.centerAndZoom(pointGeometry, 8);
       } else {
         deferred.reject(errors.featureNotFound);
       }
@@ -23,6 +23,7 @@ const AnalysisHelper = {
   },
 
   performUpstreamAnalysis: geometry => {
+    brApp.debug('AnalysisHelper >>> performUpstreamAnalysis');
     Request.getUpstreamAnalysis(geometry).then(dataValue => {
       dataValue.features.forEach(feature => {
         GraphicsHelper.addUpstreamGraphic(feature);

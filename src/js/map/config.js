@@ -195,7 +195,7 @@ export const config = {
       id: KEYS.sediment,
       order: 2,
       type: 'dynamic',
-      label: 'Sedimentation',
+      label: 'Erosion',
       group: 'watershedRisk',
       className: 'sediment',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
@@ -383,7 +383,9 @@ export const config = {
         4: 'Medium - High Risk',
         5: 'Extreme Risk'
       },
-      getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name'
+      getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
+      customAreaHeader: 'Create subwatershed from a point',
+      watershedInfoUrl: 'http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077'
     },
     controlPanel: {
       wriBasemap: 'WRI',
