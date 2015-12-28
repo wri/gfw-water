@@ -1,5 +1,10 @@
 import KEYS from 'js/constants';
 
+// NOTE: TEMPORARY TOKEN FOR LOCALHOST
+// NOTE: TEMPORARY TOKEN FOR HEROKU
+let localToken = 'ixVMrAo7-I5Ndk4EuKHmJBIFkwl3NlD8NKMkqoWeB63-ZIBH8POkmCkIdQVCIs3POC-kMIS1GqBa7W7ZPoY9dg..';
+let herokuToken = 'ixVMrAo7-I5Ndk4EuKHmJDi6yAKQaw7JoeAsJk0wH8b1yjiwf2kWGR5PEyecwI2Wu4_hqKm06UsKO3jpdV4VQjcQmmkicJCuNUDr9-n8TR8.';
+
 export const config = {
 
   assets: {
@@ -231,6 +236,13 @@ export const config = {
       id: KEYS.customAnalysis,
       type: 'graphic',
       visible: true
+    },
+    {
+      id: KEYS.customAreaFeatures,
+      url: `http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0?token=${localToken}`,
+      type: 'feature',
+      visible: false,
+      order: 15
     }
   ],
 

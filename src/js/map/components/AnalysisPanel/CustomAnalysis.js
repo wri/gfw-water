@@ -2,6 +2,7 @@ import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import {analysisPanelText as text} from 'js/config';
+import {mapStore} from 'stores/MapStore';
 import Draw from 'esri/toolbars/draw';
 import React from 'react';
 
@@ -10,8 +11,15 @@ import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
 import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
 import LossFootnote from 'components/AnalysisPanel/LossFootnote';
+
+
 let runReport = () => {
-  window.open('http://data.wri.org/gfw-water/sample-report.pdf');
+  // Show Loader of some sort saying that we are preparing to perform analysis
+  // Apply Edits to save the current polygon or custom area
+  // Then open the report with the resulting objectid
+  let {canopyDensity} = mapStore.getState();
+  analysisActions.launchReport(`C_{objectid}`, canopyDensity);
+  // window.open('http://data.wri.org/gfw-water/sample-report.pdf');
 };
 
 let editSvg = '<use xlink:href="#icon-edit-text" />';

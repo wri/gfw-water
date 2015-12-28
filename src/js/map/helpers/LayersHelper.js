@@ -31,10 +31,13 @@ let LayersHelper = {
     //- Don't do anything if the drawtoolbar is active
     let {activeWatershed, toolbarActive} = analysisStore.getState();
     let graphic = evt.graphic;
+    let layer = brApp.map.getLayer(KEYS.watershed);
     if (graphic && !toolbarActive) {
       //- If we currently have a feature in analysis, clear the analyis, then run the query
       if (activeWatershed) { analysisActions.clearActiveWatershed(); }
-      let objectid = graphic.attributes.objectid;
+      // Get a reference to the objectid field
+      let oidField = layer.objectIdField;
+      let objectid = graphic.attributes[oidField];
       Request.getWatershedById(objectid).then(featureJSON => {
         //- Convert JSON to feature
         let feature = GraphicsHelper.makePolygon(featureJSON);

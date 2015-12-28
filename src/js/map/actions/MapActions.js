@@ -116,6 +116,22 @@ class MapActions {
     brApp.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
   }
 
+  /**
+  * Use apply-edits to save a feature to a feature layer and proxy results back through callback
+  * @param {Feature} feature - esri feature to be saved/updated
+  * @return {deferred} deferred
+  */
+  saveFeature (feature) {
+    brApp.debug('MapActions >>> saveFeature');
+    let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
+    let deferred = new Deferred();
+    if (!featureLayer) { deferred.reject(); return deferred; }
+    featureLayer.applyEdits([feature], null, null, (res) => {
+      deferred.resolve(res);
+    }, (err) => { deferred.reject(err); });
+    return deferred;
+  }
+
 }
 
 export const mapActions = alt.createActions(MapActions);

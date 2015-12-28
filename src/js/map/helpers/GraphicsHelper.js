@@ -10,7 +10,6 @@ const graphicsHelper = {
   * @param {Graphic} feature - Esri Feature object returned from a query
   */
   addActiveWatershed: feature => {
-    console.log(feature);
     let layer = brApp.map.getLayer(KEYS.watershedAnalysis);
     if (layer) {
       layer.add(new Graphic(
