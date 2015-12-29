@@ -122,9 +122,9 @@ const request = {
         deferred.resolve(data.value);
       }, deferred.reject);
     }, status => {
-      //console.debug(status);
+      console.debug(status);
     }, err => {
-      //console.log(err);
+      console.log(err);
     });
 
     return deferred;
