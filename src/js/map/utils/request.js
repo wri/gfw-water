@@ -121,7 +121,12 @@ const request = {
       geoprocessor.getResultData(results.jobId, jobId, data => {
         deferred.resolve(data.value);
       }, deferred.reject);
-    }, console.debug);
+    }, status => {
+      console.debug(status);
+    }, err => {
+      console.log(err);
+    });
+
     return deferred;
   }
 
