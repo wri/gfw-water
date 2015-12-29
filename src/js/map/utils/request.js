@@ -123,9 +123,7 @@ const request = {
       }, deferred.reject);
     }, status => {
       console.debug(status);
-    }, err => {
-      console.log(err);
-    });
+    }, deferred.reject);
 
     return deferred;
   }
