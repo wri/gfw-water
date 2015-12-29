@@ -13,7 +13,6 @@ class AnalysisActions {
 
   analyzeCustomArea (feature) {
     brApp.debug('AnalysisActions >>> analyzeCustomArea');
-    GraphicsHelper.addCustomPoint(feature);
     this.dispatch(feature);
   }
 

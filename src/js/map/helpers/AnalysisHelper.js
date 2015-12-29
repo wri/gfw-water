@@ -12,6 +12,7 @@ const AnalysisHelper = {
       if (feature) {
         deferred.resolve(feature);
         brApp.map.centerAndZoom(pointGeometry, 8);
+        GraphicsHelper.addCustomPoint(pointGeometry);
       } else {
         deferred.reject(errors.featureNotFound);
       }
@@ -24,11 +25,17 @@ const AnalysisHelper = {
 
   performUpstreamAnalysis: geometry => {
     brApp.debug('AnalysisHelper >>> performUpstreamAnalysis');
+    let deferred = new Deferred();
     Request.getUpstreamAnalysis(geometry).then(dataValue => {
-      dataValue.features.forEach(feature => {
-        GraphicsHelper.addUpstreamGraphic(feature);
-      });
-    }, console.error);
+      if (dataValue.features.length === 1) {
+        dataValue.features.forEach(GraphicsHelper.addUpstreamGraphic);
+        deferred.resolve(dataValue.features[0]);
+      }
+    }, err => {
+      console.error(err);
+      deferred.reject(err);
+    });
+    return deferred;
   }
 
 };

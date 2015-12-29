@@ -1,6 +1,7 @@
 import CustomAreaHeader from 'components/AnalysisPanel/CustomAreaHeader';
 import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
+import GraphicsHelper from 'helpers/GraphicsHelper';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import {analysisPanelText as text} from 'js/config';
 import {mapStore} from 'stores/MapStore';
@@ -56,8 +57,9 @@ export default class CustomAnalysis extends React.Component {
         analysisActions.toggleDrawToolbar(false);
         // Find out if this point is in a watershed
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
-          analysisActions.analyzeCustomArea(evt.geometry);
-          AnalysisHelper.performUpstreamAnalysis(evt.geometry);
+          AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
+            analysisActions.analyzeCustomArea(feature);
+          });
         });
       });
     }

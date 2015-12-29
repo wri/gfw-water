@@ -2,8 +2,8 @@ import KEYS from 'js/constants';
 
 // NOTE: TEMPORARY TOKEN FOR LOCALHOST
 // NOTE: TEMPORARY TOKEN FOR HEROKU
-let localToken = 'ixVMrAo7-I5Ndk4EuKHmJBIFkwl3NlD8NKMkqoWeB63-ZIBH8POkmCkIdQVCIs3POC-kMIS1GqBa7W7ZPoY9dg..';
-let herokuToken = 'ixVMrAo7-I5Ndk4EuKHmJDi6yAKQaw7JoeAsJk0wH8b1yjiwf2kWGR5PEyecwI2Wu4_hqKm06UsKO3jpdV4VQjcQmmkicJCuNUDr9-n8TR8.';
+let localToken = 'TjEeQfPMtR-0kjqzTqIZ7ZlDVRCjm0ZOlMbZxEu1A8WonhzXNtFPSGKyw3g5HA3Q6jEZ4q8tMwXACuGZEwMJdQ..';
+let herokuToken = 'TjEeQfPMtR-0kjqzTqIZ7Zn-NmLEWXUQjwi3FScghUD-BQVNAxsBv7dHt5GaWPFuvEflGb9as_kNhhIU3h-6Rb7ZFMOfFIT8BQBZOQWGSic.';
 
 export const config = {
 
@@ -239,7 +239,7 @@ export const config = {
     },
     {
       id: KEYS.customAreaFeatures,
-      url: `http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0?token=${localToken}`,
+      url: `http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0?token=${herokuToken}`,
       type: 'feature',
       visible: false,
       order: 15
