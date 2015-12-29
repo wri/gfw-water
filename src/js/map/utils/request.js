@@ -118,12 +118,17 @@ const request = {
 
     geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
     geoprocessor.submitJob(params, results => {
+      console.log('Hey FUNDGE');
       geoprocessor.getResultData(results.jobId, jobId, data => {
         deferred.resolve(data.value);
-      }, deferred.reject);
+        console.log('WTF');
+      }, console.log);
     }, status => {
+      console.log('Hey Ohh', status);
       console.debug(status);
-    }, deferred.reject);
+    }, function () {
+      console.log('Hey Ohh');
+    });
 
     return deferred;
   }
