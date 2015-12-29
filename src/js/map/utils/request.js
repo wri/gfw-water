@@ -118,10 +118,12 @@ const request = {
 
     geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
     geoprocessor.submitJob(params, results => {
-      // geoprocessor.getResultData(results.jobId, jobId, data => {
-      //   deferred.resolve(data.value);
-      // }, deferred.reject);
-    });
+      geoprocessor.getResultData(results.jobId, jobId, data => {
+        deferred.resolve(data.value);
+      }, deferred.reject);
+    }, status => {
+      console.debug(status);
+    }, deferred.reject);
 
     return deferred;
   }
