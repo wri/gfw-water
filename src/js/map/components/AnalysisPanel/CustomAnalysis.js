@@ -59,6 +59,9 @@ export default class CustomAnalysis extends React.Component {
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             analysisActions.analyzeCustomArea(feature);
+          }, err => {
+            analysisActions.clearCustomArea();
+            console.error(err);
           });
         });
       });
