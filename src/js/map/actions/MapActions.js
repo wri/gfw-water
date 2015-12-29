@@ -73,33 +73,19 @@ class MapActions {
     }
   }
 
+  toggleBasemapGallery (status) {
+    brApp.debug('MapActions >>> toggleBasemapGallery');
+    this.dispatch(status);
+  }
+
   setBasemap (basemap) {
+    brApp.debug(`MapActions >>> setBasemap - ${basemap}`);
     this.dispatch(basemap);
   }
 
-  changeBasemap (basemap) {
-    brApp.debug(`MapActions >>> setBasemap - ${basemap}`);
-    let layer, labelLayer, baseLayer;
-    // Basemap can only be one of two options, wri or satellite
-    if (basemap === KEYS.wriBasemap) {
-      layer = brApp.map.getLayer(basemap);
-      labelLayer = brApp.map.getLayer(KEYS.wriBasemapLabel);
-      if (layer) { layer.show(); }
-      if (labelLayer) { labelLayer.show(); }
-      // Remove the satellite layer if its present, wri-basemap should be first in layer ids,
-      // if not, then the first layer is satellite
-      if (brApp.map.layerIds[0] !== basemap) {
-        baseLayer = brApp.map.getLayer(brApp.map.layerIds[0]);
-        brApp.map.removeLayer(baseLayer);
-      }
-    } else {
-      // Hide the wri basemap and show the satellite basemap, KEYS.wriBasemap
-      brApp.map.setBasemap(basemap);
-      layer = brApp.map.getLayer(KEYS.wriBasemap);
-      labelLayer = brApp.map.getLayer(KEYS.wriBasemapLabel);
-      if (layer) { layer.hide(); }
-      if (labelLayer) { labelLayer.hide(); }
-    }
+  setLabelLayer (labelLayerId) {
+    brApp.debug(`MapActions >>> setLabelLayer - ${labelLayerId}`);
+    this.dispatch(labelLayerId);
   }
 
   reset () {

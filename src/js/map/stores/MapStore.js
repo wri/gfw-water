@@ -14,15 +14,19 @@ class MapStore {
     this.canopyDensity = defaults.canopyDensity;
     this.lossFromSelectIndex = defaults.lossFromSelectIndex;
     this.activeBasemap = defaults.activeBasemap;
+    this.basemapGalleryOpen = false;
+    this.activeLabelLayer = defaults.activeLabelLayer;
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
 
     this.bindListeners({
       setBasemap: mapActions.setBasemap,
+      setLabelLayer: mapActions.setLabelLayer,
       addActiveLayer: layerActions.addActiveLayer,
       removeActiveLayer: layerActions.removeActiveLayer,
       changeFiresTimeline: layerActions.changeFiresTimeline,
       updateCanopyDensity: modalActions.updateCanopyDensity,
+      toggleBasemapGallery: mapActions.toggleBasemapGallery,
       changeLossToTimeline: layerActions.changeLossToTimeline,
       changeLossFromTimeline: layerActions.changeLossFromTimeline
     });
@@ -50,6 +54,14 @@ class MapStore {
 
   setBasemap (basemap) {
     this.activeBasemap = basemap;
+  }
+
+  toggleBasemapGallery (status) {
+    this.basemapGalleryOpen = status;
+  }
+
+  setLabelLayer (labelLayer) {
+    this.activeLabelLayer = labelLayer;
   }
 
   showLayerInfo (layerInfo) {

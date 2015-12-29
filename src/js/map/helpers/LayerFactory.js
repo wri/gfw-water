@@ -2,6 +2,7 @@ import DynamicLayer from 'esri/layers/ArcGISDynamicMapServiceLayer';
 import TiledLayer from 'esri/layers/ArcGISTiledMapServiceLayer';
 import ImageLayer from 'esri/layers/ArcGISImageServiceLayer';
 import ImageParameters from 'esri/layers/ImageParameters';
+import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import GraphicsLayer from 'esri/layers/GraphicsLayer';
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import {errors} from 'js/config';
@@ -25,6 +26,11 @@ export default (layer) => {
       options.id = layer.id;
       options.visible = layer.visible || false;
       esriLayer = new TiledLayer(layer.url, options);
+    break;
+    case 'webtiled':
+      options.id = layer.id;
+      options.visible = layer.visible || false;
+      esriLayer = new WebTiledLayer(layer.url, options);
     break;
     case 'image':
       options.id = layer.id;

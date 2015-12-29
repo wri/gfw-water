@@ -82,7 +82,49 @@ let LayersHelper = {
     let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.hide(); }
   },
-
+  /**
+  * @param {string} layerId - id of layer to show, need to hide other label layer
+  */
+  updateLabelLayers (layerId) {
+    brApp.debug(`LayersHelper >>> updateLabelLayers - ${layerId}`);
+    let layer = brApp.map.getLayer(layerId);
+    if (layer) { layer.show(); }
+    //- Since we showed layer id, hide the other label layer
+    if (layerId === KEYS.adminLabels) {
+      layer = brApp.map.getLayer(KEYS.rivers);
+      if (layer) { layer.hide(); }
+    } else {
+      layer = brApp.map.getLayer(KEYS.adminLabels);
+      if (layer) { layer.hide(); }
+    }
+  },
+  /**
+  * @param {string} basemap - id of basemap to show
+  */
+  changeBasemap (basemap) {
+    brApp.debug(`MapActions >>> changeBasemap - ${basemap}`);
+    let layer, labelLayer, baseLayer;
+    // Basemap can only be one of two options, wri or satellite
+    if (basemap === KEYS.wriBasemap) {
+      layer = brApp.map.getLayer(basemap);
+      labelLayer = brApp.map.getLayer(KEYS.wriBasemapLabel);
+      if (layer) { layer.show(); }
+      if (labelLayer) { labelLayer.show(); }
+      // Remove the satellite layer if its present, wri-basemap should be first in layer ids,
+      // if not, then the first layer is satellite
+      if (brApp.map.layerIds[0] !== basemap) {
+        baseLayer = brApp.map.getLayer(brApp.map.layerIds[0]);
+        brApp.map.removeLayer(baseLayer);
+      }
+    } else {
+      // Hide the wri basemap and show the satellite basemap, KEYS.wriBasemap
+      brApp.map.setBasemap(basemap);
+      layer = brApp.map.getLayer(KEYS.wriBasemap);
+      labelLayer = brApp.map.getLayer(KEYS.wriBasemapLabel);
+      if (layer) { layer.hide(); }
+      if (labelLayer) { labelLayer.hide(); }
+    }
+  },
   /**
   * @param {number} optionIndex - Index of the selected option in the UI, see js/config
   * @param {boolean} dontRefresh - Whether or not to not fetch a new image
