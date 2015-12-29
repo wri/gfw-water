@@ -1,7 +1,6 @@
 import CustomAreaHeader from 'components/AnalysisPanel/CustomAreaHeader';
 import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
-import GraphicsHelper from 'helpers/GraphicsHelper';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import {analysisPanelText as text} from 'js/config';
 import {mapStore} from 'stores/MapStore';
