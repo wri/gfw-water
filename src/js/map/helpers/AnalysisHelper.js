@@ -31,10 +31,7 @@ const AnalysisHelper = {
         dataValue.features.forEach(GraphicsHelper.addUpstreamGraphic);
         deferred.resolve(dataValue.features[0]);
       }
-    }, err => {
-      console.error(err);
-      deferred.reject(err);
-    });
+    }, deferred.reject);
     return deferred;
   }
 

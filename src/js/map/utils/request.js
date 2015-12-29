@@ -123,7 +123,7 @@ const request = {
       }, deferred.reject);
     }, status => {
       console.debug(status);
-    });
+    }, deferred.reject);
 
     return deferred;
   }
