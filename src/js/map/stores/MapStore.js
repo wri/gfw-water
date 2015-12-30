@@ -11,10 +11,11 @@ class MapStore {
     //- are configured to be visible in layersConfig, filter out layers with no group
     //- because those layers are not in the ui and should not be in this list
     this.activeLayers = layersConfig.filter(l => l.visible && l.group).map(l => l.id);
+    this.controlsVisible = true;
+    this.basemapGalleryOpen = false;
     this.canopyDensity = defaults.canopyDensity;
     this.lossFromSelectIndex = defaults.lossFromSelectIndex;
     this.activeBasemap = defaults.activeBasemap;
-    this.basemapGalleryOpen = false;
     this.activeLabelLayer = defaults.activeLabelLayer;
     this.firesSelectIndex = layerPanelText.firesOptions.length - 1;
     this.lossToSelectIndex = layerPanelText.lossOptions.length - 1;
@@ -22,6 +23,7 @@ class MapStore {
     this.bindListeners({
       setBasemap: mapActions.setBasemap,
       setLabelLayer: mapActions.setLabelLayer,
+      toggleControls: mapActions.toggleControls,
       addActiveLayer: layerActions.addActiveLayer,
       removeActiveLayer: layerActions.removeActiveLayer,
       changeFiresTimeline: layerActions.changeFiresTimeline,
@@ -58,6 +60,10 @@ class MapStore {
 
   toggleBasemapGallery (status) {
     this.basemapGalleryOpen = status;
+  }
+
+  toggleControls (status) {
+    this.controlsVisible = status;
   }
 
   setLabelLayer (labelLayer) {

@@ -78,6 +78,11 @@ class MapActions {
     this.dispatch(status);
   }
 
+  toggleControls (status) {
+    brApp.debug('MapActions >>> toggleControls');
+    this.dispatch(status);
+  }
+
   setBasemap (basemap) {
     brApp.debug(`MapActions >>> setBasemap - ${basemap}`);
     this.dispatch(basemap);

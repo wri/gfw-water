@@ -16,6 +16,17 @@ export const config = {
     proxy: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 
+  proxy: {
+      hydro: {
+        urlPrefix: 'hydro.arcgis.com',
+        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      },
+      featureServer: {
+        urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      }
+  },
+
   map: {
     id: 'map',
     options: {
@@ -683,6 +694,7 @@ export const analysisPanelText = config.text.analysisPanel;
 export const controlPanelText = config.text.controlPanel;
 export const modalText = config.text.modals;
 export const assetUrls = config.assets;
+export const proxyRules = config.proxy;
 export const defaults = config.defaults;
 export const layersConfig = config.layers;
 export const errors = config.text.errors;
