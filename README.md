@@ -41,8 +41,20 @@ npm test
 ```
 
 ### Contributing
+Please branch off of the develop branch.  Do all of your development in a feature branch and once you are ready to merge to develop, commit your branch and submit a pull request.
 
-Please make sure your contributions pass tests before committing.  Tests include unit tests and eslint.  We are using Intern and Chai for tests and the eslint cli to lint all javascript.  To run the tests, just run the following.
+Also, please make sure your contributions pass tests before committing.  Tests include unit tests and eslint.  We are using Intern and Chai for tests and the eslint cli to lint all javascript.  Run your test with the following:
 ```
 npm test
 ```
+
+### Releasing
+The master branch should always be stable and contain release code. Make sure the develop branch has been thoroughly tested and is considered stable before submitting a pull request to master.  Also, once the code is stable and ready to merge, before you submit a pull request to master, please run the following commands from terminal in the develop branch.
+
+```shell
+npm version {major|minor|patch}
+git push origin develop
+git push origin --tags
+```
+
+Run the ```npm version``` command with major, minor, or patch depending on how you want to increment the version number. Version number is in major.minor.patch (0.0.1), following [semver](http://semver.org/).
