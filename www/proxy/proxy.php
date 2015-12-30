@@ -1015,8 +1015,8 @@ class Proxy {
 
     public function isUserLogin()
     {
-        $user = getenv("WATERSHED_USERNAME");
-        $pass = getenv("WATERSHED_PASSWORD");
+        $user = getenv($this->resource['username']);
+        $pass = getenv($this->resource['password']);
 
         if (isset($user) && isset($pass)) {
 
@@ -1122,8 +1122,8 @@ class Proxy {
                 'f' => 'json',
                 'referer' => $this->referer,
                 'expiration' => 60,
-                'username' => $this->resource['username'],
-                'password' => $this->resource['password']
+                'username' => getenv($this->resource['username']),
+                'password' => getenv($this->resource['password'])
         ));
 
         $tokenResponse = json_decode($this->proxyBody, true);
