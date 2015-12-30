@@ -1018,6 +1018,7 @@ class Proxy {
         $user = getenv($this->resource['username']);
         $pass = getenv($this->resource['password']);
 
+
         if (isset($user) && isset($pass)) {
 
             return true;
