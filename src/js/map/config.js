@@ -47,7 +47,8 @@ export const config = {
   defaults: {
     canopyDensity: 30,
     lossFromSelectIndex: 0,
-    activeBasemap: KEYS.wriBasemap
+    activeBasemap: KEYS.wriBasemap,
+    activeLabelLayer: KEYS.rivers
   },
 
   /**
@@ -228,6 +229,13 @@ export const config = {
       visible: true
     },
     {
+      id: KEYS.adminLabels,
+      order: 15,
+      type: 'webtiled',
+      url: 'https://api.tiles.mapbox.com/v4/wri.acf5a04e/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
+      visible: false
+    },
+    {
       id: KEYS.watershedAnalysis,
       type: 'graphic',
       visible: true
@@ -242,7 +250,7 @@ export const config = {
       url: `http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0?token=${herokuToken}`,
       type: 'feature',
       visible: false,
-      order: 15
+      order: 16
     }
   ],
 
@@ -389,7 +397,9 @@ export const config = {
     },
     controlPanel: {
       wriBasemap: 'WRI',
-      imageryBasemap: 'Imagery'
+      imageryBasemap: 'Imagery',
+      hydrologyLabel: 'Hydrology',
+      administrativeLabel: 'Administrative'
     },
     modals: {
       noInfo: 'No Information Available',
