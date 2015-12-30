@@ -297,7 +297,7 @@ export const config = {
 
   analysis: {
     upstream: {
-      url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer',
+      url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed',
       params: {
         f: 'json',
         Generalize: true,
