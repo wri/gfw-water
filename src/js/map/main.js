@@ -47,7 +47,6 @@ let lazyloadAssets = () => {
 
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
-
   urlUtils.addProxyRule({
     urlPrefix: 'hydro.arcgis.com',
     proxyUrl: assetUrls.proxy
