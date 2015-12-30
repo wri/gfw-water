@@ -57,4 +57,4 @@ git push origin develop
 git push origin --tags
 ```
 
-Run the ```npm version``` command with major, minor, or patch depending on how you want to increment the version number. Version number is in major.minor.patch (0.0.1), following [semver](http://semver.org/).  Use ```npm version patch --no-git-tag-version``` if you need to increment the version number but are not ready to tag it as a release version.
+Run the ```npm version``` command with major, minor, or patch depending on how you want to increment the version number. Version number is in major.minor.patch (0.0.1), following [semver](http://semver.org/).  Use ```npm version patch --no-git-tag-version``` if you need to increment the version number but are not ready to tag it as a release version. This will increment the version number but won't auto commit or auto generate a tag.
