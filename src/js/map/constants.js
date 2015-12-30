@@ -23,6 +23,7 @@ const KEYS = {
   //- Layers not in UI
   watershed: 'watersheds',
   rivers: 'rivers',
+  adminLabels: 'adminLabels',
   watershedAnalysis: 'watershedAnalysis',
   customAnalysis: 'customAnalysis',
   customAreaFeatures: 'customAreaFeatures'
