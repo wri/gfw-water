@@ -4,6 +4,7 @@ import ShareModal from 'components/Modals/ShareModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
 import {loadCSS, loadJS} from 'utils/loaders';
+import esriConfig from 'esri/config';
 import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import ReactDOM from 'react-dom';
@@ -46,6 +47,7 @@ let lazyloadAssets = () => {
 
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
+  esriConfig.defaults.io.proxyUrl = assetUrls.proxy;
 };
 
 let initializeApp = () => {

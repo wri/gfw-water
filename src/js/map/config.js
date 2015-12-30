@@ -12,7 +12,8 @@ export const config = {
     ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
     highcharts: 'http://code.highcharts.com/highcharts.js',
     highchartsMore: 'http://code.highcharts.com/highcharts-more.js',
-    rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js'
+    rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js',
+    proxy: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 
   map: {
@@ -296,7 +297,7 @@ export const config = {
 
   analysis: {
     upstream: {
-      url: 'http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed',
+      url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer',
       params: {
         f: 'json',
         Generalize: true,
