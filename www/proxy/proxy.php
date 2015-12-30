@@ -189,30 +189,30 @@ class Proxy {
      */
 
     private  $unlinkPath;
-    
+
     /**
      * Holds a cloned copy of the resource response
      *
      * @var string
      */
-    
+
     public $responseClone;
-    
+
     /**
      * Holds headers sent by the client
      *
      * @var array
     */
-    
+
     public $clientRequestHeaders;
-    
+
     /**
      * Holds content length of last request
      *
      * @var int
      */
-    
-    
+
+
     public $contentLength;
 
 
@@ -227,13 +227,13 @@ class Proxy {
         $this->serverUrls = $configuration->serverUrls;
 
         $this->setupSession();
-        
+
         $this->getIncomingHeaders();
 
         $this->setupClassProperties();
 
         $this->checkEmptyParameters();
-        
+
         $this->checkForPing();
 
         if ($this->proxyConfig['mustmatch'] != null && $this->proxyConfig['mustmatch'] == true || $this->proxyConfig['mustmatch'] == "true") {
@@ -277,35 +277,35 @@ class Proxy {
         }
 
     }
-    
+
     public function getIncomingHeaders()
     {
         $headers = null;
-    
+
         if (!function_exists('getallheaders'))
         {
             $headers = array();
-    
+
             foreach ($_SERVER as $key => $value)
             {
-    
+
                 if (substr($key,0,5)=="HTTP_") {
-                     
+
                     $key = str_replace(" ","-",ucwords(strtolower(str_replace("_"," ",substr($key,5)))));
-    
+
                     $headers[$key] = $value;
-    
+
                 }
             }
-    
+
         }else{
-    
+
             $headers = getallheaders();
-    
+
         }
-    
+
         $this->clientRequestHeaders = $headers;
-    
+
     }
 
     public function makeDirectory($dir, $mode = 0777) //Not implemented.
@@ -430,7 +430,7 @@ class Proxy {
 
             header('Status: 200', true, 200);
             header('Content-Type: application/json');
-            
+
             $curl_version = curl_version();
             $pngMsg = array(
                         "Proxy Version"      => $GLOBALS['version'],
@@ -467,23 +467,23 @@ class Proxy {
 
     public function setProxyHeaders()
     {
-        
-        $header_size = curl_getinfo($this->ch, CURLINFO_HEADER_SIZE); //cURL will go null after this 
+
+        $header_size = curl_getinfo($this->ch, CURLINFO_HEADER_SIZE); //cURL will go null after this
 
         $header_content = trim(substr($this->response,0, $header_size));
-        
+
         $header_array = $this->parse_resource_headers($header_content);
-        
+
         foreach ($header_array as $key => $value) {
-        
+
             if(is_string($key)){
-                
+
                 $header = sprintf("%s: %s", $key, $value);
-                
+
                 $this->headers[] = $header;
-                
+
             }
-        
+
         }
 
     }
@@ -492,92 +492,92 @@ class Proxy {
     {
 
         $this->proxyBody = substr($this->responseClone, $this->contentLength);
-        
+
     }
-    
+
     public function parse_resource_headers($raw_headers) //Takes the cURL response header (from the resource) and parses it into array
     {
         $headers = array();  //Thanks to this http://stackoverflow.com/questions/6368574/how-to-get-the-functionality-of-http-parse-headers-without-pecl
-    
+
         $key = '';
-    
+
         foreach(explode("\n", $raw_headers) as $i => $h) {
-    
+
             $h = explode(':', $h, 2);
-    
+
             if (isset($h[1])) {
-    
+
                 if (!isset($headers[$h[0]]))
-    
+
                     $headers[$h[0]] = trim($h[1]);
-    
+
                 elseif (is_array($headers[$h[0]])) {
-    
+
                     $headers[$h[0]] = array_merge($headers[$h[0]], array(trim($h[1])));
-    
+
                 } else {
-    
+
                     $headers[$h[0]] = array_merge(array($headers[$h[0]]), array(trim($h[1])));
                 }
-    
+
                 $key = $h[0];
-    
+
             } else {
-    
+
                 if (substr($h[0], 0, 1) == "\t"){
-    
+
                     $headers[$key] .= "\r\n\t".trim($h[0]);
-    
+
                 } elseif (!$key){
-    
+
                     $headers[0] = trim($h[0]);
-    
+
                 }
             }
         }
-    
+
         return $headers;
     }
 
     public function getResponse()
     {
         //Remove built in PHP headers
-        
+
 
         foreach(headers_list() as $key => $value)
         {
             $pos = strripos($value, ":");
-            
+
             $header_type = substr($value,0,$pos);
-            
+
             if ($this->contains($value, "Cookie")) { //Don't remove the PHP session cookie
-                 
+
                 continue;
-            
+
             }
-            
+
             header_remove($header_type);
-            
+
         }
-        
+
         //Remove scenario causing provisional header error message
-        
+
         foreach ($this->headers as $key => $value) {
-            
+
             if ($this->contains($value, "Transfer-Encoding: chunked")) { //See issue #75
-                 
+
                 continue;
-            
+
             }
-            
+
             header($value, false);
-  
+
         }
 
         header("Content-length: " . strlen($this->proxyBody)); //Issue 190 with truncated response, not sure how to gzip the data (or keep gzip via CURLOPT_ENCODING) without extension.
-        
+
         echo $this->proxyBody;
-        
+
         $this->proxyLog->log("Proxy complete");
 
         $this->proxyConfig = null;
@@ -636,23 +636,23 @@ class Proxy {
         }
 
     }
-    
+
     public function decodeCharacterEncoding()
     {
         $hasHttpEncoding = $this->startsWith($_SERVER['QUERY_STRING'], 'http%3a%2f%2f');
-        
+
         $hasHttpsEncoding = $this->startsWith($_SERVER['QUERY_STRING'], 'https%3a%2f%2f');
-        
+
         if($hasHttpEncoding || $hasHttpsEncoding){
-            
+
             $_SERVER['QUERY_STRING'] = urldecode($_SERVER['QUERY_STRING']); //Remove encoding from GET requests
-            
+
             foreach($_POST as $k => $v) {
-                
+
                 $_POST[$k] = urldecode($v);  //Remove encoding for each POST value
-                
+
             }
-            
+
         }
     }
 
@@ -716,10 +716,10 @@ class Proxy {
 
             //check with listed serverurl regardless if mustMatch is true or false
             foreach ($this->serverUrls as $key => $value) {
-                
+
                 $serverUrl = $value['serverurl'][0];
                 $serverUrl['url'] = $this->sanitizeUrl($serverUrl['url']); //Do all the URL cleanups and checks at once
-                
+
                 if(is_string($serverUrl['matchall'])){
                     $serverUrl['matchAll'] = strtolower($serverUrl['matchall']);
                 }
@@ -880,9 +880,9 @@ class Proxy {
         }
 
         if (strpos($this->proxyBody,'"code":403') !== false) {
-        
+
             $isUnauthorized = true;
-        
+
         }
 
         $errorCode = $jsonData->{'error'}->{'code'};
@@ -950,36 +950,36 @@ class Proxy {
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST , false);
 
         curl_setopt($this->ch, CURLOPT_HEADER, true);
-        
+
         curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
 
     }
-    
+
     public function curlError()
     {
         // see full of cURL error codes at http://curl.haxx.se/libcurl/c/libcurl-errors.html
-    
+
         $message = "cURL error (" . curl_errno($this->ch) . "): "
                 . curl_error($this->ch) . ".";
-    
+
         $this->proxyLog->log($message);
-    
+
         header('Status: 502', true, 502);  // 502 Bad Gateway -  The server, while acting as a gateway or proxy, received an invalid response from the upstream server it accessed in attempting to fulfill the request.
-    
+
         header('Content-Type: application/json');
-    
+
         $configError = array(
                 "error" => array("code" => 502,
                         "details" => array($message),
                         "message" => "Proxy failed due to curl error."
                 ));
-    
+
         echo json_encode($configError);
-    
+
         curl_close($this->ch);
-    
+
         $this->ch = null;
-    
+
         exit();
     }
 
@@ -998,9 +998,9 @@ class Proxy {
             curl_setopt($this->ch, CURLOPT_URL, $this->proxyUrlWithData);
 
             $this->response = curl_exec($this->ch);
-            
+
             $this->responseClone = $this->response;
-            
+
             $this->contentLength = curl_getinfo($this->ch,CURLINFO_HEADER_SIZE);
 
             if(curl_errno($this->ch) > 0 || empty($this->response))
@@ -1061,9 +1061,9 @@ class Proxy {
             }
 
             $this->response = curl_exec($this->ch);
-            
+
             $this->responseClone = $this->response;
-            
+
             $this->contentLength = curl_getinfo($this->ch,CURLINFO_HEADER_SIZE);
 
         } catch (Exception $e) {
@@ -1130,9 +1130,9 @@ class Proxy {
             curl_setopt($this->ch, CURLOPT_POSTFIELDS, $query_array);
 
             $this->response = curl_exec($this->ch);
-            
+
             $this->responseClone = $this->response;
-            
+
             $this->contentLength = curl_getinfo($this->ch,CURLINFO_HEADER_SIZE);
 
             if(curl_errno($this->ch) > 0 || empty($this->response))
@@ -1192,7 +1192,10 @@ class Proxy {
     public function isUserLogin()
     {
 
-        if (isset($this->resource['username']) && isset($this->resource['password'])) {
+        $user = getenv($this->resource['username']);
+        $pass = getenv($this->resource['password']);
+
+        if (isset($user) && isset($pass)) {
 
             return true;
         }
@@ -1310,16 +1313,16 @@ class Proxy {
     public function getTokenEndpoint()
     {
         if ($this->contains($this->proxyUrl, "/rest/") !== false){
-            
+
             $position = stripos($this->proxyUrl, "/rest/");
-            
+
             $infoUrl = substr($this->proxyUrl,0,$position) . "/rest/info";
-        
+
         } else if ($this->contains($this->proxyUrl, "/sharing/") !== false){
 
             $position = stripos($this->proxyUrl, "/sharing/");
-            
-            $infoUrl = substr($this->proxyUrl,0,$position) . "/sharing/rest/info";    
+
+            $infoUrl = substr($this->proxyUrl,0,$position) . "/sharing/rest/info";
 
         }else{
 
@@ -2560,9 +2563,9 @@ class XmlParser
                         "message" => "$message"
                     ));
 
-            die(json_encode($configError));     
+            die(json_encode($configError));
         }
-        
+
         $xml = implode("\n", $data);
 
         return $this->parse($xml);
