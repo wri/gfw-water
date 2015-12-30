@@ -43,12 +43,14 @@ npm test
 ### Contributing
 Please branch off of the develop branch.  Do all of your development in a feature branch and once you are ready to merge to develop, commit your branch and submit a pull request.
 
+If your pushing to develop branch but it is not ready for deployment, you can skip the ```npm version``` command (See [Releasing](#Releasing)) or you can run ```npm version patch --no-git-tag-version``` to not generate a tag but increment the version, either way, tags should be for release versions only whereas staging versions may need the version incremented for cache busting purposes (the package.json version number is used in the CI process).
+
 Also, please make sure your contributions pass tests before committing.  Tests include unit tests and eslint.  We are using Intern and Chai for tests and the eslint cli to lint all javascript.  Run your test with the following:
 ```
 npm test
 ```
 
-### Releasing
+### <a name='Releasing'></a>Releasing
 The master branch should always be stable and contain release code. Make sure the develop branch has been thoroughly tested and is considered stable before submitting a pull request to master.  Also, once the code is stable and ready to merge, before you submit a pull request to master, please run the following commands from terminal in the develop branch.
 
 ```shell
