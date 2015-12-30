@@ -1,8 +1,7 @@
-import {layersConfig, errors, mapConfig} from 'js/config';
-import {analysisActions} from 'actions/AnalysisActions';
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import layerFactory from 'helpers/LayerFactory';
 import LayersHelper from 'helpers/LayersHelper';
+import {layersConfig, errors} from 'js/config';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Deferred from 'dojo/Deferred';
@@ -93,19 +92,22 @@ class MapActions {
     this.dispatch(labelLayerId);
   }
 
-  reset () {
-    brApp.debug('MapActions >>> reset');
-    // Reset the Store, this will also reset layers, layer definitions, and all React components
-    alt.recycle();
-    // Reset the Canopy Density slider
-    var slider = $('#tree-cover-slider').data('ionRangeSlider');
-    if (slider) { slider.reset(); }
-    //- Reset Esris Search Dijit and clear any graphics
-    analysisActions.clearCustomArea();
-    analysisActions.clearActiveWatershed();
-    //- Reset the Map to its original zoom and location
-    brApp.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
-  }
+  /**
+  * NOTE: DEPRECATED
+  */
+  // reset () {
+  //   brApp.debug('MapActions >>> reset');
+  //   // Reset the Store, this will also reset layers, layer definitions, and all React components
+  //   alt.recycle();
+  //   // Reset the Canopy Density slider
+  //   var slider = $('#tree-cover-slider').data('ionRangeSlider');
+  //   if (slider) { slider.reset(); }
+  //   //- Reset Esris Search Dijit and clear any graphics
+  //   analysisActions.clearCustomArea();
+  //   analysisActions.clearActiveWatershed();
+  //   //- Reset the Map to its original zoom and location
+  //   brApp.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
+  // }
 
   /**
   * Use apply-edits to save a feature to a feature layer and proxy results back through callback
