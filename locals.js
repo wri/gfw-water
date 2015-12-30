@@ -1,6 +1,6 @@
 module.exports = {
   author: 'WRI, BlueRaster',
-  version: '0.0.1',
+  version: '{override in gulpfile.js from package.json}',
   esriVersion: '3.15',
   home: {
     title: 'Global Forest Watch Water'

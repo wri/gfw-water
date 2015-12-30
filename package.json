@@ -5,7 +5,7 @@
     "node": " 4.2.1"
   },
   "description": "Global Forest Watch for Water Application.",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
     "test": "intern-client config=tests/intern --reporters=Pretty;eslint src/js/*;",

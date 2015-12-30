@@ -8,6 +8,10 @@ var jade = require('gulp-jade');
 var umd = require('gulp-umd');
 var gulp = require('gulp');
 
+//- Set the version number to match package.json
+var version = require('./package.json').version;
+locals.version = version;
+
 var config = {
   polyfill: {
     src: 'build/vendor/babel-polyfill/browser-polyfill.js',
