@@ -1122,8 +1122,8 @@ class Proxy {
                 'f' => 'json',
                 'referer' => $this->referer,
                 'expiration' => 60,
-                'username' => getenv("WATERSHED_USERNAME"),
-                'password' => getenv("WATERSHED_PASSWORD")
+                'username' => $this->resource['username'],
+                'password' => $this->resource['password']
         ));
 
         $tokenResponse = json_decode($this->proxyBody, true);
