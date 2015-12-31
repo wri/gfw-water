@@ -1,0 +1,255 @@
+doctype html
+html
+  head
+    title #{map.title}
+    include templates/meta.jade
+    style
+      :stylus
+        @require 'css/base'
+    link(rel='stylesheet', href='css/report.css?#{version}')
+    link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    script.
+      var base = location.href.replace(/\/[^/]+$/, '');
+      var dojoConfig = {
+        parseOnLoad: false,
+        async: true,
+        cacheBust: '#{version}',
+        packages: [
+          { name: 'js', location: base + '/js/report' },
+          { name: 'vendor', location: base + '/vendor' },
+          { name: 'utils', location: base + '/js/map/utils' },
+          { name: 'stores', location: base + '/js/map/stores' },
+          { name: 'helpers', location: base + '/js/map/helpers' },
+          { name: 'actions', location: base + '/js/map/actions' },
+          { name: 'components', location: base + '/js/map/components' }
+        ],
+        aliases: [
+          ['alt', 'vendor/alt/dist/alt.min'],
+          ['lodash', 'vendor/lodash/lodash.min'],
+          ['babel-polyfill', 'vendor/browser-polyfill']
+        ],
+        deps: ['dojo/domReady!'],
+        callback: function () {require(['js/main']);}
+      };
+  body
+    include templates/svgAssets.jade
+    div#headerGfw
+    
+    section.relative.report-header
+      div.gfw-water-logo
+      div.aqueduct-logo
+    section.relative.report-controls
+      div.wrapper
+        ul
+          li 
+            svg 
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-share") 
+          li 
+            svg 
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-develop") 
+          li 
+            svg 
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-map") 
+          li 
+            svg 
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-apps") 
+    section.relative.dark.map.overview
+      div.wrapper 
+        h1
+        p.
+          The quantity and quality of water sources, and hence the cost to transport and treat water, depend heavily on the health of the source watershed. Healthy forested lands provide critical watershed functions as <strong>nautural infrastructure</strong>:  they minimize erosion and pollutants, purify water, and reduce the impact of floods and droughts.
+        div.printed-map Generating:  overview map
+    section.relative.dark.stats 
+      div.wrapper
+        h2 know your watershed
+        div.info-wrapper
+          div.info-column
+            table
+              tr
+                td 
+                  div total watershed area
+                  div.blue-stat 
+                    span.stat#watershed-area --
+                    span.unit MHa
+                td 
+                  div wetland
+                  div.blue-stat
+                    span.stat#wetland-area --
+                    span.unit MHa (#[span#wetland-percent -])
+              tr
+                td
+                  div tree cover (2000)
+                  div.blue-stat
+                    span.stat#tree-cover --
+                    span.unit MHa (#[span#tree-cover-percent -])
+                    div.gray.smaller Displaying tree cover with #[span.blue-bubble > #[span.canopy-density]] canopy density 
+                td
+                  div major dams
+                  div.blue-stat
+                    span.stat#dam-count -
+              tr
+                td 
+                  div potential tree cover
+                  div.blue-stat
+                    span.stat#potential-cover --
+                    span.unit MHa
+                td
+                  div water withdrawl locations
+                  div.blue-stat
+                    span.stat#water-withdrawl -
+          div.info-column
+            div land cover
+            div#land-cover-chart
+
+    section.relative.risks 
+      div.wrapper
+        h2 watershed risks
+        div Watershed risk summary
+        div.info-wrapper
+          div.info-column 
+            div#risk-chart
+          div.info-column
+            p.
+              Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.
+            p.
+              #[span.blue We consider four watershed risks and the scores range from 1 – 5.] A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.
+
+    hr
+
+    section.relative.map.recent-loss 
+      div.wrapper
+        h4 tree cover loss (2001-2014)
+        div.info-wrapper
+          div.info-column
+            p.
+              Displaying tree cover loss with #[span.blue-bubble > #[span.canopy-density]]  canopy density
+            h2 Risk Score: #[span.blue#risk-tree-loss -]
+            p.
+              This watershed experienced #[span.blue#tree-loss-amount --] #[span.blue MHa] of tree cover loss from 2001 to 2014, accounting for #[span.blue#tree-loss-percent -] of total tree cover (2000). The average rate of tree cover loss is #[span.blue#tree-loss-rate --], presenting a #[span#tree-loss-trend --] trend.
+          div.info-column
+            p.emphasis.
+              As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination.
+        div.printed-map Generating:  recent tree loss map
+
+    hr
+
+    section.relative.map.historical-loss 
+      div.wrapper
+        h4 remaining forest as percent of potential forest 
+        div.info-wrapper
+          div.info-column
+            p.
+              Displaying tree cover loss with #[span.blue-bubble > #[span.canopy-density] %] canopy density
+            h2 Risk Score: #[span.blue#risk-potential-loss -]
+            p.
+              This watershed was covered by #[span.blue#potential-loss-amount --] #[span.blue MHa] of forest, accounting for #[span.blue#potential-loss-percent -] of watershed area. The remaining forest covers #[span.blue#potential-loss-rate --] of potential forest.
+          div.info-column
+            p.emphasis.
+              Over the last several centuries, vast forest areas have been cleared as agriculture has spread and human populations have grown. Breaking the spiral of loss and degradation and restoring these lands would bring many benefits. Restored lands help support livelihoods and biodiversity by supplying clean water, reducing erosiion, providing wildlife habitat, buifuel, and other forest products. Forests and trees mitigate climate change by sequestering carbon. Trees in agricultural landscapes can enhance soil fertility, onserve soil moisture, and boost food production.
+        div.printed-map Generating:  historical tree loss map
+
+    hr
+
+    section.relative.map.erosion 
+      div.wrapper
+        h4 erosion
+        div.info-wrapper
+          div.info-column
+            h2 Risk Score: #[span.blue#risk-erosion -]
+            p.
+              The overall erosion risk of this watershed is #[span.blue#risk-erosion-description].
+          div.info-column
+            p.emphasis.
+              Erosion is a significant problem that affects both water quantity and quality. High erosion deteriorates water quality and reduces capacity of reservoirs, increasing cost of water treatment and capital expenses and damaging safety of water supplies. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural land covers to pasture or cropland and other human activities.
+        div.printed-map Generating:  erosion map
+
+    hr
+
+    section.relative.map.fire 
+      div.wrapper
+        h4 fire
+        div.info-wrapper
+          div.info-column
+            h2 Risk Score: #[span.blue#risk-fire -]
+            p.
+              There were #[span.blue#recent-fire-count -] fire alerts over the past #[span.blue 24 hours].
+            p.
+              Learn more about Global Forest Watch Fires: 
+              #[a(href='http://fires.globalforestwatch.org/') fires.globalforestwatch.org/]
+          div.info-column
+            p.emphasis.
+              Uninvited wildfires are common in some watershed and are a natural form of disturbance in forests. Fire can provide long-term benefits to forest and watershed health. But high intensity or large wild fires can result in significant increases in runoff and erosion, which can negatively impact water quality.
+        div.printed-map Generating:  recent fires map
+
+    hr
+
+    section.relative.map.water-stress
+      div.wrapper
+        h4 baseline water stress
+        p.emphasis.
+          Baseline water stress measures chronic stress from the ratio of water withdrawls to available supply. Higher values indicate more competition among users.
+        p.
+          Learn more about the Global Forest Watch Aqueduct Project: 
+          #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+        div.printed-map Generating:  baseline water stress map
+
+    hr
+
+    section.relative.plan 
+      div.wrapper
+        h2 plan for action
+        h4 baseline water stress
+        div.info-wrapper
+          table
+            tr 
+              th 
+              th strategy
+              th description
+              th risk
+            tr
+              td ...color
+              td ...strat
+              td ...desc
+              td ...risk
+            tr
+              td work
+              td in
+              td progress
+              td #[img(src='http://www.animatedgif.net/underconstruction/cns01_e0.gif')]
+
+    section.blue.plan 
+      div.wrapper
+        h2 beyond the numbers
+        h4 Publications
+
+        ul
+          li.
+            Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States:  #[a(href='www.wri.org/publication/natural-infrastructure') www.wri.org/publication/natural-infrastructure]
+          li. 
+            Adaptation: Forests as Water Infrastructure in a Changing Climate:  #[a(href='www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf') www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf]
+          li. 
+            Green versus Gray: Nature’s Solutions to Infrastructure Demands:  #[a(href='www.thesolutionsjournal.com/node/1241') www.thesolutionsjournal.com/node/1241]
+          li. 
+            Green Infrastructure Guide to Help Address Complex Challenges of Water Management:  #[a(href='www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf') www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf]
+          li. 
+            Natural Infrastructure in the Water, Energy and Food Nexus:  #[a(href='www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf') www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf]
+
+        h4 Roadmaps
+        ul
+          li.
+            Restoration Opportunities Assessment Methodology (ROAM):  #[a(href='www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/') www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/]
+
+    section.dark.other-projects
+      div.wrapper
+        h2 other wri projects
+        p. 
+          Natural Infrastructure for Water: #[a(href='www.wri.org/our-work/project/natural-infrastructure-water') www.wri.org/our-work/project/natural-infrastructure-water]
+        p. 
+          Aqueduct:  #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+        p. 
+          Atlas of Forest and Landscape Restoration Opportunities:  #[a(href='www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities') www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities]
+
+    div#footerGfw
+    script(src='http://js.arcgis.com/#{esriVersion}compact/init.js', async)
+    // script(src='http://www.globalforestwatch.org/gfw-assets', defer)
