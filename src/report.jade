@@ -199,24 +199,63 @@ html
     section.relative.plan 
       div.wrapper
         h2 plan for action
-        h4 baseline water stress
+        h4 recommended natural infrastructure strategies
         div.info-wrapper
           table
             tr 
               th 
+              th risk
               th strategy
               th description
-              th risk
-            tr
-              td ...color
-              td ...strat
-              td ...desc
-              td ...risk
-            tr
-              td work
-              td in
-              td progress
-              td #[img(src='http://www.animatedgif.net/underconstruction/cns01_e0.gif')]
+            tr.no-risk
+              td(colspan='4') No significant risks for this watershed.
+            tr.risk-info.tree-loss-risk
+              td
+                div.square.square-pink
+              td.
+                #[span.risk-category Recent tree cover loss]
+              td.
+                Forest Protection
+              td
+                ul
+                  li #[span.strategy-example Conservation zones]:  Setting aside forested areas with high conservation value to preserve biodiversity.
+                  li #[span.strategy-example Sustainable forestry]:  Engaging in best forestry practices to minimize negative environmental impacts.
+                  li #[span.strategy-example Road network regulation]:  Limiting road creation near vulnerable forests, which has been linked heavily to deforestation risks. This includes addressing the problem of illegal road-building, as well as the sustainable development of legal road networks.
+            tr.risk-info.potential-loss-risk
+              td
+                div.square.square-yellow
+              td.
+                #[span.risk-category Historical tree cover loss]
+              td.
+                Restoration
+              td
+                ul
+                  li #[span.strategy-example Reforestation]:  Planting seedlings in burnt or deforested areas to stem the rate of erosion and restore the land.
+                  li #[span.strategy-example Assisted natural regeneration]:  Enhancing the establishment of secondary forest from degraded grassland and shrub vegetation by protecting and nurturing the mother trees and their wildlings inherently present in the area.
+                  li #[span.strategy-example Agroforestry]:  Managing forests together with crops and/or animal production systems in agricultural settings.
+            tr.risk-info.erosion-risk
+              td
+                div.square.square-brown
+              td.
+                #[span.risk-category Erosion]
+              td.
+                Erosion Control
+              td
+                ul
+                  li #[span.strategy-example Vegetation buffering]:  Planting or maintaining trees/ shrubs along the sides of roads and waterways to capture runoff and pollutants.
+                  li #[span.strategy-example Slope erosion reduction]:  Slowing the rate of erosion on steep sloped lands by creating various barriers to sediment movement. Examples include contour felling of trees, silt fences, and terracing.
+                  li #[span.strategy-example Agricultural best management practices]:  Reducing the amount of pesticides, fertilizers, animal waste, and other pollutants entering water resources, and conserving water supply. Examples include contour farming, cover crops, and terrace construction.
+            tr.risk-info.fire-risk
+              td
+                div.square.square-orange
+              td.
+                #[span.risk-category Fire]
+              td.
+                Fire Management
+              td
+                ul
+                  li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through controlled burns and mechanical treatment.
+
 
     section.blue.plan 
       div.wrapper

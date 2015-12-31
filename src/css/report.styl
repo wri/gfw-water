@@ -3,6 +3,11 @@
 $statBlue = #1F98D4
 $white = #FFFFFF
 
+$riskPink = #FF6097
+$riskYellow = #D2DF2E
+$riskBrown = #A79261
+$riskOrange = #EA5A00
+
 section.report-header
   min-height 100px
 
@@ -49,6 +54,24 @@ hr
   background-color $lightGray
   height 1px
   width 90%
+
+ul
+  list-style-type none
+  text-transform none
+  padding 0
+
+div.square 
+  height 1em
+  margin 0.25em auto 0 auto
+  width 1em
+div.square-pink
+  background-color $riskPink
+div.square-yellow
+  background-color $riskYellow
+div.square-brown
+  background-color $riskBrown
+div.square-orange
+  background-color $riskOrange
 
 section 
   color $lightGray
@@ -138,20 +161,34 @@ section.water-stress
 
 section.plan
   table
+    margin 1em 0 0 0
     width 100%
     tr
       border-bottom 1px solid $lightGray
       &:last-child
         border-bottom none
+      th 
+        text-align left
       td
-        &:nth-child(0)
-          width 10%
+        text-transform none
+        vertical-align top
         &:nth-child(1)
-          width 20%
+          width 5%
         &:nth-child(2)
-          width 50%
+          width 20%
         &:nth-child(3)
           width 20%
+        &:nth-child(4)
+          width 55%
+        span.risk-category
+        span.strategy-example
+          font-weight 700
+        ul 
+          margin 0
+    tr.risk-info
+      display none
+    tr.applicable
+      display table-row
 
 section.blue
 section.blue a
@@ -168,13 +205,9 @@ section.blue
   h4 
     font-size 120%
     text-transform none
-  ul
-    list-style-type none
-    text-transform none
-    padding 0
-    li
-      padding 0 0 0.5em 0
-      word-wrap break-word
+  ul li
+    padding 0 0 0.5em 0
+    word-wrap break-word
 
 section.other-projects
 section.other-projects h2

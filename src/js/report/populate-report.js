@@ -1,5 +1,6 @@
 import dom from 'dojo/dom';
 import domQuery from 'dojo/query';
+import domClass from 'dojo/dom-class';
 import manipulate from 'dojo/NodeList-manipulate';
 import number from 'dojo/number';
 import reportCharts from './report-charts'
@@ -97,5 +98,28 @@ export default {
     // Use watershed name as report title.
     const watershedName = watershed.attributes[config.watershedName] + ' Watershed';
     domQuery('section.map.overview h1')[0].innerHTML = watershedName; 
+
+    // Figure out which risk rows to show in Plan for Action section.
+    const visibleClassName = 'applicable';
+    const noRisk = domQuery('tr.no-risk')[0];
+    if (treeLossRisk > 3) {
+      console.log('treeLossRisk over 3');
+      domClass.add(domQuery('tr.tree-loss-risk')[0], visibleClassName);
+    }
+    if (potentialLossRisk > 3) {
+      console.log('potentialLossRisk over 3');
+      domClass.add(domQuery('tr.potential-loss-risk')[0], visibleClassName);
+    }
+    if (erosionRisk > 3) {
+      console.log('erosionRisk over 3');
+      domClass.add(domQuery('tr.erosion-risk')[0], visibleClassName);
+    }
+    if (fireRisk > 3) {
+      console.log('fireRisk over 3');
+      domClass.add(domQuery('tr.fire-risk')[0], visibleClassName);
+    }
+    if (treeLossRisk > 3 || potentialLossRisk > 3 || erosionRisk > 3 || fireRisk > 3) {
+      domClass.add(noRisk, 'risk-info');
+    }
   }
 }
