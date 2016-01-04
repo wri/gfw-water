@@ -5,6 +5,7 @@ import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
 import {modalActions} from 'actions/ModalActions';
+import {mapStore} from 'stores/MapStore';
 import React from 'react';
 
 let analysisSvg = '<use xlink:href="#icon-analysis" />';
@@ -17,12 +18,17 @@ export default class AnalysisTools extends React.Component {
     super(props);
 
     analysisStore.listen(this.storeUpdated.bind(this));
+    mapStore.listen(this.storeUpdated.bind(this));
     let defaultState = analysisStore.getState();
+    let mapState = mapStore.getState();
+    defaultState.controlsVisible = mapState.controlsVisible;
     this.state = defaultState;
   }
 
   storeUpdated () {
     let newState = analysisStore.getState();
+    let mapState = mapStore.getState();
+    newState.controlsVisible = mapState.controlsVisible;
     this.setState(newState);
   }
 
@@ -40,7 +46,7 @@ export default class AnalysisTools extends React.Component {
     let showOptions = (this.state.activeWatershed && watershedTabActive) || (this.state.activeCustomArea && customTabActive);
 
     return (
-      <div className='analysis-tools map-component shadow'>
+      <div className={`analysis-tools map-component shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <div className='analyze-header no-shrink'>
           <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
           <span>{text.analyzeButton}</span>

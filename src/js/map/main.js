@@ -3,9 +3,9 @@ import LayerModal from 'components/Modals/LayerModal';
 import ShareModal from 'components/Modals/ShareModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
+import {assetUrls, proxyRules} from 'js/config';
 import {loadCSS, loadJS} from 'utils/loaders';
 import urlUtils from 'esri/urlUtils';
-import {assetUrls} from 'js/config';
 import Map from 'components/Map';
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -47,12 +47,8 @@ let lazyloadAssets = () => {
 
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
-  urlUtils.addProxyRule({
-    urlPrefix: 'hydro.arcgis.com',
-    proxyUrl: assetUrls.proxy
-  });
-  // esriConfig.defaults.io.proxyUrl = assetUrls.proxy;
-
+  urlUtils.addProxyRule(proxyRules.hydro);
+  // urlUtils.addProxyRule(proxyRules.featureServer);
 };
 
 let initializeApp = () => {
@@ -67,30 +63,3 @@ let initializeApp = () => {
 configureApp();
 initializeApp();
 lazyloadAssets();
-
-
-// let test = () => {
-//   let params = {
-//     'SnapDistance': '5000',
-//     'SnapDistanceUnits': 'Meters',
-//     'DataSourceResolution': '90m',
-//     'Generalize': 'True',
-//     'f': 'json',
-//     'InputPoints': '{"geometryType":"esriGeometryPoint","features":[{"geometry":{"x":11058950.018714607,"y":192244.0469047035,"spatialReference":{"wkid":102100,"latestWkid":3857}}}],"sr":{"wkid":102100,"latestWkid":3857}}'
-//   };
-//
-//   let geoprocessor = new GeoProcessor('http://utility.arcgis.com/usrsvcs/appservices/epPvpBkwsBSgIYCd/rest/services/Tools/Hydrology/GPServer/Watershed');
-//   geoprocessor.setOutputSpatialReference(new SR(102100));
-//   geoprocessor.submitJob(params, results => {
-//     console.log(results);
-//     geoprocessor.getResultData(results.jobId, 'WatershedArea', data => {
-//       console.log('getResultData');
-//       console.log(data);
-//     });
-//   }, status => {
-//     console.log(status);
-//   });
-//
-// };
-
-// test();

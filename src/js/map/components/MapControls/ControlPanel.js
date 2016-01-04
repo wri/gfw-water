@@ -10,7 +10,8 @@ import React from 'react';
 let zoomInSvg = '<use xlink:href="#icon-plus" />';
 let zoomOutSvg = '<use xlink:href="#icon-minus" />';
 let shareSvg = '<use xlink:href="#icon-share" />';
-let resetSvg = '<use xlink:href="#icon-reset" />';
+let toggleSvgOff = '<use xlink:href="#icon-controlstoggle__off" />';
+let toggleSvgOn = '<use xlink:href="#icon-controlstoggle__on" />';
 let basemapSvg = '<use xlink:href="#icon-basemap" />';
 let locateSvg = '<use xlink:href="#icon-locate" />';
 
@@ -25,7 +26,6 @@ export default class ControlPanel extends React.Component {
   storeUpdated () {
     let newState = mapStore.getState();
     this.setState(newState);
-
     // If the basemap entry in the store changed, update it on the map now
     if (newState.activeBasemap !== this.state.activeBasemap) {
       LayersHelper.changeBasemap(newState.activeBasemap);
@@ -50,10 +50,10 @@ export default class ControlPanel extends React.Component {
           <li className='share-map pointer' title='Share' onClick={this.share}>
             <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: shareSvg }}/>
           </li>
-          <li className='reset-map pointer' title='Reset' onClick={this.reset}>
-            <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: resetSvg }}/>
+          <li className={`hide-controls pointer${!this.state.controlsVisible ? ' hide-controls--on' : ''}`} title='Reset' onClick={::this.toggleControls}>
+            <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: (this.state.controlsVisible ? toggleSvgOff : toggleSvgOn) }}/>
           </li>
-          <li className='basemap-layers pointer' title='Basemaps' onClick={this.toggleBasemapGallery.bind(this)}>
+          <li className='basemap-layers pointer' title='Basemaps' onClick={::this.toggleBasemapGallery}>
             <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: basemapSvg }}/>
           </li>
           <li className='locate-me pointer' title='Locate Me' onClick={this.locateMe}>
@@ -105,8 +105,8 @@ export default class ControlPanel extends React.Component {
     modalActions.showShareModal(prepareStateForUrl());
   }
 
-  reset () {
-    mapActions.reset();
+  toggleControls () {
+    mapActions.toggleControls(!this.state.controlsVisible);
   }
 
   toggleBasemapGallery () {

@@ -16,6 +16,17 @@ export const config = {
     proxy: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 
+  proxy: {
+      hydro: {
+        urlPrefix: 'hydro.arcgis.com',
+        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      },
+      featureServer: {
+        urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      }
+  },
+
   map: {
     id: 'map',
     options: {
@@ -57,7 +68,7 @@ export const config = {
   * if type is anything other than graphic and the layer is not disabled, it must have a url
   * id - {string} - layer Id, must be unique
   * [order] - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
-  * type - {string} - layer type (dynamic, image, feature, tiled)
+  * type - {string} - layer type (dynamic, image, feature, tiled, webtiled)
   * [label] - {string} - label in the layer list in the UI
   * [group] - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
   * - No group means it won't show in the UI
@@ -683,6 +694,7 @@ export const analysisPanelText = config.text.analysisPanel;
 export const controlPanelText = config.text.controlPanel;
 export const modalText = config.text.modals;
 export const assetUrls = config.assets;
+export const proxyRules = config.proxy;
 export const defaults = config.defaults;
 export const layersConfig = config.layers;
 export const errors = config.text.errors;

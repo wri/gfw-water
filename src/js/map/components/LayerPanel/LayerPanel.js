@@ -2,6 +2,7 @@ import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
 import LandCoverLegend from 'components/LayerPanel/LandCoverLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import DensityDisplay from 'components/LayerPanel/DensityDisplay';
+import WetlandsLegend from 'components/LayerPanel/WetlandsLegend';
 import LayerCheckbox from 'components/LayerPanel/LayerCheckbox';
 import FiresControls from 'components/LayerPanel/FiresControls';
 import LossControls from 'components/LayerPanel/LossControls';
@@ -26,7 +27,7 @@ export default class LayerPanel extends React.Component {
 
   render() {
     return (
-      <div className='layer-panel map-component custom-scroll shadow'>
+      <div className={`layer-panel map-component custom-scroll shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <LayerGroup activeLayers={this.state.activeLayers} label={layerPanelText.watershed}>
           {layersConfig.map(this.checkboxMap('watershed'), this)}
         </LayerGroup>
@@ -45,7 +46,6 @@ export default class LayerPanel extends React.Component {
       // TODO: Remove once current layer panel design is approved
       // If it is just a label, render the grop label
       // if (layer.isGroupLabel) { return <div key={layer.id} className='layer-group-label'>{layer.label}</div>; }
-
       // Some layers have legends or tools and they should be rendered inside the layer checkbox
       let childComponent;
       switch (layer.id) {
@@ -69,6 +69,9 @@ export default class LayerPanel extends React.Component {
           break;
         case KEYS.landCover:
           childComponent = <LandCoverLegend url={layer.url} layerIds={layer.layerIds} />;
+          break;
+        case KEYS.wetlands:
+          childComponent = <WetlandsLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         default:
           childComponent = null;

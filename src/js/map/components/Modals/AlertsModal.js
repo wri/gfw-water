@@ -113,7 +113,7 @@ export default class AlertsModal extends React.Component {
       alert(responses.join('\n'));
     });
 
-    ::this.close()
+    ::this.close();
   }
 
   render () {

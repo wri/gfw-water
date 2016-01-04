@@ -1,0 +1,255 @@
+@require 'config'
+
+$statBlue = #1F98D4
+$white = #FFFFFF
+
+$riskPink = #FF6097
+$riskYellow = #D2DF2E
+$riskBrown = #A79261
+$riskOrange = #EA5A00
+
+section.report-header
+  min-height 100px
+
+section.report-controls
+  background $lightGrayHighlight
+  margin-top -48px
+  min-height 40px
+  text-align right
+
+  ul
+    display flex
+    justify-content flex-end
+    align-items center
+    li 
+      list-style-type none
+      margin 0 0 0 20px
+      height 40px
+      width 40px
+      &:first-child
+        margin 0
+      svg
+        display flex
+        width 18px
+        height 100%
+        fill $darkGray
+
+div.wrapper
+  margin 0 auto
+  max-width 95%
+  width 1024px
+
+div.smaller
+  font-size 80%
+div.gray
+  color $lightGray
+span.blue-bubble
+  border-radius 20px
+  border 1px solid $statBlue
+  padding 0 10px
+
+hr
+  border 0
+  color $lightGray
+  background-color $lightGray
+  height 1px
+  width 90%
+
+ul
+  list-style-type none
+  text-transform none
+  padding 0
+
+div.square 
+  height 1em
+  margin 0.25em auto 0 auto
+  width 1em
+div.square-pink
+  background-color $riskPink
+div.square-yellow
+  background-color $riskYellow
+div.square-brown
+  background-color $riskBrown
+div.square-orange
+  background-color $riskOrange
+
+section 
+  color $lightGray
+
+section.dark
+  background $darkGray
+
+  h1
+    color $white
+    font-weight 100
+    font-size 200%
+    margin 0.25em 0 0 0
+
+  p
+    margin 0 0 1em 0
+
+section.dark.map.overview
+  margin-top -1em
+
+div#risk-chart
+  height 200px
+
+section.stats 
+section.risks
+section.recent-loss
+section.historical-loss
+section.erosion
+section.fire
+section.water-stress
+section.plan
+section.other-projects
+  text-transform uppercase
+  h2
+    color $statBlue
+    font-weight 100
+    margin 0
+    padding-top 0.75em
+  h4 
+    color $darkGray
+    font-weight 400
+    margin 0
+  p
+    text-transform none
+  p.emphasis
+    font-style italic
+    padding 1em
+  table
+    border-collapse collapse
+  div.info-wrapper
+    display flex
+    padding 0 0 1em 0
+
+    div.info-column
+      color $lightGray
+      flex-basis 50%
+
+      h2 
+        padding 0
+      p
+        span.blue
+          color $statBlue
+
+      tr
+        border 1px solid $lightGray
+        border-left none
+        border-bottom none
+        border-right none
+        &:first-child
+          border-top none
+        td
+          padding 0.25em
+          &:first-child
+            border 1px solid $lightGray
+            border-top none
+            border-bottom none
+            border-left none
+          div.blue-stat
+            color $statBlue
+            text-transform none
+            span.stat
+              font-size 200%
+              font-weight 500
+
+section.water-stress
+  p.emphasis
+    padding 0
+
+section.plan
+  table
+    margin 1em 0 0 0
+    width 100%
+    tr
+      border-bottom 1px solid $lightGray
+      &:last-child
+        border-bottom none
+      th 
+        text-align left
+      td
+        text-transform none
+        vertical-align top
+        &:nth-child(1)
+          width 5%
+        &:nth-child(2)
+          width 20%
+        &:nth-child(3)
+          width 20%
+        &:nth-child(4)
+          width 55%
+        span.risk-category
+        span.strategy-example
+          font-weight 700
+        ul 
+          margin 0
+    tr.risk-info
+      display none
+    tr.applicable
+      display table-row
+
+section.blue
+section.blue a
+section.blue h2
+section.blue h4
+  background $statBlue
+  color $white
+
+section.blue
+  div.wrapper
+    padding 0 0 1em 0
+  h2 
+    padding-bottom 0.5em
+  h4 
+    font-size 120%
+    text-transform none
+  ul li
+    padding 0 0 0.5em 0
+    word-wrap break-word
+
+section.other-projects
+section.other-projects h2
+section.other-projects a
+  color $white
+
+section.other-projects
+  div.wrapper
+    padding 0 0 1em 0
+
+section.other-projects h2
+  padding-bottom 0.5em
+
+.gfw-water-logo
+  background url('images/GFW_Water_logo.png') no-repeat center
+  background-size 90px
+  position absolute
+  height 90px
+  width 90px
+  z-index 5
+  left 20px
+  top 0
+  &:after
+    background url('images/beta.png')
+    position absolute
+    display block
+    bottom -5px
+    height 18px
+    width 30px
+    right -5px
+    content ''
+
+.aqueduct-logo
+  //background url('http://www.wri.org/sites/default/files/styles/large/public/logo.png') no-repeat center
+  background-size auto 65px
+  position absolute
+  height 50px
+  width 250px
+  left 125px
+  z-index 5
+  top 20px
+
+@media (min-width: 850px)
+  #headerGfw
+    height 34px
