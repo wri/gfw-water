@@ -6,7 +6,6 @@ import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
 import Deferred from 'dojo/Deferred';
 import Graphic from 'esri/graphic';
-import KEYS from 'js/constants';
 import EsriMap from 'esri/map';
 import alt from 'js/alt';
 
@@ -108,22 +107,6 @@ class MapActions {
   //   //- Reset the Map to its original zoom and location
   //   brApp.map.centerAndZoom(mapConfig.options.center, mapConfig.options.zoom);
   // }
-
-  /**
-  * Use apply-edits to save a feature to a feature layer and proxy results back through callback
-  * @param {Feature} feature - esri feature to be saved/updated
-  * @return {deferred} deferred
-  */
-  saveFeature (feature) {
-    brApp.debug('MapActions >>> saveFeature');
-    let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
-    let deferred = new Deferred();
-    if (!featureLayer) { deferred.reject(); return deferred; }
-    featureLayer.applyEdits([feature], null, null, (res) => {
-      deferred.resolve(res);
-    }, (err) => { deferred.reject(err); });
-    return deferred;
-  }
 
 }
 

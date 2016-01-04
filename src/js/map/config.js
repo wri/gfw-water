@@ -19,10 +19,12 @@ export const config = {
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
+        //proxyUrl: 'http://localhost/proxy/proxy.php'
         proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+        //proxyUrl: 'http://localhost/proxy/proxy.php'
         proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
@@ -404,8 +406,9 @@ export const config = {
         5: 'Extreme Risk'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
+      watershedNameField: 'Name',
       customAreaHeader: 'Create subwatershed from a point',
-      watershedInfoUrl: 'http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077'
+      customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>'
     },
     controlPanel: {
       wriBasemap: 'WRI',

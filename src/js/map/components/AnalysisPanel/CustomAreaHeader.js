@@ -1,11 +1,12 @@
 import {analysisPanelText as text} from 'js/config';
+import {modalActions} from 'actions/ModalActions';
 import React from 'react';
 
 // Info Icon Markup for innerHTML
 let useSvg = '<use xlink:href="#shape-info" />';
 
 function openWindow () {
-  window.open(text.watershedInfoUrl);
+  modalActions.showBasicModal(text.customAreaHeader, text.customAreaContent);
 }
 
 let CustomAreaHeader = () => {

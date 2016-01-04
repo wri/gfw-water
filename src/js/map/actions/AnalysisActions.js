@@ -1,6 +1,8 @@
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisPanelText} from 'js/config';
 import registry from 'dijit/registry';
+import Deferred from 'dojo/Deferred';
+import KEYS from 'js/constants';
 import alt from 'js/alt';
 
 class AnalysisActions {
@@ -45,6 +47,22 @@ class AnalysisActions {
   toggleDrawToolbar (status) {
     brApp.debug('AnalysisActions >>> toggleDrawToolbar');
     this.dispatch(status);
+  }
+
+  /**
+  * Use apply-edits to save a feature to a feature layer and proxy results back through callback
+  * @param {Feature} feature - esri feature to be saved/updated
+  * @return {deferred} deferred
+  */
+  saveFeature (feature) {
+    brApp.debug('MapActions >>> saveFeature');
+    let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
+    let deferred = new Deferred();
+    if (!featureLayer) { deferred.reject(); return deferred; }
+    featureLayer.applyEdits([feature], null, null, (res) => {
+      deferred.resolve(res);
+    }, (err) => { deferred.reject(err); });
+    return deferred;
   }
 
   /**
