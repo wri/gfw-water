@@ -1,0 +1,28 @@
+@keyframes loader
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+.spinner-container
+  background rgba(220, 220, 220, 0.75)
+  position absolute
+  display none
+  height 100%
+  width 100%
+  left 0
+  top 0
+
+.spinner-container--loading
+  display block
+  z-index 25
+  & .foreground
+    animation loader 0.95s cubic-bezier(0.645, 0.045, 0.355, 1.000) infinite
+
+.spinner-container__spinner
+  transform translate(-50%, -50%)
+  position absolute
+  height 50px
+  width 50px
+  left 50%
+  top 50%

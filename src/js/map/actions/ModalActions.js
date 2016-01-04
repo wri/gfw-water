@@ -32,6 +32,12 @@ class ModalActions {
     domClass.remove('canopy-modal', 'hidden');
   }
 
+  showBasicModal (title, text) {
+    brApp.debug('ModalActions >>> showBasicModal');
+    this.dispatch({ title: title, text: text });
+    domClass.remove('basic-modal', 'hidden');
+  }
+
   hideModal (node) {
     brApp.debug('ModalActions >>> hideModal');
     domClass.add(node, 'hidden');

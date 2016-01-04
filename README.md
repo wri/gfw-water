@@ -30,7 +30,7 @@ npm start
 Will minify and bundle all the code and prepare a distribution ready package in a ```dist``` folder.
 
 ```shell
-npm dist
+npm run dist
 ```
 
 ###### Tests

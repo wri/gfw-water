@@ -6,10 +6,13 @@ class ModalStore {
   constructor () {
     this.bitlyUrl = '';
     this.modalLayerInfo = {};
+    this.basicModalText = '';
+    this.basicModalTitle = '';
 
     this.bindListeners({
       showLayerInfo: modalActions.showLayerInfo,
-      updateBitlyUrl: modalActions.showShareModal
+      updateBitlyUrl: modalActions.showShareModal,
+      showBasicModal: modalActions.showBasicModal
     });
   }
 
@@ -19,6 +22,11 @@ class ModalStore {
 
   updateBitlyUrl (bitlyUrl) {
     this.bitlyUrl = bitlyUrl;
+  }
+
+  showBasicModal (payload) {
+    this.basicModalText = payload.text;
+    this.basicModalTitle = payload.title;
   }
 
 }

@@ -3,7 +3,9 @@ import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import {analysisPanelText as text} from 'js/config';
+import {analysisStore} from 'stores/AnalysisStore';
 import {mapStore} from 'stores/MapStore';
+import Loader from 'components/Loader';
 import Draw from 'esri/toolbars/draw';
 import React from 'react';
 
@@ -16,11 +18,17 @@ import LossFootnote from 'components/AnalysisPanel/LossFootnote';
 
 let runReport = () => {
   // Show Loader of some sort saying that we are preparing to perform analysis
-  // Apply Edits to save the current polygon or custom area
-  // Then open the report with the resulting objectid
+  let {activeCustomArea, customAreaName} = analysisStore.getState();
   let {canopyDensity} = mapStore.getState();
-  analysisActions.launchReport(`C_{objectid}`, canopyDensity);
-  // window.open('http://data.wri.org/gfw-water/sample-report.pdf');
+  //- Give the feature a name
+  activeCustomArea.attributes[text.watershedNameField] = customAreaName;
+  analysisActions.saveFeature(activeCustomArea).then(res => {
+    if (res.length > 0 && res[0].success) {
+      analysisActions.launchReport(`C_${res[0].objectId}`, canopyDensity);
+    }
+  }, err => {
+    console.log(err);
+  });
 };
 
 let editSvg = '<use xlink:href="#icon-edit-text" />';
@@ -54,12 +62,15 @@ export default class CustomAnalysis extends React.Component {
         // Deactivate toolbar, update store, then add point to map to show location and find watershed around point
         toolbar.deactivate();
         analysisActions.toggleDrawToolbar(false);
+        analysisActions.toggleLoader(true);
         // Find out if this point is in a watershed
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             analysisActions.analyzeCustomArea(feature);
+            analysisActions.toggleLoader(false);
           }, err => {
             analysisActions.clearCustomArea();
+            analysisActions.toggleLoader(false);
             console.error(err);
           });
         });
@@ -80,9 +91,10 @@ export default class CustomAnalysis extends React.Component {
 
   render () {
     return (
-      <div className={`custom-analysis ${this.props.active ? '' : 'hidden'}`}>
+      <div className={`custom-analysis relative ${this.props.active ? '' : 'hidden'}`}>
         {!this.props.activeCustomArea ?
           <div>
+            <Loader active={this.props.isLoading} />
             <CustomAreaHeader />
             <div className={`gfw-btn blue pointer add-point-btn ${this.props.toolbarActive ? 'active' : ''}`} onClick={::this.addPoint}>
               {text.addPointButton}
