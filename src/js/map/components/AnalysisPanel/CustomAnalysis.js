@@ -64,6 +64,8 @@ export default class CustomAnalysis extends React.Component {
         analysisActions.toggleDrawToolbar(false);
         analysisActions.toggleLoader(true);
         // Find out if this point is in a watershed
+        // TODO: Refactor this, inital request should originate from an action, this way I dont need
+        // explicit actions for showing/hiding loading wheels and they can be managed from the store
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             analysisActions.analyzeCustomArea(feature);
