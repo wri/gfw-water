@@ -68,8 +68,9 @@ export default class CustomAnalysis extends React.Component {
         // explicit actions for showing/hiding loading wheels and they can be managed from the store
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
-            analysisActions.analyzeCustomArea(feature);
             analysisActions.toggleLoader(false);
+            analysisActions.analyzeCustomArea(feature);
+            brApp.map.setExtent(feature.geometry.getExtent());
           }, err => {
             analysisActions.clearCustomArea();
             analysisActions.toggleLoader(false);
