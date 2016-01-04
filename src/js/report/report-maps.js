@@ -1,11 +1,11 @@
-import {getUrlParams} from 'utils/params'
+import {getUrlParams} from 'utils/params';
 import esriConfig from 'esri/config';
 import esriRequest from 'esri/request';
 import Query from 'esri/tasks/query';
 import QueryTask from 'esri/tasks/QueryTask';
 import domConstruct from 'dojo/dom-construct';
 import domQuery from 'dojo/query';
-import ioQuery from 'dojo/io-query';
+// import ioQuery from 'dojo/io-query';
 import lang from 'dojo/_base/lang';
 import queryUtils from './query-utils';
 import populateReport from './populate-report';
@@ -16,7 +16,7 @@ let config;
 let shedQueryTask;
 let watershed;
 let watershedGeometry;
-let watersheds; 
+let watersheds;
 let fireQueryTask;
 let printed = 0;
 let firesOneDayAgo = queryUtils.oneDayAgo();
@@ -38,15 +38,15 @@ const printMap = () => {
           'layerDefinition': {
             'definitionExpression': firesOneDayAgo
           }
-        }
+        };
       });
-      console.log('fires layer defs', layer.layers)
+      console.log('fires layer defs', layer.layers);
     }
     webmap.Web_Map_as_JSON.operationalLayers.splice(1, 0, layer);
   }
   // Show the watershed on top.
   webmap.Web_Map_as_JSON.operationalLayers.push(watersheds);
-  webmap.Web_Map_as_JSON.exportOptions = { 
+  webmap.Web_Map_as_JSON.exportOptions = {
     outputSize: [ config.mapPrintWidthLarge, config.mapPrintHeight ],
     dpi: config.mapPrintDPI
   };
@@ -56,7 +56,7 @@ const printMap = () => {
     url: config.printer,
     content: webmap
   }, { usePost: true }).then(insertMap, errorHandler);
-}
+};
 
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
@@ -71,7 +71,7 @@ const insertMap = (response) => {
   } else {
     reportCharts.use(watershed);
   }
-}
+};
 
 const handleWatershed = (result) => {
   console.log('watershed', result.features[0]);
@@ -87,7 +87,7 @@ const handleWatershed = (result) => {
   } else {
     console.log('could not find watershed', results);
   }
-}
+};
 
 const calculateOffset = (result) => {
   if ( result.features.length ) {
@@ -96,7 +96,7 @@ const calculateOffset = (result) => {
   } else {
     console.log('query for full geometry returned no features', features);
   }
-}
+};
 
 const getWaterShed = (params) => {
   let queryCallback;
@@ -109,11 +109,11 @@ const getWaterShed = (params) => {
     query.outFields = ['*'];
     queryCallback = handleWatershed;
   } else {
-    query.maxAllowableOffset = config.simplifyGuess; 
+    query.maxAllowableOffset = config.simplifyGuess;
     queryCallback = calculateOffset;
   }
   shedQueryTask.execute(query).then(queryCallback, errorHandler);
-}
+};
 
 const getFireCount = () => {
   let fireCount;
@@ -131,14 +131,14 @@ const getFireCount = () => {
       watershed.attributes._fireCount = fireCount;
       printMap();
       populateReport.use({ config: config, watershed: watershed });
-    }, 
+    },
     errorHandler
-  )
-}
+  );
+};
 
 const errorHandler = (error) => {
   console.log('Error generating watershed report', error);
-}
+};
 
 const printAll = (options) => {
   config = options;
@@ -156,8 +156,8 @@ const printAll = (options) => {
   fireQueryTask = new QueryTask(config.fireUrl);
   watersheds = lang.clone(featureCollection);
   getWaterShed({ id: config.watershedId });
-}
+};
 
 export default {
   printAll: printAll
-}
+};
