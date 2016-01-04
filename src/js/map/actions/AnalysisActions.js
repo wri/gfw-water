@@ -49,6 +49,11 @@ class AnalysisActions {
     this.dispatch(status);
   }
 
+  toggleLoader (status) {
+    brApp.debug('AnalysisActions >>> toggleLoader');
+    this.dispatch(status);
+  }
+
   /**
   * Use apply-edits to save a feature to a feature layer and proxy results back through callback
   * @param {Feature} feature - esri feature to be saved/updated

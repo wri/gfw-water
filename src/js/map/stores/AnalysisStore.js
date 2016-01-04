@@ -5,6 +5,7 @@ import alt from 'js/alt';
 class AnalysisStore {
 
   constructor () {
+    this.isLoading = false;
     this.toolbarActive = false;
     this.activeWatershed = null;
     this.activeCustomArea = null;
@@ -12,6 +13,7 @@ class AnalysisStore {
     this.customAreaName = analysisPanelText.customAreaNamePlaceholder;
 
     this.bindListeners({
+      toggleLoader: analysisActions.toggleLoader,
       clearCustomArea: analysisActions.clearCustomArea,
       setAnalysisType: analysisActions.setAnalysisType,
       toggleDrawToolbar: analysisActions.toggleDrawToolbar,
@@ -50,6 +52,19 @@ class AnalysisStore {
 
   toggleDrawToolbar (status) {
     this.toolbarActive = status;
+  }
+
+  toggleLoader (status) {
+    this.isLoading = status;
+    //- Give it a timeout of 15 secs
+    if (status) {
+      setTimeout(() => {
+        if (this.isLoading) {
+          this.isLoading = false;
+          this.emitChange();
+        }
+      }, 15000);
+    }
   }
 
 }

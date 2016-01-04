@@ -5,6 +5,7 @@ import AnalysisHelper from 'helpers/AnalysisHelper';
 import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
 import {mapStore} from 'stores/MapStore';
+import Loader from 'components/Loader';
 import Draw from 'esri/toolbars/draw';
 import React from 'react';
 
@@ -61,12 +62,15 @@ export default class CustomAnalysis extends React.Component {
         // Deactivate toolbar, update store, then add point to map to show location and find watershed around point
         toolbar.deactivate();
         analysisActions.toggleDrawToolbar(false);
+        analysisActions.toggleLoader(true);
         // Find out if this point is in a watershed
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             analysisActions.analyzeCustomArea(feature);
+            analysisActions.toggleLoader(false);
           }, err => {
             analysisActions.clearCustomArea();
+            analysisActions.toggleLoader(false);
             console.error(err);
           });
         });
@@ -87,9 +91,10 @@ export default class CustomAnalysis extends React.Component {
 
   render () {
     return (
-      <div className={`custom-analysis ${this.props.active ? '' : 'hidden'}`}>
+      <div className={`custom-analysis relative ${this.props.active ? '' : 'hidden'}`}>
         {!this.props.activeCustomArea ?
           <div>
+            <Loader active={this.props.isLoading} />
             <CustomAreaHeader />
             <div className={`gfw-btn blue pointer add-point-btn ${this.props.toolbarActive ? 'active' : ''}`} onClick={::this.addPoint}>
               {text.addPointButton}
