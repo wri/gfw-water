@@ -450,6 +450,7 @@ export const config = {
 
 // Layer Information
 // config.text.layerInformation[KEYS.sediment] = {};
+// config.text.layerInformation[KEYS.historicLoss] = {};
 
 config.text.layerInformation[KEYS.landCover] = {
   title: 'Land Cover',
