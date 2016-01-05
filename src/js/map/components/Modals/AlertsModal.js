@@ -118,6 +118,7 @@ export default class AlertsModal extends React.Component {
 
   render () {
     const subscriptionValid = this.state.formaSubscription === true || this.state.fireSubscription === true;
+    //- Final input with name password is hidden because it is not used, it is used as a honeypot
     return (
       <ModalWrapper>
         <div className='alerts-modal'>
@@ -134,6 +135,7 @@ export default class AlertsModal extends React.Component {
             {subscriptionValid === true ? null : <div className='alerts-modal__error-label'>Required</div>}
             <br />
             <button className='alerts-modal__button--blue' type='submit' disabled={!subscriptionValid || !this.state.textValid}>Subscribe</button>
+            <input name='password' type='password' hidden />
           </Form>
         </div>
       </ModalWrapper>
