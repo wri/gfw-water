@@ -10,6 +10,7 @@ $riskOrange = #EA5A00
 
 section.report-header
   min-height 100px
+  z-index 1
 
 section.report-controls
   background $lightGrayHighlight
@@ -34,10 +35,45 @@ section.report-controls
         height 100%
         fill $darkGray
 
+div.loading-container
+  height 100%
+  position relative
+  div.loading
+    height 50px
+    left 50%
+    margin-top -50px
+    margin-left -25px
+    position absolute
+    top 50%
+    width 50px
+    path.moving
+      animation spinning 2s ease-in-out infinite
+
+@keyframes spinning {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}
+
+div#land-cover-chart
+  div.loading-container
+    div.loading
+      margin-top 50px
+
+div#land-cover-chart
+  g.highcharts-legend
+    g
+      g
+        g.highcharts-legend-item
+          text
+            fill #fff !important
+
 div.wrapper
   margin 0 auto
   max-width 95%
   width 1024px
+
+  div.printed-map
+    height 300px
 
 div.smaller
   font-size 80%
@@ -224,10 +260,9 @@ section.other-projects h2
 .gfw-water-logo
   background url('images/GFW_Water_logo.png') no-repeat center
   background-size 90px
-  position absolute
+  display inline-block
   height 90px
   width 90px
-  z-index 5
   left 20px
   top 0
   &:after
@@ -237,18 +272,17 @@ section.other-projects h2
     bottom -5px
     height 18px
     width 30px
-    right -5px
+    right 0
     content ''
 
 .aqueduct-logo
-  //background url('http://www.wri.org/sites/default/files/styles/large/public/logo.png') no-repeat center
+  background url('images/aqueduct-logo.png') no-repeat center
   background-size auto 65px
-  position absolute
+  display inline-block
   height 50px
+  margin-top 1em
+  vertical-align top
   width 250px
-  left 125px
-  z-index 5
-  top 20px
 
 @media (min-width: 850px)
   #headerGfw

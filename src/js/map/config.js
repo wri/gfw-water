@@ -68,7 +68,7 @@ export const config = {
   * if type is anything other than graphic and the layer is not disabled, it must have a url
   * id - {string} - layer Id, must be unique
   * [order] - {number} - determines layer order on map, 1 is the bottom and higher numbers on top
-  * type - {string} - layer type (dynamic, image, feature, tiled)
+  * type - {string} - layer type (dynamic, image, feature, tiled, webtiled)
   * [label] - {string} - label in the layer list in the UI
   * [group] - {string} - group in the UI, either 'watershed' (curr. Know Your Watershed in UI) or 'watershedRisk (curr. Identifie Watershed Risks in UI)'
   * - No group means it won't show in the UI

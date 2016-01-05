@@ -17,7 +17,7 @@ export default class TextInput extends React.Component {
     return (
       <div>
         <label>{this.props.label}</label>
-        <input className={className} type={this.props.type || 'text'} name={this.props.name} value={this.props.getValue()} onChange={::this.changeValue} placeholder={this.props.placeholder || ''} maxLength={this.props.maxLength|| 100}/>
+        <input className={className} type={this.props.type || 'text'} name={this.props.name} value={this.props.getValue()} onChange={::this.changeValue} placeholder={this.props.placeholder || ''} maxLength={this.props.maxLength || 100}/>
         {errorMessage}
       </div>
     );

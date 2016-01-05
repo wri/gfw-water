@@ -50,7 +50,7 @@ export default class ControlPanel extends React.Component {
           <li className='share-map pointer' title='Share' onClick={this.share}>
             <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: shareSvg }}/>
           </li>
-          <li className='hide-controls pointer' title='Reset' onClick={::this.toggleControls}>
+          <li className={`hide-controls pointer${!this.state.controlsVisible ? ' hide-controls--on' : ''}`} title='Reset' onClick={::this.toggleControls}>
             <svg className='panel-icon' dangerouslySetInnerHTML={{ __html: (this.state.controlsVisible ? toggleSvgOff : toggleSvgOn) }}/>
           </li>
           <li className='basemap-layers pointer' title='Basemaps' onClick={::this.toggleBasemapGallery}>

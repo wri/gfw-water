@@ -9,14 +9,14 @@ export default {
   webmap: {
     'f': 'json',
     'Web_Map_as_JSON': {
-      mapOptions: { 
-        showAttribution: false, 
+      mapOptions: {
+        showAttribution: false,
         extent: null,
         spatialReference: { wkid: 102100 }
       },
-      operationalLayers:[{
+      operationalLayers: [{
         id: 'layer0',
-        title: 'layer0', 
+        title: 'layer0',
         opacity: 1,
         url: 'https://api.tiles.mapbox.com/v4/wri.c974eefc/${level}/${col}/${row}.png',
         type: 'WebTiledLayer',
@@ -69,7 +69,7 @@ export default {
       'renderingRule': {
         'rasterFunction': 'ForestCover_lossyear'
       }
-    },
+    }
   }, {
     name: 'historical-loss',
     layer: {
@@ -131,7 +131,7 @@ export default {
       }]
     }
   }],
-  
+
   printer: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
   simplifyGuess: 1000,
   mapPrintHeight: 300,

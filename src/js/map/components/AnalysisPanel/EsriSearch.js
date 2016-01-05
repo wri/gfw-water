@@ -2,6 +2,7 @@ import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisStore} from 'stores/AnalysisStore';
+import {mapStore} from 'stores/MapStore';
 import {analysisPanelText} from 'js/config';
 import Search from 'esri/dijit/Search';
 import Symbols from 'helpers/Symbols';
@@ -66,6 +67,16 @@ let generateSearchWidget = () => {
 
 export default class EsriSearch extends React.Component {
 
+  constructor (props) {
+    super(props);
+    this.state = mapStore.getState();
+    mapStore.listen(::this.storeChanged);
+  }
+
+  storeChanged () {
+    this.setState(mapStore.getState());
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!this.props.loaded && nextProps.loaded) {
       generateSearchWidget();
@@ -74,7 +85,7 @@ export default class EsriSearch extends React.Component {
 
   render() {
     return (
-      <div className='search-tools map-component side-shadow'>
+      <div className={`search-tools map-component side-shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <div id={analysisPanelText.searchWidgetId} />
       </div>
     );

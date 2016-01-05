@@ -7,6 +7,7 @@ html
       :stylus
         @require 'css/base'
     link(rel='stylesheet', href='css/report.css?#{version}')
+    link(rel='stylesheet', media='print' href='css/report-print.css?#{version}')
     link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     script.
@@ -37,8 +38,9 @@ html
     div#headerGfw
     
     section.relative.report-header
-      div.gfw-water-logo
-      div.aqueduct-logo
+      div.wrapper
+        div.gfw-water-logo
+        div.aqueduct-logo
     section.relative.report-controls
       div.wrapper
         ul
@@ -95,7 +97,7 @@ html
                     span.stat#potential-cover --
                     span.unit MHa
                 td
-                  div water withdrawl locations
+                  div water intake locations
                   div.blue-stat
                     span.stat#water-withdrawl -
           div.info-column
@@ -200,6 +202,7 @@ html
       div.wrapper
         h2 plan for action
         h4 recommended natural infrastructure strategies
+        p Risks identified as four or higher should be addressed by specific actions. Below is the list of recommendations for this watershed to mitigate high risks.
         div.info-wrapper
           table
             tr 
@@ -264,31 +267,40 @@ html
 
         ul
           li.
-            Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States:  #[a(href='www.wri.org/publication/natural-infrastructure') www.wri.org/publication/natural-infrastructure]
+            #[a(href='//www.wri.org/publication/natural-infrastructure') Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States]
           li. 
-            Adaptation: Forests as Water Infrastructure in a Changing Climate:  #[a(href='www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf') www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf]
+            #[a(href='//www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf') Adaptation: Forests as Water Infrastructure in a Changing Climate]
           li. 
-            Green versus Gray: Nature’s Solutions to Infrastructure Demands:  #[a(href='www.thesolutionsjournal.com/node/1241') www.thesolutionsjournal.com/node/1241]
+            #[a(href='//www.thesolutionsjournal.com/node/1241') Green versus Gray: Nature’s Solutions to Infrastructure Demands]
           li. 
-            Green Infrastructure Guide to Help Address Complex Challenges of Water Management:  #[a(href='www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf') www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf]
+            #[a(href='//www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf') Green Infrastructure Guide to Help Address Complex Challenges of Water Management]
           li. 
-            Natural Infrastructure in the Water, Energy and Food Nexus:  #[a(href='www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf') www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf]
+            #[a(href='//www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf') Natural Infrastructure in the Water, Energy and Food Nexus]
 
         h4 Roadmaps
         ul
           li.
-            Restoration Opportunities Assessment Methodology (ROAM):  #[a(href='www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/') www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/]
+            #[a(href='//www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/') Restoration Opportunities Assessment Methodology (ROAM)]
 
     section.dark.other-projects
       div.wrapper
         h2 other wri projects
         p. 
-          Natural Infrastructure for Water: #[a(href='www.wri.org/our-work/project/natural-infrastructure-water') www.wri.org/our-work/project/natural-infrastructure-water]
+          #[a(href='//www.wri.org/our-work/project/natural-infrastructure-water') Natural Infrastructure for Water]
         p. 
-          Aqueduct:  #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+          #[a(href='//www.wri.org/our-work/project/aqueduct') Aqueduct]
         p. 
-          Atlas of Forest and Landscape Restoration Opportunities:  #[a(href='www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities') www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities]
+          #[a(href='//www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities') Atlas of Forest and Landscape Restoration Opportunities]
+
+    div.hidden
+      div.loading-container
+        div.loading
+          svg(width='52', height='52', style='padding:1px;')
+            g(transform='translate(25,25) rotate(-90)')
+              path(d='M0,25A25,25 0 1,1 0,-25A25,25 0 1,1 0,25M0,20A20,20 0 1,0 0,-20A20,20 0 1,0 0,20Z', style='fill: rgb(255, 255, 255); stroke: rgb(204, 204, 204)')
+              
+              path(class='moving' d='M0,-25A25,25 0 0,1 25,0L20,0A20,20 0 0,0 0,-20Z' style='fill: rgb(85, 85, 85);')
 
     div#footerGfw
     script(src='http://js.arcgis.com/#{esriVersion}compact/init.js', async)
-    // script(src='http://www.globalforestwatch.org/gfw-assets', defer)
+    script(src='http://www.globalforestwatch.org/gfw-assets', defer)
