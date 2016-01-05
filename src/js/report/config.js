@@ -32,13 +32,20 @@ export default {
     'Format': 'PNG32',
     'Layout_Template': 'MAP_ONLY'
   },
+  proxy: {
+    featureServer: {
+      urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+      // proxyUrl: 'http://localhost/proxy/proxy.php'
+      proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+    }
+  },
   canopyDensity: 10,
   watershedId: 1003,
   watershedIdField: 'maj_bas',
   watershedName: 'maj_name',
   watershedQueryStringParam: 'fid',
   watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
-  customAnalysisAreasUrl: '',
+  customAnalysisAreasUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0',
   watershedSymbol: {
     'color': [255, 255, 255, 0],
     'outline': {

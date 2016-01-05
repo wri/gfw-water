@@ -56,15 +56,24 @@ class AnalysisStore {
 
   toggleLoader (status) {
     this.isLoading = status;
-    //- Give it a timeout of 15 secs
+    //- Give it a timeout of 15 secs if we are enabling the loader
     if (status) {
-      setTimeout(() => {
-        if (this.isLoading) {
-          this.isLoading = false;
-          this.emitChange();
-        }
-      }, 15000);
+      this.applyTimeout('isLoading', 15000);
     }
+  }
+
+  /**
+  * Takes a property of type boolean, it should be true, and after the duration, if it's still true, sets it false
+  * @param {string} property - property in this store which we want to set to false after the timeout
+  * @param {number} duration - timeout duration
+  */
+  applyTimeout (property, duration) {
+    setTimeout(() => {
+      if (this[property] === true) {
+        this[property] = false;
+        this.emitChange();
+      }
+    }, duration);
   }
 
 }
