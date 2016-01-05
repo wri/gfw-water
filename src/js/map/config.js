@@ -24,6 +24,17 @@ export const config = {
       }
   },
 
+  links: {
+    home: {
+      url: '/',
+      title: 'Global Forest Watch Water - Home'
+    },
+    aqueduct: {
+      url: 'http://www.wri.org/our-work/project/aqueduct',
+      title: 'Aqueduct Water Risk Atlas'
+    }
+  },
+
   map: {
     id: 'map',
     options: {
@@ -450,6 +461,7 @@ export const config = {
 
 // Layer Information
 // config.text.layerInformation[KEYS.sediment] = {};
+// config.text.layerInformation[KEYS.historicLoss] = {};
 
 config.text.layerInformation[KEYS.landCover] = {
   title: 'Land Cover',
@@ -687,17 +699,20 @@ config.text.layerInformation[KEYS.burnScars] = {
 };
 
 // Exports
-export const layerPanelText = config.text.layerPanel;
-export const analysisPanelText = config.text.analysisPanel;
-export const controlPanelText = config.text.controlPanel;
-export const modalText = config.text.modals;
+export const links = config.links;
 export const assetUrls = config.assets;
 export const proxyRules = config.proxy;
 export const defaults = config.defaults;
-export const layersConfig = config.layers;
 export const errors = config.text.errors;
+export const layersConfig = config.layers;
+export const modalText = config.text.modals;
+
+export const layerPanelText = config.text.layerPanel;
+export const analysisPanelText = config.text.analysisPanel;
+export const controlPanelText = config.text.controlPanel;
+
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
 export const analysisConfig = config.analysis;
-export const layerInformation = config.text.layerInformation;
 export const alertsModalConfig = config.alertsModal;
+export const layerInformation = config.text.layerInformation;

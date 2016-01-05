@@ -5,7 +5,7 @@ import LayerPanel from 'components/LayerPanel/LayerPanel';
 import {applyStateFromUrl} from 'helpers/ShareHelper';
 import {mapActions} from 'actions/MapActions';
 import {getUrlParams} from 'utils/params';
-import {mapConfig} from 'js/config';
+import {mapConfig, links} from 'js/config';
 import React from 'react';
 
 export default class Map extends React.Component {
@@ -33,8 +33,8 @@ export default class Map extends React.Component {
   render () {
     return (
       <div id={mapConfig.id} className={'map'}>
-        <a href='/' alt='Global Forest Watch - Water Home'><div className='gfw-water-logo' /></a>
-        <div className='aqueduct-logo' />
+        <a href={links.home.url} title={links.home.title} alt={links.home.title} target='_blank'><div className='gfw-water-logo' /></a>
+        <a href={links.aqueduct.url} title={links.aqueduct.title} alt={links.aqueduct.title} target='_blank'><div className='aqueduct-logo' /></a>
         <LayerPanel loaded={this.state.loaded} />
         <ControlPanel />
         <EsriSearch loaded={this.state.loaded} />

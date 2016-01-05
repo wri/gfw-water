@@ -4,20 +4,13 @@ import React from 'react';
 let generateChart = (id, feature) => {
   console.log(feature);
   $(`#${id}`).highcharts({
-    chart: { polar: true, spacingBottom: 0, spacingLeft: 0, spacingRight: 0, spacingTop: 0 },
+    chart: {
+      backgroundColor: 'transparent',
+      type: 'column'
+    },
     title: { text: '' },
-    pane: { startAngle: 0, endAngle: 360 },
-    xAxis: {
-      tickInterval: 360,
-      min: 0,
-      max: 360,
-      labels: { enabled: false }
-    },
-    yAxis: { min: 0, max: 5, labels: { enabled: false } },
-    plotOptions: {
-      series: { pointStart: 0, pointInterval: 90, events: { legendItemClick: () => false } },
-      column: { pointPadding: 0, groupPadding: 0 }
-    },
+    xAxis: { tickLength: 0, labels: { enabled: false } },
+    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 3, 5], title: { text: '' } },
     legend: {
       align: 'right',
       layout: 'vertical',
@@ -26,6 +19,15 @@ let generateChart = (id, feature) => {
         width: '130px',
         fontWeight: 300,
         fontFamily: '\'Fira Sans\', Georgia, serif'
+      }
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.1,
+        borderWidth: 0
+      },
+      series: {
+        groupPadding: 0
       }
     },
     tooltip: {
@@ -37,14 +39,14 @@ let generateChart = (id, feature) => {
     series: [{
       type: 'column',
       name: 'Recent tree cover loss',
-      data: [2],
+      data: [1],
       color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Sedimentation',
-      data: [4],
+      name: 'Erosion',
+      data: [2],
       color: '#A79261',
       pointPlacement: 'between'
     },
