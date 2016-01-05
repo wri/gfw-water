@@ -16,7 +16,8 @@
     "define": true,
     "require": true,
     "navigator": true,
-    "_babelPolyfill": true
+    "Highcharts": true,
+    "_babelPolyfill": true,
   },
   "plugins": [
     "react"
