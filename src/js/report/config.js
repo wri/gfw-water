@@ -35,8 +35,8 @@ export default {
   proxy: {
     featureServer: {
       urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
-      // proxyUrl: 'http://localhost/proxy/proxy.php'
-      proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      proxyUrl: 'http://localhost/proxy/proxy.php'
+      // proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
     }
   },
   canopyDensity: 10,
@@ -144,5 +144,22 @@ export default {
   mapPrintHeight: 300,
   mapPrintWidthSmall: 512,
   mapPrintWidthLarge: 1024,
+  mapExtentExpandFactor: 1.3,
   mapPrintDPI: 96
+
 };
+
+const text = {
+  share: {
+    title: 'Share this view',
+    linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
+    copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
+    copyButton: 'Copy',
+    copiedButton: 'Copied',
+    googleUrl: url => `https://plus.google.com/share?url=${url}`,
+    twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
+    facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+  }
+};
+
+export const modalText = text;

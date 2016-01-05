@@ -8,7 +8,7 @@ export default {
         backgroundColor: 'transparent',
         type: 'column',
         height: 200,
-        width: 400
+        width: 450
       },
       title: { text: '' },
       xAxis: { tickLength: 0, labels: { enabled: false } },
@@ -18,7 +18,7 @@ export default {
         layout: 'vertical',
         verticalAlign: 'middle',
         itemStyle: {
-          width: '130px',
+          width: '160px',
           fontWeight: 300,
           fontFamily: '\'Fira Sans\', Georgia, serif'
         }
@@ -42,6 +42,13 @@ export default {
       },
       {
         type: 'column',
+        name: 'Historical tree cover loss',
+        data: [rs_tl_c],
+        color: '#D2DF2E',
+        pointPlacement: 'between'
+      },
+      {
+        type: 'column',
         name: 'Erosion',
         data: [rs_sed_c],
         color: '#A79261',
@@ -52,13 +59,6 @@ export default {
         name: 'Fire',
         data: [rs_fire_c],
         color: '#EA5A00',
-        pointPlacement: 'between'
-      },
-      {
-        type: 'column',
-        name: 'Historical tree cover loss',
-        data: [rs_tl_c],
-        color: '#D2DF2E',
         pointPlacement: 'between'
       }]
     });
@@ -105,4 +105,4 @@ export default {
       }]
     });
   }
-}
+};

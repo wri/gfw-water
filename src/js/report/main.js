@@ -1,9 +1,13 @@
+import ShareModal from 'components/Modals/ShareModal';
+import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import {loadCSS, loadJS} from 'utils/loaders';
 import config from 'js/config';
 import reportMaps from 'js/report-maps';
 import urlUtils from 'esri/urlUtils';
-import reportCharts from 'js/report-charts';
+import ReactDOM from 'react-dom';
+import React from 'react';
+// import reportCharts from 'js/report-charts';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
@@ -42,7 +46,16 @@ let configureApp = () => {
   urlUtils.addProxyRule(config.proxy.featureServer);
 };
 
+const attachEvents = () => {
+  //- Listener for share modal
+  document.getElementById('share-icon').addEventListener('click', () => {
+    let queryString = document.location.search.slice(1);
+    modalActions.showShareModal(queryString);
+  });
+};
+
 configureApp();
 lazyloadAssets();
-console.log('calling report maps, config', config);
+attachEvents();
 reportMaps.printAll(config);
+ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));

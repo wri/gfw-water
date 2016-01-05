@@ -45,6 +45,13 @@ let generateChart = (id, feature) => {
     },
     {
       type: 'column',
+      name: 'Historical tree cover loss',
+      data: [4],
+      color: '#D2DF2E',
+      pointPlacement: 'between'
+    },
+    {
+      type: 'column',
       name: 'Erosion',
       data: [2],
       color: '#A79261',
@@ -55,13 +62,6 @@ let generateChart = (id, feature) => {
       name: 'Fire',
       data: [3],
       color: '#EA5A00',
-      pointPlacement: 'between'
-    },
-    {
-      type: 'column',
-      name: 'Historical tree cover loss',
-      data: [4],
-      color: '#D2DF2E',
       pointPlacement: 'between'
     }]
   });
