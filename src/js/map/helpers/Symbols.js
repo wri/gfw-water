@@ -29,7 +29,7 @@ const Symbols = {
     upstreamSymbol = new SimpleFillSymbol(
       SimpleFillSymbol.STYLE_SOLID,
       new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color(symbolConfig.upstreamSymbol), 2),
-      new Color([210, 210, 210, 0.25])
+      new Color([210, 210, 210, 0.0])
     );
     return upstreamSymbol;
   },

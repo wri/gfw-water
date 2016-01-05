@@ -12,7 +12,7 @@ export default {
       },
       title: { text: '' },
       xAxis: { tickLength: 0, labels: { enabled: false } },
-      yAxis: { min: 0, max: 5, tickPositions: [0,1,3,5], title: { text: '' } },
+      yAxis: { min: 0, max: 5, tickPositions: [0, 1, 3, 5], title: { text: '' } },
       legend: {
         align: 'right',
         layout: 'vertical',
