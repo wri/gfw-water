@@ -4,10 +4,15 @@ export default {
     let {rs_fire_c, rs_pf_c, rs_sed_c, rs_tl_c} = watershed.attributes;
 
     let riskChart = new Highcharts.Chart('risk-chart', {
-      chart: { backgroundColor: 'transparent', type: 'column' },
+      chart: {
+        backgroundColor: 'transparent',
+        type: 'column',
+        height: 200,
+        width: 400
+      },
       title: { text: '' },
       xAxis: { tickLength: 0, labels: { enabled: false } },
-      yAxis: { min: 0, max: 5, title: { text: '' } },
+      yAxis: { min: 0, max: 5, tickPositions: [0,1,3,5], title: { text: '' } },
       legend: {
         align: 'right',
         layout: 'vertical',
@@ -22,6 +27,9 @@ export default {
         column: {
           pointPadding: 0.1,
           borderWidth: 0
+        },
+        series: {
+          groupPadding: 0
         }
       },
       credits: { enabled: false },
@@ -63,14 +71,18 @@ export default {
       return { y: watershed.attributes[field], name: fieldLabels[index], color: categoryColors[index] };
     });
     let landCoverChart = new Highcharts.Chart('land-cover-chart', {
-      chart: { backgroundColor: 'transparent', type: 'pie', plotShadow: false },
+      chart: {
+        backgroundColor: 'transparent',
+        height: 200,
+        type: 'pie',
+        plotShadow: false
+      },
       title: { text: '' },
       legend: {
         align: 'right',
         layout: 'vertical',
         verticalAlign: 'middle',
         itemStyle: {
-          color: '#fff',
           width: '130px',
           fontWeight: 300,
           fontFamily: '\'Fira Sans\', Georgia, serif'

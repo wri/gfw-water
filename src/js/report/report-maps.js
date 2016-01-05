@@ -141,6 +141,13 @@ const errorHandler = (error) => {
 };
 
 const printAll = (options) => {
+  // Show a loading icon while maps and charts are being generated.
+  const loading = domQuery('div.loading-container')[0];
+  domQuery('div.wrapper div.printed-map').forEach((n) => {
+    domConstruct.place(lang.clone(loading), n, 'last');
+  });
+  domConstruct.place(lang.clone(loading), domQuery('#land-cover-chart')[0], 'last');
+  domConstruct.place(lang.clone(loading), domQuery('#risk-chart')[0], 'last');
   config = options;
   const queryString = getUrlParams(window.location.href);
   console.log('query string', queryString);
