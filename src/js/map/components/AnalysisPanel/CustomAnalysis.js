@@ -70,7 +70,8 @@ export default class CustomAnalysis extends React.Component {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             analysisActions.toggleLoader(false);
             analysisActions.analyzeCustomArea(feature);
-            brApp.map.setExtent(feature.geometry.getExtent());
+            //- Set the extent but expand a bit to give some context to the location
+            brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
           }, err => {
             analysisActions.clearCustomArea();
             analysisActions.toggleLoader(false);

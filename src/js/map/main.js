@@ -49,7 +49,7 @@ let lazyloadAssets = () => {
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
   urlUtils.addProxyRule(proxyRules.hydro);
-  // urlUtils.addProxyRule(proxyRules.featureServer);
+  urlUtils.addProxyRule(proxyRules.featureServer);
 };
 
 let initializeApp = () => {

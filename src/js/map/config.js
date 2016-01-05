@@ -1,10 +1,5 @@
 import KEYS from 'js/constants';
 
-// NOTE: TEMPORARY TOKEN FOR LOCALHOST
-// NOTE: TEMPORARY TOKEN FOR HEROKU
-let localToken = 'TjEeQfPMtR-0kjqzTqIZ7ZlDVRCjm0ZOlMbZxEu1A8WonhzXNtFPSGKyw3g5HA3Q6jEZ4q8tMwXACuGZEwMJdQ..';
-let herokuToken = 'TjEeQfPMtR-0kjqzTqIZ7Zn-NmLEWXUQjwi3FScghUD-BQVNAxsBv7dHt5GaWPFuvEflGb9as_kNhhIU3h-6Rb7ZFMOfFIT8BQBZOQWGSic.';
-
 export const config = {
 
   assets: {
@@ -19,12 +14,12 @@ export const config = {
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
-        //proxyUrl: 'http://localhost/proxy/proxy.php'
+        // proxyUrl: 'http://localhost/proxy/proxy.php'
         proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
-        //proxyUrl: 'http://localhost/proxy/proxy.php'
+        // proxyUrl: 'http://localhost/proxy/proxy.php'
         proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
@@ -261,7 +256,7 @@ export const config = {
     },
     {
       id: KEYS.customAreaFeatures,
-      url: `http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0?token=${herokuToken}`,
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0',
       type: 'feature',
       visible: false,
       order: 16
