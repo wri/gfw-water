@@ -64,9 +64,9 @@ export default {
     });
 
     // Land cover chart.
-    let fields = ['lc_crop_ha', 'lc_grass_ha', 'lc_for_ha', 'lc_bar_ha', 'lc_dev_ha', 'lc_other_ha'];
-    let fieldLabels = ['Cropland', 'Grassland', 'Forest', 'Barren', 'Developed', 'Other'];
-    let categoryColors = ['#F2756C', '#40AEBB', '#FFC466', '#B6D9A3', '#FE9E68', '#C2C2C2'];
+    let fields = ['lc_crop_ha', 'lc_for_ha', 'lc_grass_ha', 'lc_dev_ha', 'lc_bar_ha', 'lc_other_ha'];
+    let fieldLabels = ['Crop', 'Forest', 'Shrub/Grassland', 'Urban', 'Bare', 'Other'];
+    let categoryColors = ['#E0A828', '#76B276', '#FFFEC1', '#FCB7CB', '#D3CE63', '#B3B3B3'];
     let dataSeries = fields.map((field, index) => {
       return { y: watershed.attributes[field], name: fieldLabels[index], color: categoryColors[index] };
     });
