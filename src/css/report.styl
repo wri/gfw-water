@@ -8,23 +8,26 @@ $riskYellow = #D2DF2E
 $riskBrown = #A79261
 $riskOrange = #EA5A00
 
+@require 'modal'
+
 section.report-header
   min-height 100px
   z-index 1
 
-section.report-controls
+
+.report-controls
   background $lightGrayHighlight
   margin-top -48px
   min-height 40px
   text-align right
-
   ul
     display flex
     justify-content flex-end
     align-items center
-    li 
+    li
       list-style-type none
       margin 0 0 0 20px
+      cursor pointer
       height 40px
       width 40px
       &:first-child
@@ -34,6 +37,34 @@ section.report-controls
         width 18px
         height 100%
         fill $darkGray
+
+.report-controls-background
+  background $lightGrayHighlight
+  margin-top -56px
+  min-height 56px
+
+// section.report-controls
+//   background $lightGrayHighlight
+//   margin-top -48px
+//   min-height 40px
+//   text-align right
+//
+//   ul
+//     display flex
+//     justify-content flex-end
+//     align-items center
+//     li
+//       list-style-type none
+//       margin 0 0 0 20px
+//       height 40px
+//       width 40px
+//       &:first-child
+//         margin 0
+//       svg
+//         display flex
+//         width 18px
+//         height 100%
+//         fill $darkGray
 
 div.loading-container
   height 100%
@@ -96,7 +127,7 @@ ul
   text-transform none
   padding 0
 
-div.square 
+div.square
   height 1em
   margin 0.25em auto 0 auto
   width 1em
@@ -109,7 +140,7 @@ div.square-brown
 div.square-orange
   background-color $riskOrange
 
-section 
+section
   color $lightGray
 
 section.dark
@@ -130,7 +161,7 @@ section.dark.map.overview
 div#risk-chart
   height 200px
 
-section.stats 
+section.stats
 section.risks
 section.recent-loss
 section.historical-loss
@@ -145,7 +176,7 @@ section.other-projects
     font-weight 100
     margin 0
     padding-top 0.75em
-  h4 
+  h4
     color $darkGray
     font-weight 400
     margin 0
@@ -164,7 +195,7 @@ section.other-projects
       color $lightGray
       flex-basis 50%
 
-      h2 
+      h2
         padding 0
       p
         span.blue
@@ -203,7 +234,7 @@ section.plan
       border-bottom 1px solid $lightGray
       &:last-child
         border-bottom none
-      th 
+      th
         text-align left
       td
         text-transform none
@@ -219,7 +250,7 @@ section.plan
         span.risk-category
         span.strategy-example
           font-weight 700
-        ul 
+        ul
           margin 0
     tr.risk-info
       display none
@@ -236,9 +267,9 @@ section.blue h4
 section.blue
   div.wrapper
     padding 0 0 1em 0
-  h2 
+  h2
     padding-bottom 0.5em
-  h4 
+  h4
     font-size 120%
     text-transform none
   ul li
@@ -263,7 +294,7 @@ section.other-projects h2
   display inline-block
   height 90px
   width 90px
-  left 20px
+  left 0
   top 0
   &:after
     background url('images/beta.png')
@@ -272,7 +303,7 @@ section.other-projects h2
     bottom -5px
     height 18px
     width 30px
-    right 0
+    right -5px
     content ''
 
 .aqueduct-logo

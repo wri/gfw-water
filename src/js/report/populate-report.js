@@ -3,30 +3,30 @@ import domQuery from 'dojo/query';
 import domClass from 'dojo/dom-class';
 import manipulate from 'dojo/NodeList-manipulate';
 import number from 'dojo/number';
-import reportCharts from './report-charts'
+// import reportCharts from './report-charts'
 
-const noDecimal = { places: 0 };
+// const noDecimal = { places: 0 };
 const oneDecimal = { places: 1 };
-const twoDecimals = { places: 2 };
+// const twoDecimals = { places: 2 };
 const percent = { type: 'percent' };
 const percentTwoDecimals = { type: 'percent', places: 2 };
 
 const riskCategory = (risk) => {
   let description = 'low';
-  if (risk == 2) {
+  if (risk === 2) {
     description = 'low to medium';
   }
-  if (risk == 3) {
+  if (risk === 3) {
     description = 'medium';
   }
-  if (risk == 4) {
+  if (risk === 4) {
     description = 'medium to high';
   }
-  if (risk == 5) {
+  if (risk === 5) {
     description = 'high';
   }
   return description;
-}
+};
 
 export default {
   use: (options) => {
@@ -35,7 +35,7 @@ export default {
     // TODO: put attribute field names in config file
     const {attributes} = watershed;
     const canopy = attributes._canopy;
-    
+
     const wsArea = attributes.ws_ha / 1000000;
     const wetArea = attributes.wet_ha / 1000000;
     const wetPercent = wetArea / wsArea;
@@ -97,7 +97,7 @@ export default {
 
     // Use watershed name as report title.
     const watershedName = watershed.attributes[config.watershedName] + ' Watershed';
-    domQuery('section.map.overview h1')[0].innerHTML = watershedName; 
+    domQuery('section.map.overview h1')[0].innerHTML = watershedName;
 
     // Figure out which risk rows to show in Plan for Action section.
     const visibleClassName = 'applicable';
@@ -122,4 +122,4 @@ export default {
       domClass.add(noRisk, 'risk-info');
     }
   }
-}
+};

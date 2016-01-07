@@ -29,7 +29,9 @@ html
         aliases: [
           ['alt', 'vendor/alt/dist/alt.min'],
           ['lodash', 'vendor/lodash/lodash.min'],
-          ['babel-polyfill', 'vendor/browser-polyfill']
+          ['babel-polyfill', 'vendor/browser-polyfill'],
+          ['react', 'vendor/react/react.min'],
+          ['react-dom', 'vendor/react/react-dom.min']
         ],
         deps: ['dojo/domReady!'],
         callback: function () {require(['js/main']);}
@@ -40,23 +42,41 @@ html
     
     section.relative.report-header
       div.wrapper
-        div.gfw-water-logo
-        div.aqueduct-logo
-    section.relative.report-controls
-      div.wrapper
-        ul
-          li 
-            svg 
-              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-share") 
-          li 
-            svg 
-              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-develop") 
-          li 
-            svg 
-              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-map") 
-          li 
-            svg 
-              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-apps") 
+        a(href='../map.html')
+          div.gfw-water-logo.relative
+        a(href='http://www.wri.org/our-work/project/aqueduct')
+          div.aqueduct-logo
+        div.report-controls
+          ul
+            li#share-icon 
+              svg 
+                use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-share") 
+            li 
+              svg 
+                use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-develop") 
+            li 
+              svg 
+                use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-map") 
+            li 
+              svg 
+                use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-apps")
+    
+    section.report-controls-background
+    //- section.relative.report-controls
+    //-   div.wrapper
+    //-     ul
+    //-       li#share-icon 
+    //-         svg 
+    //-           use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-share") 
+    //-       li 
+    //-         svg 
+    //-           use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-develop") 
+    //-       li 
+    //-         svg 
+    //-           use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-map") 
+    //-       li 
+    //-         svg 
+    //-           use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#icon-h-apps") 
     section.relative.dark.map.overview
       div.wrapper 
         h1
@@ -117,6 +137,8 @@ html
               Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.
             p.
               #[span.blue We consider four watershed risks and the scores range from 1 – 5.] A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.
+            p.blue.
+              #[a(href='#plan-for-action') Jump] to recommendations according to watershed risk summary.
 
     hr
 
@@ -130,10 +152,10 @@ html
             h2 Risk Score: #[span.blue#risk-tree-loss -]
             p.
               This watershed experienced #[span.blue#tree-loss-amount --] #[span.blue MHa] of tree cover loss from 2001 to 2014, accounting for #[span.blue#tree-loss-percent -] of total tree cover (2000). The average rate of tree cover loss is #[span.blue#tree-loss-rate --], presenting a #[span#tree-loss-trend --] trend.
-          div.info-column
             p.emphasis.
               As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination.
-        div.printed-map Generating:  recent tree loss map
+          div.info-column
+            div.printed-map Generating:  recent tree loss map
 
     hr
 
@@ -147,10 +169,10 @@ html
             h2 Risk Score: #[span.blue#risk-potential-loss -]
             p.
               This watershed was covered by #[span.blue#potential-loss-amount --] #[span.blue MHa] of forest, accounting for #[span.blue#potential-loss-percent -] of watershed area. The remaining forest covers #[span.blue#potential-loss-rate --] of potential forest.
-          div.info-column
             p.emphasis.
               Over the last several centuries, vast forest areas have been cleared as agriculture has spread and human populations have grown. Breaking the spiral of loss and degradation and restoring these lands would bring many benefits. Restored lands help support livelihoods and biodiversity by supplying clean water, reducing erosiion, providing wildlife habitat, buifuel, and other forest products. Forests and trees mitigate climate change by sequestering carbon. Trees in agricultural landscapes can enhance soil fertility, onserve soil moisture, and boost food production.
-        div.printed-map Generating:  historical tree loss map
+          div.info-column
+            div.printed-map Generating:  historical tree loss map
 
     hr
 
@@ -162,10 +184,10 @@ html
             h2 Risk Score: #[span.blue#risk-erosion -]
             p.
               The overall erosion risk of this watershed is #[span.blue#risk-erosion-description].
-          div.info-column
             p.emphasis.
               Erosion is a significant problem that affects both water quantity and quality. High erosion deteriorates water quality and reduces capacity of reservoirs, increasing cost of water treatment and capital expenses and damaging safety of water supplies. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural land covers to pasture or cropland and other human activities.
-        div.printed-map Generating:  erosion map
+          div.info-column
+            div.printed-map Generating:  erosion map
 
     hr
 
@@ -180,26 +202,30 @@ html
             p.
               Learn more about Global Forest Watch Fires: 
               #[a(href='http://fires.globalforestwatch.org/') fires.globalforestwatch.org/]
-          div.info-column
             p.emphasis.
               Uninvited wildfires are common in some watershed and are a natural form of disturbance in forests. Fire can provide long-term benefits to forest and watershed health. But high intensity or large wild fires can result in significant increases in runoff and erosion, which can negatively impact water quality.
-        div.printed-map Generating:  recent fires map
+          div.info-column
+            div.printed-map Generating:  recent fires map
 
     hr
 
     section.relative.map.water-stress
       div.wrapper
         h4 baseline water stress
-        p.emphasis.
-          Baseline water stress measures chronic stress from the ratio of water withdrawls to available supply. Higher values indicate more competition among users.
-        p.
-          Learn more about the Global Forest Watch Aqueduct Project: 
-          #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
-        div.printed-map Generating:  baseline water stress map
+        div.info-wrapper
+          div.info-column
+            p.emphasis.
+              Baseline water stress measures chronic stress from the ratio of water withdrawls to available supply. Higher values indicate more competition among users.
+            p.
+              Learn more about the Global Forest Watch Aqueduct Project: 
+              #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+          div.info-column
+            div.printed-map Generating:  baseline water stress map
 
     hr
 
-    section.relative.plan 
+    section.relative.plan
+      a(id='plan-for-action')
       div.wrapper
         h2 plan for action
         h4 recommended natural infrastructure strategies
@@ -303,5 +329,6 @@ html
               path(class='moving' d='M0,-25A25,25 0 0,1 25,0L20,0A20,20 0 0,0 0,-20Z' style='fill: rgb(85, 85, 85);')
 
     div#footerGfw
+    div#share-modal.modal-wrapper.hidden
     script(src='http://js.arcgis.com/#{esriVersion}compact/init.js', async)
     script(src='http://www.globalforestwatch.org/gfw-assets', defer)
