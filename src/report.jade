@@ -42,8 +42,10 @@ html
     
     section.relative.report-header
       div.wrapper
-        div.gfw-water-logo.relative
-        div.aqueduct-logo
+        a(href='../map.html')
+          div.gfw-water-logo.relative
+        a(href='http://www.wri.org/our-work/project/aqueduct')
+          div.aqueduct-logo
         div.report-controls
           ul
             li#share-icon 
@@ -135,6 +137,8 @@ html
               Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.
             p.
               #[span.blue We consider four watershed risks and the scores range from 1 – 5.] A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.
+            p.blue.
+              #[a(href='#plan-for-action') Jump] to recommendations according to watershed risk summary.
 
     hr
 
@@ -220,7 +224,8 @@ html
 
     hr
 
-    section.relative.plan 
+    section.relative.plan
+      a(id='plan-for-action')
       div.wrapper
         h2 plan for action
         h4 recommended natural infrastructure strategies
