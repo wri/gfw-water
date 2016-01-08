@@ -2,6 +2,7 @@
 * NOTE: KEYS must be unique
 */
 const KEYS = {
+  //- Basemaps
   wriBasemap: 'wri-basemap',
   imageryBasemap: 'satellite',
   wriBasemapLabel: 'wri-basemap-label',
@@ -26,7 +27,10 @@ const KEYS = {
   adminLabels: 'adminLabels',
   watershedAnalysis: 'watershedAnalysis',
   customAnalysis: 'customAnalysis',
-  customAreaFeatures: 'customAreaFeatures'
+  customAreaFeatures: 'customAreaFeatures',
+  //- Miscellaneous keys
+  watershedChartId: 'watershed-chart',
+  customAreaChartId: 'custom-area-chart'
 };
 
 export { KEYS as default };

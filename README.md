@@ -49,7 +49,7 @@ npm test
 ```
 
 ### Deployment
-The master branch should always be stable and contain release code. Make sure the develop branch has been thoroughly tested and is considered stable before submitting a pull request to master.  Also, once the code is stable and ready to merge, before you submit a pull request to master, please run the following commands from terminal in the develop branch.
+The master branch should always be stable and contain release code. Before submitting a pull request from develop to master, make sure the develop branch has been thoroughly tested and passes ```npm test```.  If it is a valid release candidate, please run the following commands to update the version and tag a release, and then submit a pull request to master.  If ```npm test``` fails it will not be accepted.
 
 ```shell
 npm version {major|minor|patch}

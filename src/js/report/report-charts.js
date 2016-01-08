@@ -1,3 +1,6 @@
+/* charts are created but the refs are not needed, prefer this over the no-new rule for side-effects */
+/* eslint no-unused-vars:0 */
+
 export default {
   use: (watershed) => {
     // Risk chart.
@@ -12,7 +15,7 @@ export default {
       },
       title: { text: '' },
       xAxis: { tickLength: 0, labels: { enabled: false } },
-      yAxis: { min: 0, max: 5, tickPositions: [0, 1, 3, 5], title: { text: '' } },
+      yAxis: { min: 0, max: 5, tickPositions: [0, 1, 2, 3, 4, 5], title: { text: '' } },
       legend: {
         align: 'right',
         layout: 'vertical',
