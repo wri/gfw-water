@@ -90,6 +90,13 @@ define(function (require) {
       expect(analysisPanelConfig.getWatershedTitle({
         attrs: { maj_name: 'Testing' }
       })).to.be.an('string').and.not.to.equal('Testing');
+    },
+
+    'should convert square kilometers to hectares': function () {
+      var analysisPanelConfig = config.analysisPanelText;
+
+      expect(analysisPanelConfig.squareKilometersToHectares(1)).to.equal(100);
+      expect(analysisPanelConfig.squareKilometersToHectares(5)).to.equal(500);
     }
 
   });
@@ -103,6 +110,20 @@ define(function (require) {
       for (var key in layersInformation) {
         expect(layersInformation[key].title).to.exist;
         expect(layersInformation[key].table).to.exist;
+      }
+    }
+
+  });
+
+  registerSuite({
+
+    name: 'config.proxyRules',
+
+    'each entry BETTER NOT POINT TO LOCALHOST': function () {
+      var proxyRules = config.proxyRules;
+      for (var key in proxyRules) {
+        expect(proxyRules[key].proxyUrl).to.not.contain('localhost');
+        expect(proxyRules[key].proxyUrl).to.not.contain('localhost');
       }
     }
 

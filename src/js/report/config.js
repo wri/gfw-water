@@ -142,6 +142,7 @@ export default {
   printer: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
   simplifyGuess: 1000,
   mapPrintHeight: 300,
+  mapPrintSizeSquare: 450,
   mapPrintWidthSmall: 512,
   mapPrintWidthLarge: 1024,
   mapExtentExpandFactor: 1.3,

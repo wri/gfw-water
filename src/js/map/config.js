@@ -413,6 +413,9 @@ export const config = {
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',
+      watershedAreaField: 'ws_ha',
+      hydrologyServiceAreaField: 'AreaSqKm',
+      squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
       customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
       watershedSummeryInfoDescription: '<p>Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.</p><p>We consider four watershed risks and the scores range from 1 – 5. A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.</p>'

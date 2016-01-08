@@ -6,6 +6,7 @@ import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
 import {mapStore} from 'stores/MapStore';
+import KEYS from 'js/constants';
 import React from 'react';
 
 // Temporary for the Prototype
@@ -29,7 +30,7 @@ let WatershedAnalysis = props => {
         <div>
           <div className='feature-title'>{text.getWatershedTitle(props.activeWatershed)}</div>
           <WatershedSummary />
-          <WatershedChart id='currentWatershedChart' feature={props.activeWatershed} />
+          <WatershedChart id={KEYS.watershedChartId} feature={props.activeWatershed} />
           <LossFootnote />
           <CustomAnalysisLink />
           <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>

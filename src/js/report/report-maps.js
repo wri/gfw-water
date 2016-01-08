@@ -1,3 +1,10 @@
+/**
+ * printMap and getWatershed both call functions that in turn may call printMap and getWatershed,
+ * getWatershed calls calculateOffset if it does not have one, after it calculates offset, it
+ * redirects to getWatershed, printMap calls insertMap which then calls printMap until there are no
+ * more to print, for these reasons, no-use-before-define is disabled
+ */
+/* eslint no-use-before-define:0 */
 import {getUrlParams} from 'utils/params';
 import esriConfig from 'esri/config';
 import esriRequest from 'esri/request';
@@ -142,9 +149,11 @@ const printMap = () => {
   // Show the watershed on top.
   webmap.Web_Map_as_JSON.operationalLayers.push(watersheds);
   // Use full width for the overview map, small map for everything else
-  let outputWidth = config.mapsToPrint[printed].name === 'overview' ? config.mapPrintWidthLarge : config.mapPrintWidthSmall;
+  let outputWidth = config.mapsToPrint[printed].name === 'overview' ? config.mapPrintWidthLarge : config.mapPrintSizeSquare;
+  let outputHeight = config.mapsToPrint[printed].name === 'overview' ? config.mapPrintHeight : config.mapPrintSizeSquare;
+
   webmap.Web_Map_as_JSON.exportOptions = {
-    outputSize: [ outputWidth, config.mapPrintHeight ],
+    outputSize: [ outputWidth, outputHeight ],
     dpi: config.mapPrintDPI
   };
   webmap.Web_Map_as_JSON = JSON.stringify(webmap.Web_Map_as_JSON);

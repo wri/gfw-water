@@ -1,3 +1,5 @@
+/* manipulate needs to be loaded for innerHTML to work, but is never really called */
+/* eslint no-unused-vars:0 */
 import dom from 'dojo/dom';
 import domQuery from 'dojo/query';
 import domClass from 'dojo/dom-class';

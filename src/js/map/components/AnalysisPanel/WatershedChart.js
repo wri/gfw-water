@@ -2,6 +2,13 @@ import {analysisPanelText as text} from 'js/config';
 import React from 'react';
 
 let generateChart = (id, feature) => {
+  /**
+  * rs_tl_c - Recent Tree cover loss
+  * rs_pf_c - Historic Tree cover loss
+  * rs_sed_c - Erosion
+  * rs_fire_c - Fire
+  */
+  let { rs_tl_c, rs_pf_c, rs_sed_c, rs_fire_c } = feature.attributes;
   console.log(feature);
   $(`#${id}`).highcharts({
     chart: {
@@ -10,7 +17,7 @@ let generateChart = (id, feature) => {
     },
     title: { text: '' },
     xAxis: { tickLength: 0, labels: { enabled: false } },
-    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 3, 5], title: { text: '' } },
+    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 2, 3, 4, 5], title: { text: '' } },
     legend: {
       align: 'right',
       layout: 'vertical',
@@ -39,28 +46,28 @@ let generateChart = (id, feature) => {
     series: [{
       type: 'column',
       name: 'Recent tree cover loss',
-      data: [1],
+      data: [rs_tl_c],
       color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Historical tree cover loss',
-      data: [4],
+      data: [rs_pf_c],
       color: '#D2DF2E',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Erosion',
-      data: [2],
+      data: [rs_sed_c],
       color: '#A79261',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Fire',
-      data: [3],
+      data: [rs_fire_c],
       color: '#EA5A00',
       pointPlacement: 'between'
     }]
