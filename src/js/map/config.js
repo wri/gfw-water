@@ -179,7 +179,7 @@ export const config = {
       id: KEYS.historicLoss,
       order: 4,
       type: 'dynamic',
-      label: 'Potential forest',
+      label: 'Potential forest coverage',
       group: 'watershedRisk',
       className: 'historic-loss',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/forest_cover/MapServer',
@@ -461,8 +461,56 @@ export const config = {
 };
 
 // Layer Information
-// config.text.layerInformation[KEYS.sediment] = {};
-// config.text.layerInformation[KEYS.historicLoss] = {};
+
+config.text.layerInformation[KEYS.historicLoss] = {
+  title: 'Potential forest coverage',
+  table: [
+    {label: 'Function', html: 'Displays approximate extent of forests in today’s climate without human influence.'},
+    {label: 'Resolution/Scale', html: '1 km'},
+    {label: 'Geographic Coverage', html: 'Global'},
+    {label: 'Source Data', html: 'Potential forest coverage was developed from combining current forest coverage (<a href="http://journals.ametsoc.org/doi/abs/10.1175/1087-3562%282003%29007%3C0001%3AGPTCAA%3E2.0.CO%3B2" target="_blank">Hansen et al., 2003</a>) with data on climate, soils, and elevation and maps of current and historical forest extent (<a href="http://www.fao.org/docrep/005/ac632e/ac632e00.HTM" target="_blank">FAO, 1999</a>; <a href="http://www.wri.org/publication/last-frontier-forests" target="_blank">Bryant et al., 1997</a>; <a href="http://link.springer.com/article/10.1007/s11027-007-9087-4" target="_blank">Zomer et al., 2008</a>). The composition and density of these potential forests was derived from a map of the world’s terrestrial ecoregions (<a href="http://bioscience.oxfordjournals.org/content/51/11/933.full" target="_blank">Olson et al., 2001</a>).'},
+    {label: 'Frequency of Updates', html: 'None scheduled'},
+    {label: 'Date of Content', html: '2011'},
+    {label: 'Cautions', html: 'The dataset is based on significant simplifications due to limited availability of globally-consistent data. The maps are at a relatively coarse scale and should only be used to estimate potential forest coverage at regional or global scale. Only pre-existing information was used. Estimates of potential forest coverage are based on current climate conditions in the absence of human influence/disturbance. The assessment is intended to inform the policy making process at the global level. It should be complemented by further investigation at regional and national scales, where more detailed information is needed and available.'},
+    {label: 'License', html: 'Creative commons (standard WRI license)'}
+  ],
+  overview: [
+    '“Potential forest coverage” refers to estimation of where forests could exist in today’s climate if there was no human influence. This dataset combines approximation of potential woodlands, open forest, and closed forest extent.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>“Potential Forest.” World Resources Institute. Accessed through Global Forest Watch on [date]. water.globalforestwatch.org'
+  ]
+};
+
+config.text.layerInformation[KEYS.sediment] = {
+  title: 'Erosion',
+  table: [
+    {label: 'Function', html: 'Estimates erosion potential from sheet and rill erosion from rainfall and the associated runoff for a landscape profile.'},
+    {label: 'Resolution/Scale', html: '15 arc second (approximately 450 meters)'},
+    {label: 'Geographic Coverage', html: 'Global land (excluding Antarctica and Arctic islands)'},
+    {label: 'Source Data', html: 'Erosion potential is calculated based on the Revised Universal Soil Loss Equation (RUSLE). The model is adjusted to extend the applicability of the RUSLE equation to the globe. The RUSLE model predicts the average annual soil erosion rates by rainfall and is formulated as a product of a rainfall erosivity factor (R), a slope steepness factor (S), a slope length factor (L), a soil erodibility factor (K), a land cover factor (C) and a support practice factor (P). L and P factors were not included, due to data limitation and relatively minor impact on global model. R factor was calculated based on annual rainfall of current conditions (~1950-2000) from <a href="http://www.worldclim.org/current" target="_blank">WorldClim</a> and <a href="http://koeppen-geiger.vu-wien.ac.at/shifts.htm" target="_blank">Köppen–Geiger climate classification</a> for observed conditions (1976-2000). K factor was classified based on <a href="http://webarchive.iiasa.ac.at/Research/LUC/External-World-soil-database/HTML/" target="_blank">Harmonized World Soil Database v 1.2</a>. S factor was calculated based on elevation datasets from multiple sources (USGS, Gesch et al., Amante and Eakins, US Department of Commerce and NOAA, National Geophysical Data Center/NESDIS/NOAA). C factor was estimated based on <a href="http://due.esrin.esa.int/page_globcover.php" target="_blank">GlobCover 2009.</a>'},
+    {label: 'Frequency of Updates', html: 'As new data become available'},
+    {label: 'Date of Content', html: '2015'},
+    {label: 'Cautions', html: 'The RUSLE model is originally developed to be applicable on the agriculture pot scale and parameterized for environmental conditions of the USA. The model does not contain sediment deposition and sediment transport terms. Based on the RUSLE model, the adjusted method improves its global applicability, especially for mountainous regions, but does not eliminate bias and uncertainty of the model.'}
+  ],
+  overview: [
+    'Sedimentation from high levels of erosion damages safety of water supplies and reduces capacity of reservoirs, increasing cost of water treatment and capital expenses. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural land covers to pasture, cropland, or roads.',
+    'Erosion potential is calculated based on the Revised Universal Soil Loss Equation (RUSLE) that computes sheet and rill erosion from rainfall and the associated runoff for a landscape profile. This model is based on a large set of experiments on soil loss due to water erosion from agricultural plots in the USA. RUSLE calculates erosion risk as follows:',
+    'A = R*K*LS*C*P',
+    [
+      'A: average annual potential soil erosion',
+      'R: average rainfall erosivity factor',
+      'LS: average topographical parameter',
+      'K: average soil erodibility',
+      'C: average land cover and management factor',
+      'P: average conservation practice factor'
+    ],
+    'Due to data limitation, L and P factors were not included in the global model. The result of the global model was categorized into five quantiles, corresponding to low to high erosion risks.'
+  ],
+  citation: [
+    '<strong>Citation:</strong>“Erosion.” World Resources Institute. Accessed through Global Forest Watch on [date]. water.globalforestwatch.org'
+  ]
+};
 
 config.text.layerInformation[KEYS.landCover] = {
   title: 'Land Cover',
