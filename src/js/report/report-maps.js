@@ -41,8 +41,6 @@ const insertMap = (response) => {
   printed += 1;
   if ( printed < config.mapsToPrint.length ) {
     printMap();
-  } else {
-    reportCharts.use(watershed);
   }
 };
 
@@ -91,6 +89,7 @@ const handleWatershed = (result) => {
     watershed.symbol = lang.clone(config.watershedSymbol);
     watersheds.featureCollection.layers[0].featureSet.features.push(watershed);
     getFireCount();
+    reportCharts.use(watershed);
   } else {
     console.log('could not find watershed', result);
   }
@@ -173,10 +172,10 @@ const printAll = (options) => {
   domConstruct.place(lang.clone(loading), domQuery('#land-cover-chart')[0], 'last');
   domConstruct.place(lang.clone(loading), domQuery('#risk-chart')[0], 'last');
   config = options;
-  const queryString = getUrlParams(window.location.href);
+  const queryString = getUrlParams(window.location.search);
   console.log('query string', queryString);
   config.watershedId = queryString[config.watershedQueryStringParam] || config.watershedId;
-  config.canopyDensity = queryString.canopyDensity || config.canopyDensity;
+  config.canopyDensity = queryString.canopyDensity.split('#')[0] || config.canopyDensity;
   watersheds = lang.clone(featureCollection);
   fireQueryTask = new QueryTask(config.fireUrl);
   // Set up query task to either hit watershed layer or custom analysis area layer.
