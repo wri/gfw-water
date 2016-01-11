@@ -18,6 +18,7 @@ import queryUtils from './query-utils';
 import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
+import performCustomAnalysis from 'js/custom-analysis';
 
 let config;
 let shedQueryTask;
@@ -119,9 +120,14 @@ const getCustomFeature = (params) => {
   query.geometryPrecision = 0;
   query.returnGeometry = true;
   query.outFields = ['*'];
-  console.log(query);
   shedQueryTask.execute(query).then(function (res) {
-    console.log(res);
+    if (res.features.length === 1) {
+      let feature = res.features[0];
+      performCustomAnalysis(feature.geometry).then(function (response) {
+        
+      });
+    }
+
     handleWatershed(res);
   }, errorHandler);
 };

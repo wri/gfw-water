@@ -1,3 +1,5 @@
+import KEYS from 'js/constants';
+
 export default {
   assetUrls: {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
@@ -163,4 +165,29 @@ const text = {
   }
 };
 
+let analysis = {
+  imageService: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/analysis/ImageServer',
+  mosaicRule: rasterId => {
+    return {
+      'mosaicMethod': 'esriMosaicLockRaster',
+      'mosaicOperation': 'MT_FIRST',
+      'lockRasterIds': [rasterId],
+      'ascending': true
+    };
+  }
+};
+
+analysis[KEYS.WETLAND] = {
+  rasterId: 543
+};
+
+analysis[KEYS.TCD] = {
+  rasterId: 547
+};
+
+analysis[KEYS.PTC] = {
+  rasterId: 545
+};
+
 export const modalText = text;
+export const analysisConfig = analysis;
