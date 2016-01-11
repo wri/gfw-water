@@ -122,8 +122,8 @@ const getCustomFeature = (params) => {
   shedQueryTask.execute(query).then(function (res) {
     if (res.features.length === 1) {
       let feature = res.features[0];
-      performCustomAnalysis(feature.geometry).then(function (response) {
-        
+      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (response) {
+
       });
     }
 
@@ -179,7 +179,6 @@ const printAll = (options) => {
   domConstruct.place(lang.clone(loading), domQuery('#risk-chart')[0], 'last');
   config = options;
   const queryString = getUrlParams(window.location.search);
-  console.log('query string', queryString);
   config.watershedId = queryString[config.watershedQueryStringParam] || config.watershedId;
   config.canopyDensity = queryString.canopyDensity.split('#')[0] || config.canopyDensity;
   watersheds = lang.clone(featureCollection);

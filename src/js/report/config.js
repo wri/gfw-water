@@ -174,19 +174,69 @@ let analysis = {
       'lockRasterIds': [rasterId],
       'ascending': true
     };
+  },
+  rasterRemapForTCD: (density) => {
+    return {
+      'rasterFunction': 'Arithmetic',
+      'rasterFunctionArguments': {
+        'Raster': {
+          'rasterFunction': 'Remap',
+          'rasterFunctionArguments': {
+            'InputRanges': [0, density, density, 101],
+            'OutputValues': [0, 1],
+            'Raster': '$520',
+            'AllowUnmatched': false
+          }
+        },
+        'Raster2': '$530',
+        'Operation': 3
+      }
+    };
   }
 };
 
 analysis[KEYS.WETLAND] = {
-  rasterId: 543
+  rasterId: 543,
+  field: 'wet_ha'
 };
 
 analysis[KEYS.TCD] = {
-  rasterId: 547
+  rasterId: 547,
+  field: density => `tc_g${density}_ha`
 };
 
 analysis[KEYS.PTC] = {
-  rasterId: 545
+  rasterId: 545,
+  field: 'ptc_ha'
+};
+
+analysis[KEYS.LC] = {
+  rasterId: 548,
+  fields: ['lc_crop_ha', 'lc_for_ha', 'lc_grass_ha', 'lc_dev_ha', 'lc_bar_ha', 'lc_other_ha'],
+  labels: ['Cropland', 'Forest', 'Grassland', 'Developed', 'Barren', 'Other']
+};
+
+analysis[KEYS.TCL] = {
+  rasterId: 548,
+  allField: (density) => `tl_g${density}_all_ha`
+};
+
+analysis[KEYS.DAMS] = {
+  url: 'http://gis-gfw.wri.org/arcgis/rest/services/infrastructure/MapServer/0',
+  content: {
+    returnIdsOnly: true,
+    where: '1 = 1'
+  },
+  field: 'dams_c'
+};
+
+analysis[KEYS.WATER] = {
+  url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/0',
+  content: {
+    returnIdsOnly: true,
+    where: '1 = 1'
+  },
+  field: 'wd_c'
 };
 
 export const modalText = text;
