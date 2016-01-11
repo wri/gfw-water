@@ -14,6 +14,8 @@ if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some 
 // Set up globals
 window.brApp = {
   debugEnabled: true,
+  highchartsLoaded: false,
+  highchartsPromise: false,
   debug: function (message) {
     if (this.debugEnabled) {
       var print = typeof message === 'string' ? console.log : console.dir;
@@ -38,7 +40,10 @@ let lazyloadAssets = () => {
   loadCSS(config.assetUrls.ionCSS);
   loadCSS(config.assetUrls.ionSkinCSS);
   loadJS(config.assetUrls.highcharts);
-  loadJS(config.assetUrls.highchartsMore);
+  brApp.highchartsPromise = loadJS(config.assetUrls.highchartsExport);
+  brApp.highchartsPromise.then(() => {
+    brApp.highchartsLoaded = true;
+  }, console.error);
 };
 
 let configureApp = () => {
