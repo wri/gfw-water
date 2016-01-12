@@ -1,3 +1,5 @@
+import KEYS from 'js/constants';
+
 export default {
   assetUrls: {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
@@ -163,4 +165,86 @@ const text = {
   }
 };
 
+let analysis = {
+  imageService: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/analysis/ImageServer',
+  mosaicRule: rasterId => {
+    return {
+      'mosaicMethod': 'esriMosaicLockRaster',
+      'mosaicOperation': 'MT_FIRST',
+      'lockRasterIds': [rasterId],
+      'ascending': true
+    };
+  },
+  rasterRemapForTCD: (rasterId, density) => {
+    return {
+      'rasterFunction': 'Arithmetic',
+      'rasterFunctionArguments': {
+        'Raster': {
+          'rasterFunction': 'Remap',
+          'rasterFunctionArguments': {
+            'InputRanges': [0, density, density, 101],
+            'OutputValues': [0, 1],
+            'Raster': '$520',
+            'AllowUnmatched': false
+          }
+        },
+        'Raster2': `$${rasterId}`,
+        'Operation': 3
+      }
+    };
+  }
+};
+
+analysis[KEYS.WETLAND] = {
+  rasterId: 543,
+  field: 'wet_ha'
+};
+
+analysis[KEYS.TCD] = {
+  rasterId: 547,
+  field: density => `tc_g${density}_ha`
+};
+
+analysis[KEYS.PTC] = {
+  rasterId: 545,
+  field: 'ptc_ha'
+};
+
+analysis[KEYS.LC] = {
+  rasterId: 548,
+  fields: ['lc_crop_ha', 'lc_for_ha', 'lc_grass_ha', 'lc_dev_ha', 'lc_bar_ha', 'lc_other_ha'],
+  labels: ['Cropland', 'Forest', 'Grassland', 'Developed', 'Barren', 'Other']
+};
+
+analysis[KEYS.TCL] = {
+  rasterId: 530,
+  slopeField: density => `tlt_g${density}_ha`,
+  allField: density => `tl_g${density}_all_ha`,
+  field: (density, index) => {
+    // Index should always be two digits, 1 = 01, 2 = 02, 10 = 10, etc. valid values are 01 - 14
+    let indexValue = index < 10 ? `0${index}` : index;
+    return `tl_g${density}_${indexValue}_ha`;
+  },
+  fieldMax: 14 // Represents 2014, this will need to update when the service does
+};
+
+analysis[KEYS.DAMS] = {
+  url: 'http://gis-gfw.wri.org/arcgis/rest/services/infrastructure/MapServer/0',
+  content: {
+    returnIdsOnly: true,
+    where: '1 = 1'
+  },
+  field: 'dams_c'
+};
+
+analysis[KEYS.WATER] = {
+  url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/0',
+  content: {
+    returnIdsOnly: true,
+    where: '1 = 1'
+  },
+  field: 'wd_c'
+};
+
 export const modalText = text;
+export const analysisConfig = analysis;

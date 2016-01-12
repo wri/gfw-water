@@ -18,6 +18,7 @@ import queryUtils from './query-utils';
 import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
+import performCustomAnalysis from 'js/custom-analysis';
 
 let config;
 let shedQueryTask;
@@ -118,10 +119,14 @@ const getCustomFeature = (params) => {
   query.geometryPrecision = 0;
   query.returnGeometry = true;
   query.outFields = ['*'];
-  console.log(query);
   shedQueryTask.execute(query).then(function (res) {
-    console.log(res);
-    handleWatershed(res);
+    if (res.features.length === 1) {
+      let feature = res.features[0];
+      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (attrs) {
+        lang.mixin(feature.attributes, attrs);
+        handleWatershed(res);
+      });
+    }
   }, errorHandler);
 };
 
@@ -173,7 +178,6 @@ const printAll = (options) => {
   domConstruct.place(lang.clone(loading), domQuery('#risk-chart')[0], 'last');
   config = options;
   const queryString = getUrlParams(window.location.search);
-  console.log('query string', queryString);
   config.watershedId = queryString[config.watershedQueryStringParam] || config.watershedId;
   config.canopyDensity = queryString.canopyDensity.split('#')[0] || config.canopyDensity;
   watersheds = lang.clone(featureCollection);
