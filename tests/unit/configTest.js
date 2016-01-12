@@ -4,6 +4,7 @@ define(function (require) {
   var registerSuite = require('intern!object');
   var expect = require('intern/chai!expect');
   var config = require('js/config');
+  var reportConfig = require('report/config');
 
   registerSuite({
 
@@ -121,6 +122,7 @@ define(function (require) {
 
     'each entry BETTER NOT POINT TO LOCALHOST': function () {
       var proxyRules = config.proxyRules;
+      proxyRules.reportProxy = reportConfig.default.proxy.featureServer;
       for (var key in proxyRules) {
         expect(proxyRules[key].proxyUrl).to.not.contain('localhost');
         expect(proxyRules[key].proxyUrl).to.not.contain('localhost');

@@ -41,6 +41,7 @@ define({
 		packages: [
 			{ name: 'js', location: 'build/js/map' },
 			{ name: 'vendor', location: 'build/vendor' },
+			{ name: 'report', location: 'build/js/report' },
 			{ name: 'utils', location: 'build/js/map/utils' },
 			{ name: 'stores', location: 'build/js/map/stores' },
 			{ name: 'actions', location: 'build/js/map/actions' },
