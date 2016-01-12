@@ -1,7 +1,10 @@
+import Formatters from 'js/custom-formatters';
 import Histogram from 'js/compute-histogram';
 import {analysisConfig} from 'js/config';
 import esriRequest from 'esri/request';
 import Deferred from 'dojo/Deferred';
+import lang from 'dojo/_base/lang';
+import all from 'dojo/promise/all';
 import KEYS from 'js/constants';
 
 /**
@@ -37,48 +40,42 @@ const esriQuery = (url, content, geometry) => {
 * @return {deferred} promise
 */
 const customAnalysis = (geometry, canopyDensity) => {
-  let promise = new Deferred();
-
-  console.log('Canopy Density', canopyDensity);
-
-  // Wetlands Analysis
-  Histogram.getWithMosaic(analysisConfig[KEYS.WETLAND], geometry).then(function (res) {
-    console.log('Wetlands', res);
-  });
-
-  // Tree Cover Density Analysis
-  Histogram.getWithMosaic(analysisConfig[KEYS.TCD], geometry).then(function (res) {
-    console.log('Tree Cover Density', res);
-  });
-
-  // Major Dams Analysis
-  let majorDamsConfig = analysisConfig[KEYS.DAMS];
-  esriQuery(majorDamsConfig.url, majorDamsConfig.content, geometry).then(function (res) {
-    console.log('Major Dams', res.objectIds);
-  });
-
-  // Potential Tree Cover
-  Histogram.getWithMosaic(analysisConfig[KEYS.PTC], geometry).then(function (res) {
-    console.log('Potential Tree Cover', res);
-  });
-
-  // Water Intake Locations
   let waterIntakeConfig = analysisConfig[KEYS.WATER];
-  esriQuery(waterIntakeConfig.url, waterIntakeConfig.content, geometry).then(function (res) {
-    console.log('Water Intake Locations', res.objectIds);
-  });
+  let majorDamsConfig = analysisConfig[KEYS.DAMS];
+  let treeDensityConfig = analysisConfig[KEYS.TCD];
+  let treeLossConfig = analysisConfig[KEYS.TCL];
+  let promise = new Deferred();
+  let promises = {};
 
+  // Start the promises and give them an id, then pass them to all
+  // Major Dams Analysis
+  promises[KEYS.DAMS] = esriQuery(majorDamsConfig.url, majorDamsConfig.content, geometry);
+  // Water Intake Locations
+  promises[KEYS.WATER] = esriQuery(waterIntakeConfig.url, waterIntakeConfig.content, geometry);
+  // Wetlands Analysis
+  promises[KEYS.WETLAND] = Histogram.getWithMosaic(analysisConfig[KEYS.WETLAND], geometry);
+  // Potential Tree Cover
+  promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC], geometry);
   // Land Cover
-  Histogram.getWithMosaic(analysisConfig[KEYS.LC], geometry).then(function (res) {
-    console.log('Land Cover', res);
-  });
-
+  promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC], geometry);
+  // Tree Cover Density Analysis
+  promises[KEYS.TCD] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, canopyDensity, geometry);
   // Tree Cover Loss
-  Histogram.getWithRasterFuncAndDensity(canopyDensity, geometry).then(function (res) {
-    console.log('Tree Cover Loss', res);
+  promises[KEYS.TCL] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, canopyDensity, geometry);
+
+  all(promises).then(function (response) {
+    let attributes = {};
+    // Mixin all the attributes
+    lang.mixin(attributes, Formatters.formatWetlands(response[KEYS.WETLAND].histograms));
+    lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD].histograms, canopyDensity));
+    lang.mixin(attributes, Formatters.formatMajorDams(response[KEYS.DAMS].histograms));
+    lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC].histograms));
+    lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER].histograms));
+    lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC].histograms));
+    lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL].histograms, canopyDensity));
+    promise.resolve(attributes);
   });
 
-  promise.resolve();
   return promise;
 };
 

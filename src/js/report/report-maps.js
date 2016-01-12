@@ -122,12 +122,11 @@ const getCustomFeature = (params) => {
   shedQueryTask.execute(query).then(function (res) {
     if (res.features.length === 1) {
       let feature = res.features[0];
-      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (response) {
-
+      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (attrs) {
+        lang.mixin(feature.attributes, attrs);
+        handleWatershed(res);
       });
     }
-
-    handleWatershed(res);
   }, errorHandler);
 };
 

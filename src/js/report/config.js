@@ -175,7 +175,7 @@ let analysis = {
       'ascending': true
     };
   },
-  rasterRemapForTCD: (density) => {
+  rasterRemapForTCD: (rasterId, density) => {
     return {
       'rasterFunction': 'Arithmetic',
       'rasterFunctionArguments': {
@@ -188,7 +188,7 @@ let analysis = {
             'AllowUnmatched': false
           }
         },
-        'Raster2': '$530',
+        'Raster2': `$${rasterId}`,
         'Operation': 3
       }
     };
@@ -217,8 +217,15 @@ analysis[KEYS.LC] = {
 };
 
 analysis[KEYS.TCL] = {
-  rasterId: 548,
-  allField: (density) => `tl_g${density}_all_ha`
+  rasterId: 530,
+  slopeField: density => `tlt_g${density}_ha`,
+  allField: density => `tl_g${density}_all_ha`,
+  field: (density, index) => {
+    // Index should always be two digits, 1 = 01, 2 = 02, 10 = 10, etc. valid values are 01 - 14
+    let indexValue = index < 10 ? `0${index}` : index;
+    return `tl_g${density}_${indexValue}_ha`;
+  },
+  fieldMax: 14 // Represents 2014, this will need to update when the service does
 };
 
 analysis[KEYS.DAMS] = {

@@ -22,7 +22,7 @@ export default {
   */
   formatWetlands: (histograms) => {
     let config = analysisConfig[KEYS.WETLAND];
-    // Parse the counts array, return 0 if counts is not an array
+    // Parse the counts array
     let counts = getCounts(histograms);
     let attributes = {};
     // Grab the second value, the first is nulls, the second is the one we want
@@ -32,9 +32,17 @@ export default {
 
   /**
   * @param {array} histograms - histograms response from Image Server
+  * @param {number} canopyDensity - Tree Cover Density Canopy Setting
+  * @return {object} attributes - object with correct field set to value or 0
   */
-  formatTreeCoverDensity: (histograms) => {
-
+  formatTreeCoverDensity: (histograms, canopyDensity) => {
+    let config = analysisConfig[KEYS.TCD];
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let attributes = {};
+    console.log(config.field(canopyDensity));
+    attributes[config.field(canopyDensity)] = counts.slice(1).reduce((a, b) => a + b);
+    return attributes;
   },
 
   /**
@@ -51,9 +59,16 @@ export default {
 
   /**
   * @param {array} histograms - histograms response from Image Server
+  * @return {object} attributes - object with correct field set to value or 0
   */
   formatPotentialTreeCover: (histograms) => {
-
+    let config = analysisConfig[KEYS.PTC];
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let attributes = {};
+    //- Value to save is the sum of the values in counts from indices 1 - 14
+    attributes[config.field] = counts.slice(1).reduce((a, b) => a + b);
+    return attributes;
   },
 
   /**
@@ -87,9 +102,28 @@ export default {
 
   /**
   * @param {array} histograms - histograms response from Image Server
+  * @param {number} canopyDensity - Tree Cover Density Canopy Setting
+  * @return {object} attributes - object with correct field set to value or 0
   */
-  formatTreeCoverLoss: (histograms) => {
-
+  formatTreeCoverLoss: (histograms, canopyDensity) => {
+    let config = analysisConfig[KEYS.TCL];
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let attributes = {};
+    let sum = 0;
+    //- Save the individual values as well for the TCL bar chart, indices 1 - 14 represents 2001 - 2014
+    //- When we add new data for new years, config.fieldMax needs to be increased, it's set so
+    //- values are set to 0 if there not in the resopnse since histograms drop all trailing 0's
+    let index = 1;
+    for(index; index <= config.fieldMax; index++) {
+      // Format is tl_g_${density}_${two digit index}_ha
+      attributes[config.field(canopyDensity, index)] = counts[index] || 0;
+      sum += counts[index] || 0;
+    }
+    //- Save the sum of the values of counts from indices 1 - 14 in all field
+    attributes[config.allField(canopyDensity)] = sum;
+    //- Save the slope as well
+    return attributes;
   }
 
 };

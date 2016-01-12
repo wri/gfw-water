@@ -36,9 +36,9 @@ const query = {
     });
   },
 
-  getWithRasterFuncAndDensity: (density, geometry) => {
+  getWithRasterFuncAndDensity: (rasterId, density, geometry) => {
     return computeHistogram(analysisConfig.imageService, {
-      rasterFunction: analysisConfig.rasterRemapForTCD(density),
+      renderingRule: analysisConfig.rasterRemapForTCD(rasterId, density),
       geometry: geometry
     });
   }
