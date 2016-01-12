@@ -1,5 +1,7 @@
 /* charts are created but the refs are not needed, prefer this over the no-new rule for side-effects */
 /* eslint no-unused-vars:0 */
+import number from 'dojo/number';
+
 const makeCharts = (watershed) => {
   // Risk bar chart.
   let {rs_fire_c, rs_pf_c, rs_sed_c, rs_tl_c} = watershed.attributes;
@@ -153,6 +155,11 @@ const makeCharts = (watershed) => {
       itemStyle: {
         fontWeight: 300,
         fontFamily: '\'Fira Sans\', Georgia, serif'
+      }
+    },
+    tooltip: {
+      formatter: function () {
+        return `<strong>TREE COVER LOSS (HA)</strong><br>20${this.key} - ${number.format(this.y)}`;
       }
     },
     plotOptions: {

@@ -57,6 +57,11 @@ export const config = {
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
+  queryOptions: {
+    units: 'miles',
+    distance: 20
+  },
+
   /**
   * These are passed to various stores, make sure they match the format in the stores/*.js files
   * For default active layers, set the visible property to true below in layers, thats how the store
@@ -766,5 +771,6 @@ export const controlPanelText = config.text.controlPanel;
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
 export const analysisConfig = config.analysis;
+export const queryConfig = config.queryOptions;
 export const alertsModalConfig = config.alertsModal;
 export const layerInformation = config.text.layerInformation;
