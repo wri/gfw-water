@@ -15,6 +15,35 @@ const getCounts = histograms => {
   return counts;
 };
 
+/**
+* Helper function to calculate slope for a linear regression line based on knownX's and knownY's
+* using the least squares method, similar to how excel and google implement SLOPE in spreadsheet
+* Formula taken from https://www.easycalculation.com/analytical/learn-least-square-regression.php
+* @param {array} - knownXs - Known X Values
+* @param {array} - knownYs - Known Y Values
+* @return {number} - slope
+*/
+const calculateSlope = (knownXs, knownYs) => {
+  let X_SQUARED = [],
+      XY = [],
+      leastSquareSlope,
+      ΣXY, ΣXX,
+      ΣX, ΣY;
+
+  knownXs.forEach(function (val, index) {
+    XY.push(val * knownYs[index]);
+    X_SQUARED.push(Math.pow(val, 2));
+  });
+
+  ΣX = knownXs.reduce(function (a, b) { return a + b; });
+  ΣY = knownYs.reduce(function (a, b) { return a + b; });
+  ΣXY = XY.reduce(function (a, b) { return a + b; });
+  ΣXX = X_SQUARED.reduce(function (a, b) { return a + b; });
+
+  leastSquareSlope = ((knownXs.length * ΣXY) - (ΣX * ΣY)) / ((knownXs.length * ΣXX) - (Math.pow(ΣX, 2)));
+  return leastSquareSlope;
+};
+
 export default {
   /**
   * @param {array} histograms - histograms response from Image Server
@@ -110,19 +139,26 @@ export default {
     // Parse the counts array
     let counts = getCounts(histograms);
     let attributes = {};
-    let sum = 0;
-    //- Save the individual values as well for the TCL bar chart, indices 1 - 14 represents 2001 - 2014
-    //- When we add new data for new years, config.fieldMax needs to be increased, it's set so
-    //- values are set to 0 if there not in the resopnse since histograms drop all trailing 0's
     let index = 1;
+    let sum = 0;
+    let xs = [];
+    let ys = [];
+    let currentValue;
+    //- Save the individual values for the TCL bar chart, indices 1 - 14 represents 2001 - 2014
+    //- Histograms from image service drop trailing 0's, so terminator must be config.fieldMax and not array length
     for(index; index <= config.fieldMax; index++) {
+      currentValue = counts[index] || 0;
       // Format is tl_g_${density}_${two digit index}_ha
-      attributes[config.field(canopyDensity, index)] = counts[index] || 0;
-      sum += counts[index] || 0;
+      attributes[config.field(canopyDensity, index)] = currentValue;
+      sum += currentValue;
+      // Store xs and ys for slope calculation
+      ys.push(currentValue);
+      xs.push(index);
     }
     //- Save the sum of the values of counts from indices 1 - 14 in all field
     attributes[config.allField(canopyDensity)] = sum;
     //- Save the slope as well
+    attributes[config.slopeField(canopyDensity)] = Math.round(calculateSlope(xs, ys));
     return attributes;
   }
 

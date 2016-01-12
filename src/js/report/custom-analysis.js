@@ -73,6 +73,13 @@ const customAnalysis = (geometry, canopyDensity) => {
     lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER].histograms));
     lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC].histograms));
     lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL].histograms, canopyDensity));
+    // TODO: REPLACE WITH ACTUAL RISK CALCULATION
+    let randomValue = Math.ceil(Math.random() * 4);
+    attributes.rs_tl_c = randomValue;
+    attributes.rs_sed_c = randomValue;
+    attributes.rs_pf_c = randomValue;
+    attributes.rs_fire_c = randomValue;
+
     promise.resolve(attributes);
   });
 
