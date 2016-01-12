@@ -37,10 +37,7 @@ let generateSearchWidget = () => {
     searchFields: ['maj_name'],
     displayField: 'maj_name',
     highlightSymbol: Symbols.getWatershedHoverSymbol(),
-    placeholder: analysisPanelText.searchWatershedPlaceholder,
-    localSearchOptions: {
-      distance: 32000 // 19.88 miles
-    }
+    placeholder: analysisPanelText.searchWatershedPlaceholder
   });
 
   searchWidget.set('sources', sources);
