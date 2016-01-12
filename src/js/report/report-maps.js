@@ -18,6 +18,7 @@ import queryUtils from './query-utils';
 import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
+import performCustomAnalysis from 'js/custom-analysis';
 
 let config;
 let shedQueryTask;
@@ -41,8 +42,6 @@ const insertMap = (response) => {
   printed += 1;
   if ( printed < config.mapsToPrint.length ) {
     printMap();
-  } else {
-    reportCharts.use(watershed);
   }
 };
 
@@ -91,6 +90,7 @@ const handleWatershed = (result) => {
     watershed.symbol = lang.clone(config.watershedSymbol);
     watersheds.featureCollection.layers[0].featureSet.features.push(watershed);
     getFireCount();
+    reportCharts.use(watershed);
   } else {
     console.log('could not find watershed', result);
   }
@@ -119,10 +119,14 @@ const getCustomFeature = (params) => {
   query.geometryPrecision = 0;
   query.returnGeometry = true;
   query.outFields = ['*'];
-  console.log(query);
   shedQueryTask.execute(query).then(function (res) {
-    console.log(res);
-    handleWatershed(res);
+    if (res.features.length === 1) {
+      let feature = res.features[0];
+      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (attrs) {
+        lang.mixin(feature.attributes, attrs);
+        handleWatershed(res);
+      });
+    }
   }, errorHandler);
 };
 
@@ -173,10 +177,9 @@ const printAll = (options) => {
   domConstruct.place(lang.clone(loading), domQuery('#land-cover-chart')[0], 'last');
   domConstruct.place(lang.clone(loading), domQuery('#risk-chart')[0], 'last');
   config = options;
-  const queryString = getUrlParams(window.location.href);
-  console.log('query string', queryString);
+  const queryString = getUrlParams(window.location.search);
   config.watershedId = queryString[config.watershedQueryStringParam] || config.watershedId;
-  config.canopyDensity = queryString.canopyDensity || config.canopyDensity;
+  config.canopyDensity = queryString.canopyDensity.split('#')[0] || config.canopyDensity;
   watersheds = lang.clone(featureCollection);
   fireQueryTask = new QueryTask(config.fireUrl);
   // Set up query task to either hit watershed layer or custom analysis area layer.
