@@ -4,8 +4,9 @@ import ControlPanel from 'components/MapControls/ControlPanel';
 import LayerPanel from 'components/LayerPanel/LayerPanel';
 import {applyStateFromUrl} from 'helpers/ShareHelper';
 import {mapActions} from 'actions/MapActions';
-import {getUrlParams} from 'utils/params';
 import {mapConfig, links} from 'js/config';
+import {getUrlParams} from 'utils/params';
+import Loader from 'components/Loader';
 import React from 'react';
 
 export default class Map extends React.Component {
@@ -33,6 +34,7 @@ export default class Map extends React.Component {
   render () {
     return (
       <div id={mapConfig.id} className={'map'}>
+        <Loader active={!this.state.loaded} />
         <a href={links.home.url} title={links.home.title} alt={links.home.title} target='_blank'><div className='gfw-water-logo' /></a>
         <a href={links.aqueduct.url} title={links.aqueduct.title} alt={links.aqueduct.title} target='_blank'><div className='aqueduct-logo' /></a>
         <LayerPanel loaded={this.state.loaded} />

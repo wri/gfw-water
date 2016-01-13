@@ -24,6 +24,8 @@ export default class LatLngTool extends React.Component {
       AnalysisHelper.findWatershed(point).then(() => {
         analysisActions.analyzeCustomArea(point);
         AnalysisHelper.performUpstreamAnalysis(point);
+      }, (err) => {
+        if (typeof err === 'string') { alert(err); }
       });
     } else {
       alert(text.invalidLatLng);

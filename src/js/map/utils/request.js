@@ -1,4 +1,4 @@
-import {analysisConfig, layersConfig, errors} from 'js/config';
+import {analysisConfig, layersConfig, errors, queryConfig} from 'js/config';
 import SpatialReference from 'esri/SpatialReference';
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import GeoProcessor from 'esri/tasks/Geoprocessor';
@@ -54,6 +54,8 @@ const request = {
     query.returnGeometry = true;
     query.geometry = geometry;
     query.outFields = ['*'];
+    query.distance = queryConfig.distance;
+    query.units = queryConfig.units;
 
     task.execute(query, results => {
       if (results.features.length > 0) {

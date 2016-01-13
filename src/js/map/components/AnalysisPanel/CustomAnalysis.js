@@ -11,7 +11,6 @@ import KEYS from 'js/constants';
 import React from 'react';
 
 // Temporary for the prototype
-import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
 import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
 import LossFootnote from 'components/AnalysisPanel/LossFootnote';
@@ -26,8 +25,6 @@ let runReport = () => {
   let area = config.squareKilometersToHectares(activeCustomArea.attributes[config.hydrologyServiceAreaField]);
   activeCustomArea.attributes[config.watershedNameField] = customAreaName;
   activeCustomArea.attributes[config.watershedAreaField] = area;
-
-  console.log(activeCustomArea.attributes);
 
   analysisActions.saveFeature(activeCustomArea).then(res => {
     if (res.length > 0 && res[0].success) {
@@ -84,6 +81,9 @@ export default class CustomAnalysis extends React.Component {
             analysisActions.toggleLoader(false);
             console.error(err);
           });
+        }, (err) => {
+          if (typeof err === 'string') { alert(err); }
+          analysisActions.toggleLoader(false);
         });
       });
     }
@@ -125,7 +125,6 @@ export default class CustomAnalysis extends React.Component {
             <WatershedSummary />
             <WatershedChart id={KEYS.customAreaChartId} feature={this.props.activeCustomArea} />
             <LossFootnote />
-            <CustomAnalysisLink />
             <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{config.fullReportButton}</div>
           </div>
         }

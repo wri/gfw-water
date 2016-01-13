@@ -9,7 +9,6 @@ let generateChart = (id, feature) => {
   * rs_fire_c - Fire
   */
   let { rs_tl_c, rs_pf_c, rs_sed_c, rs_fire_c } = feature.attributes;
-  console.log(feature);
   $(`#${id}`).highcharts({
     chart: {
       backgroundColor: 'transparent',
@@ -23,7 +22,7 @@ let generateChart = (id, feature) => {
       layout: 'vertical',
       verticalAlign: 'middle',
       itemStyle: {
-        width: '130px',
+        width: '150px',
         fontWeight: 300,
         fontFamily: '\'Fira Sans\', Georgia, serif'
       }

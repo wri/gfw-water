@@ -10,10 +10,8 @@ html
     link(rel='stylesheet', href='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='css/images/favicon.ico')
-    script(src='vendor/browser-polyfill.js')
     script(src='vendor/jquery/dist/jquery.min.js')
   body
-    include templates/gfwAssets.jade
     div#headerGfw
     section.relative.home-slider-container
       div.gfw-water-logo
@@ -63,13 +61,21 @@ html
                   span.mobile-hide more info
                   span.mobile-show +
     div#footerGfw
-    script(data-main='js/home/main.js?#{version}', src='vendor/requirejs/require.js', async)
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
-      window.require = {
-        baseUrl: base,
+      var dojoConfig = {
+        parseOnLoad: false,
+        async: true,
+        cacheBust: '#{version}',
         packages: [
-          {name: 'js', location: base + '/js/home'},
-          {name: 'vendor', location: base + '/vendor'},
-        ]
+          { name: 'js', location: base + '/js/home' },
+          { name: 'vendor', location: base + '/vendor' }
+        ],
+        aliases: [
+          ['babel-polyfill', 'vendor/browser-polyfill']
+        ],
+        deps: ['dojo/domReady!'],
+        callback: function () {require(['js/main']);}
       };
+    include templates/gfwAssets.jade
+    script(src='http://js.arcgis.com/#{esriVersion}/init.js', async)

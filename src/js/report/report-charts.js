@@ -1,5 +1,8 @@
 /* charts are created but the refs are not needed, prefer this over the no-new rule for side-effects */
 /* eslint no-unused-vars:0 */
+import number from 'dojo/number';
+const exportButtonImage = 'url(./css/images/download-icon.svg)';
+
 const makeCharts = (watershed) => {
   // Risk bar chart.
   let {rs_fire_c, rs_pf_c, rs_sed_c, rs_tl_c} = watershed.attributes;
@@ -33,18 +36,31 @@ const makeCharts = (watershed) => {
         groupPadding: 0
       }
     },
+    lang: {
+      downloadTooltip: 'Download'
+    },
+    exporting: {
+      buttons: {
+        contextButton: { enabled: false },
+        exportButton: {
+          _titleKey: 'downloadTooltip',
+          menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
+          symbol: exportButtonImage
+        }
+      }
+    },
     credits: { enabled: false },
     series: [{
       type: 'column',
       name: 'Recent tree cover loss',
-      data: [rs_pf_c],
+      data: [rs_tl_c],
       color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
       name: 'Historical tree cover loss',
-      data: [rs_tl_c],
+      data: [rs_pf_c],
       color: '#D2DF2E',
       pointPlacement: 'between'
     },
@@ -97,6 +113,19 @@ const makeCharts = (watershed) => {
           enabled: false
         },
         showInLegend: true
+      }
+    },
+    lang: {
+      downloadTooltip: 'Download'
+    },
+    exporting: {
+      buttons: {
+        contextButton: { enabled: false },
+        exportButton: {
+          _titleKey: 'downloadTooltip',
+          menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
+          symbol: exportButtonImage
+        }
       }
     },
     credits: { enabled: false },
@@ -155,6 +184,11 @@ const makeCharts = (watershed) => {
         fontFamily: '\'Fira Sans\', Georgia, serif'
       }
     },
+    tooltip: {
+      formatter: function () {
+        return `<strong>TREE COVER LOSS (HA)</strong><br>20${this.key} - ${number.format(this.y)}`;
+      }
+    },
     plotOptions: {
       column: {
         pointPadding: 0.1,
@@ -162,6 +196,19 @@ const makeCharts = (watershed) => {
       },
       series: {
         groupPadding: 0
+      }
+    },
+    lang: {
+      downloadTooltip: 'Download'
+    },
+    exporting: {
+      buttons: {
+        contextButton: { enabled: false },
+        exportButton: {
+          _titleKey: 'downloadTooltip',
+          menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
+          symbol: exportButtonImage
+        }
       }
     },
     credits: { enabled: false },

@@ -1,21 +1,42 @@
+*
+  -webkit-font-smoothing antialiased
+
+strong
+section.plan table tr td span.risk-category
+section.plan table tr td span.strategy-example
+  font-weight 500
+
 div#headerGfw
 div.m-header
-section.relative.report-controls
+section.relative .report-controls
+.highcharts-button
+hr
   display none !important
+
+section.relative.dark.map div.printed-map
+  overflow hidden
+  height 100%
+  width 100%
+  & img
+    transform translate(-50px, 0)
 
 div#land-cover-chart
   g.highcharts-legend
-    transform translate(0,0)
+    transform translate(300px, 20px)
     g
       g
         g.highcharts-legend-item
           text
-            fill #555 !important
+            // fill #555 !important
 
-section.risks 
+section.stats
+section.risks
+section.recent-loss
 section.historical-loss
 section.erosion
 section.fire
 section.water-stress
 section.plan
+#footerGfw
   page-break-before always
+  break-before always

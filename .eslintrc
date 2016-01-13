@@ -12,6 +12,7 @@
   },
   "globals": {
     "$": true,
+    "ga": true,
     "brApp": true,
     "define": true,
     "require": true,

@@ -57,6 +57,11 @@ export const config = {
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
+  queryOptions: {
+    units: 'miles',
+    distance: 20
+  },
+
   /**
   * These are passed to various stores, make sure they match the format in the stores/*.js files
   * For default active layers, set the visible property to true below in layers, thats how the store
@@ -334,7 +339,7 @@ export const config = {
       incorrectLayerConfig: type => `You provided an invalid type, the application is not configured for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
       geolocationUnavailable: 'Sorry, it looks like your browser does not support geolocation, please try the latest versions of Safari, Chrome, or Firefox.',
       geolocationFailure: message => `Error retrieving location at this time. ${message}`,
-      featureNotFound: 'We could not find a feature available at this point. Please try again.'
+      featureNotFound: 'We could not find a watershed here. Please try again.'
     },
     layerPanel: {
       watershed: 'Know your watershed',
@@ -418,7 +423,29 @@ export const config = {
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
       customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
-      watershedSummeryInfoDescription: '<p>Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.</p><p>We consider four watershed risks and the scores range from 1 – 5. A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.</p>'
+      watershedSummeryInfoDescription: `
+        <p>Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.</p>
+        <p>We consider four watershed risks and the scores range from 1 – 5. A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.</p>
+        <div>Below is a description of how the risk scores are calculated per indicator:</div>
+        <ul>
+          <li>
+            <strong>Recent tree cover loss:</strong>
+            <span>Risk score on recent tree cover loss is measured by the area of total tree cover loss from 2001 to 2014 as a share of current tree cover extent. Canopy density for tree cover loss and tree cover is set to > 30% across the globe.</span>
+          </li>
+          <li>
+            <strong>Historical tree cover loss:</strong>
+            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to >30% across the globe.</span>
+          </li>
+          <li>
+            <strong>Erosion:</strong>
+            <span>Risk score on erosion is derived from the Revised Universal Soil Loss Equation, including rainfall erosivity, slope steepness, soil erodibility, and land cover factors.</span>
+          </li>
+          <li>
+            <strong>Fire:</strong>
+            <span>Risk score on fire is measured by average annual fire occurrence per hectare in a watershed.</span>
+          </li>
+        </ul>
+      `
     },
     controlPanel: {
       wriBasemap: 'WRI',
@@ -766,5 +793,6 @@ export const controlPanelText = config.text.controlPanel;
 export const mapConfig = config.map;
 export const symbolConfig = config.symbol;
 export const analysisConfig = config.analysis;
+export const queryConfig = config.queryOptions;
 export const alertsModalConfig = config.alertsModal;
 export const layerInformation = config.text.layerInformation;
