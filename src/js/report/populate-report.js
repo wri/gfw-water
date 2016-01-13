@@ -67,25 +67,26 @@ export default {
     const fireRisk = attributes.rs_fire_c;
     const fireCount = attributes._fireCount;
 
-    dom.byId('watershed-area').innerHTML = number.format(wsArea, oneDecimal);
-    dom.byId('wetland-area').innerHTML = number.format(wetArea, oneDecimal);
+    dom.byId('watershed-area').innerHTML = number.format(wsArea, twoDecimals);
+    dom.byId('wetland-area').innerHTML = number.format(wetArea, twoDecimals);
     dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
 
-    dom.byId('tree-cover').innerHTML = number.format(treeCover, oneDecimal);
+    dom.byId('tree-cover').innerHTML = number.format(treeCover, twoDecimals);
     dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
     dom.byId('dam-count').innerHTML = dams;
 
-    dom.byId('past-cover').innerHTML = number.format(pastCover, oneDecimal);
+    dom.byId('past-cover').innerHTML = number.format(pastCover, twoDecimals);
     dom.byId('water-withdrawl').innerHTML = waterWithdrawl;
 
     dom.byId('risk-tree-loss').innerHTML = treeLossRisk;
-    dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, oneDecimal);
+    dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, twoDecimals);
     dom.byId('tree-loss-percent').innerHTML = number.format(treeLossPercent, percentTwoDecimals);
-    dom.byId('tree-loss-rate').innerHTML = treeLossRate;
+    //- Removed at WRI's request
+    // dom.byId('tree-loss-rate').innerHTML = treeLossRate;
     dom.byId('tree-loss-trend').innerHTML = treeLossTrend;
 
     dom.byId('risk-past-loss').innerHTML = pastLossRisk;
-    dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, oneDecimal);
+    dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, twoDecimals);
     dom.byId('past-loss-percent').innerHTML = number.format(pastLossPercent, percent);
     dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percent);
 
