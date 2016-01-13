@@ -9,7 +9,7 @@ import number from 'dojo/number';
 
 // const noDecimal = { places: 0 };
 const oneDecimal = { places: 1 };
-// const twoDecimals = { places: 2 };
+const twoDecimals = { places: 2 };
 const percent = { type: 'percent' };
 const percentTwoDecimals = { type: 'percent', places: 2 };
 
@@ -69,10 +69,10 @@ export default {
 
     dom.byId('watershed-area').innerHTML = number.format(wsArea, oneDecimal);
     dom.byId('wetland-area').innerHTML = number.format(wetArea, oneDecimal);
-    dom.byId('wetland-percent').innerHTML = number.format(wetPercent, percentTwoDecimals);
+    dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
 
     dom.byId('tree-cover').innerHTML = number.format(treeCover, oneDecimal);
-    dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, percentTwoDecimals);
+    dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
     dom.byId('dam-count').innerHTML = dams;
 
     dom.byId('past-cover').innerHTML = number.format(pastCover, oneDecimal);

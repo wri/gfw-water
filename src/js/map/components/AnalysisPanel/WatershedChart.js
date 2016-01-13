@@ -22,7 +22,7 @@ let generateChart = (id, feature) => {
       layout: 'vertical',
       verticalAlign: 'middle',
       itemStyle: {
-        width: '130px',
+        width: '150px',
         fontWeight: 300,
         fontFamily: '\'Fira Sans\', Georgia, serif'
       }
