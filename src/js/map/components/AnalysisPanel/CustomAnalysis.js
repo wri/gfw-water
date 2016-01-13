@@ -26,8 +26,6 @@ let runReport = () => {
   activeCustomArea.attributes[config.watershedNameField] = customAreaName;
   activeCustomArea.attributes[config.watershedAreaField] = area;
 
-  console.log(activeCustomArea.attributes);
-
   analysisActions.saveFeature(activeCustomArea).then(res => {
     if (res.length > 0 && res[0].success) {
       analysisActions.launchReport(`C_${res[0].objectId}`, canopyDensity);
@@ -83,6 +81,9 @@ export default class CustomAnalysis extends React.Component {
             analysisActions.toggleLoader(false);
             console.error(err);
           });
+        }, (err) => {
+          if (typeof err === 'string') { alert(err); }
+          analysisActions.toggleLoader(false);
         });
       });
     }

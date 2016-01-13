@@ -339,7 +339,7 @@ export const config = {
       incorrectLayerConfig: type => `You provided an invalid type, the application is not configured for type: ${type}. Please use the correct type or implement it in the LayerFactory.`,
       geolocationUnavailable: 'Sorry, it looks like your browser does not support geolocation, please try the latest versions of Safari, Chrome, or Firefox.',
       geolocationFailure: message => `Error retrieving location at this time. ${message}`,
-      featureNotFound: 'We could not find a feature available at this point. Please try again.'
+      featureNotFound: 'We could not find a watershed here. Please try again.'
     },
     layerPanel: {
       watershed: 'Know your watershed',
