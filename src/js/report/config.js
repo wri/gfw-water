@@ -182,7 +182,7 @@ let analysis = {
         'Raster': {
           'rasterFunction': 'Remap',
           'rasterFunctionArguments': {
-            'InputRanges': [0, density, density, 101],
+            'InputRanges': [0, +density, +density, 101],
             'OutputValues': [0, 1],
             'Raster': '$520',
             'AllowUnmatched': false
