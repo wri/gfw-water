@@ -61,9 +61,9 @@ const getFireCount = () => {
       } else {
         fireCount = 0;
       }
-      watershed.attributes._fireCount = fireCount;
+      config.watershed.attributes._fireCount = fireCount;
       printMap();
-      populateReport.use({ config: config, watershed: watershed });
+      populateReport.use({ config: config });
     },
     errorHandler
   );
@@ -81,6 +81,10 @@ const calculateOffset = (result) => {
 const handleWatershed = (result) => {
   console.log('watershed', result.features[0]);
   if ( result.features.length ) {
+    // Keep a reference to the watershed graphic.
+    config.watershed = result.features[0];
+    config.watershed.attributes._canopy = config.canopyDensity;
+    // Build a feature collection to send to the ArcGIS Server print service.
     const extent = result.features[0].geometry.getExtent().expand(config.mapExtentExpandFactor);
     config.webmap.Web_Map_as_JSON.mapOptions.extent = extent.toJson();
     watershedGeometry = result.features[0].geometry;
@@ -190,6 +194,11 @@ const printAll = (options) => {
   }
 };
 
+const currentWatershed = () => {
+  return config.watershed;
+}
+
 export default {
+  currentWatershed: currentWatershed,
   printAll: printAll
 };

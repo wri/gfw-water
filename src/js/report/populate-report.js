@@ -1,4 +1,4 @@
-/* manipulate needs to be loaded for innerHTML to work, but is never really called */
+/* manipulate needs to be loaded for innerHTML to work on a NodeList, but is never called */
 /* eslint no-unused-vars:0 */
 import dom from 'dojo/dom';
 import domQuery from 'dojo/query';
@@ -32,7 +32,8 @@ const riskCategory = (risk) => {
 
 export default {
   use: (options) => {
-    const {config, watershed} = options;
+    const {config} = options;
+    const {watershed} = config;
 
     // TODO: put attribute field names in config file
     const {attributes} = watershed;

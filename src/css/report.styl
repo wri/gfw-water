@@ -14,7 +14,6 @@ section.report-header
   min-height 100px
   z-index 1
 
-
 .report-controls
   background $lightGrayHighlight
   margin-top -48px
@@ -34,7 +33,6 @@ section.report-header
         margin 0
       svg
         display flex
-        width 18px
         height 100%
         fill $darkGray
 
@@ -191,9 +189,10 @@ section.other-projects
     padding 0 0 2em 0
 
     div.info-column
-      padding-right 2em
       color $lightGray
       flex-basis 50%
+      &:first-child
+        padding-right 2em
 
       h2
         padding 0
@@ -231,6 +230,10 @@ section.plan
 section.other-projects
   div.info-wrapper
     min-height 450px
+
+section.plan
+  div.info-wrapper
+    min-height 50px
 
 section.water-stress
   p.emphasis
