@@ -200,7 +200,7 @@ const printAll = (options) => {
 
 const currentWatershed = () => {
   return config.watershed;
-}
+};
 
 export default {
   currentWatershed: currentWatershed,
