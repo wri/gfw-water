@@ -7,6 +7,7 @@ import reportMaps from 'js/report-maps';
 import urlUtils from 'esri/urlUtils';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import csvExport from 'js/csv-export';
 // import reportCharts from 'js/report-charts';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
@@ -56,6 +57,14 @@ const attachEvents = () => {
   document.getElementById('share-icon').addEventListener('click', () => {
     let queryString = document.location.search.slice(1);
     modalActions.showShareModal(queryString);
+  });
+  // Print button click.
+  document.getElementById('print-icon').addEventListener('click', () => window.print());
+  // CSV export.
+  document.getElementById('csv-export-icon').addEventListener('click', () => {
+    let watershed = reportMaps.currentWatershed();
+    console.log('watershed', watershed);
+    csvExport(watershed);
   });
 };
 
