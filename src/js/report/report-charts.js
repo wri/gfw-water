@@ -7,6 +7,11 @@ const exportButtonImage = 'url(./css/images/download-icon.svg)';
 const makeCharts = (watershed) => {
   // Risk bar chart.
   let {rs_fire_c, rs_pf_c, rs_sed_c, rs_tl_c} = watershed.attributes;
+  //- TCL and HTCL can have Not applicable values, this number is 10 and if present, we should not render the
+  //- bar but keep it in the chart, so set it to a negative value, as long as highcharts has a yAxis min of 0
+  //- the bar will not render
+  if (rs_tl_c === 10) { rs_tl_c = -1; }
+  if (rs_pf_c === 10) { rs_pf_c = -1; }
 
   let riskChart = new Highcharts.Chart('risk-chart', {
     chart: {
