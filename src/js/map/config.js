@@ -414,7 +414,8 @@ export const config = {
         2: 'Low to medium',
         3: 'Medium',
         4: 'Medium to high',
-        5: 'Extremely high'
+        5: 'Extremely high',
+        10: 'Not applicable'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',

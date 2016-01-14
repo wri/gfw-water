@@ -200,7 +200,8 @@ const text = {
       2: 'Low to medium',
       3: 'Medium',
       4: 'Medium to high',
-      5: 'Extremely high'
+      5: 'Extremely high',
+      10: 'Not applicable'
     }
   },
   report: {
