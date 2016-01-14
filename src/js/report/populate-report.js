@@ -69,10 +69,10 @@ export default {
 
     dom.byId('watershed-area').innerHTML = number.format(wsArea, twoDecimals);
     dom.byId('wetland-area').innerHTML = number.format(wetArea, twoDecimals);
-    dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
+    // dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
 
     dom.byId('tree-cover').innerHTML = number.format(treeCover, twoDecimals);
-    dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
+    // dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
     dom.byId('dam-count').innerHTML = dams;
 
     dom.byId('past-cover').innerHTML = number.format(pastCover, twoDecimals);

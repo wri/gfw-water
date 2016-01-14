@@ -1,5 +1,6 @@
 /* charts are created but the refs are not needed, prefer this over the no-new rule for side-effects */
 /* eslint no-unused-vars:0 */
+import {chartText} from 'js/config';
 import number from 'dojo/number';
 const exportButtonImage = 'url(./css/images/download-icon.svg)';
 
@@ -16,7 +17,7 @@ const makeCharts = (watershed) => {
     },
     title: { text: '' },
     xAxis: { tickLength: 0, labels: { enabled: false } },
-    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 3, 5], title: { text: '' } },
+    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 2, 3, 4, 5], title: { text: '' } },
     legend: {
       align: 'right',
       layout: 'vertical',
@@ -47,6 +48,11 @@ const makeCharts = (watershed) => {
           menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
           symbol: exportButtonImage
         }
+      }
+    },
+    tooltip: {
+      formatter: function () {
+        return `${this.series.name} - ${this.y}<br>${chartText.riskLookup[this.y]}`;
       }
     },
     credits: { enabled: false },
@@ -170,9 +176,9 @@ const makeCharts = (watershed) => {
       categories: xAxisLabels
     },
     yAxis: {
-      min: 0,
-      max: chartMax,
-      tickPositions: [0, chartFirstQuarter, chartMid, chartThirdQuarter, chartMax],
+      // min: 0,
+      // max: chartMax,
+      // tickPositions: [0, chartFirstQuarter, chartMid, chartThirdQuarter, chartMax],
       title: {
         text: ''
       }

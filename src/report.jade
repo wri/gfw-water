@@ -97,13 +97,15 @@ html
                   div wetland
                   div.blue-stat
                     span.stat#wetland-area --
-                    span.unit MHa (#[span#wetland-percent -])
+                    span.unit MHa
+                    //- span.unit MHa (#[span#wetland-percent -])
               tr
                 td
                   div tree cover (2000)
                   div.blue-stat
                     span.stat#tree-cover --
-                    span.unit MHa (#[span#tree-cover-percent -])
+                    span.unit MHa
+                    //- span.unit MHa (#[span#tree-cover-percent -])
                     div.gray.smaller Displaying tree cover with #[span.blue-bubble > #[span.canopy-density]] canopy density 
                 td
                   div major dams
@@ -341,5 +343,5 @@ html
 
     div#footerGfw
     div#share-modal.modal-wrapper.hidden
-    script(src='http://www.globalforestwatch.org/gfw-assets', defer)
+    include templates/gfwAssets.jade
     script(src='http://js.arcgis.com/#{esriVersion}compact/init.js', async)

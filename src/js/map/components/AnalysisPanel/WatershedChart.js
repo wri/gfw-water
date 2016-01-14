@@ -38,7 +38,7 @@ let generateChart = (id, feature) => {
     },
     tooltip: {
       formatter: function () {
-        return `${this.series.name} - ${this.y}<br>${text.chartLookup[this.y]}`;
+        return `${this.series.name} - ${this.y}<br>${text.riskLookup[this.y]}`;
       }
     },
     credits: { enabled: false },

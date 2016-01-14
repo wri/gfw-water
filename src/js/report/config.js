@@ -37,8 +37,8 @@ export default {
   proxy: {
     featureServer: {
       urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
-      // proxyUrl: 'http://localhost/proxy/proxy.php'
-      proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      proxyUrl: 'http://localhost/proxy/proxy.php'
+      // proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
     }
   },
   canopyDensity: 10,
@@ -153,15 +153,27 @@ export default {
 };
 
 const text = {
-  share: {
-    title: 'Share this view',
-    linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
-    copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
-    copyButton: 'Copy',
-    copiedButton: 'Copied',
-    googleUrl: url => `https://plus.google.com/share?url=${url}`,
-    twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
-    facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+  modal: {
+    share: {
+      title: 'Share this view',
+      linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
+      copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
+      copyButton: 'Copy',
+      copiedButton: 'Copied',
+      googleUrl: url => `https://plus.google.com/share?url=${url}`,
+      twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
+      facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+    }
+  },
+  charts: {
+    riskLookup: {
+      0: 'No risk',
+      1: 'Low',
+      2: 'Low to medium',
+      3: 'Medium',
+      4: 'Medium to high',
+      5: 'Extremely high'
+    }
   }
 };
 
@@ -246,5 +258,6 @@ analysis[KEYS.WATER] = {
   field: 'wd_c'
 };
 
-export const modalText = text;
+export const modalText = text.modal;
+export const chartText = text.charts;
 export const analysisConfig = analysis;
