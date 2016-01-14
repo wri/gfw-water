@@ -5,7 +5,7 @@ import domQuery from 'dojo/query';
 import domClass from 'dojo/dom-class';
 import manipulate from 'dojo/NodeList-manipulate';
 import number from 'dojo/number';
-// import reportCharts from './report-charts'
+import {reportText} from 'js/config';
 
 // const noDecimal = { places: 0 };
 const oneDecimal = { places: 1 };
@@ -69,31 +69,31 @@ export default {
 
     dom.byId('watershed-area').innerHTML = number.format(wsArea, twoDecimals);
     dom.byId('wetland-area').innerHTML = number.format(wetArea, twoDecimals);
-    dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
+    // dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
 
     dom.byId('tree-cover').innerHTML = number.format(treeCover, twoDecimals);
-    dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
+    // dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
     dom.byId('dam-count').innerHTML = dams;
 
     dom.byId('past-cover').innerHTML = number.format(pastCover, twoDecimals);
     dom.byId('water-withdrawl').innerHTML = waterWithdrawl;
 
-    dom.byId('risk-tree-loss').innerHTML = treeLossRisk;
+    dom.byId('risk-tree-loss').innerHTML = (treeLossRisk !== 10 ? `${treeLossRisk}/5` : reportText.na);
     dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, twoDecimals);
     dom.byId('tree-loss-percent').innerHTML = number.format(treeLossPercent, percentTwoDecimals);
     //- Removed at WRI's request
     // dom.byId('tree-loss-rate').innerHTML = treeLossRate;
     dom.byId('tree-loss-trend').innerHTML = treeLossTrend;
 
-    dom.byId('risk-past-loss').innerHTML = pastLossRisk;
+    dom.byId('risk-past-loss').innerHTML = (pastLossRisk !== 10 ? `${pastLossRisk}/5` : reportText.na);
     dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, twoDecimals);
     dom.byId('past-loss-percent').innerHTML = number.format(pastLossPercent, percent);
     dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percent);
 
-    dom.byId('risk-erosion').innerHTML = erosionRisk;
+    dom.byId('risk-erosion').innerHTML = (erosionRisk !== 10 ? `${erosionRisk}/5` : reportText.na);
     dom.byId('risk-erosion-description').innerHTML = erosionRiskDescription;
 
-    dom.byId('risk-fire').innerHTML = fireRisk;
+    dom.byId('risk-fire').innerHTML = (fireRisk !== 10 ? `${fireRisk}/5` : reportText.na);
     dom.byId('recent-fire-count').innerHTML = fireCount;
 
     // .innerHTML available on node lists via NodeList-manipulate module.
@@ -106,20 +106,16 @@ export default {
     // Figure out which risk rows to show in Plan for Action section.
     const visibleClassName = 'applicable';
     const noRisk = domQuery('tr.no-risk')[0];
-    if (pastLossRisk > 3) {
-      console.log('treeLossRisk over 3');
+    if (treeLossRisk > 3) {
       domClass.add(domQuery('tr.tree-loss-risk')[0], visibleClassName);
     }
-    if (treeLossRisk > 3) {
-      console.log('pastLossRisk over 3');
+    if (pastLossRisk > 3) {
       domClass.add(domQuery('tr.past-loss-risk')[0], visibleClassName);
     }
     if (erosionRisk > 3) {
-      console.log('erosionRisk over 3');
       domClass.add(domQuery('tr.erosion-risk')[0], visibleClassName);
     }
     if (fireRisk > 3) {
-      console.log('fireRisk over 3');
       domClass.add(domQuery('tr.fire-risk')[0], visibleClassName);
     }
     if (treeLossRisk > 3 || pastLossRisk > 3 || erosionRisk > 3 || fireRisk > 3) {

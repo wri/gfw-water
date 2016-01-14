@@ -408,13 +408,13 @@ export const config = {
       lonPlaceholder: 'Lon',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
       customAreaNamePlaceholder: 'Custom Area',
-      chartLookup: {
-        0: 'No Risk',
-        1: 'Low Risk',
-        2: 'Low - Medium Risk',
-        3: 'Medium Risk',
-        4: 'Medium - High Risk',
-        5: 'Extreme Risk'
+      riskLookup: {
+        0: 'No risk',
+        1: 'Low',
+        2: 'Low to medium',
+        3: 'Medium',
+        4: 'Medium to high',
+        5: 'Extremely high'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',
@@ -430,11 +430,11 @@ export const config = {
         <ul>
           <li>
             <strong>Recent tree cover loss:</strong>
-            <span>Risk score on recent tree cover loss is measured by the area of total tree cover loss from 2001 to 2014 as a share of current tree cover extent. Canopy density for tree cover loss and tree cover is set to > 30% across the globe.</span>
+            <span>Risk score on recent tree cover loss is measured by the area of total tree cover loss from 2001 to 2014 as a share of current tree cover extent. Canopy density for tree cover loss and tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where current tree cover is less than 10% of watershed.</span>
           </li>
           <li>
             <strong>Historical tree cover loss:</strong>
-            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to >30% across the globe.</span>
+            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where current tree cover is less than 10% of watershed.</span>
           </li>
           <li>
             <strong>Erosion:</strong>

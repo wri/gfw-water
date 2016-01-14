@@ -8,13 +8,13 @@ import esriRequest from 'esri/request';
 * @return {deferred}
 */
 const computeHistogram = (url, content) => {
-
   // Make sure certain params are stringified
   if (content.geometry) { content.geometry = JSON.stringify(content.geometry); }
   if (content.renderingRule) { content.renderingRule = JSON.stringify(content.renderingRule); }
   if (content.mosaicRule) { content.mosaicRule = JSON.stringify(content.mosaicRule); }
   // Set some defaults
   content.geometryType = content.geometryType || 'esriGeometryPolygon';
+  content.pixelSize = content.pixelSize || 100;
   content.f = content.f || 'json';
 
   return esriRequest({
@@ -29,9 +29,9 @@ const computeHistogram = (url, content) => {
 
 const query = {
 
-  getWithMosaic: (config, geometry) => {
+  getWithMosaic: (rasterId, geometry) => {
     return computeHistogram(analysisConfig.imageService, {
-      mosaicRule: analysisConfig.mosaicRule(config.rasterId),
+      mosaicRule: analysisConfig.mosaicRule(rasterId),
       geometry: geometry
     });
   },

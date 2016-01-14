@@ -19,6 +19,8 @@ import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
 import performCustomAnalysis from 'js/custom-analysis';
+import {fieldConfig} from 'js/config';
+import KEYS from 'js/constants';
 
 let config;
 let shedQueryTask;
@@ -126,7 +128,8 @@ const getCustomFeature = (params) => {
   shedQueryTask.execute(query).then(function (res) {
     if (res.features.length === 1) {
       let feature = res.features[0];
-      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (attrs) {
+      let area = feature.attributes[fieldConfig.area];
+      performCustomAnalysis(feature.geometry, area, config.canopyDensity).then(function (attrs) {
         lang.mixin(feature.attributes, attrs);
         handleWatershed(res);
       });
@@ -138,9 +141,11 @@ const printMap = () => {
   // Create a webmap definition for the print service.
   const webmap = lang.clone(config.webmap);
   // Check if there's an overlay to put on the map.
-  if (config.mapsToPrint[printed].layer) {
-    const layer = config.mapsToPrint[printed].layer;
+  if (config.mapsToPrint[printed].layers) {
+    const layers = config.mapsToPrint[printed].layers;
+    //- Fires has one layer and needs a custom layer def, add it here
     if (config.mapsToPrint[printed].name === 'fire') {
+      const layer = layers[0];
       // Add layer definitions to only show fires within last 24 hours.
       layer.layers = layer.visibleLayers.map((id) => {
         return {
@@ -150,9 +155,18 @@ const printMap = () => {
           }
         };
       });
-      console.log('fires layer defs', layer.layers);
+      webmap.Web_Map_as_JSON.operationalLayers.splice(1, 0, layer);
+    } else {
+      // For all the rest, add the layers
+      layers.forEach((layer) => {
+
+        if (layer.id === KEYS.TCD) {
+          layer.renderingRule = config.exportImageRenderingRuleForTCD(config.canopyDensity);
+        }
+
+        webmap.Web_Map_as_JSON.operationalLayers.splice(1, 0, layer);
+      });
     }
-    webmap.Web_Map_as_JSON.operationalLayers.splice(1, 0, layer);
   }
   // Show the watershed on top.
   webmap.Web_Map_as_JSON.operationalLayers.push(watersheds);

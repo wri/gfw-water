@@ -1,13 +1,13 @@
-import {analysisConfig} from 'js/config';
+import {analysisConfig, riskGrader} from 'js/config';
 import KEYS from 'js/constants';
 
 /**
-* Helper function to grab the counts or return 0
+* Helper function to grab the counts or return empty array
 * @param {array} histograms
 * @return {array} - array of counts or an empty array
 */
 const getCounts = histograms => {
-  // Parse the histogram if present and return uf not
+  // Parse the histogram if present and return if not
   let histogram = histograms.length > 0 ? histograms[0] : 0;
   if (!histogram) { return []; }
   // Grab the counts and return if counts is empty
@@ -159,6 +159,23 @@ export default {
     attributes[config.allField(canopyDensity)] = sum;
     //- Save the slope as well
     attributes[config.slopeField(canopyDensity)] = Math.round(calculateSlope(xs, ys));
+    return attributes;
+  },
+
+  /**
+  * @param {object} response - response from Map Server
+  * @return {object} attributes - object with correct field set to value or 0
+  */
+  formatErosionRisk: (histograms, area) => {
+    let config = analysisConfig[KEYS.R_EROSION];
+    let grader = riskGrader[KEYS.R_EROSION];
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let attributes = {};
+    //- Value to save is the mean of all the values divided by area
+    //- excluding 0 index since that is null pixel values
+    let rawValue = (counts.slice(1).reduce((a, b) => a + b) / (counts.length - 1)) / area;
+    attributes[config.field] = grader(rawValue);
     return attributes;
   }
 

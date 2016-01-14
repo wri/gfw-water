@@ -65,7 +65,7 @@ export default {
     name: 'overview'
   }, {
     name: 'recent-loss',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -78,10 +78,21 @@ export default {
       'renderingRule': {
         'rasterFunction': 'ForestCover_lossyear'
       }
-    }
+    }]
   }, {
     name: 'historical-loss',
-    layer: {
+    layers: [{
+      'id': KEYS.TCD,
+      'title': KEYS.TCD,
+      'opacity': 1,
+      'minScale': 0,
+      'maxScale': 0,
+      'url': 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
+      'bandIds': null,
+      'compressionQuality': null,
+      'interpolation': null,
+      'renderingRule': {}
+    }, {
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -97,10 +108,10 @@ export default {
           }
         }
       }]
-    }
+    }]
   }, {
     name: 'erosion',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -108,10 +119,10 @@ export default {
       'maxScale': 0,
       'url': 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/',
       'visibleLayers': [4]
-    }
+    }]
   }, {
     name: 'fire',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -119,10 +130,10 @@ export default {
       'maxScale': 0,
       'url': 'http://gis-potico.wri.org/arcgis/rest/services/Fires/Global_Fires/MapServer',
       'visibleLayers': [0, 1, 2, 3]
-    }
+    }]
   }, {
     name: 'water-stress',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 0.8,
@@ -138,7 +149,7 @@ export default {
           }
         }
       }]
-    }
+    }]
   }],
 
   printer: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
@@ -148,20 +159,55 @@ export default {
   mapPrintWidthSmall: 512,
   mapPrintWidthLarge: 1024,
   mapExtentExpandFactor: 1.3,
-  mapPrintDPI: 96
+  mapPrintDPI: 96,
+  exportImageRenderingRuleForTCD: (density) => {
+    return {
+      'rasterFunction': 'Colormap',
+        'rasterFunctionArguments': {
+          'Colormap': [[1, 174, 203, 107]],
+          'Raster': {
+            'rasterFunction': 'Remap',
+            'rasterFunctionArguments': {
+              'InputRanges': [+density, 101],
+              'OutputValues': [1],
+              'AllowUnmatched': false
+            }
+          }
+        },
+        'variableName': 'Raster'
+    };
+  }
 
 };
 
 const text = {
-  share: {
-    title: 'Share this view',
-    linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
-    copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
-    copyButton: 'Copy',
-    copiedButton: 'Copied',
-    googleUrl: url => `https://plus.google.com/share?url=${url}`,
-    twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
-    facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+  modal: {
+    share: {
+      title: 'Share this view',
+      linkInstructions: 'Copy and paste the link to share it or use the buttons below to share on social media.',
+      copyFailure: 'Sorry, we were unable to copy this to your clipboard, please press Cmd + c on Mac or Ctrl + c on Windows/Linux.',
+      copyButton: 'Copy',
+      copiedButton: 'Copied',
+      googleUrl: url => `https://plus.google.com/share?url=${url}`,
+      twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
+      facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+    }
+  },
+  charts: {
+    riskLookup: {
+      0: 'No risk',
+      1: 'Low',
+      2: 'Low to medium',
+      3: 'Medium',
+      4: 'Medium to high',
+      5: 'Extremely high'
+    }
+  },
+  report: {
+    na: 'Not applicable'
+  },
+  fields: {
+    area: 'ws_ha'
   }
 };
 
@@ -182,7 +228,7 @@ let analysis = {
         'Raster': {
           'rasterFunction': 'Remap',
           'rasterFunctionArguments': {
-            'InputRanges': [0, density, density, 101],
+            'InputRanges': [0, +density, +density, 101],
             'OutputValues': [0, 1],
             'Raster': '$520',
             'AllowUnmatched': false
@@ -228,6 +274,24 @@ analysis[KEYS.TCL] = {
   fieldMax: 14 // Represents 2014, this will need to update when the service does
 };
 
+analysis[KEYS.R_FIRES] = {
+  rasterId: 551,
+  field: 'rs_fire_c'
+};
+
+analysis[KEYS.R_EROSION] = {
+  rasterId: 549,
+  field: 'rs_sed_c'
+};
+
+analysis[KEYS.R_TCL] = {
+  field: 'rs_tl_c'
+};
+
+analysis[KEYS.R_HTCL] = {
+  field: 'rs_pf_c'
+};
+
 analysis[KEYS.DAMS] = {
   url: 'http://gis-gfw.wri.org/arcgis/rest/services/infrastructure/MapServer/0',
   content: {
@@ -246,5 +310,86 @@ analysis[KEYS.WATER] = {
   field: 'wd_c'
 };
 
-export const modalText = text;
+let grader = {};
+
+//- These functions should return a value ready to be dropped in the UI
+grader[KEYS.R_FIRES] = (value) => {
+  if (value === 0) {
+    return value;
+  } else if (value <= 0.000011) {
+    return 1;
+  } else if (value >= 0.000012 && value <= 0.000044) {
+    return 2;
+  } else if (value >= 0.000045 && value <= 0.00011) {
+    return 3;
+  } else if (value >= 0.00012 && value <= 0.00023) {
+    return 4;
+  } else if (value >= 0.00023) {
+    return 5;
+  }
+};
+
+grader[KEYS.R_EROSION] = (value) => {
+  if (value === 0) {
+    return value;
+  } else if (value <= 0.28) {
+    return 1;
+  } else if (value >= 0.29 && value <= 1.33) {
+    return 2;
+  } else if (value >= 1.34 && value <= 2.56) {
+    return 3;
+  } else if (value >= 2.57 && value < 3.49) {
+    return 4;
+  } else if (value >= 3.49) {
+    return 5;
+  }
+};
+
+grader[KEYS.R_TCL] = (value) => {
+  //- If value is ten, then return value, it is a special value
+  //- to represent that the risk score is not applicable
+  if (value === 10) {
+    return value;
+  } else if (value === 0) {
+    return value;
+  } else if (value <= 0.025) {
+    return 1;
+  } else if (value >= 0.026 && value <= 0.042) {
+    return 2;
+  } else if (value >= 0.043 && value <= 0.060) {
+    return 3;
+  } else if (value >= 0.061 && value < 0.1) {
+    return 4;
+  } else if (value >= 0.11) {
+    return 5;
+  }
+};
+
+grader[KEYS.R_HTCL] = (value) => {
+  //- If value is ten, then return value, it is a special value
+  //- to represent that the risk score is not applicable
+  if (value === 10) {
+    return value;
+  } else if (value === 1) {
+    return 0;
+  } else if (value >= 0.75) {
+    return 1;
+  } else if (value >= 0.55 && value <= 0.74) {
+    return 2;
+  } else if (value >= 0.36 && value <= 0.54) {
+    return 3;
+  } else if (value >= 0.17 && value < 0.35) {
+    return 4;
+  } else if (value <= 0.16) {
+    return 5;
+  }
+};
+
+
+
+export const riskGrader = grader;
+export const modalText = text.modal;
+export const chartText = text.charts;
+export const reportText = text.report;
+export const fieldConfig = text.fields;
 export const analysisConfig = analysis;
