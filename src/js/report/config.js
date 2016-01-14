@@ -65,7 +65,7 @@ export default {
     name: 'overview'
   }, {
     name: 'recent-loss',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -78,10 +78,21 @@ export default {
       'renderingRule': {
         'rasterFunction': 'ForestCover_lossyear'
       }
-    }
+    }]
   }, {
     name: 'historical-loss',
-    layer: {
+    layers: [{
+      'id': KEYS.TCD,
+      'title': KEYS.TCD,
+      'opacity': 1,
+      'minScale': 0,
+      'maxScale': 0,
+      'url': 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
+      'bandIds': null,
+      'compressionQuality': null,
+      'interpolation': null,
+      'renderingRule': {}
+    }, {
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -97,10 +108,10 @@ export default {
           }
         }
       }]
-    }
+    }]
   }, {
     name: 'erosion',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -108,10 +119,10 @@ export default {
       'maxScale': 0,
       'url': 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/',
       'visibleLayers': [4]
-    }
+    }]
   }, {
     name: 'fire',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 1,
@@ -119,10 +130,10 @@ export default {
       'maxScale': 0,
       'url': 'http://gis-potico.wri.org/arcgis/rest/services/Fires/Global_Fires/MapServer',
       'visibleLayers': [0, 1, 2, 3]
-    }
+    }]
   }, {
     name: 'water-stress',
-    layer: {
+    layers: [{
       'id': 'layer2',
       'title': 'layer2',
       'opacity': 0.8,
@@ -138,7 +149,7 @@ export default {
           }
         }
       }]
-    }
+    }]
   }],
 
   printer: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
@@ -148,7 +159,24 @@ export default {
   mapPrintWidthSmall: 512,
   mapPrintWidthLarge: 1024,
   mapExtentExpandFactor: 1.3,
-  mapPrintDPI: 96
+  mapPrintDPI: 96,
+  exportImageRenderingRuleForTCD: (density) => {
+    return {
+      'rasterFunction': 'Colormap',
+        'rasterFunctionArguments': {
+          'Colormap': [[1, 174, 203, 107]],
+          'Raster': {
+            'rasterFunction': 'Remap',
+            'rasterFunctionArguments': {
+              'InputRanges': [+density, 101],
+              'OutputValues': [1],
+              'AllowUnmatched': false
+            }
+          }
+        },
+        'variableName': 'Raster'
+    };
+  }
 
 };
 
