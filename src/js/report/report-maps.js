@@ -19,6 +19,7 @@ import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
 import performCustomAnalysis from 'js/custom-analysis';
+import {fieldConfig} from 'js/config';
 import KEYS from 'js/constants';
 
 let config;
@@ -127,7 +128,8 @@ const getCustomFeature = (params) => {
   shedQueryTask.execute(query).then(function (res) {
     if (res.features.length === 1) {
       let feature = res.features[0];
-      performCustomAnalysis(feature.geometry, config.canopyDensity).then(function (attrs) {
+      let area = feature.attributes[fieldConfig.area];
+      performCustomAnalysis(feature.geometry, area, config.canopyDensity).then(function (attrs) {
         lang.mixin(feature.attributes, attrs);
         handleWatershed(res);
       });

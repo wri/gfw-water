@@ -35,11 +35,12 @@ const esriQuery = (url, content, geometry) => {
 };
 
 /**
-* @param {esriGeometryPolygon} - geometry - Valid Esri Polygon to analyze
-* @param {number} - canopyDensity - Value between 0 - 100, chosen by user in the map
+* @param {esriGeometryPolygon} geometry - Valid Esri Polygon to analyze
+* @param {number} area - Area of the provided polygon
+* @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map
 * @return {deferred} promise
 */
-const customAnalysis = (geometry, canopyDensity) => {
+const customAnalysis = (geometry, area, canopyDensity) => {
   let waterIntakeConfig = analysisConfig[KEYS.WATER];
   let majorDamsConfig = analysisConfig[KEYS.DAMS];
   let treeDensityConfig = analysisConfig[KEYS.TCD];
@@ -53,19 +54,27 @@ const customAnalysis = (geometry, canopyDensity) => {
   // Water Intake Locations
   promises[KEYS.WATER] = esriQuery(waterIntakeConfig.url, waterIntakeConfig.content, geometry);
   // Wetlands Analysis
-  promises[KEYS.WETLAND] = Histogram.getWithMosaic(analysisConfig[KEYS.WETLAND], geometry);
+  promises[KEYS.WETLAND] = Histogram.getWithMosaic(analysisConfig[KEYS.WETLAND].rasterId, geometry);
   // Potential Tree Cover
-  promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC], geometry);
+  promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
   // Land Cover
-  promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC], geometry);
+  promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC].rasterId, geometry);
   // Tree Cover Density Analysis
   promises[KEYS.TCD] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, canopyDensity, geometry);
   // Tree Cover Loss
   promises[KEYS.TCL] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, canopyDensity, geometry);
+  //- Risk Analysis Queries below
+  // Fires for Risk Analysis
+
+  // Erosion for Risk Analysis
+  promises[KEYS.R_EROSION] = Histogram.getWithMosaic(analysisConfig[KEYS.R_EROSION].rasterId, geometry);
+  // Recent TCL for Risk Analysis
+
+  // Historic TCL for Risk Analysis
 
   all(promises).then(function (response) {
     let attributes = {};
-    // Mixin all the attributes
+    // Mixin all the attributes for image service calls and queries
     lang.mixin(attributes, Formatters.formatWetlands(response[KEYS.WETLAND].histograms));
     lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD].histograms, canopyDensity));
     lang.mixin(attributes, Formatters.formatMajorDams(response[KEYS.DAMS].histograms));
@@ -73,12 +82,14 @@ const customAnalysis = (geometry, canopyDensity) => {
     lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER].histograms));
     lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC].histograms));
     lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL].histograms, canopyDensity));
+    // Mixin the risk analysis
+    lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION].histograms, area));
     // TODO: REPLACE WITH ACTUAL RISK CALCULATION
     let randomValue = Math.ceil(Math.random() * 4);
-    attributes.rs_tl_c = randomValue;
-    attributes.rs_sed_c = randomValue;
-    attributes.rs_pf_c = randomValue;
     attributes.rs_fire_c = randomValue;
+    // attributes.rs_sed_c = randomValue;
+    attributes.rs_tl_c = randomValue;
+    attributes.rs_pf_c = randomValue;
 
     promise.resolve(attributes);
   });
