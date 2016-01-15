@@ -87,24 +87,25 @@ const customAnalysis = (geometry, area, canopyDensity) => {
     // Mixin all the attributes for image service calls and queries
     lang.mixin(attributes, Formatters.formatMajorDams(response[KEYS.DAMS]));
     lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER]));
-    lang.mixin(attributes, Formatters.formatWetlands(response[KEYS.WETLAND].histograms));
-    lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD].histograms, canopyDensity));
-    lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC].histograms));
-    lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC].histograms));
-    lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL].histograms, canopyDensity));
+
+    lang.mixin(attributes, Formatters.formatWetlands(response[KEYS.WETLAND]));
+    lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD], canopyDensity));
+    lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC]));
+    lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC]));
+    lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL], canopyDensity));
 
     // Mixin the risk analysis
     if (+canopyDensity !== 30) {
-      tl_g30_all_ha = Formatters.formatTreeCoverLoss(response[KEYS.TCL_30].histograms, 30).tl_g30_all_ha;
-      tc_g30_ha = Formatters.formatTreeCoverDensity(response[KEYS.TCD_30].histograms, 30).tc_g30_ha;
+      tl_g30_all_ha = Formatters.formatTreeCoverLoss(response[KEYS.TCL_30], 30).tl_g30_all_ha;
+      tc_g30_ha = Formatters.formatTreeCoverDensity(response[KEYS.TCD_30], 30).tc_g30_ha;
     } else {
       tl_g30_all_ha = attributes.tl_g30_all_ha;
       tc_g30_ha = attributes.tc_g30_ha;
     }
 
-    lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION].histograms, area));
-    lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL].histograms, area, tl_g30_all_ha, tc_g30_ha));
-    lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL].histograms, area, tc_g30_ha, attributes.ptc_ha));
+    lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION], area));
+    lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
+    lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
 
     // TODO: REPLACE WITH ACTUAL RISK CALCULATION
     let randomValue = Math.ceil(Math.random() * 4);
