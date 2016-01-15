@@ -171,6 +171,22 @@ export default {
   * @param {array} response.histograms - histograms from the response
   * @return {object} attributes - object with correct field set to value or 0
   */
+  formatAnnualFiresAvergae: (response) => {
+    let config = analysisConfig[KEYS.R_FIRES_AVG];
+    // Parse the counts array
+    let counts = getCounts(response.histograms);
+    let attributes = {};
+    //- Value to save is the mean of all the values divided by area
+    //- excluding 0 index since that is null pixel values
+    attributes[config.field] = counts.length ? (counts.slice(1).reduce((a, b) => a + b) / counts.length - 1) : 0;
+    return attributes;
+  },
+
+  /**
+  * @param {object} response - response from Image Server
+  * @param {array} response.histograms - histograms from the response
+  * @return {object} attributes - object with correct field set to value or 0
+  */
   formatFiresRisk: (response, area) => {
     let config = analysisConfig[KEYS.R_FIRES];
     let grader = riskGrader[KEYS.R_FIRES];
@@ -179,8 +195,6 @@ export default {
     let attributes = {};
     //- Value to save is the mean of all the values divided by area
     //- excluding 0 index since that is null pixel values
-    console.log(counts.slice(1).reduce((a, b) => a + b));
-    console.log(area);
     let rawValue = ((counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1)) / area;
     attributes[config.field] = grader(rawValue);
     return attributes;

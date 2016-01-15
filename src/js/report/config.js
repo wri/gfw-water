@@ -275,6 +275,11 @@ analysis[KEYS.TCL] = {
   fieldMax: 14 // Represents 2014, this will need to update when the service does
 };
 
+analysis[KEYS.R_FIRES_AVG] = {
+  rasterId: 551,
+  field: 'fire_c'
+};
+
 analysis[KEYS.R_FIRES] = {
   rasterId: 551,
   field: 'rs_fire_c'

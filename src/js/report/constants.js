@@ -8,6 +8,7 @@ const KEYS = {
   'RISK': 'watershed-risk',
   'TCL': 'tree-cover-loss',
   // For risk
+  'R_FIRES_AVG': 'r_fires_avg',
   'R_FIRES': 'risk-fires',
   'R_EROSION': 'risk-erosion',
   'R_TCL': 'risk-tcl',

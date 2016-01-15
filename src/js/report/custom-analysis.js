@@ -82,6 +82,7 @@ const customAnalysis = (geometry, area, canopyDensity) => {
 
   all(promises).then(function (response) {
     let attributes = {},
+        firesRiskResponse,
         tl_g30_all_ha,
         tc_g30_ha;
     // Mixin all the attributes for image service calls and queries
@@ -102,7 +103,10 @@ const customAnalysis = (geometry, area, canopyDensity) => {
       tc_g30_ha = attributes.tc_g30_ha;
     }
 
-    lang.mixin(attributes, Formatters.formatFiresRisk(response[KEYS.R_FIRES], area));
+    firesRiskResponse = response[KEYS.R_FIRES];
+
+    lang.mixin(attributes, Formatters.formatAnnualFiresAvergae(firesRiskResponse));
+    lang.mixin(attributes, Formatters.formatFiresRisk(firesRiskResponse, area));
     lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION], area));
     lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
     lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
