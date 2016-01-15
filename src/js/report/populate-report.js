@@ -66,6 +66,7 @@ export default {
 
     const fireRisk = attributes.rs_fire_c;
     const fireCount = attributes._fireCount;
+    const avgFireCount = attributes.fire_c;
 
     dom.byId('watershed-area').innerHTML = number.format(wsArea, twoDecimals);
     dom.byId('wetland-area').innerHTML = number.format(wetArea, twoDecimals);
@@ -95,6 +96,7 @@ export default {
 
     dom.byId('risk-fire').innerHTML = (fireRisk !== 10 ? `${fireRisk}/5` : reportText.na);
     dom.byId('recent-fire-count').innerHTML = fireCount;
+    dom.byId('average-fire-count').innerHTML = number.format(avgFireCount);
 
     // .innerHTML available on node lists via NodeList-manipulate module.
     domQuery('span.canopy-density').innerHTML(attributes._canopy);
