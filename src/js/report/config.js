@@ -37,8 +37,8 @@ export default {
   proxy: {
     featureServer: {
       urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
-      proxyUrl: 'http://localhost/proxy/proxy.php'
-      // proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      // proxyUrl: 'http://localhost/proxy/proxy.php'
+      proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
     }
   },
   canopyDensity: 10,
