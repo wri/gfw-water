@@ -69,28 +69,46 @@ const customAnalysis = (geometry, area, canopyDensity) => {
   // Erosion for Risk Analysis
   promises[KEYS.R_EROSION] = Histogram.getWithMosaic(analysisConfig[KEYS.R_EROSION].rasterId, geometry);
   // Recent TCL for Risk Analysis
-
+  promises[KEYS.R_TCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_TCL].aridAreaRasterId, geometry);
   // Historic TCL for Risk Analysis
+  promises[KEYS.R_HTCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_HTCL].aridAreaRasterId, geometry);
+
+  // If Density is 30, these calls dont need to be done, if its not 30, then they need to get these values
+  // since they are used in the risk calculations
+  if (+canopyDensity !== 30) {
+    promises[KEYS.TCD_30] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, 30, geometry);
+    promises[KEYS.TCL_30] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, 30, geometry);
+  }
 
   all(promises).then(function (response) {
-    let attributes = {};
+    let attributes = {},
+        tl_g30_all_ha,
+        tc_g30_ha;
     // Mixin all the attributes for image service calls and queries
+    lang.mixin(attributes, Formatters.formatMajorDams(response[KEYS.DAMS]));
+    lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER]));
     lang.mixin(attributes, Formatters.formatWetlands(response[KEYS.WETLAND].histograms));
     lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD].histograms, canopyDensity));
-    lang.mixin(attributes, Formatters.formatMajorDams(response[KEYS.DAMS].histograms));
     lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC].histograms));
-    lang.mixin(attributes, Formatters.formatWaterIntake(response[KEYS.WATER].histograms));
     lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC].histograms));
     lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL].histograms, canopyDensity));
+
     // Mixin the risk analysis
+    if (+canopyDensity !== 30) {
+      tl_g30_all_ha = Formatters.formatTreeCoverLoss(response[KEYS.TCL_30].histograms, 30).tl_g30_all_ha;
+      tc_g30_ha = Formatters.formatTreeCoverDensity(response[KEYS.TCD_30].histograms, 30).tc_g30_ha;
+    } else {
+      tl_g30_all_ha = attributes.tl_g30_all_ha;
+      tc_g30_ha = attributes.tc_g30_ha;
+    }
+
     lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION].histograms, area));
+    lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL].histograms, area, tl_g30_all_ha, tc_g30_ha));
+    lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL].histograms, area, tc_g30_ha, attributes.ptc_ha));
+
     // TODO: REPLACE WITH ACTUAL RISK CALCULATION
     let randomValue = Math.ceil(Math.random() * 4);
     attributes.rs_fire_c = randomValue;
-    // attributes.rs_sed_c = randomValue;
-    attributes.rs_tl_c = randomValue;
-    attributes.rs_pf_c = randomValue;
-
     promise.resolve(attributes);
   });
 

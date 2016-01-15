@@ -11,7 +11,9 @@ const KEYS = {
   'R_FIRES': 'risk-fires',
   'R_EROSION': 'risk-erosion',
   'R_TCL': 'risk-tcl',
-  'R_HTCL': 'risk-htcl'
+  'R_HTCL': 'risk-htcl',
+  'TCD_30': 'tcd_30',
+  'TCL_30': 'tcl_30'
 };
 
 export { KEYS as default };

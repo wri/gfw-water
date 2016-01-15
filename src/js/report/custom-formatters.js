@@ -69,8 +69,7 @@ export default {
     // Parse the counts array
     let counts = getCounts(histograms);
     let attributes = {};
-    console.log(config.field(canopyDensity));
-    attributes[config.field(canopyDensity)] = counts.slice(1).reduce((a, b) => a + b);
+    attributes[config.field(canopyDensity)] = counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0;
     return attributes;
   },
 
@@ -96,7 +95,7 @@ export default {
     let counts = getCounts(histograms);
     let attributes = {};
     //- Value to save is the sum of the values in counts from indices 1 - 14
-    attributes[config.field] = counts.slice(1).reduce((a, b) => a + b);
+    attributes[config.field] = counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0;
     return attributes;
   },
 
@@ -163,7 +162,8 @@ export default {
   },
 
   /**
-  * @param {object} response - response from Map Server
+  * @param {array} histograms - histograms response from Image Server
+  * @param {number} area - Area in hectares of the polygon were analyzing
   * @return {object} attributes - object with correct field set to value or 0
   */
   formatErosionRisk: (histograms, area) => {
@@ -174,7 +174,63 @@ export default {
     let attributes = {};
     //- Value to save is the mean of all the values divided by area
     //- excluding 0 index since that is null pixel values
-    let rawValue = (counts.slice(1).reduce((a, b) => a + b) / (counts.length - 1)) / area;
+    let rawValue = ((counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1)) / area;
+    attributes[config.field] = grader(rawValue);
+    return attributes;
+  },
+
+  /**
+  * @param {array} histograms - histograms response from Image Server
+  * @param {number} area - Area in hectares of the polygon were analyzing
+  * @param {number} tlAllValue - Potential Tree Cover Value with 30% density - from field tl_g30_all_ha
+  * @param {number} tcValue - Potential Tree Cover Value with 30% density - from field tc_g30_ha
+  * @return {object} attributes - object with correct field set to value or 0
+  */
+  formatTCLRisk: (histograms, area, tlAllValue, tcValue) => {
+    let config = analysisConfig[KEYS.R_TCL];
+    let grader = riskGrader[KEYS.R_TCL];
+    let rawValue = 10;
+    let attributes = {};
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let aridArea = counts[1] || 0;
+
+    if ((aridArea / area) > 0.80) {
+      rawValue = 10;
+    } else if ((tcValue / area) < 0.1) {
+      rawValue = 10;
+    } else {
+      rawValue = tlAllValue / tcValue;
+    }
+
+    attributes[config.field] = grader(rawValue);
+    return attributes;
+  },
+
+  /**
+  * @param {array} histograms - histograms response from Image Server
+  * @param {number} area - Area in hectares of the polygon were analyzing
+  * @param {number} tcValue - Potential Tree Cover Value with 30% density - from field tc_g30_ha
+  * @param {number} ptcValue - Potential Tree Cover Value - from field ptc_ha
+  * @return {object} attributes - object with correct field set to value or 0
+  */
+  formatHTCLRisk: (histograms, area, tcValue, ptcValue) => {
+    let config = analysisConfig[KEYS.R_HTCL];
+    let grader = riskGrader[KEYS.R_HTCL];
+    let attributes = {};
+    let rawValue;
+    // Parse the counts array
+    let counts = getCounts(histograms);
+    let aridArea = counts[1] || 0;
+
+    if ((aridArea / area) > 0.80) {
+      rawValue = 10;
+    } else if ((ptcValue / area) < 0.1) {
+      rawValue = 10;
+    } else {
+      rawValue = tcValue / ptcValue;
+    }
+
     attributes[config.field] = grader(rawValue);
     return attributes;
   }
