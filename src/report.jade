@@ -3,6 +3,8 @@ html
   head
     title #{map.title}
     include templates/meta.jade
+    script(src='http://www.globalforestwatch.org/gfw-assets' id='loader-gfw')
+    script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
     style
       :stylus
         @require 'css/base'
@@ -11,6 +13,7 @@ html
     link(rel='stylesheet', href='http://js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='css/images/favicon.ico')
+    //- script(src='vendor/jquery/dist/jquery.min.js')
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
       var dojoConfig = {
@@ -35,7 +38,7 @@ html
           ['FileSaver', 'vendor/file-saver/FileSaver.min']
         ],
         deps: ['dojo/domReady!'],
-        callback: function () {require(['js/main']);}
+        callback: function () { require(['js/main']); }
       };
   body
     include templates/svgAssets.jade
@@ -204,15 +207,15 @@ html
             p.
               There were #[span.blue#recent-fire-count -] fire alerts over the past #[span.blue 24 hours].
             p.
+              There are #[span.blue#average-fire-count -] fires occuring annually on average over the past #[span.blue three years (2013 - 2015)].
+            p.
               Learn more about Global Forest Watch Fires: 
               #[a(href='http://fires.globalforestwatch.org/') fires.globalforestwatch.org/]
             p.emphasis.
               Uninvited wildfires are common in some watershed and are a natural form of disturbance in forests. Fire can provide long-term benefits to forest and watershed health. But high intensity or large wild fires can result in significant increases in runoff and erosion, which can negatively impact water quality.
           div.info-column
             div.printed-map Generating:  recent fires map
-
     hr
-
     section.relative.map.water-stress
       div.wrapper
         h4 baseline water stress
@@ -343,6 +346,4 @@ html
 
     div#footerGfw
     div#share-modal.modal-wrapper.hidden
-      script(src='http://www.globalforestwatch.org/gfw-assets')
-    script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
     script(src='http://js.arcgis.com/#{esriVersion}compact/init.js', async)
