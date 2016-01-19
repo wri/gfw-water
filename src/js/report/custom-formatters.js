@@ -171,14 +171,15 @@ export default {
   * @param {array} response.histograms - histograms from the response
   * @return {object} attributes - object with correct field set to value or 0
   */
-  formatAnnualFiresAvergae: (response) => {
+  formatAnnualFiresAverage: (response) => {
     let config = analysisConfig[KEYS.R_FIRES_AVG];
     // Parse the counts array
     let counts = getCounts(response.histograms);
     let attributes = {};
-    //- Value to save is the mean of all the values divided by area
-    //- excluding 0 index since that is null pixel values
-    attributes[config.field] = counts.length ? (counts.slice(1).reduce((a, b) => a + b) / counts.length - 1) : 0;
+    //- TODO - ADD COMMENT
+    let total = 0;
+    counts.forEach((val, index) => { total += val * index; });
+    attributes[config.field] = total;
     return attributes;
   },
 
@@ -193,10 +194,11 @@ export default {
     // Parse the counts array
     let counts = getCounts(response.histograms);
     let attributes = {};
-    //- Value to save is the mean of all the values divided by area
-    //- excluding 0 index since that is null pixel values
-    let rawValue = ((counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1)) / area;
-    attributes[config.field] = grader(rawValue);
+    //- TODO - ADD COMMENT
+    let total = 0;
+    counts.forEach((val, index) => { total += val * index; });
+    let rawValue = total / area;
+    attributes[config.field] = grader(rawValue) || 0;
     return attributes;
   },
 
@@ -215,7 +217,7 @@ export default {
     //- Value to save is the mean of all the values divided by area
     //- excluding 0 index since that is null pixel values
     let rawValue = ((counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1)) / area;
-    attributes[config.field] = grader(rawValue);
+    attributes[config.field] = grader(rawValue) || 0;
     return attributes;
   },
 
@@ -244,7 +246,7 @@ export default {
       rawValue = tlAllValue / tcValue;
     }
 
-    attributes[config.field] = grader(rawValue);
+    attributes[config.field] = grader(rawValue) || 0;
     return attributes;
   },
 
@@ -273,7 +275,7 @@ export default {
       rawValue = tcValue / ptcValue;
     }
 
-    attributes[config.field] = grader(rawValue);
+    attributes[config.field] = grader(rawValue) || 0;
     return attributes;
   }
 

@@ -7,7 +7,7 @@ import manipulate from 'dojo/NodeList-manipulate';
 import number from 'dojo/number';
 import {reportText} from 'js/config';
 
-// const noDecimal = { places: 0 };
+const noDecimal = { places: 0 };
 const oneDecimal = { places: 1 };
 const twoDecimals = { places: 2 };
 const percent = { type: 'percent' };
@@ -96,7 +96,7 @@ export default {
 
     dom.byId('risk-fire').innerHTML = (fireRisk !== 10 ? `${fireRisk}/5` : reportText.na);
     dom.byId('recent-fire-count').innerHTML = fireCount;
-    dom.byId('average-fire-count').innerHTML = number.format(avgFireCount);
+    dom.byId('average-fire-count').innerHTML = number.format(avgFireCount, noDecimal);
 
     // .innerHTML available on node lists via NodeList-manipulate module.
     domQuery('span.canopy-density').innerHTML(attributes._canopy);

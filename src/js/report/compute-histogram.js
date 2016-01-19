@@ -29,10 +29,11 @@ const computeHistogram = (url, content) => {
 
 const query = {
 
-  getWithMosaic: (rasterId, geometry) => {
+  getWithMosaic: (rasterId, geometry, pixelSize) => {
     return computeHistogram(analysisConfig.imageService, {
       mosaicRule: analysisConfig.mosaicRule(rasterId),
-      geometry: geometry
+      geometry: geometry,
+      pixelSize: pixelSize || 100
     });
   },
 
