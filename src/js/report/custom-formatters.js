@@ -1,5 +1,5 @@
-import {analysisConfig, riskGrader} from 'js/config';
-import KEYS from 'js/constants';
+import {analysisConfig, riskGrader} from 'report/config';
+import KEYS from 'report/constants';
 
 /**
 * Helper function to grab the counts or return empty array
@@ -71,7 +71,8 @@ export default {
     // Parse the counts array
     let counts = getCounts(response.histograms);
     let attributes = {};
-    attributes[config.field(canopyDensity)] = counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0;
+    let startIndex = config.valueIndex[canopyDensity];
+    attributes[config.field(canopyDensity)] = counts.length ? counts.slice(startIndex).reduce((a, b) => a + b) : 0;
     return attributes;
   },
 
@@ -208,7 +209,7 @@ export default {
   * @param {number} area - Area in hectares of the polygon were analyzing
   * @return {object} attributes - object with correct field set to value or 0
   */
-  formatErosionRisk: (response, area) => {
+  formatErosionRisk: (response) => {
     let config = analysisConfig[KEYS.R_EROSION];
     let grader = riskGrader[KEYS.R_EROSION];
     // Parse the counts array
@@ -216,7 +217,7 @@ export default {
     let attributes = {};
     //- Value to save is the mean of all the values divided by area
     //- excluding 0 index since that is null pixel values
-    let rawValue = ((counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1)) / area;
+    let rawValue = (counts.length > 1 ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1);
     attributes[config.field] = grader(rawValue) || 0;
     return attributes;
   },

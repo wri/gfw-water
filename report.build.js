@@ -15,7 +15,8 @@
     'babel-polyfill': 'vendor/browser-polyfill',
 		'FileSaver': 'vendor/file-saver/FileSaver.min',
 		// Configured Packages
-		'js': 'js/report',
+		'js': 'js/map',
+		'report': 'js/report',
 		'vendor': 'vendor',
     'utils': 'js/map/utils',
     'stores': 'js/map/stores',
@@ -23,6 +24,6 @@
     'actions': 'js/map/actions',
     'components': 'js/map/components'
 	},
-	name: 'js/main',
+	name: 'report/main',
 	out: 'dist/js/report/main.js',
 });

@@ -2,12 +2,12 @@ import ShareModal from 'components/Modals/ShareModal';
 import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import {loadCSS, loadJS} from 'utils/loaders';
-import config from 'js/config';
-import reportMaps from 'js/report-maps';
+import config from 'report/config';
+import reportMaps from 'report/report-maps';
 import urlUtils from 'esri/urlUtils';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import csvExport from 'js/csv-export';
+import csvExport from 'report/csv-export';
 // import reportCharts from 'js/report-charts';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }

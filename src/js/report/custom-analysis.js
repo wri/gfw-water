@@ -1,11 +1,11 @@
-import Formatters from 'js/custom-formatters';
-import Histogram from 'js/compute-histogram';
-import {analysisConfig} from 'js/config';
+import Formatters from 'report/custom-formatters';
+import Histogram from 'report/compute-histogram';
+import {analysisConfig} from 'report/config';
 import esriRequest from 'esri/request';
 import Deferred from 'dojo/Deferred';
 import lang from 'dojo/_base/lang';
 import all from 'dojo/promise/all';
-import KEYS from 'js/constants';
+import KEYS from 'report/constants';
 
 /**
 * Simple Query Wrapper
@@ -35,12 +35,13 @@ const esriQuery = (url, content, geometry) => {
 };
 
 /**
+* This function performs all the custom analysis at once, it is used for the report
 * @param {esriGeometryPolygon} geometry - Valid Esri Polygon to analyze
 * @param {number} area - Area of the provided polygon
 * @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map
 * @return {deferred} promise
 */
-const customAnalysis = (geometry, area, canopyDensity) => {
+export const performCustomAnalysis = (geometry, area, canopyDensity) => {
   let waterIntakeConfig = analysisConfig[KEYS.WATER];
   let majorDamsConfig = analysisConfig[KEYS.DAMS];
   let treeDensityConfig = analysisConfig[KEYS.TCD];
@@ -60,7 +61,7 @@ const customAnalysis = (geometry, area, canopyDensity) => {
   // Land Cover
   promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC].rasterId, geometry);
   // Tree Cover Density Analysis
-  promises[KEYS.TCD] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, canopyDensity, geometry);
+  promises[KEYS.TCD] = Histogram.getWithMosaic(treeDensityConfig.rasterId, geometry);
   // Tree Cover Loss
   promises[KEYS.TCL] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, canopyDensity, geometry);
   //- Risk Analysis Queries below
@@ -105,12 +106,8 @@ const customAnalysis = (geometry, area, canopyDensity) => {
 
     firesRiskResponse = response[KEYS.R_FIRES];
 
-    console.log('FIRE RISK', firesRiskResponse);
-
     lang.mixin(attributes, Formatters.formatAnnualFiresAverage(firesRiskResponse));
     lang.mixin(attributes, Formatters.formatFiresRisk(firesRiskResponse, area));
-
-
     lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION], area));
     lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
     lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
@@ -121,4 +118,48 @@ const customAnalysis = (geometry, area, canopyDensity) => {
   return promise;
 };
 
-export { customAnalysis as default };
+/**
+* This function is used in the map and performs the risk analysis only for the given geometry
+* @param {esriGeometryPolygon} geometry - Valid Esri Polygon to analyze
+* @param {number} area - Area of the provided polygon
+* @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map
+* @return {deferred} promise
+*/
+export const performRiskAnalysis = (geometry, area) => {
+  let promise = new Deferred();
+  let treeDensityConfig = analysisConfig[KEYS.TCD];
+  let treeLossConfig = analysisConfig[KEYS.TCL];
+  let promises = {};
+
+  // These are needed for Tree Cover Loss and Historic Tree Cover Loss risk analysis
+  promises[KEYS.TCD_30] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, 30, geometry);
+  promises[KEYS.TCL_30] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, 30, geometry);
+  // Potential Tree Cover -- Needed for Historic Tree Cover Loss Risk Analysis
+  promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
+  // Fires for Risk Analysis
+  promises[KEYS.R_FIRES] = Histogram.getWithMosaic(analysisConfig[KEYS.R_FIRES].rasterId, geometry, 4308.246486);
+  // Erosion for Risk Analysis
+  promises[KEYS.R_EROSION] = Histogram.getWithMosaic(analysisConfig[KEYS.R_EROSION].rasterId, geometry);
+  // Recent TCL for Risk Analysis
+  promises[KEYS.R_TCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_TCL].aridAreaRasterId, geometry);
+  // Historic TCL for Risk Analysis
+  promises[KEYS.R_HTCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_HTCL].aridAreaRasterId, geometry);
+
+  all(promises).then((results) => {
+    let attributes = {},
+        tl_g30_all_ha,
+        tc_g30_ha;
+
+    tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30], 30).tl_g30_all_ha;
+    tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30], 30).tc_g30_ha;
+
+    lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES], area));
+    lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION], area));
+    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
+    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
+
+    promise.resolve(attributes);
+  });
+
+  return promise;
+};

@@ -1,5 +1,7 @@
+import {performRiskAnalysis} from 'report/custom-analysis';
 import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText} from 'js/config';
+import lang from 'dojo/_base/lang';
 import alt from 'js/alt';
 
 class AnalysisStore {
@@ -39,7 +41,13 @@ class AnalysisStore {
   }
 
   analyzeCustomArea (feature) {
-    this.activeCustomArea = feature;
+    let area = feature.attributes[analysisPanelText.watershedAreaField];
+    let geometry = feature.geometry;
+    performRiskAnalysis(geometry, area).then((attributes) => {
+      lang.mixin(feature.attributes, attributes);
+      this.activeCustomArea = feature;
+      this.emitChange();
+    });
   }
 
   setCustomAreaName (newName) {
@@ -56,14 +64,14 @@ class AnalysisStore {
 
   toggleLoader (status) {
     this.isLoading = status;
-    //- Give it a timeout of 15 secs if we are enabling the loader
+    //- Give it a timeout of 30 secs if we are enabling the loader
     if (status) {
-      this.applyTimeout('isLoading', 15000);
+      this.applyTimeout('isLoading', 30000);
     }
   }
 
   /**
-  * Takes a property of type boolean, it should be true, and after the duration, if it's still true, sets it false
+  * Takes a boolean that is true, and after the duration, if it's still true, sets it to false
   * @param {string} property - property in this store which we want to set to false after the timeout
   * @param {number} duration - timeout duration
   */
