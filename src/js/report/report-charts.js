@@ -1,6 +1,6 @@
 /* charts are created but the refs are not needed, prefer this over the no-new rule for side-effects */
 /* eslint no-unused-vars:0 */
-import {chartText} from 'js/config';
+import {chartText} from 'report/config';
 import number from 'dojo/number';
 const exportButtonImage = 'url(./css/images/download-icon.svg)';
 
@@ -137,6 +137,11 @@ const makeCharts = (watershed) => {
           menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
           symbol: exportButtonImage
         }
+      }
+    },
+    tooltip: {
+      formatter: function () {
+        return `<strong>${this.series.name} (HA)</strong><br>${this.key} - ${number.format(this.y)}`;
       }
     },
     credits: { enabled: false },

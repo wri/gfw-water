@@ -17,6 +17,7 @@
 		// Configured Packages
 		'js': 'js/map',
 		'vendor': 'vendor',
+		'report': 'js/report',
 		'utils': 'js/map/utils',
 		'stores': 'js/map/stores',
 		'helpers': 'js/map/helpers',

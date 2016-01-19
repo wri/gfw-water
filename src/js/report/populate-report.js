@@ -5,7 +5,7 @@ import domQuery from 'dojo/query';
 import domClass from 'dojo/dom-class';
 import manipulate from 'dojo/NodeList-manipulate';
 import number from 'dojo/number';
-import {reportText} from 'js/config';
+import {reportText} from 'report/config';
 
 const noDecimal = { places: 0 };
 const oneDecimal = { places: 1 };

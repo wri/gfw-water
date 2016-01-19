@@ -18,9 +18,9 @@ import queryUtils from './query-utils';
 import populateReport from './populate-report';
 import reportCharts from './report-charts';
 import featureCollection from './feature-collection-shell';
-import performCustomAnalysis from 'js/custom-analysis';
-import {fieldConfig} from 'js/config';
-import KEYS from 'js/constants';
+import { performCustomAnalysis } from 'report/custom-analysis';
+import {fieldConfig} from 'report/config';
+import KEYS from 'report/constants';
 
 let config;
 let shedQueryTask;

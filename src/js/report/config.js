@@ -1,4 +1,4 @@
-import KEYS from 'js/constants';
+import KEYS from 'report/constants';
 
 export default {
   assetUrls: {
@@ -249,7 +249,16 @@ analysis[KEYS.WETLAND] = {
 
 analysis[KEYS.TCD] = {
   rasterId: 547,
-  field: density => `tc_g${density}_ha`
+  field: density => `tc_g${density}_ha`,
+  valueIndex: {
+    10: 1,
+    15: 2,
+    20: 3,
+    25: 4,
+    30: 5,
+    50: 6,
+    75: 7
+  }
 };
 
 analysis[KEYS.PTC] = {

@@ -21,7 +21,8 @@ html
         async: true,
         cacheBust: '#{version}',
         packages: [
-          { name: 'js', location: base + '/js/report' },
+          { name: 'js', location: base + '/js/map' },
+          { name: 'report', location: base + '/js/report' },
           { name: 'vendor', location: base + '/vendor' },
           { name: 'utils', location: base + '/js/map/utils' },
           { name: 'stores', location: base + '/js/map/stores' },
@@ -38,7 +39,7 @@ html
           ['FileSaver', 'vendor/file-saver/FileSaver.min']
         ],
         deps: ['dojo/domReady!'],
-        callback: function () { require(['js/main']); }
+        callback: function () { require(['report/main']); }
       };
   body
     include templates/svgAssets.jade

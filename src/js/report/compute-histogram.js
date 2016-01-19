@@ -1,4 +1,4 @@
-import {analysisConfig} from 'js/config';
+import {analysisConfig} from 'report/config';
 import esriRequest from 'esri/request';
 
 /**
