@@ -2,8 +2,9 @@ import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
 import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
 import {analysisActions} from 'actions/AnalysisActions';
-import {analysisPanelText as text} from 'js/config';
+import {analysisPanelText as text, analyticsLabels} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
+import analytics from 'utils/googleAnalytics';
 import {mapStore} from 'stores/MapStore';
 import KEYS from 'js/constants';
 import React from 'react';
@@ -19,7 +20,12 @@ let runReport = () => {
     analysisActions.launchReport(`W_${majorBasinNumber}`, canopyDensity);
   }
 
-  // window.open('http://data.wri.org/gfw-water/sample-report.pdf');
+  //- Send off analytics
+  analytics(
+    KEYS.analyticsCategory,
+    KEYS.analyticsAnalysisAction,
+    analyticsLabels.analyzeWatershed(majorBasinNumber)
+  );
 };
 
 let WatershedAnalysis = props => {

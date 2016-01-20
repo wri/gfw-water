@@ -1,7 +1,10 @@
 import {analysisActions} from 'actions/AnalysisActions';
+import {layerActions} from 'actions/LayerActions';
+import {modalActions} from 'actions/ModalActions';
 import {layerPanelText, layersConfig} from 'js/config';
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisStore} from 'stores/AnalysisStore';
+import {modalStore} from 'stores/ModalStore';
 import rasterFuncs from 'utils/rasterFunctions';
 import Symbols from 'helpers/Symbols';
 import Request from 'utils/request';
@@ -73,6 +76,14 @@ let LayersHelper = {
     brApp.debug(`LayersHelper >>> showLayer - ${layerId}`);
     let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.show(); }
+
+    // If the layer is the potential forest layer (historic loss), show a dialog and ask about the tree cover layer
+    let {lossCookieValue} = modalStore.getState();
+    if (layerId === KEYS.historicLoss && !lossCookieValue) {
+      modalActions.showHistoricLossModal();
+    } else if (lossCookieValue === KEYS.lossCookieShow) {
+      layerActions.addActiveLayer(KEYS.treeCover);
+    }
   },
   /**
   * @param {string} layerId - id of layer to hide

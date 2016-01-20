@@ -30,7 +30,14 @@ const KEYS = {
   customAreaFeatures: 'customAreaFeatures',
   //- Miscellaneous keys
   watershedChartId: 'watershed-chart',
-  customAreaChartId: 'custom-area-chart'
+  customAreaChartId: 'custom-area-chart',
+  lossCookieShow: 'show',
+  lossCookieHide: 'hide',
+  //- Google Analytics keys
+  analyticsCategory: 'Map',
+  analyticsToggleAction: 'Toggle',
+  analyticsAnalysisAction: 'Analysis',
+  analyticsSettingsAction: 'Settings'
 };
 
 export { KEYS as default };
