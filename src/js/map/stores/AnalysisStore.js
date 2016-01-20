@@ -1,6 +1,6 @@
 import {performRiskAnalysis} from 'report/custom-analysis';
 import {analysisActions} from 'actions/AnalysisActions';
-import {analysisPanelText} from 'js/config';
+import {analysisPanelText as text} from 'js/config';
 import lang from 'dojo/_base/lang';
 import alt from 'js/alt';
 
@@ -11,8 +11,8 @@ class AnalysisStore {
     this.toolbarActive = false;
     this.activeWatershed = null;
     this.activeCustomArea = null;
-    this.activeTab = analysisPanelText.watershedTabId;
-    this.customAreaName = analysisPanelText.customAreaNamePlaceholder;
+    this.activeTab = text.watershedTabId;
+    this.customAreaName = text.customAreaNamePlaceholder;
 
     this.bindListeners({
       toggleLoader: analysisActions.toggleLoader,
@@ -41,7 +41,8 @@ class AnalysisStore {
   }
 
   analyzeCustomArea (feature) {
-    let area = feature.attributes[analysisPanelText.watershedAreaField];
+    //- Make sure the area is in hectares and not square kilometers
+    let area = feature.attributes[text.watershedAreaField];
     let geometry = feature.geometry;
     performRiskAnalysis(geometry, area).then((attributes) => {
       lang.mixin(feature.attributes, attributes);

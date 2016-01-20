@@ -13,18 +13,15 @@ import React from 'react';
 // Temporary for the prototype
 import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
-import LossFootnote from 'components/AnalysisPanel/LossFootnote';
 
 
 let runReport = () => {
   // Show Loader of some sort saying that we are preparing to perform analysis
   let {activeCustomArea, customAreaName} = analysisStore.getState();
   let {canopyDensity} = mapStore.getState();
-  //- Give the feature a name and save the area, the area is in square kilometers, first
-  //- convert it to hectares by multiplying by 100
-  let area = config.squareKilometersToHectares(activeCustomArea.attributes[config.hydrologyServiceAreaField]);
+
+  //- Save the name before saving the feature
   activeCustomArea.attributes[config.watershedNameField] = customAreaName;
-  activeCustomArea.attributes[config.watershedAreaField] = area;
 
   analysisActions.saveFeature(activeCustomArea).then(res => {
     if (res.length > 0 && res[0].success) {
@@ -72,9 +69,12 @@ export default class CustomAnalysis extends React.Component {
         // explicit actions for showing/hiding loading wheels and they can be managed from the store
         AnalysisHelper.findWatershed(evt.geometry).then(() => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
+            //- Convert the area to hectares
+            let area = config.squareKilometersToHectares(feature.attributes[config.hydrologyServiceAreaField]);
+            feature.attributes[config.watershedAreaField] = area;
+            //- Hide the loader and perform risk analysis
             analysisActions.toggleLoader(false);
             analysisActions.analyzeCustomArea(feature);
-            //- Set the extent but expand a bit to give some context to the location
             brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
           }, err => {
             analysisActions.clearCustomArea();
@@ -124,7 +124,6 @@ export default class CustomAnalysis extends React.Component {
             </div>
             <WatershedSummary />
             <WatershedChart id={KEYS.customAreaChartId} feature={this.props.activeCustomArea} />
-            <LossFootnote />
             <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{config.fullReportButton}</div>
           </div>
         }

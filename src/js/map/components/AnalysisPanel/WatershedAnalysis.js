@@ -1,7 +1,6 @@
 import CustomAnalysisLink from 'components/AnalysisPanel/CustomAnalysisLink';
 import WatershedSummary from 'components/AnalysisPanel/WatershedSummary';
 import WatershedChart from 'components/AnalysisPanel/WatershedChart';
-import LossFootnote from 'components/AnalysisPanel/LossFootnote';
 import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText as text} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
@@ -31,7 +30,6 @@ let WatershedAnalysis = props => {
           <div className='feature-title'>{text.getWatershedTitle(props.activeWatershed)}</div>
           <WatershedSummary />
           <WatershedChart id={KEYS.watershedChartId} feature={props.activeWatershed} />
-          <LossFootnote />
           <CustomAnalysisLink />
           <div className='full-report-button gfw-btn blue pointer' onClick={runReport}>{text.fullReportButton}</div>
         </div>
