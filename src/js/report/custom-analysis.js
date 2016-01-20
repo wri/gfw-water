@@ -153,6 +153,7 @@ export const performRiskAnalysis = (geometry, area) => {
     tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30], 30).tl_g30_all_ha;
     tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30], 30).tc_g30_ha;
 
+    lang.mixin(attributes, Formatters.formatPotentialTreeCover(results[KEYS.PTC]));
     lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES], area));
     lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION], area));
     lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));

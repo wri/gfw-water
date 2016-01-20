@@ -16,7 +16,6 @@ export default class AnalysisTools extends React.Component {
 
   constructor (props) {
     super(props);
-
     analysisStore.listen(this.storeUpdated.bind(this));
     mapStore.listen(this.storeUpdated.bind(this));
     let defaultState = analysisStore.getState();
@@ -51,7 +50,6 @@ export default class AnalysisTools extends React.Component {
           <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
           <span>{text.analyzeButton}</span>
         </div>
-
         <TabControls activeTab={this.state.activeTab} />
         <div className='tab-container custom-scroll'>
           <WatershedAnalysis active={watershedTabActive} {...this.state} />

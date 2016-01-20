@@ -1,3 +1,8 @@
+/**
+* Currently not in use
+* UI Looks like this: Tree cover loss 2001 to 2014 with > 30 % canopy density.
+*/
+
 import CanopyLink from 'components/AnalysisPanel/CanopyLink';
 import LossLink from 'components/AnalysisPanel/LossLink';
 import {analysisPanelText as text} from 'js/config';
