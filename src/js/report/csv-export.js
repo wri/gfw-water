@@ -39,7 +39,7 @@ total tree cover loss area (ha) 2001-2014,${attributes[canopyDensity('tl_g##_all
 2014 tree cover loss (ha),${attributes[canopyDensity('tl_g##_14_ha', `${canopy}`)]}
 tree cover loss trend,${attributes[canopyDensity('tlt_g##_ha', `${canopy}`)]}
 potential tree cover (Ha),${attributes.ptc_ha}
-remaining forest cover as percent of potential tree cover,${(attributes[canopyDensity('tc_g##_ha', `${canopy}`)] / attributes.ptc_ha * 100).toFixed(2)}
+total tree cover (2000) as percent of potential tree cover,${(attributes[canopyDensity('tc_g##_ha', `${canopy}`)] / attributes.ptc_ha * 100).toFixed(2)}
 active fires (past 24 hours),${attributes._fireCount}
 average annual fire count 2012-2015,${attributes.fire_c}`;
 
