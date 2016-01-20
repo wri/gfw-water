@@ -2,8 +2,9 @@ import CustomAreaHeader from 'components/AnalysisPanel/CustomAreaHeader';
 import LatLngTool from 'components/AnalysisPanel/LatLngTool';
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
-import {analysisPanelText as config} from 'js/config';
+import {analysisPanelText as config, analyticsLabels} from 'js/config';
 import {analysisStore} from 'stores/AnalysisStore';
+import analytics from 'utils/googleAnalytics';
 import {mapStore} from 'stores/MapStore';
 import Loader from 'components/Loader';
 import Draw from 'esri/toolbars/draw';
@@ -27,6 +28,14 @@ let runReport = () => {
     if (res.length > 0 && res[0].success) {
       analysisActions.launchReport(`C_${res[0].objectId}`, canopyDensity);
     }
+
+    //- Send off analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsAnalysisAction,
+      analyticsLabels.analyzeCustomArea(res[0].objectId)
+    );
+
   }, err => {
     console.log(err);
   });
@@ -85,6 +94,14 @@ export default class CustomAnalysis extends React.Component {
           if (typeof err === 'string') { alert(err); }
           analysisActions.toggleLoader(false);
         });
+
+        //- Send off analytics
+        analytics(
+          KEYS.analyticsCategory,
+          KEYS.analyticsAnalysisAction,
+          analyticsLabels.analyzeAddPoint
+        );
+
       });
     }
 

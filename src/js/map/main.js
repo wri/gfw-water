@@ -4,6 +4,7 @@ import ShareModal from 'components/Modals/ShareModal';
 import BasicModal from 'components/Modals/BasicModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
+import HistoricLossModal from 'components/Modals/HistoricLossModal';
 import {assetUrls, proxyRules} from 'js/config';
 import {loadCSS, loadJS} from 'utils/loaders';
 import urlUtils from 'esri/urlUtils';
@@ -60,6 +61,7 @@ let initializeApp = () => {
   ReactDOM.render(<BasicModal />, document.getElementById('basic-modal'));
   ReactDOM.render(<AlertsModal />, document.getElementById('alerts-modal'));
   ReactDOM.render(<CanopyModal />, document.getElementById('canopy-modal'));
+  ReactDOM.render(<HistoricLossModal />, document.getElementById('historic-loss-modal'));
 };
 
 configureApp();

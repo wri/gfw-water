@@ -483,7 +483,22 @@ export const config = {
         googleUrl: url => `https://plus.google.com/share?url=${url}`,
         twitterUrl: url => `https://twitter.com/share?url=${url}&via=gfw-water`,
         facebookUrl: url => `https://www.facebook.com/sharer.php?u=${url}`
+      },
+      historicLoss: {
+        question: 'Would you like to turn on Tree Cover to see historical tree cover loss?',
+        cookieLabel: 'Don\'t show this again.',
+        cookieName: 'treeCoverWithPotentialForest'
       }
+    },
+    analytics: {
+      threshold: (currentThreshold) => `Tree cover threshold: ${currentThreshold}`,
+      treeCoverFromYear: (year) => `Tree cover loss: From: ${year}`,
+      treeCoverToYear: (year) => `Tree cover loss: To: ${year}`,
+      toggleLayer: (layerName) => `Layer: ${layerName}`,
+      analyzeWatershed: (id) => `Watershed: maj_name: ${id}`,
+      analyzeCustomArea: (id) => `Custom Area: ${id}`,
+      analyzeAddPoint: 'Add Point',
+      analyzeSearchCoords: 'Search Lat/Lon'
     },
     // Fill in below so I can use the keys as Ids
     layerInformation: {}
@@ -786,6 +801,7 @@ export const defaults = config.defaults;
 export const errors = config.text.errors;
 export const layersConfig = config.layers;
 export const modalText = config.text.modals;
+export const analyticsLabels = config.text.analytics;
 
 export const layerPanelText = config.text.layerPanel;
 export const analysisPanelText = config.text.analysisPanel;

@@ -1,4 +1,6 @@
 import {modalActions} from 'actions/ModalActions';
+import {modalText} from 'js/config';
+import cookie from 'dojo/cookie';
 import alt from 'js/alt';
 
 class ModalStore {
@@ -8,11 +10,13 @@ class ModalStore {
     this.modalLayerInfo = {};
     this.basicModalText = '';
     this.basicModalTitle = '';
+    this.lossCookieValue = cookie(modalText.historicLoss.cookieName);
 
     this.bindListeners({
       showLayerInfo: modalActions.showLayerInfo,
       updateBitlyUrl: modalActions.showShareModal,
-      showBasicModal: modalActions.showBasicModal
+      showBasicModal: modalActions.showBasicModal,
+      saveLossCookie: modalActions.saveLossCookie
     });
   }
 
@@ -27,6 +31,13 @@ class ModalStore {
   showBasicModal (payload) {
     this.basicModalText = payload.text;
     this.basicModalTitle = payload.title;
+  }
+
+  saveLossCookie (options) {
+    //- Should be false or a string indicating what action to perform
+    let value = options.value ? options.action : options.value;
+    this.lossCookieValue = value;
+    cookie(modalText.historicLoss.cookieName, value, { expires: 14 });
   }
 
 }

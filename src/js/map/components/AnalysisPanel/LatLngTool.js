@@ -1,8 +1,10 @@
 import {analysisActions} from 'actions/AnalysisActions';
 import AnalysisHelper from 'helpers/AnalysisHelper';
 import GraphicsHelper from 'helpers/GraphicsHelper';
-import {analysisPanelText as text} from 'js/config';
+import {analysisPanelText as text, analyticsLabels} from 'js/config';
+import analytics from 'utils/googleAnalytics';
 import utils from 'utils/AppUtils';
+import KEYS from 'js/constants';
 import React from 'react';
 
 export default class LatLngTool extends React.Component {
@@ -27,6 +29,14 @@ export default class LatLngTool extends React.Component {
       }, (err) => {
         if (typeof err === 'string') { alert(err); }
       });
+
+      //- Send off analytics
+      analytics(
+        KEYS.analyticsCategory,
+        KEYS.analyticsAnalysisAction,
+        analyticsLabels.analyzeSearchCoords
+      );
+
     } else {
       alert(text.invalidLatLng);
     }

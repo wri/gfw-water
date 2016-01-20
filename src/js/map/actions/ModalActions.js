@@ -38,6 +38,11 @@ class ModalActions {
     domClass.remove('basic-modal', 'hidden');
   }
 
+  showHistoricLossModal () {
+    brApp.debug('ModalActions >>> showHistoricLossModal');
+    domClass.remove('historic-loss-modal', 'hidden');
+  }
+
   hideModal (node) {
     brApp.debug('ModalActions >>> hideModal');
     domClass.add(node, 'hidden');
@@ -46,6 +51,11 @@ class ModalActions {
   updateCanopyDensity (newDensity) {
     brApp.debug('ModalActions >>> updateCanopyDensity');
     this.dispatch(newDensity);
+  }
+
+  saveLossCookie (options) {
+    brApp.debug('ModalActions >>> saveLossCookie');
+    this.dispatch(options);
   }
 
 }
