@@ -39,6 +39,18 @@ export default class AnalysisTools extends React.Component {
     }
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    //- If the user changed tabs in this analysis panel, zoom to an active feature if present in the active tab
+    if (this.state.activeTab !== prevState.activeTab) {
+      if (this.state.activeTab === text.watershedTabId && this.state.activeWatershed) {
+        brApp.map.setExtent(this.state.activeWatershed.geometry.getExtent(), true);
+      }
+      if (this.state.activeTab === text.customTabId && this.state.activeCustomArea) {
+        brApp.map.setExtent(this.state.activeCustomArea.geometry.getExtent(), true);
+      }
+    }
+  }
+
   render () {
     let customTabActive = this.state.activeTab === text.customTabId;
     let watershedTabActive = this.state.activeTab === text.watershedTabId;
