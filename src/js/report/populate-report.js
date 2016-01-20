@@ -59,7 +59,7 @@ export default {
     const pastLossRisk = attributes.rs_pf_c;
     const pastLossAmount = attributes.ptc_ha / 1000000;
     const pastLossPercent = pastLossAmount / wsArea;
-    const pastLossRate = attributes['tl_g' + canopy + '_all_ha'] / attributes.ptc_ha;
+    const pastLossRate = attributes['tc_g' + canopy + '_ha'] / attributes.ptc_ha;
 
     const erosionRisk = attributes.rs_sed_c;
     const erosionRiskDescription = riskCategory(erosionRisk);
