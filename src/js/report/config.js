@@ -1,5 +1,7 @@
 import KEYS from 'report/constants';
 
+let erosionImageServer = 'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer';
+
 export default {
   assetUrls: {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
@@ -41,6 +43,9 @@ export default {
       proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
     }
   },
+  corsEnabledServers: [
+    erosionImageServer
+  ],
   canopyDensity: 10,
   watershedId: 1003,
   watershedIdField: 'maj_bas',
@@ -291,12 +296,15 @@ analysis[KEYS.R_FIRES_AVG] = {
 
 analysis[KEYS.R_FIRES] = {
   rasterId: 551,
-  field: 'rs_fire_c'
+  field: 'rs_fire_c',
+  pixelSize: 4308.246486
 };
 
 analysis[KEYS.R_EROSION] = {
   rasterId: 549,
-  field: 'rs_sed_c'
+  field: 'rs_sed_c',
+  url: erosionImageServer,
+  pixelSize: 419.0266215
 };
 
 analysis[KEYS.R_TCL] = {

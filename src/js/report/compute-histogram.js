@@ -26,6 +26,31 @@ const computeHistogram = (url, content) => {
   }, { usePost: true });
 };
 
+/**
+* Compute Statistics Histogram Wrapper
+* @param {string} url - Image Service Url
+* @param {object} content - Payload for the request
+* @return {deferred}
+*/
+const computeStatisticsHistograms = (url, content) => {
+  // Make sure certain params are stringified
+  if (content.geometry) { content.geometry = JSON.stringify(content.geometry); }
+  if (content.renderingRule) { content.renderingRule = JSON.stringify(content.renderingRule); }
+  if (content.mosaicRule) { content.mosaicRule = JSON.stringify(content.mosaicRule); }
+  // Set some defaults
+  content.geometryType = content.geometryType || 'esriGeometryPolygon';
+  content.pixelSize = content.pixelSize || 100;
+  content.f = content.f || 'json';
+
+  return esriRequest({
+    url: `${url}/computeStatisticsHistograms`,
+    callbackParamName: 'callback',
+    content: content,
+    handleAs: 'json',
+    timeout: 30000
+  }, { usePost: true });
+};
+
 
 const query = {
 
@@ -33,7 +58,7 @@ const query = {
     return computeHistogram(analysisConfig.imageService, {
       mosaicRule: analysisConfig.mosaicRule(rasterId),
       geometry: geometry,
-      pixelSize: pixelSize || 100
+      pixelSize: pixelSize
     });
   },
 
@@ -41,6 +66,17 @@ const query = {
     return computeHistogram(analysisConfig.imageService, {
       renderingRule: analysisConfig.rasterRemapForTCD(rasterId, density),
       geometry: geometry
+    });
+  },
+
+  /**
+  * This analysis is only available on 10.4
+  * This method signature may change but it is only temporary since it is using 10.4 Preview server
+  */
+  getStatisitcs: (url, geometry, pixelSize) => {
+    return computeStatisticsHistograms(url, {
+      geometry: geometry,
+      pixelSize: pixelSize
     });
   }
 

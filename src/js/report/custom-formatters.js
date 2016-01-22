@@ -16,6 +16,15 @@ const getCounts = histograms => {
 };
 
 /**
+* Helper function to grab the statistics or return empty array
+* @param {array} statistics
+* @return {object} - statistics object
+*/
+const getStatisitcs = statistics => {
+  return statistics.length > 0 ? statistics[0] : {};
+};
+
+/**
 * Helper function to calculate slope for a linear regression line based on knownX's and knownY's
 * using the least squares method, similar to how excel and google implement SLOPE in spreadsheet
 * Formula taken from https://www.easycalculation.com/analytical/learn-least-square-regression.php
@@ -212,13 +221,10 @@ export default {
   formatErosionRisk: (response) => {
     let config = analysisConfig[KEYS.R_EROSION];
     let grader = riskGrader[KEYS.R_EROSION];
-    // Parse the counts array
-    let counts = getCounts(response.histograms);
+    // Parse the statistics object
+    let statistics = getStatisitcs(response.statistics);
     let attributes = {};
-    //- Value to save is the mean of all the values divided by area
-    //- excluding 0 index since that is null pixel values
-    let rawValue = (counts.length > 1 ? counts.slice(1).reduce((a, b) => a + b) : 0) / (counts.length - 1);
-    attributes[config.field] = grader(rawValue) || 0;
+    attributes[config.field] = grader(statistics.mean || 0);
     return attributes;
   },
 
