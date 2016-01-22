@@ -66,9 +66,11 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
   promises[KEYS.TCL] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, canopyDensity, geometry);
   //- Risk Analysis Queries below
   // Fires for Risk Analysis
-  promises[KEYS.R_FIRES] = Histogram.getWithMosaic(analysisConfig[KEYS.R_FIRES].rasterId, geometry, 4308.246486);
+  let firesRiskConfig = analysisConfig[KEYS.R_FIRES];
+  promises[KEYS.R_FIRES] = Histogram.getWithMosaic(firesRiskConfig.rasterId, geometry, firesRiskConfig.pixelSize);
   // Erosion for Risk Analysis
-  promises[KEYS.R_EROSION] = Histogram.getWithMosaic(analysisConfig[KEYS.R_EROSION].rasterId, geometry);
+  let erosionConfig = analysisConfig[KEYS.R_EROSION];
+  promises[KEYS.R_EROSION] = Histogram.getStatisitcs(erosionConfig.url, geometry, erosionConfig.pixelSize);
   // Recent TCL for Risk Analysis
   promises[KEYS.R_TCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_TCL].aridAreaRasterId, geometry);
   // Historic TCL for Risk Analysis
@@ -108,7 +110,7 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
 
     lang.mixin(attributes, Formatters.formatAnnualFiresAverage(firesRiskResponse));
     lang.mixin(attributes, Formatters.formatFiresRisk(firesRiskResponse, area));
-    lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION], area));
+    lang.mixin(attributes, Formatters.formatErosionRisk(response[KEYS.R_EROSION]));
     lang.mixin(attributes, Formatters.formatTCLRisk(response[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
     lang.mixin(attributes, Formatters.formatHTCLRisk(response[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
 

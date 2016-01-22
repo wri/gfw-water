@@ -30,6 +30,11 @@ const riskCategory = (risk) => {
   return description;
 };
 
+const hasHighRisk = (score) => {
+  // Only show for scores of 4 and 5, less than 4 or 10 should not be shown
+  return score > 3 && score < 6;
+};
+
 export default {
   use: (options) => {
     const {config} = options;
@@ -108,19 +113,19 @@ export default {
     // Figure out which risk rows to show in Plan for Action section.
     const visibleClassName = 'applicable';
     const noRisk = domQuery('tr.no-risk')[0];
-    if (treeLossRisk > 3) {
+    if (hasHighRisk(treeLossRisk)) {
       domClass.add(domQuery('tr.tree-loss-risk')[0], visibleClassName);
     }
-    if (pastLossRisk > 3) {
+    if (hasHighRisk(pastLossRisk)) {
       domClass.add(domQuery('tr.past-loss-risk')[0], visibleClassName);
     }
-    if (erosionRisk > 3) {
+    if (hasHighRisk(erosionRisk)) {
       domClass.add(domQuery('tr.erosion-risk')[0], visibleClassName);
     }
-    if (fireRisk > 3) {
+    if (hasHighRisk(fireRisk)) {
       domClass.add(domQuery('tr.fire-risk')[0], visibleClassName);
     }
-    if (treeLossRisk > 3 || pastLossRisk > 3 || erosionRisk > 3 || fireRisk > 3) {
+    if (hasHighRisk(treeLossRisk) || hasHighRisk(pastLossRisk) || hasHighRisk(erosionRisk) || hasHighRisk(fireRisk)) {
       domClass.add(noRisk, 'risk-info');
     }
   }

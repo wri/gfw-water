@@ -5,6 +5,7 @@ import {loadCSS, loadJS} from 'utils/loaders';
 import config from 'report/config';
 import reportMaps from 'report/report-maps';
 import urlUtils from 'esri/urlUtils';
+import esriConfig from 'esri/config';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import csvExport from 'report/csv-export';
@@ -50,6 +51,9 @@ let lazyloadAssets = () => {
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
   urlUtils.addProxyRule(config.proxy.featureServer);
+  config.corsEnabledServers.forEach(server => {
+    esriConfig.defaults.io.corsEnabledServers.push(server);
+  });
 };
 
 const attachEvents = () => {
