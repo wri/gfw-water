@@ -5,9 +5,10 @@ import BasicModal from 'components/Modals/BasicModal';
 import AlertsModal from 'components/Modals/AlertsModal';
 import CanopyModal from 'components/Modals/CanopyModal';
 import HistoricLossModal from 'components/Modals/HistoricLossModal';
-import {assetUrls, proxyRules} from 'js/config';
+import {assetUrls, proxyRules, corsServers} from 'js/config';
 import {loadCSS, loadJS} from 'utils/loaders';
 import urlUtils from 'esri/urlUtils';
+import esriConfig from 'esri/config';
 import Map from 'components/Map';
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -49,6 +50,7 @@ let lazyloadAssets = () => {
 
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
+  corsServers.forEach((server) => { esriConfig.defaults.io.corsEnabledServers.push(server); });
   urlUtils.addProxyRule(proxyRules.hydro);
   urlUtils.addProxyRule(proxyRules.featureServer);
 };
