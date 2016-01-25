@@ -339,8 +339,8 @@ let grader = {};
 
 //- These functions should return a value ready to be dropped in the UI
 grader[KEYS.R_FIRES] = (value) => {
-  if (value === 0) {
-    return value;
+  if (value <= 0) {
+    return 0;
   } else if (value <= 0.000011) {
     return 1;
   } else if (value >= 0.000012 && value <= 0.000044) {
@@ -355,8 +355,8 @@ grader[KEYS.R_FIRES] = (value) => {
 };
 
 grader[KEYS.R_EROSION] = (value) => {
-  if (value === 0) {
-    return value;
+  if (value <= 0) {
+    return 0;
   } else if (value <= 0.28) {
     return 1;
   } else if (value >= 0.29 && value <= 1.33) {
@@ -374,9 +374,9 @@ grader[KEYS.R_TCL] = (value) => {
   //- If value is ten, then return value, it is a special value
   //- to represent that the risk score is not applicable
   if (value === 10) {
-    return value;
-  } else if (value === 0) {
-    return value;
+    return 10;
+  } else if (value <= 0) {
+    return 0;
   } else if (value <= 0.025) {
     return 1;
   } else if (value >= 0.026 && value <= 0.042) {

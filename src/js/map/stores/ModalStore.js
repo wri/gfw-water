@@ -10,7 +10,7 @@ class ModalStore {
     this.modalLayerInfo = {};
     this.basicModalText = '';
     this.basicModalTitle = '';
-    this.lossCookieValue = cookie(modalText.historicLoss.cookieName);
+    this.lossCookieValue = cookie ? cookie(modalText.historicLoss.cookieName) : false;
 
     this.bindListeners({
       showLayerInfo: modalActions.showLayerInfo,

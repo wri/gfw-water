@@ -11,6 +11,10 @@ export const config = {
     proxy: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 
+  corsEnabledServers: [
+    'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer'
+  ],
+
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
@@ -98,7 +102,7 @@ export const config = {
       id: KEYS.wetlands,
       order: 6,
       type: 'dynamic',
-      label: 'Wetlands',
+      label: 'Wetlands and Waterbodies',
       group: 'watershed',
       className: 'wetlands',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
@@ -142,7 +146,7 @@ export const config = {
       id: KEYS.waterIntake,
       order: 11,
       type: 'dynamic',
-      label: 'Urban water intake',
+      label: 'Urban water intakes',
       group: 'watershed',
       className: 'intake',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
@@ -578,7 +582,7 @@ config.text.layerInformation[KEYS.landCover] = {
 };
 
 config.text.layerInformation[KEYS.wetlands] = {
-  title: 'Lakes and Wetlands',
+  title: 'Wetlands and Waterbodies',
   table: [
     {label: 'Function', html: 'This datasets shows global distribution of large lakes and reservoirs, smaller water bodies, and wetlands.'},
     {label: 'Resolution/Scale', html: '30 x 30 arc second'},
@@ -598,7 +602,7 @@ config.text.layerInformation[KEYS.wetlands] = {
 };
 
 config.text.layerInformation[KEYS.waterIntake] = {
-  title: 'Urban water intake',
+  title: 'Urban water intakes',
   table: [
     {label: 'Function', html: 'Identifies water withdrawal locations for over 250 cities with a population greater than 750,000.'},
     {label: 'Resolution/Scale', html: 'Varies by country'},
@@ -801,6 +805,7 @@ export const defaults = config.defaults;
 export const errors = config.text.errors;
 export const layersConfig = config.layers;
 export const modalText = config.text.modals;
+export const corsServers = config.corsEnabledServers;
 export const analyticsLabels = config.text.analytics;
 
 export const layerPanelText = config.text.layerPanel;
