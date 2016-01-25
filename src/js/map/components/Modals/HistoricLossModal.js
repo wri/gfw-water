@@ -34,7 +34,7 @@ export default class CanopyModal extends React.Component {
   render() {
     return (
       <ModalWrapper>
-        <div className='modal-content historic-loss__content'>
+        <div className='historic-loss__content'>
           <div>{modalText.historicLoss.question}</div>
           <div className='modal-buttons historic-loss__buttons'>
             <div className='gfw-btn blue pointer' onClick={this.showLayer}>Yes</div>
