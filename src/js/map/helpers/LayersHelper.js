@@ -79,10 +79,12 @@ let LayersHelper = {
 
     // If the layer is the potential forest layer (historic loss), show a dialog and ask about the tree cover layer
     let {lossCookieValue} = modalStore.getState();
-    if (layerId === KEYS.historicLoss && !lossCookieValue) {
-      modalActions.showHistoricLossModal();
-    } else if (lossCookieValue === KEYS.lossCookieShow) {
-      layerActions.addActiveLayer(KEYS.treeCover);
+    if (layerId === KEYS.historicLoss) {
+      if (!lossCookieValue) {
+        modalActions.showHistoricLossModal();
+      } else if (lossCookieValue === KEYS.lossCookieShow) {
+        layerActions.addActiveLayer(KEYS.treeCover);
+      }
     }
   },
   /**
