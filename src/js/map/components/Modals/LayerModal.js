@@ -48,6 +48,13 @@ export default class Modal extends React.Component {
               {!layerInfo.moreContent ? null :
                 layerInfo.moreContent.map(this.htmlContentMap)
               }
+              {!layerInfo.download ? null :
+                <a className='layer-data-download' href={layerInfo.download} target='_blank'>
+                  <div className='gfw-btn blue'>
+                    {modalText.downloadButton}
+                  </div>
+                </a>
+              }
             </div>
           </div>
         }

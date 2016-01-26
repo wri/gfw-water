@@ -460,6 +460,7 @@ export const config = {
     },
     modals: {
       noInfo: 'No Information Available',
+      downloadButton: 'Learn more or download data',
       alerts: {
         title: 'Subscribe to GFW Alerts',
         descriptions: {
@@ -529,7 +530,8 @@ config.text.layerInformation[KEYS.historicLoss] = {
   ],
   citation: [
     '<strong>Citation:</strong>“Potential Forest.” World Resources Institute. Accessed through Global Forest Watch on [date]. water.globalforestwatch.org'
-  ]
+  ],
+  download: 'http://gfw2-data.s3.amazonaws.com/water/zip/potential_forest.zip'
 };
 
 config.text.layerInformation[KEYS.sediment] = {
@@ -559,7 +561,8 @@ config.text.layerInformation[KEYS.sediment] = {
   ],
   citation: [
     '<strong>Citation:</strong>“Erosion.” World Resources Institute. Accessed through Global Forest Watch on [date]. water.globalforestwatch.org'
-  ]
+  ],
+  download: 'http://gfw2-data.s3.amazonaws.com/water/zip/erosion.tif.zip'
 };
 
 config.text.layerInformation[KEYS.landCover] = {
@@ -578,7 +581,8 @@ config.text.layerInformation[KEYS.landCover] = {
   ],
   citation: [
     '<strong>Citation:</strong>Bontemps, Sophie, Pierre Defourney, Eric Van Bogaert, Olivier Arion, Vasileios Kalogirou, and Jose Ramos Perez. 2009. “GLOBCOVER 2009: Product Description and Validation Report.” Available online at: <a href="http://dup.esrin.esa.int/page_globcover.php" target="_blank">http://dup.esrin.esa.int/page_globcover.php</a>'
-  ]
+  ],
+  download: 'http://dup.esrin.esa.int/page_globcover.php'
 };
 
 config.text.layerInformation[KEYS.wetlands] = {
@@ -598,7 +602,8 @@ config.text.layerInformation[KEYS.wetlands] = {
   ],
   citation: [
     '<strong>Citation:</strong>Lehner, B. and Döll, P. (2004): Development and validation of a global database of lakes, reservoirs and wetlands. Journal of Hydrology 296/1-4: 1-22.'
-  ]
+  ],
+  download: 'http://www.worldwildlife.org/pages/global-lakes-and-wetlands-database'
 };
 
 config.text.layerInformation[KEYS.waterIntake] = {
@@ -618,7 +623,8 @@ config.text.layerInformation[KEYS.waterIntake] = {
   ],
   citation: [
     '<strong>Citation:</strong>Robert I. McDonald, Katherine Weber, Julie Padowski, Martina Flörke, Christof Schneider, Pamela A. Green, Thomas Gleeson, Stephanie Eckman, Bernhard Lehner, Deborah Balk, Timothy Boucher, Günther Grill, Mark Montgomery, Water on an urban planet: Urbanization and the reach of urban water infrastructure, Global Environmental Change, Volume 27, July 2014, Pages 96-105, ISSN 0959-3780, <a href="http://dx.doi.org/10.1016/j.gloenvcha.2014.04.022" target="_blank">http://dx.doi.org/10.1016/j.gloenvcha.2014.04.022</a>.<a href="http://www.sciencedirect.com/science/article/pii/S0959378014000880" target="_blank">(http://www.sciencedirect.com/science/article/pii/S0959378014000880)</a>'
-  ]
+  ],
+  download: 'http://www.sciencedirect.com/science/article/pii/S0959378014000880'
 };
 
 config.text.layerInformation[KEYS.waterStress] = {
@@ -643,7 +649,8 @@ config.text.layerInformation[KEYS.waterStress] = {
   ],
   moreContent: [
     '<p class="read-more"><em><a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Click to learn more about the Aqueduct Project</a></em></p>'
-  ]
+  ],
+  download: 'http://www.wri.org/resources/data-sets/aqueduct-global-maps-21-data'
 };
 
 config.text.layerInformation[KEYS.majorDams] = {
@@ -669,7 +676,8 @@ config.text.layerInformation[KEYS.majorDams] = {
   ],
   moreContent: [
     '<p class="read-more"><em><a href="http://data.globalforestwatch.org/datasets/537361e2df59486e898cd4e024af57ea_0" class="download-mobile-link" target="_blank">Learn more or download data.</a></em></p>'
-  ]
+  ],
+  download: 'http://data.globalforestwatch.org/datasets/537361e2df59486e898cd4e024af57ea_0'
 };
 
 config.text.layerInformation[KEYS.treeCover] = {
@@ -690,7 +698,8 @@ config.text.layerInformation[KEYS.treeCover] = {
   citation: [
     '<strong>Citation:</strong> Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “High-Resolution Global Maps of 21st-Century Forest Cover Change.” <em>Science</em> 342 (15 November): 850–53. Data available on-line from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a>.',
     '<strong>Suggested citation for data as displayed on GFW:</strong> Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “Tree Cover.” University of Maryland, Google, USGS, and NASA. Accessed through Global Forest Watch on [date]. <a href="http://www.globalforestwatch.org" target="_blank">www.globalforestwatch.org</a>.'
-  ]
+  ],
+  download: 'http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.2.html'
 };
 
 config.text.layerInformation[KEYS.loss] = {
@@ -730,7 +739,8 @@ config.text.layerInformation[KEYS.loss] = {
   citation: [
     '<strong>Citation:</strong> Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “High-Resolution Global Maps of 21st-Century Forest Cover Change.” Science 342 (15 November): 850–53. Data available online from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a>.',
     '<strong>Suggested citation for data as displayed on GFW:</strong>Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “Hansen/UMD/Google/USGS/NASA Tree Cover Loss and Gain Area.” University of Maryland, Google, USGS, and NASA. Accessed through Global Forest Watch on [date]. <a href="http://www.globalforestwatch.org" target="_blank">www.globalforestwatch.org</a>.'
-  ]
+  ],
+  download: 'http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.2.html'
 };
 
 config.text.layerInformation[KEYS.gain] = {
@@ -752,7 +762,8 @@ config.text.layerInformation[KEYS.gain] = {
   citation: [
     '<strong>Citation:</strong> Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “High-Resolution Global Maps of 21st-Century Forest Cover Change.” Science 342 (15 November): 850–53. Data available on-line from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a>.',
     '<strong>Suggested citations for data as displayed on GFW:</strong> Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. “Hansen/UMD/Google/USGS/NASA Tree Cover Loss and Gain Area.” University of Maryland, Google, USGS, and NASA. Accessed through Global Forest Watch on  [date]. <a href="http://www.globalforestwatch.org" target="_blank">www.globalforestwatch.org</a>.'
-  ]
+  ],
+  download: 'http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.2.html'
 };
 
 config.text.layerInformation[KEYS.activeFires] = {
@@ -774,7 +785,8 @@ config.text.layerInformation[KEYS.activeFires] = {
   citation: [
     '<strong>Citation:</strong>NASA FIRMS. “NASA Fire Information for Resource Management System (FIRMS).” Accessed on [date]. <a href="earthdata.nasa.gov/data/near-real-time-data/firms" target="_blank">earthdata.nasa.gov/data/near-real-time-data/firms</a>.',
     '<strong>Suggested citation for data as displayed on GFW:</strong> “NASA Active Fires.” NASA FIRMS. Accessed through Global Forest Watch on [date]. <a href="http://www.globalforestwatch.org" target="_blank">www.globalforestwatch.org</a>.'
-  ]
+  ],
+  download: 'https://earthdata.nasa.gov/data/near-real-time-data/firms'
 };
 
 config.text.layerInformation[KEYS.burnScars] = {

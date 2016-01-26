@@ -94,8 +94,8 @@ export default {
     dom.byId('risk-past-loss').innerHTML = (pastLossRisk !== 10 ? `${pastLossRisk}/5` : reportText.na);
     dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, twoDecimals);
     let correctedPastLossPercent = pastLossPercent > 1 ? 1 : pastLossPercent;
-    dom.byId('past-loss-percent').innerHTML = number.format(correctedPastLossPercent, percent);
-    dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percent);
+    dom.byId('past-loss-percent').innerHTML = number.format(correctedPastLossPercent, percentTwoDecimals);
+    dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percentTwoDecimals);
 
     dom.byId('risk-erosion').innerHTML = (erosionRisk !== 10 ? `${erosionRisk}/5` : reportText.na);
     dom.byId('risk-erosion-description').innerHTML = erosionRiskDescription;
