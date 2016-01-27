@@ -439,7 +439,7 @@ export const config = {
           </li>
           <li>
             <strong>Historical tree cover loss:</strong>
-            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where current tree cover is less than 10% of watershed.</span>
+            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of watershed.</span>
           </li>
           <li>
             <strong>Erosion:</strong>
