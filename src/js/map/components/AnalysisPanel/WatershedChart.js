@@ -15,6 +15,7 @@ let generateChart = (id, feature) => {
   //- the bar will not render
   if (rs_tl_c === 10) { rs_tl_c = -1; }
   if (rs_pf_c === 10) { rs_pf_c = -1; }
+  if (rs_sed_c === 10) { rs_sed_c = -1; }
 
   $(`#${id}`).highcharts({
     chart: {

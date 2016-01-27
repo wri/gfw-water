@@ -355,7 +355,11 @@ grader[KEYS.R_FIRES] = (value) => {
 };
 
 grader[KEYS.R_EROSION] = (value) => {
-  if (value <= 0) {
+  //- If value is ten, then return value, it is a special value
+  //- to represent that the risk score is not applicable
+  if (value === 10) {
+    return 10;
+  } else if (value <= 0) {
     return 0;
   } else if (value <= 0.28) {
     return 1;

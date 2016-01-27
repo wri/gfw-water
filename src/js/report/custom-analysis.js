@@ -16,10 +16,9 @@ import KEYS from 'report/constants';
 * @return {promise}
 */
 const betterAll = (promiseDictionary) => {
-  let promiseAll = new Deferred();
+  let promise = new Deferred();
   let results = {};
   let count = 0;
-  let promise;
 
   const savePromiseAt = (promiseKey) => {
     promiseDictionary[promiseKey].then(function (response) {
@@ -40,7 +39,7 @@ const betterAll = (promiseDictionary) => {
     }
   }
 
-  return promiseAll;
+  return promise;
 };
 
 /**
@@ -186,22 +185,29 @@ export const performRiskAnalysis = (geometry, area) => {
   // Historic TCL for Risk Analysis
   promises[KEYS.R_HTCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_HTCL].aridAreaRasterId, geometry);
 
-  all(promises).then((results) => {
+  // Results are in the following shape {data: {...}, error: {...}}
+  betterAll(promises).then((results) => {
     let attributes = {},
         tl_g30_all_ha,
         tc_g30_ha;
 
-    tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30], 30).tl_g30_all_ha;
-    //- Grab from the correct index for 30% or greater
-    tc_g30_ha = Formatters.parseTreeCoverDensityAtXPercent(results[KEYS.TCD_30], 30).tc_g30_ha;
 
-    lang.mixin(attributes, Formatters.formatPotentialTreeCover(results[KEYS.PTC]));
-    lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES], area));
-    lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION]));
-    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.R_TCL], area, tl_g30_all_ha, tc_g30_ha));
-    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.R_HTCL], area, tc_g30_ha, attributes.ptc_ha));
+    tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
+    tc_g30_ha = Formatters.parseTreeCoverDensityAtXPercent(results[KEYS.TCD_30].data, 30).tc_g30_ha;
+    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.R_TCL].data, area, tl_g30_all_ha, tc_g30_ha));
+    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.R_HTCL].data, area, tc_g30_ha, attributes.ptc_ha));
+
+    lang.mixin(attributes, Formatters.formatPotentialTreeCover(results[KEYS.PTC].data));
+    lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES].data, area));
+
+    if (results[KEYS.R_EROSION].data) {
+      lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION].data));
+    } else {
+      attributes[analysisConfig[KEYS.R_EROSION].field] = 10;
+    }
 
     promise.resolve(attributes);
+
   });
 
   return promise;
