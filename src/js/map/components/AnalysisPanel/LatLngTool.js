@@ -24,8 +24,19 @@ export default class LatLngTool extends React.Component {
       let point = GraphicsHelper.generatePointFromLatLng(lat, lon);
       // Find out if this point is in a watershed
       AnalysisHelper.findWatershed(point).then(() => {
-        analysisActions.analyzeCustomArea(point);
-        AnalysisHelper.performUpstreamAnalysis(point);
+        AnalysisHelper.performUpstreamAnalysis(point).then(feature => {
+          //- Convert the area to hectares
+          let area = text.squareKilometersToHectares(feature.attributes[text.hydrologyServiceAreaField]);
+          feature.attributes[text.watershedAreaField] = area;
+          //- Hide the loader and perform risk analysis
+          analysisActions.toggleLoader(false);
+          analysisActions.analyzeCustomArea(feature);
+          brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
+        }, err => {
+          analysisActions.clearCustomArea();
+          analysisActions.toggleLoader(false);
+          console.error(err);
+        });
       }, (err) => {
         if (typeof err === 'string') { alert(err); }
       });

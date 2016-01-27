@@ -86,6 +86,22 @@ export default {
   },
 
   /**
+  * @param {object} response - response from Image Server
+  * @param {array} response.histograms - histograms from the response
+  * @param {number} canopyDensity - Tree Cover Density Canopy Setting
+  * @return {object} attributes - object with correct field set to value or 0
+  */
+  parseTreeCoverDensityAtXPercent: (response, canopyDensity) => {
+    let config = analysisConfig[KEYS.TCD];
+    // Parse the counts array
+    let counts = getCounts(response.histograms);
+    let attributes = {};
+    let index = config.valueIndex[canopyDensity];
+    attributes[config.field(canopyDensity)] = counts.length ? counts[index] : 0;
+    return attributes;
+  },
+
+  /**
   * @param {object} response - response from Map Server
   * @return {object} attributes - object with correct field set to value or 0
   */
@@ -120,7 +136,7 @@ export default {
     let counts = getCounts(response.histograms);
     let attributes = {};
     //- Value to save is the sum of the values in counts from indices 1 - 14
-    attributes[config.field] = counts.length ? counts.slice(1).reduce((a, b) => a + b) : 0;
+    attributes[config.field] = counts.length > 1 ? counts.slice(1).reduce((a, b) => a + b) : 0;
     return attributes;
   },
 
@@ -204,7 +220,6 @@ export default {
     // Parse the counts array
     let counts = getCounts(response.histograms);
     let attributes = {};
-    //- TODO - ADD COMMENT
     let total = 0;
     counts.forEach((val, index) => { total += val * index; });
     let rawValue = total / area;

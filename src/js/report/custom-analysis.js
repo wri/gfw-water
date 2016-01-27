@@ -8,6 +8,42 @@ import all from 'dojo/promise/all';
 import KEYS from 'report/constants';
 
 /**
+* When one promise in dojo/promise/all fails, the whole thing fails
+* this version will never fail, instead returns an object with the data
+* or an error message so If one fails, I can still use results of the ones
+* that didnt
+* @param {object} promiseDictionary
+* @return {promise}
+*/
+const betterAll = (promiseDictionary) => {
+  let promiseAll = new Deferred();
+  let results = {};
+  let count = 0;
+  let promise;
+
+  const savePromiseAt = (promiseKey) => {
+    promiseDictionary[promiseKey].then(function (response) {
+      results[promiseKey] = { data: response };
+      --count;
+      if (count === 0) { promise.resolve(results); }
+    }, function (error) {
+      results[promiseKey] = { error: error };
+      --count;
+      if (count === 0) { promise.resolve(results); }
+    });
+  };
+
+  for (var key in promiseDictionary) {
+    if (promiseDictionary.hasOwnProperty(key)) {
+      ++count;
+      savePromiseAt(key);
+    }
+  }
+
+  return promiseAll;
+};
+
+/**
 * Simple Query Wrapper
 * @param {string} url - Map Service Url
 * @param {object} content - Request payload
@@ -132,12 +168,11 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
 */
 export const performRiskAnalysis = (geometry, area) => {
   let promise = new Deferred();
-  let treeDensityConfig = analysisConfig[KEYS.TCD];
   let treeLossConfig = analysisConfig[KEYS.TCL];
   let promises = {};
 
   // These are needed for Tree Cover Loss and Historic Tree Cover Loss risk analysis
-  promises[KEYS.TCD_30] = Histogram.getWithRasterFuncAndDensity(treeDensityConfig.rasterId, 30, geometry);
+  promises[KEYS.TCD_30] = Histogram.getWithMosaic(analysisConfig[KEYS.TCD].rasterId, geometry);
   promises[KEYS.TCL_30] = Histogram.getWithRasterFuncAndDensity(treeLossConfig.rasterId, 30, geometry);
   // Potential Tree Cover -- Needed for Historic Tree Cover Loss Risk Analysis
   promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
@@ -157,7 +192,8 @@ export const performRiskAnalysis = (geometry, area) => {
         tc_g30_ha;
 
     tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30], 30).tl_g30_all_ha;
-    tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30], 30).tc_g30_ha;
+    //- Grab from the correct index for 30% or greater
+    tc_g30_ha = Formatters.parseTreeCoverDensityAtXPercent(results[KEYS.TCD_30], 30).tc_g30_ha;
 
     lang.mixin(attributes, Formatters.formatPotentialTreeCover(results[KEYS.PTC]));
     lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES], area));
