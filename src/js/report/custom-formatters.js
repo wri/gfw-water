@@ -239,7 +239,7 @@ export default {
     // Parse the statistics object
     let statistics = getStatisitcs(response.statistics);
     let attributes = {};
-    attributes[config.field] = grader(statistics.mean || 0);
+    attributes[config.field] = grader(statistics.mean || 10);
     return attributes;
   },
 

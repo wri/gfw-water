@@ -1,4 +1,5 @@
 import ShareModal from 'components/Modals/ShareModal';
+import BasicModal from 'components/Modals/BasicModal';
 import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import {loadCSS, loadJS} from 'utils/loaders';
@@ -9,6 +10,7 @@ import esriConfig from 'esri/config';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import csvExport from 'report/csv-export';
+import {analysisPanelText as text} from 'js/config';
 // import reportCharts from 'js/report-charts';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
@@ -62,6 +64,10 @@ const attachEvents = () => {
     let queryString = document.location.search.slice(1);
     modalActions.showShareModal(queryString);
   });
+  //- Listener for Watershed Summary Info Modal
+  document.getElementById('watershed-info-button').addEventListener('click', () => {
+    modalActions.showBasicModal(text.watershedSummeryInfo, text.watershedSummeryInfoDescription);
+  });
   // Print button click.
   document.getElementById('print-icon').addEventListener('click', () => window.print());
   // CSV export.
@@ -77,3 +83,4 @@ lazyloadAssets();
 attachEvents();
 reportMaps.printAll(config);
 ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));
+ReactDOM.render(<BasicModal />, document.getElementById('basic-modal'));
