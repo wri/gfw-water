@@ -5,26 +5,27 @@ export const config = {
   assets: {
     ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
     ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
-    highcharts: 'http://code.highcharts.com/highcharts.js',
-    highchartsMore: 'http://code.highcharts.com/highcharts-more.js',
+    highcharts: '//code.highcharts.com/highcharts.js',
+    highchartsMore: '//code.highcharts.com/highcharts-more.js',
     rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js',
-    proxy: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+    proxy: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 
   corsEnabledServers: [
-    'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer'
+    'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
+    'https://54.83.40.92/arcgis/rest/services/erosion/ImageServer'
   ],
 
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
-        // proxyUrl: 'http://localhost/proxy/proxy.php'
-        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
-        // proxyUrl: 'http://localhost/proxy/proxy.php'
-        proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
 
