@@ -98,7 +98,7 @@ class MapStore {
   changeLossFromTimeline (activeIndex) {
     this.lossFromSelectIndex = activeIndex;
     //- Send of Google Analytics
-    let year = layerPanelText.lossOptions(activeIndex).label;
+    let year = layerPanelText.lossOptions[activeIndex].label;
     analytics(
       KEYS.analyticsCategory,
       KEYS.analyticsSettingsAction,
@@ -109,7 +109,7 @@ class MapStore {
   changeLossToTimeline (activeIndex) {
     this.lossToSelectIndex = activeIndex;
     //- Send of Google Analytics
-    let year = layerPanelText.lossOptions(activeIndex).label;
+    let year = layerPanelText.lossOptions[activeIndex].label;
     analytics(
       KEYS.analyticsCategory,
       KEYS.analyticsSettingsAction,
