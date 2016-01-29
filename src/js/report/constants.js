@@ -14,7 +14,8 @@ const KEYS = {
   'R_TCL': 'risk-tcl',
   'R_HTCL': 'risk-htcl',
   'TCD_30': 'tcd_30',
-  'TCL_30': 'tcl_30'
+  'TCL_30': 'tcl_30',
+  'ARID': 'arid'
 };
 
 export { KEYS as default };

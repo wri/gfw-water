@@ -86,22 +86,6 @@ export default {
   },
 
   /**
-  * @param {object} response - response from Image Server
-  * @param {array} response.histograms - histograms from the response
-  * @param {number} canopyDensity - Tree Cover Density Canopy Setting
-  * @return {object} attributes - object with correct field set to value or 0
-  */
-  parseTreeCoverDensityAtXPercent: (response, canopyDensity) => {
-    let config = analysisConfig[KEYS.TCD];
-    // Parse the counts array
-    let counts = getCounts(response.histograms);
-    let attributes = {};
-    let index = config.valueIndex[canopyDensity];
-    attributes[config.field(canopyDensity)] = counts.length ? counts[index] : 0;
-    return attributes;
-  },
-
-  /**
   * @param {object} response - response from Map Server
   * @return {object} attributes - object with correct field set to value or 0
   */
@@ -260,7 +244,13 @@ export default {
     let counts = getCounts(response.histograms);
     let aridArea = counts[1] || 0;
 
-    if ((aridArea / area) > 0.80) {
+    console.log('Arid', aridArea);
+    console.log('Area', area);
+    console.log('TC', tcValue);
+    console.log('TLALL', tlAllValue);
+    console.log(grader(tlAllValue / tcValue));
+
+    if (((aridArea / area) > 0.80) && aridArea !== 0) {
       rawValue = 10;
     } else if ((tcValue / area) < 0.1) {
       rawValue = 10;
@@ -289,7 +279,13 @@ export default {
     let counts = getCounts(response.histograms);
     let aridArea = counts[1] || 0;
 
-    if ((aridArea / area) > 0.80) {
+    console.log('Arid', aridArea);
+    console.log('Area', area);
+    console.log('TC', tcValue);
+    console.log('PTC', ptcValue);
+    console.log(grader(tcValue / ptcValue));
+
+    if (((aridArea / area) > 0.80) && aridArea !== 0) {
       rawValue = 10;
     } else if ((ptcValue / area) < 0.1) {
       rawValue = 10;

@@ -180,25 +180,23 @@ export const performRiskAnalysis = (geometry, area) => {
   // Erosion for Risk Analysis
   let erosionConfig = analysisConfig[KEYS.R_EROSION];
   promises[KEYS.R_EROSION] = Histogram.getStatisitcs(erosionConfig.url, geometry, erosionConfig.pixelSize);
-  // Recent TCL for Risk Analysis
-  promises[KEYS.R_TCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_TCL].aridAreaRasterId, geometry);
-  // Historic TCL for Risk Analysis
-  promises[KEYS.R_HTCL] = Histogram.getWithMosaic(analysisConfig[KEYS.R_HTCL].aridAreaRasterId, geometry);
+  // Arid area for Recent & Historic TCL for Risk Analysis
+  promises[KEYS.ARID] = Histogram.getWithMosaic(analysisConfig[KEYS.ARID].rasterId, geometry);
 
   // Results are in the following shape {data: {...}, error: {...}}
   betterAll(promises).then((results) => {
     let attributes = {},
         tl_g30_all_ha,
-        tc_g30_ha;
-
+        tc_g30_ha,
+        ptc_ha;
 
     tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
-    tc_g30_ha = Formatters.parseTreeCoverDensityAtXPercent(results[KEYS.TCD_30].data, 30).tc_g30_ha;
-    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.R_TCL].data, area, tl_g30_all_ha, tc_g30_ha));
-    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.R_HTCL].data, area, tc_g30_ha, attributes.ptc_ha));
+    tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha;
+    ptc_ha = Formatters.formatPotentialTreeCover(results[KEYS.PTC].data).ptc_ha;
 
-    lang.mixin(attributes, Formatters.formatPotentialTreeCover(results[KEYS.PTC].data));
     lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES].data, area));
+    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.ARID].data, area, tl_g30_all_ha, tc_g30_ha));
+    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.ARID].data, area, tc_g30_ha, ptc_ha));
 
     if (results[KEYS.R_EROSION].data) {
       lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION].data));

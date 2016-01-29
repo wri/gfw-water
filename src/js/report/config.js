@@ -308,13 +308,15 @@ analysis[KEYS.R_EROSION] = {
 };
 
 analysis[KEYS.R_TCL] = {
-  aridAreaRasterId: 550,
   field: 'rs_tl_c'
 };
 
 analysis[KEYS.R_HTCL] = {
-  aridAreaRasterId: 550,
   field: 'rs_pf_c'
+};
+
+analysis[KEYS.ARID] = {
+  rasterId: 550
 };
 
 analysis[KEYS.DAMS] = {

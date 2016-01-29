@@ -22,6 +22,7 @@ export default class LatLngTool extends React.Component {
 
     if (utils.validLatLng(lat, lon)) {
       let point = GraphicsHelper.generatePointFromLatLng(lat, lon);
+      analysisActions.toggleLoader(true);
       // Find out if this point is in a watershed
       AnalysisHelper.findWatershed(point).then(() => {
         AnalysisHelper.performUpstreamAnalysis(point).then(feature => {
