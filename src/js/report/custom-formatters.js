@@ -244,12 +244,6 @@ export default {
     let counts = getCounts(response.histograms);
     let aridArea = counts[1] || 0;
 
-    console.log('Arid', aridArea);
-    console.log('Area', area);
-    console.log('TC', tcValue);
-    console.log('TLALL', tlAllValue);
-    console.log(grader(tlAllValue / tcValue));
-
     if (((aridArea / area) > 0.80) && aridArea !== 0) {
       rawValue = 10;
     } else if ((tcValue / area) < 0.1) {
@@ -278,12 +272,6 @@ export default {
     // Parse the counts array
     let counts = getCounts(response.histograms);
     let aridArea = counts[1] || 0;
-
-    console.log('Arid', aridArea);
-    console.log('Area', area);
-    console.log('TC', tcValue);
-    console.log('PTC', ptcValue);
-    console.log(grader(tcValue / ptcValue));
 
     if (((aridArea / area) > 0.80) && aridArea !== 0) {
       rawValue = 10;
