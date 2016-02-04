@@ -39,10 +39,10 @@ const calculateSlope = (knownXs, knownYs) => {
     X_SQUARED.push(Math.pow(val, 2));
   });
 
-  ΣX = knownXs.reduce(function (a, b) { return a + b; });
-  ΣY = knownYs.reduce(function (a, b) { return a + b; });
-  ΣXY = XY.reduce(function (a, b) { return a + b; });
-  ΣXX = X_SQUARED.reduce(function (a, b) { return a + b; });
+  ΣX = knownXs.reduce(function (a, b) { return a + b; }, 0);
+  ΣY = knownYs.reduce(function (a, b) { return a + b; }, 0);
+  ΣXY = XY.reduce(function (a, b) { return a + b; }, 0);
+  ΣXX = X_SQUARED.reduce(function (a, b) { return a + b; }, 0);
 
   leastSquareSlope = ((knownXs.length * ΣXY) - (ΣX * ΣY)) / ((knownXs.length * ΣXX) - (Math.pow(ΣX, 2)));
   return leastSquareSlope;
@@ -76,7 +76,8 @@ export default {
     let counts = getCounts(response.histograms);
     let attributes = {};
     let startIndex = config.valueIndex[canopyDensity];
-    attributes[config.field(canopyDensity)] = counts.length > startIndex ? counts.slice(startIndex).reduce((a, b) => a + b) : 0;
+    //- Value to save is the sum of the values after the startIndex (eg. greater then canopyDensity)
+    attributes[config.field(canopyDensity)] = counts.slice(startIndex).reduce((a, b) => { return a + b; }, 0);
     return attributes;
   },
 
@@ -115,7 +116,7 @@ export default {
     let counts = getCounts(response.histograms);
     let attributes = {};
     //- Value to save is the sum of the values in counts from indices 1 - 14
-    attributes[config.field] = counts.length > 1 ? counts.slice(1).reduce((a, b) => a + b) : 0;
+    attributes[config.field] = counts.slice(1).reduce((a, b) => { return a + b; }, 0);
     return attributes;
   },
 
