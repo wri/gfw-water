@@ -7,12 +7,7 @@ import KEYS from 'report/constants';
 * @return {array} - array of counts or an empty array
 */
 const getCounts = histograms => {
-  // Parse the histogram if present and return if not
-  let histogram = histograms.length > 0 ? histograms[0] : 0;
-  if (!histogram) { return []; }
-  // Grab the counts and return if counts is empty
-  let counts = histogram.counts && histogram.counts.length > 0 ? histogram.counts : [];
-  return counts;
+  return histograms.length === 0 ? histograms : histograms[0].counts;
 };
 
 /**
@@ -81,7 +76,7 @@ export default {
     let counts = getCounts(response.histograms);
     let attributes = {};
     let startIndex = config.valueIndex[canopyDensity];
-    attributes[config.field(canopyDensity)] = counts.length ? counts.slice(startIndex).reduce((a, b) => a + b) : 0;
+    attributes[config.field(canopyDensity)] = counts.length > startIndex ? counts.slice(startIndex).reduce((a, b) => a + b) : 0;
     return attributes;
   },
 
