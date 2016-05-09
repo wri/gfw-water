@@ -1,6 +1,6 @@
 import KEYS from 'report/constants';
 
-let erosionImageServer = 'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer';
+let erosionImageServer = 'http://50.19.205.13/arcgis/rest/services/erosion/ImageServer';
 
 export default {
   assetUrls: {
@@ -38,7 +38,7 @@ export default {
   },
   proxy: {
     featureServer: {
-      urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+      urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
       // proxyUrl: 'http://localhost/proxy/proxy.php'
       proxyUrl: 'http://wri-gfw-water.herokuapp.com/proxy/proxy.php'
     }
@@ -52,7 +52,7 @@ export default {
   watershedName: 'maj_name',
   watershedQueryStringParam: 'fid',
   watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
-  customAnalysisAreasUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0',
+  customAnalysisAreasUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
   watershedSymbol: {
     'color': [255, 255, 255, 0],
     'outline': {

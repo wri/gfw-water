@@ -13,7 +13,8 @@ export const config = {
 
   corsEnabledServers: [
     'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
-    'https://54.83.40.92/arcgis/rest/services/erosion/ImageServer'
+    'https://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
+    'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology'
   ],
 
   proxy: {
@@ -23,7 +24,7 @@ export const config = {
         proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
-        urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features',
+        urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
         // proxyUrl: '//localhost/proxy/proxy.php'
         proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
@@ -117,7 +118,7 @@ export const config = {
       sublabel: '(year 2000, 30m global, Hansen/UMD/Google/USGS/NASA)',
       group: 'watershed',
       className: 'tree-cover',
-      url: 'http://50.18.182.188:6080/arcgis/rest/services/TreeCover2000/ImageServer',
+      url: 'http://gis-treecover.wri.org/arcgis/rest/services/TreeCover2000/ImageServer',
       colormap: [[1, 174, 203, 107]],
       inputRange: [30, 101],
       outputRange: [1],
@@ -169,7 +170,7 @@ export const config = {
       className: 'loss',
       visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
-      url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestCover_lossyear/ImageServer',
+      url: 'http://gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear/ImageServer',
       colormap: [[1, 219, 101, 152]],
       inputRange: [1, 15],
       outputRange: [1]
@@ -183,7 +184,7 @@ export const config = {
       className: 'gain',
       visible: true,
       sublabel: '(12 years, 30m, global, Hansen/UMD/Google/USGS/NASA)',
-      url: 'http://50.18.182.188:6080/arcgis/rest/services/ForestGain_2000_2012_map/MapServer'
+      url: 'http://gis-treecover.wri.org/arcgis/rest/services/ForestGain_2000_2012_map/MapServer'
     },
     {
       id: KEYS.historicLoss,
@@ -277,7 +278,7 @@ export const config = {
     },
     {
       id: KEYS.customAreaFeatures,
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/GFWwater_user_features/FeatureServer/0',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
       type: 'feature',
       visible: false,
       order: 16
@@ -357,7 +358,7 @@ export const config = {
       },
       sedimentLegend: {
         min: 'Low',
-        max: 'Extreme'
+        max: 'High'
       },
       firesOptions: [
         {label: 'Past Week', value: 7},
@@ -409,8 +410,8 @@ export const config = {
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
       latLngGoButton: 'Go',
-      latPlaceholder: 'Lat',
-      lonPlaceholder: 'Lon',
+      latPlaceholder: '38.32',
+      lonPlaceholder: '-77.89',
       invalidLatLng: 'You did not provide a valid latitude(-90 to 90) or longitude(-180 to 180). Please try again.',
       customAreaNamePlaceholder: 'Custom Area',
       riskLookup: {
