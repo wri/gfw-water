@@ -218,7 +218,7 @@ const text = {
 };
 
 let analysis = {
-  imageService: 'http://gis-gfw.wri.org/arcgis/rest/services/GFW/analysis/ImageServer',
+  imageService: 'http://gis-gfw.wri.org/arcgis/rest/services/image_services/analysis/ImageServer',
   mosaicRule: rasterId => {
     return {
       'mosaicMethod': 'esriMosaicLockRaster',

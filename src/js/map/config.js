@@ -12,6 +12,8 @@ export const config = {
   },
 
   corsEnabledServers: [
+    'http://localhost',
+    'http://localhost:3000',
     'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
     'https://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
     'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology'
