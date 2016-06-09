@@ -53,6 +53,7 @@ export const config = {
       fadeOnZoom: true,
       slider: false,
       logo: false,
+      minZoom: 2,
       zoom: 3
     },
     customBasemap: {
