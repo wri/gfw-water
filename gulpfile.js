@@ -24,7 +24,7 @@ var config = {
   },
   jade: {
     watch: ['src/**/*.jade'],
-    src: ['src/index.jade', 'src/map.jade', 'src/report.jade'],
+    src: ['src/**/*.jade'],
     build: 'build',
     dist: 'dist'
   },

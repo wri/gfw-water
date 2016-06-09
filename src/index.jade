@@ -18,11 +18,11 @@ html
       nav.mobile-hide.home-nav
         h2.shadow Explore the Map!
           div.inline-block
-            a(href='./map.html', title='EXPLORE THE MAP', alt='Explore the Map')
+            a(href='./map/', title='EXPLORE THE MAP', alt='Explore the Map')
               div.gfw-btn.blue.pointer click here!
       ul.home-slider
         li.slide1.slide.pointer
-          a(href='./map.html')
+          a(href='./map/')
             div.inner.relative
               aside
                 h2 explore
@@ -68,7 +68,7 @@ html
         async: true,
         cacheBust: '#{version}',
         packages: [
-          { name: 'js', location: base + '/js/home' },
+          { name: 'js', location: base + '/js' },
           { name: 'vendor', location: base + '/vendor' }
         ],
         aliases: [

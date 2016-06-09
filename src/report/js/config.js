@@ -4,11 +4,11 @@ let erosionImageServer = 'http://50.19.205.13/arcgis/rest/services/erosion/Image
 
 export default {
   assetUrls: {
-    ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
-    ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
+    ionCSS: '../vendor/ion.rangeslider/css/ion.rangeSlider.css',
+    ionSkinCSS: '../vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
     highcharts: 'http://code.highcharts.com/highcharts.js',
     highchartsExport: 'http://code.highcharts.com/modules/exporting.js',
-    rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js'
+    rangeSlider: '../vendor/ion.rangeslider/js/ion.rangeSlider.min.js'
   },
   webmap: {
     'f': 'json',

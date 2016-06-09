@@ -1,6 +1,6 @@
 /*eslint-disable*/
 ({
-	baseUrl: 'build',
+	baseUrl: 'build/map',
 	paths: {
 		// Empty Modules/Aliases
 		'dojo': 'empty:',
@@ -8,22 +8,22 @@
 		'dijit': 'empty:',
 		'dojox': 'empty:',
 		// libs
-    'alt': 'vendor/alt/dist/alt.min',
-		'react': 'vendor/react/react.min',
-		'react-dom': 'vendor/react/react-dom.min',
-    'lodash': 'vendor/lodash/lodash.min',
-		'babel-polyfill': 'vendor/browser-polyfill',
-		'formsy-react': 'vendor/formsy-react/release/formsy-react',
+    'alt': '../vendor/alt/dist/alt.min',
+		'react': '../vendor/react/react.min',
+		'react-dom': '../vendor/react/react-dom.min',
+    'lodash': '../vendor/lodash/lodash.min',
+		'babel-polyfill': '../vendor/browser-polyfill',
+		'formsy-react': '../vendor/formsy-react/release/formsy-react',
 		// Configured Packages
-		'js': 'js/map',
-		'vendor': 'vendor',
-		'report': 'js/report',
-		'utils': 'js/map/utils',
-		'stores': 'js/map/stores',
-		'helpers': 'js/map/helpers',
-    'actions': 'js/map/actions',
-    'components': 'js/map/components'
+		'js': 'js',
+		'vendor': '../vendor',
+		'report': '../report/js',
+		'utils': 'js/utils',
+		'stores': 'js/stores',
+		'helpers': 'js/helpers',
+    'actions': 'js/actions',
+    'components': 'js/components'
 	},
 	name: 'js/main',
-	out: 'dist/js/map/main.js'
+	out: 'dist/map/js/main.js'
 });

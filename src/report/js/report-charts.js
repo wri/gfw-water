@@ -2,7 +2,7 @@
 /* eslint no-unused-vars:0 */
 import {chartText} from 'report/config';
 import number from 'dojo/number';
-const exportButtonImage = 'url(./css/images/download-icon.svg)';
+const exportButtonImage = 'url(../css/images/download-icon.svg)';
 
 const makeCharts = (watershed) => {
   // Risk bar chart.

@@ -3,11 +3,11 @@ import KEYS from 'js/constants';
 export const config = {
 
   assets: {
-    ionCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.css',
-    ionSkinCSS: 'vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
+    ionCSS: '../vendor/ion.rangeslider/css/ion.rangeSlider.css',
+    ionSkinCSS: '../vendor/ion.rangeslider/css/ion.rangeSlider.skinNice.css',
     highcharts: '//code.highcharts.com/highcharts.js',
     highchartsMore: '//code.highcharts.com/highcharts-more.js',
-    rangeSlider: 'vendor/ion.rangeslider/js/ion.rangeSlider.min.js',
+    rangeSlider: '../vendor/ion.rangeslider/js/ion.rangeSlider.min.js',
     proxy: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
   },
 

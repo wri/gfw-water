@@ -15,15 +15,15 @@
     'babel-polyfill': 'vendor/browser-polyfill',
 		'FileSaver': 'vendor/file-saver/FileSaver.min',
 		// Configured Packages
-		'js': 'js/map',
-		'report': 'js/report',
+		'js': 'map/js',
+		'report': 'report/js',
 		'vendor': 'vendor',
-    'utils': 'js/map/utils',
-    'stores': 'js/map/stores',
-    'helpers': 'js/map/helpers',
-    'actions': 'js/map/actions',
-    'components': 'js/map/components'
+    'utils': 'map/js/utils',
+    'stores': 'map/js/stores',
+    'helpers': 'map/js/helpers',
+    'actions': 'map/js/actions',
+    'components': 'map/js/components'
 	},
 	name: 'report/main',
-	out: 'dist/js/report/main.js',
+	out: 'dist/report/js/main.js',
 });

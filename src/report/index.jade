@@ -2,33 +2,34 @@ doctype html
 html
   head
     title #{map.title}
-    include templates/meta.jade
+    include ../templates/meta.jade
     script(src='http://www.globalforestwatch.org/gfw-assets' id='loader-gfw')
     script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
     style
       :stylus
-        @require 'css/base'
-    link(rel='stylesheet', href='css/report.css?#{version}')
-    link(rel='stylesheet', media='print' href='css/report-print.css?#{version}')
+        @require '../css/base'
+    link(rel='stylesheet', href='../css/report.css?#{version}')
+    link(rel='stylesheet', media='print' href='../css/report-print.css?#{version}')
     link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
-    link(rel='icon', href='css/images/favicon.ico')
+    link(rel='icon', href='../css/images/favicon.ico')
     //- script(src='vendor/jquery/dist/jquery.min.js')
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
+      var mapBase = base.replace('report', 'map');
       var dojoConfig = {
         parseOnLoad: false,
         async: true,
         cacheBust: '#{version}',
         packages: [
-          { name: 'js', location: base + '/js/map' },
-          { name: 'report', location: base + '/js/report' },
-          { name: 'vendor', location: base + '/vendor' },
-          { name: 'utils', location: base + '/js/map/utils' },
-          { name: 'stores', location: base + '/js/map/stores' },
-          { name: 'helpers', location: base + '/js/map/helpers' },
-          { name: 'actions', location: base + '/js/map/actions' },
-          { name: 'components', location: base + '/js/map/components' }
+          { name: 'report', location: base + '/js' },
+          { name: 'js', location: mapBase + '/js' },
+          { name: 'vendor', location: base + '/../vendor' },
+          { name: 'utils', location: mapBase + '/js/utils' },
+          { name: 'stores', location: mapBase + '/js/stores' },
+          { name: 'helpers', location: mapBase + '/js/helpers' },
+          { name: 'actions', location: mapBase + '/js/actions' },
+          { name: 'components', location: mapBase + '/js/components' }
         ],
         aliases: [
           ['alt', 'vendor/alt/dist/alt.min'],
@@ -42,7 +43,7 @@ html
         callback: function () { require(['report/main']); }
       };
   body
-    include templates/svgAssets.jade
+    include ../templates/svgAssets.jade
     div#headerGfw
     
     section.relative.report-header

@@ -16,9 +16,9 @@ var paths = {
   // layerModal: 'js/components/Modals/LayerModal',
   // shareModal: 'js/components/Modals/ShareModal',
   map: 'js/components/Map',
-  modulesRoot: path.join(basepath, 'build/js/map'),
+  modulesRoot: path.join(basepath, 'build/map/js'),
   profile: path.join(basepath, 'map.build.js'),
-  html: path.join(basepath, 'dist/map.html')
+  html: path.join(basepath, 'dist/map/index.html')
 };
 
 //- Read in the profile and convert to JSON

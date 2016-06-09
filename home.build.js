@@ -8,9 +8,9 @@
     'lodash': 'vendor/lodash/lodash.min',
 		'babel-polyfill': 'vendor/browser-polyfill',
 		// Configured Packages
-		'js': 'js/home',
+		'js': 'js',
 		'vendor': 'vendor',
 	},
 	name: 'js/main',
-	out: 'dist/js/home/main.js'
+	out: 'dist/js/main.js'
 });

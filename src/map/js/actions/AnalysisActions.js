@@ -76,7 +76,7 @@ class AnalysisActions {
   */
   launchReport (featureId, canopyDensity) {
     brApp.debug('AnalysisActions >>> launchReport');
-    window.open(`report.html?fid=${featureId}&canopyDensity=${canopyDensity}`);
+    window.open(`../report/index.html?fid=${featureId}&canopyDensity=${canopyDensity}`);
   }
 
 }
