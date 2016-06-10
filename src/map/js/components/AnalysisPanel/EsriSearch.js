@@ -54,6 +54,7 @@ let generateSearchWidget = () => {
       if (feature.geometry.type === analysisPanelText.pointType) {
         AnalysisHelper.findWatershed(feature.geometry).then(watershed => {
           analysisActions.analyzeCurrentWatershed(watershed);
+          brApp.map.setExtent(watershed.geometry.getExtent(), true);
         });
       } else {
         Request.getWatershedById(feature.attributes.objectid).then((watershed) => {

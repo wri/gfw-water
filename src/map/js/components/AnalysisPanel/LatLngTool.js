@@ -24,7 +24,8 @@ export default class LatLngTool extends React.Component {
       let point = GraphicsHelper.generatePointFromLatLng(lat, lon);
       analysisActions.toggleLoader(true);
       // Find out if this point is in a watershed
-      AnalysisHelper.findWatershed(point).then(() => {
+      AnalysisHelper.findWatershed(point).then((watershed) => {
+        brApp.map.setExtent(watershed.geometry.getExtent(), true);
         AnalysisHelper.performUpstreamAnalysis(point).then(feature => {
           //- Convert the area to hectares
           let area = text.squareKilometersToHectares(feature.attributes[text.hydrologyServiceAreaField]);

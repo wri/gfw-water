@@ -23,7 +23,24 @@ const makeCharts = (watershed) => {
     },
     title: { text: '' },
     xAxis: { tickLength: 0, labels: { enabled: false } },
-    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 2, 3, 4, 5], title: { text: '' } },
+    yAxis: {
+      min: 0,
+      max: 5,
+      tickPositions: [0, 1, 2, 3, 4, 5],
+      title: { text: '' },
+      labels: {
+        formatter: function () {
+          switch (this.value) {
+            case 0:
+              return 'low';
+            case 5:
+              return 'high';
+            default:
+              return '';
+          }
+        }
+      }
+    },
     legend: {
       align: 'right',
       layout: 'vertical',

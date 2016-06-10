@@ -22,13 +22,13 @@ export const config = {
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
-        // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '//localhost/proxy/proxy.php'
+        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
-        // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '//localhost/proxy/proxy.php'
+        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
 
@@ -174,9 +174,7 @@ export const config = {
       visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
       url: 'http://gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear/ImageServer',
-      colormap: [[1, 219, 101, 152]],
-      inputRange: [1, 15],
-      outputRange: [1]
+      interpolation: 'RSP_NearestNeighbor'
     },
     {
       id: KEYS.gain,

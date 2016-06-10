@@ -44,25 +44,25 @@ export default {
     const {attributes} = watershed;
     const canopy = attributes._canopy;
 
-    const wsArea = attributes.ws_ha / 1000000;
-    const wetArea = attributes.wet_ha / 1000000;
+    const wsArea = attributes.ws_ha;
+    const wetArea = attributes.wet_ha;
     const wetPercent = wetArea / wsArea;
 
-    const treeCover = attributes['tc_g' + canopy + '_ha'] / 1000000;
+    const treeCover = attributes['tc_g' + canopy + '_ha'];
     const treePercent = treeCover / wsArea;
     const dams = attributes.dams_c;
 
-    const pastCover = attributes.ptc_ha / 1000000;
+    const pastCover = attributes.ptc_ha;
     const waterWithdrawl = attributes.wd_c;
 
     const treeLossRisk = attributes.rs_tl_c;
-    const treeLossAmount = attributes['tl_g' + canopy + '_all_ha'] / 1000000;
+    const treeLossAmount = attributes['tl_g' + canopy + '_all_ha'];
     const treeLossPercent = attributes['tl_g' + canopy + '_all_ha'] / attributes['tc_g' + canopy + '_ha'];
     const treeLossRate = attributes['tlt_g' + canopy + '_ha'];
     const treeLossTrend = (treeLossRate > -1) ? 'positive' : 'negative';
 
     const pastLossRisk = attributes.rs_pf_c;
-    const pastLossAmount = attributes.ptc_ha / 1000000;
+    const pastLossAmount = attributes.ptc_ha;
     const pastLossPercent = pastLossAmount / wsArea;
     const pastLossRate = attributes['tc_g' + canopy + '_ha'] / attributes.ptc_ha;
 
@@ -73,26 +73,26 @@ export default {
     const fireCount = attributes._fireCount;
     const avgFireCount = attributes.fire_c;
 
-    dom.byId('watershed-area').innerHTML = number.format(wsArea, twoDecimals);
-    dom.byId('wetland-area').innerHTML = number.format(wetArea, twoDecimals);
+    dom.byId('watershed-area').innerHTML = number.format(wsArea, noDecimal);
+    dom.byId('wetland-area').innerHTML = number.format(wetArea, noDecimal);
     // dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
 
-    dom.byId('tree-cover').innerHTML = number.format(treeCover, twoDecimals);
+    dom.byId('tree-cover').innerHTML = number.format(treeCover, noDecimal);
     // dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
     dom.byId('dam-count').innerHTML = dams;
 
-    dom.byId('past-cover').innerHTML = number.format(pastCover, twoDecimals);
+    dom.byId('past-cover').innerHTML = number.format(pastCover, noDecimal);
     dom.byId('water-withdrawl').innerHTML = waterWithdrawl;
 
     dom.byId('risk-tree-loss').innerHTML = (treeLossRisk !== 10 ? `${treeLossRisk}/5` : reportText.na);
-    dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, twoDecimals);
+    dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, noDecimal);
     dom.byId('tree-loss-percent').innerHTML = number.format(treeLossPercent, percentTwoDecimals);
     //- Removed at WRI's request
     // dom.byId('tree-loss-rate').innerHTML = treeLossRate;
     dom.byId('tree-loss-trend').innerHTML = treeLossTrend;
 
     dom.byId('risk-past-loss').innerHTML = (pastLossRisk !== 10 ? `${pastLossRisk}/5` : reportText.na);
-    dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, twoDecimals);
+    dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, noDecimal);
     let correctedPastLossPercent = pastLossPercent > 1 ? 1 : pastLossPercent;
     dom.byId('past-loss-percent').innerHTML = number.format(correctedPastLossPercent, percentTwoDecimals);
     dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percentTwoDecimals);

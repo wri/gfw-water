@@ -158,18 +158,30 @@ let LayersHelper = {
   /**
   * @param {number} fromIndex - selected index of first tree cover loss select
   * @param {number} toIndex - selected index of second tree cover loss select
+  * @param {number} canopyDensity - current selected tree cover canopy density
   */
-  updateLossLayerDefinitions (fromIndex, toIndex) {
+  updateLossLayerDefinitions (fromIndex, toIndex, canopyDensity) {
     brApp.debug('LayersHelper >>> updateLossLayerDefinitions');
-    let fromValue = layerPanelText.lossOptions[fromIndex].value;
-    let toValue = layerPanelText.lossOptions[toIndex].value;
-    let layerConfig = utils.getObject(layersConfig, 'id', KEYS.loss);
-    //- [fromValue, toValue] is inclusive, exclusive, which is why the + 1 is present
-    let rasterFunction = rasterFuncs.getColormapRemap(layerConfig.colormap, [fromValue, (toValue + 1)], layerConfig.outputRange);
+    let fromValue = +layerPanelText.lossOptions[fromIndex].label;
+    let toValue = +layerPanelText.lossOptions[toIndex].label;
+    let rasterFunction = rasterFuncs.getLossFunction(fromValue, toValue, canopyDensity);
     let layer = brApp.map.getLayer(KEYS.loss);
 
     if (layer) {
       layer.setRenderingRule(rasterFunction);
+    }
+  },
+
+  /**
+  * Does not need to be called multiple times, just when the layer is loaded
+  */
+  setLossLayerInterpolation () {
+    brApp.debug('LayersHelper >>> updateLossLayerDefinitions');
+    let layerConfig = utils.getObject(layersConfig, 'id', KEYS.loss);
+    let layer = brApp.map.getLayer(KEYS.loss);
+
+    if (layer) {
+      layer.setInterpolation(layerConfig.interpolation);
     }
   },
 

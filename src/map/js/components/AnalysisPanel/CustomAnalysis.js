@@ -82,7 +82,6 @@ export default class CustomAnalysis extends React.Component {
             let area = config.squareKilometersToHectares(feature.attributes[config.hydrologyServiceAreaField]);
             feature.attributes[config.watershedAreaField] = area;
             //- Hide the loader and perform risk analysis
-            analysisActions.toggleLoader(false);
             analysisActions.analyzeCustomArea(feature);
             brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
           }, err => {

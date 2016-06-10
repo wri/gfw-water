@@ -11,7 +11,6 @@ const AnalysisHelper = {
     Request.getWatershedByGeometry(pointGeometry).then(feature => {
       if (feature) {
         deferred.resolve(feature);
-        brApp.map.centerAndZoom(pointGeometry, 8);
         GraphicsHelper.addCustomPoint(pointGeometry);
       } else {
         deferred.reject(errors.featureNotFound);

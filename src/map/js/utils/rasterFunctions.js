@@ -25,6 +25,25 @@ export default {
       },
       'variableName': 'Raster'
     });
+  },
+
+  /**
+  * Generate a Raster Function for the new Tree Cover Loss Layer
+  * @param {number} fromYear - beginning year of current selected range
+  * @param {number} toYear - end year of current selected range
+  * @param {number} density - canopy density
+  */
+  getLossFunction: (fromYear, toYear, density) => {
+    brApp.debug('rasterFunctions >>> getLossFunction');
+    return new RasterFunction({
+      'rasterFunction': 'ForestCover_lossyear_density',
+      'rasterFunctionArguments': {
+        'min_year': fromYear,
+        'max_year': toYear,
+        'min_density': density,
+        'max_density': 100
+      }
+    });
   }
 
 };

@@ -8,15 +8,20 @@ let lossOptions = layerPanelText.lossOptions;
 export default class LossControls extends React.Component {
 
   componentDidUpdate (prevProps) {
-    if (prevProps.lossFromSelectIndex !== this.props.lossFromSelectIndex || prevProps.lossToSelectIndex !== this.props.lossToSelectIndex) {
-      LayersHelper.updateLossLayerDefinitions(this.props.lossFromSelectIndex, this.props.lossToSelectIndex);
+    if (
+      prevProps.lossFromSelectIndex !== this.props.lossFromSelectIndex ||
+      prevProps.lossToSelectIndex !== this.props.lossToSelectIndex ||
+      prevProps.canopyDensity !== this.props.canopyDensity
+    ) {
+      LayersHelper.updateLossLayerDefinitions(this.props.lossFromSelectIndex, this.props.lossToSelectIndex, this.props.canopyDensity);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     // Set the default layer definition when the map has been loaded
     if (!this.props.loaded && nextProps.loaded) {
-      LayersHelper.updateLossLayerDefinitions(this.props.lossFromSelectIndex, this.props.lossToSelectIndex);
+      LayersHelper.updateLossLayerDefinitions(this.props.lossFromSelectIndex, this.props.lossToSelectIndex, this.props.canopyDensity);
+      LayersHelper.setLossLayerInterpolation();
     }
   }
 

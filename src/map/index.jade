@@ -13,14 +13,16 @@ html
     script(src='../vendor/jquery/dist/jquery.min.js')
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
+      var vendor = base.replace('map', 'vendor');
+      var report = base.replace('map', 'report');
       var dojoConfig = {
         parseOnLoad: false,
         async: true,
         cacheBust: '#{version}',
         packages: [
           { name: 'js', location: base + '/js' },
-          { name: 'vendor', location: base + '../vendor' },
-          { name: 'report', location: base + '../report/js' },
+          { name: 'vendor', location: vendor },
+          { name: 'report', location: report + '/js' },
           { name: 'utils', location: base + '/js/utils' },
           { name: 'stores', location: base + '/js/stores' },
           { name: 'helpers', location: base + '/js/helpers' },

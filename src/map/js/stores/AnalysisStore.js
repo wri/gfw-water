@@ -47,6 +47,7 @@ class AnalysisStore {
     performRiskAnalysis(geometry, area).then((attributes) => {
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
+      this.isLoading = false;
       this.emitChange();
     });
   }

@@ -17,6 +17,7 @@ let generateChart = (id, feature) => {
   if (rs_pf_c === 10) { rs_pf_c = -1; }
   if (rs_sed_c === 10) { rs_sed_c = -1; }
 
+  // Don't use arrow functions in here, highcharts already is binding the scope
   $(`#${id}`).highcharts({
     chart: {
       backgroundColor: 'transparent',
@@ -24,7 +25,24 @@ let generateChart = (id, feature) => {
     },
     title: { text: '' },
     xAxis: { tickLength: 0, labels: { enabled: false } },
-    yAxis: { min: 0, max: 5, tickPositions: [0, 1, 2, 3, 4, 5], title: { text: '' } },
+    yAxis: {
+      min: 0,
+      max: 5,
+      tickPositions: [0, 1, 2, 3, 4, 5],
+      title: { text: '' },
+      labels: {
+        formatter: function () {
+          switch (this.value) {
+            case 0:
+              return 'low';
+            case 5:
+              return 'high';
+            default:
+              return '';
+          }
+        }
+      }
+    },
     legend: {
       align: 'right',
       layout: 'vertical',
