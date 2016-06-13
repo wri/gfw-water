@@ -8,6 +8,21 @@ import all from 'dojo/promise/all';
 import KEYS from 'report/constants';
 
 /**
+* check if the error is for an invalid image size so we can retry the request with a
+* larger pixel size
+*/
+const INVALID_IMAGE_SIZE = 'The requested image exceeds the size limit.';
+const errorIsInvalidImageSize = function errorIsInvalidImageSize (error) {
+  return (
+    error &&
+    error.code === 400 &&
+    error.details &&
+    error.details.length > 0 &&
+    error.details[0] === INVALID_IMAGE_SIZE
+  );
+};
+
+/**
 * When one promise in dojo/promise/all fails, the whole thing fails
 * this version will never fail, instead returns an object with the data
 * or an error message so If one fails, I can still use results of the ones
@@ -162,10 +177,11 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
 * This function is used in the map and performs the risk analysis only for the given geometry
 * @param {esriGeometryPolygon} geometry - Valid Esri Polygon to analyze
 * @param {number} area - Area of the provided polygon
-* @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map,
+* @param {Feature} surroundingWatershed - Original Watershed surrounding the area of interest,
+** If the AOI throws errors because the geometry is too large, use the surrounding watershed's results instead
 * @return {deferred} promise
 */
-export const performRiskAnalysis = (geometry, area) => {
+export const performRiskAnalysis = (geometry, area, surroundingWatershed) => {
   let promise = new Deferred();
   let treeLossConfig = analysisConfig[KEYS.TCL];
   let promises = {};
@@ -190,15 +206,33 @@ export const performRiskAnalysis = (geometry, area) => {
         tc_g30_ha,
         ptc_ha;
 
-    console.log(results);
+    // If the error is invalid size, use the results from the surrounding watershed
+    tl_g30_all_ha = errorIsInvalidImageSize(results[KEYS.TCL_30].error) ?
+      surroundingWatershed.attributes.tl_g30_all_ha :
+      Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
 
-    tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
-    tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha;
-    ptc_ha = Formatters.formatPotentialTreeCover(results[KEYS.PTC].data).ptc_ha;
+    tc_g30_ha = errorIsInvalidImageSize(results[KEYS.TCD_30].error) ?
+      surroundingWatershed.attributes.tc_g30_ha :
+      Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha;
 
-    lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES].data, area));
-    lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.ARID].data, area, tl_g30_all_ha, tc_g30_ha));
-    lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.ARID].data, area, tc_g30_ha, ptc_ha));
+    ptc_ha = errorIsInvalidImageSize(results[KEYS.PTC].error) ?
+      surroundingWatershed.attributes.ptc_ha :
+      Formatters.formatPotentialTreeCover(results[KEYS.PTC].data).ptc_ha;
+
+    // Same as above, if there is an invalid size error, use values from surrounding watershed
+    if (errorIsInvalidImageSize(results[KEYS.R_FIRES].error)) {
+      attributes[analysisConfig[KEYS.R_FIRES].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_FIRES].field];
+    } else {
+      lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES].data, area)); //rs_fire_c
+    }
+
+    if (errorIsInvalidImageSize(results[KEYS.ARID].error)) {
+      attributes[analysisConfig[KEYS.R_TCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_TCL].field];
+      attributes[analysisConfig[KEYS.R_HTCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_HTCL].field];
+    } else {
+      lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.ARID].data, area, tl_g30_all_ha, tc_g30_ha));
+      lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.ARID].data, area, tc_g30_ha, ptc_ha));
+    }
 
     if (results[KEYS.R_EROSION].data) {
       lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION].data));

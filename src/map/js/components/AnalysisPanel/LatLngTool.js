@@ -32,7 +32,7 @@ export default class LatLngTool extends React.Component {
           feature.attributes[text.watershedAreaField] = area;
           //- Hide the loader and perform risk analysis
           analysisActions.toggleLoader(false);
-          analysisActions.analyzeCustomArea(feature);
+          analysisActions.analyzeCustomArea(feature, watershed);
           brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
         }, err => {
           analysisActions.clearCustomArea();

@@ -36,9 +36,7 @@ let runReport = () => {
       analyticsLabels.analyzeCustomArea(res[0].objectId)
     );
 
-  }, err => {
-    console.log(err);
-  });
+  }, console.error);
 };
 
 let editSvg = '<use xlink:href="#icon-edit-text" />';
@@ -76,13 +74,13 @@ export default class CustomAnalysis extends React.Component {
         // Find out if this point is in a watershed
         // TODO: Refactor this, inital request should originate from an action, this way I dont need
         // explicit actions for showing/hiding loading wheels and they can be managed from the store
-        AnalysisHelper.findWatershed(evt.geometry).then(() => {
+        AnalysisHelper.findWatershed(evt.geometry).then((watershed) => {
           AnalysisHelper.performUpstreamAnalysis(evt.geometry).then(feature => {
             //- Convert the area to hectares
             let area = config.squareKilometersToHectares(feature.attributes[config.hydrologyServiceAreaField]);
             feature.attributes[config.watershedAreaField] = area;
             //- Hide the loader and perform risk analysis
-            analysisActions.analyzeCustomArea(feature);
+            analysisActions.analyzeCustomArea(feature, watershed);
             brApp.map.setExtent(feature.geometry.getExtent().expand(1.2));
           }, err => {
             analysisActions.clearCustomArea();

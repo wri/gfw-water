@@ -13,9 +13,12 @@ class AnalysisActions {
     this.dispatch(feature);
   }
 
-  analyzeCustomArea (feature) {
+  analyzeCustomArea (feature, surroundingWatershed) {
     brApp.debug('AnalysisActions >>> analyzeCustomArea');
-    this.dispatch(feature);
+    this.dispatch({
+      surroundingWatershed,
+      feature
+    });
   }
 
   clearActiveWatershed () {

@@ -1,7 +1,6 @@
 import {performRiskAnalysis} from 'report/custom-analysis';
 import {analysisActions} from 'actions/AnalysisActions';
 import {analysisPanelText as text} from 'js/config';
-import {mapStore} from 'stores/MapStore';
 import lang from 'dojo/_base/lang';
 import alt from 'js/alt';
 
@@ -41,12 +40,12 @@ class AnalysisStore {
     this.activeWatershed = feature;
   }
 
-  analyzeCustomArea (feature) {
+  analyzeCustomArea (payload) {
+    const {feature, surroundingWatershed} = payload;
     //- Make sure the area is in hectares and not square kilometers
     let area = feature.attributes[text.watershedAreaField];
-    let {canopyDensity} = mapStore.getState();
     let geometry = feature.geometry;
-    performRiskAnalysis(geometry, area, canopyDensity).then((attributes) => {
+    performRiskAnalysis(geometry, area, surroundingWatershed).then((attributes) => {
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
       this.isLoading = false;
