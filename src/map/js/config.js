@@ -21,13 +21,13 @@ export const config = {
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
-        proxyUrl: '//localhost/proxy/proxy.php'
-        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
-        proxyUrl: '//localhost/proxy/proxy.php'
-        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
 
