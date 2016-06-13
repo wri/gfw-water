@@ -11,12 +11,14 @@ const AnalysisHelper = {
     Request.getWatershedByGeometry(pointGeometry).then(feature => {
       if (feature) {
         deferred.resolve(feature);
+        GraphicsHelper.clearPoints();
         GraphicsHelper.addCustomPoint(pointGeometry);
       } else {
+        GraphicsHelper.clearPoints();
         deferred.reject(errors.featureNotFound);
       }
     }, err => {
-      console.error(err);
+      GraphicsHelper.clearPoints();
       deferred.reject(err);
     });
     return deferred;

@@ -200,7 +200,6 @@ const text = {
   },
   charts: {
     riskLookup: {
-      0: 'No risk',
       1: 'Low',
       2: 'Low to medium',
       3: 'Medium',
@@ -341,17 +340,15 @@ let grader = {};
 
 //- These functions should return a value ready to be dropped in the UI
 grader[KEYS.R_FIRES] = (value) => {
-  if (value <= 0) {
-    return 0;
-  } else if (value <= 0.000011) {
+  if (value <= 0.000018) {
     return 1;
-  } else if (value >= 0.000012 && value <= 0.000044) {
+  } else if (value >= 0.000019 && value <= 0.000071) {
     return 2;
-  } else if (value >= 0.000045 && value <= 0.00011) {
+  } else if (value >= 0.000072 && value <= 0.00016) {
     return 3;
-  } else if (value >= 0.00012 && value <= 0.00023) {
+  } else if (value >= 0.00017 && value <= 0.00036) {
     return 4;
-  } else if (value >= 0.00023) {
+  } else if (value >= 0.00037) {
     return 5;
   }
 };
@@ -361,8 +358,6 @@ grader[KEYS.R_EROSION] = (value) => {
   //- to represent that the risk score is not applicable
   if (value === 10) {
     return 10;
-  } else if (value <= 0) {
-    return 0;
   } else if (value <= 0.28) {
     return 1;
   } else if (value >= 0.29 && value <= 1.33) {
@@ -381,15 +376,13 @@ grader[KEYS.R_TCL] = (value) => {
   //- to represent that the risk score is not applicable
   if (value === 10) {
     return 10;
-  } else if (value <= 0) {
-    return 0;
   } else if (value <= 0.025) {
     return 1;
   } else if (value >= 0.026 && value <= 0.042) {
     return 2;
   } else if (value >= 0.043 && value <= 0.060) {
     return 3;
-  } else if (value >= 0.061 && value < 0.1) {
+  } else if (value >= 0.061 && value <= 0.1) {
     return 4;
   } else if (value >= 0.11) {
     return 5;
@@ -401,15 +394,13 @@ grader[KEYS.R_HTCL] = (value) => {
   //- to represent that the risk score is not applicable
   if (value === 10) {
     return value;
-  } else if (value === 1) {
-    return 0;
   } else if (value >= 0.75) {
     return 1;
   } else if (value >= 0.55 && value <= 0.74) {
     return 2;
   } else if (value >= 0.36 && value <= 0.54) {
     return 3;
-  } else if (value >= 0.17 && value < 0.35) {
+  } else if (value >= 0.17 && value <= 0.35) {
     return 4;
   } else if (value <= 0.16) {
     return 5;

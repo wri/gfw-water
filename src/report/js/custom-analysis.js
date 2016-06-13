@@ -162,7 +162,7 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
 * This function is used in the map and performs the risk analysis only for the given geometry
 * @param {esriGeometryPolygon} geometry - Valid Esri Polygon to analyze
 * @param {number} area - Area of the provided polygon
-* @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map
+* @param {number} canopyDensity - Value between 0 - 100, chosen by user in the map,
 * @return {deferred} promise
 */
 export const performRiskAnalysis = (geometry, area) => {
@@ -189,6 +189,8 @@ export const performRiskAnalysis = (geometry, area) => {
         tl_g30_all_ha,
         tc_g30_ha,
         ptc_ha;
+
+    console.log(results);
 
     tl_g30_all_ha = Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
     tc_g30_ha = Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha;

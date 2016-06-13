@@ -12,11 +12,10 @@ export const config = {
   },
 
   corsEnabledServers: [
-    'http://localhost',
-    'http://localhost:3000',
-    'http://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
-    'https://54.83.40.92/arcgis/rest/services/erosion/ImageServer',
-    'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology'
+    'localhost',
+    '54.83.40.92', // Old Erosion Image Server
+    '50.19.205.13', // New Erosion Image Server
+    'hydro.arcgis.com' // Esri's Hydrology Tool
   ],
 
   proxy: {
@@ -255,14 +254,14 @@ export const config = {
     },
     {
       id: KEYS.rivers,
-      order: 14,
+      order: 15,
       type: 'tiled',
       url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
       visible: true
     },
     {
       id: KEYS.adminLabels,
-      order: 15,
+      order: 14,
       type: 'webtiled',
       url: 'https://api.tiles.mapbox.com/v4/wri.acf5a04e/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
       visible: false

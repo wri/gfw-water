@@ -92,6 +92,7 @@ const graphicsHelper = {
   clearActiveWatersheds () {
     let layer = brApp.map.getLayer(KEYS.watershedAnalysis);
     if (layer) { layer.clear(); }
+    this.clearPoints();
   },
 
   /**
@@ -100,8 +101,24 @@ const graphicsHelper = {
   clearCustomAreas () {
     let layer = brApp.map.getLayer(KEYS.customAnalysis);
     if (layer) { layer.clear(); }
+    this.clearPoints();
   },
 
+  /**
+  * Clear point graphics from custom analysis layer
+  */
+  clearPoints () {
+    let layer = brApp.map.getLayer(KEYS.customAnalysis);
+    if (layer) {
+      const {graphics} = layer;
+      graphics.forEach((graphic) => {
+        if (graphic.geometry.type === 'point') {
+          layer.remove(graphic);
+        }
+      });
+    }
+  },
+  
   /**
   * Clear all features from the map
   * TODO: May be able to delete this as this may not be necessary
