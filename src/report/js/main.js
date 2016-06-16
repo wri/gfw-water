@@ -64,14 +64,24 @@ const attachEvents = () => {
     let queryString = document.location.search.slice(1);
     modalActions.showShareModal(queryString);
   });
+  document.getElementById('share-icon-bottom').addEventListener('click', () => {
+    let queryString = document.location.search.slice(1);
+    modalActions.showShareModal(queryString);
+  });
   //- Listener for Watershed Summary Info Modal
   document.getElementById('watershed-info-button').addEventListener('click', () => {
     modalActions.showBasicModal(text.watershedSummeryInfo, text.watershedSummeryInfoDescription);
   });
   // Print button click.
   document.getElementById('print-icon').addEventListener('click', () => window.print());
+  document.getElementById('print-icon-bottom').addEventListener('click', () => window.print());
   // CSV export.
   document.getElementById('csv-export-icon').addEventListener('click', () => {
+    let watershed = reportMaps.currentWatershed();
+    console.log('watershed', watershed);
+    csvExport(watershed);
+  });
+  document.getElementById('csv-export-icon-bottom').addEventListener('click', () => {
     let watershed = reportMaps.currentWatershed();
     console.log('watershed', watershed);
     csvExport(watershed);
