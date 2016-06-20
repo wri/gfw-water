@@ -407,6 +407,8 @@ export const config = {
       customAnalysisLink: 'Custom Area',
       fullReportButton: 'Full Report',
       watershedSummeryInfo: 'Watershed Risk Summary',
+      majorDamsSummeryInfo: 'MAJOR DAMS',
+      waterIntakeSummeryInfo: 'WATER INTAKES',
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
       latLngGoButton: 'Go',
@@ -452,8 +454,10 @@ export const config = {
             <span>Risk score on fire is measured by average annual fire occurrence per hectare in a watershed.</span>
           </li>
         </ul>
-      `
-    },
+      `,
+      majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
+      waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>'
+  },
     controlPanel: {
       wriBasemap: 'WRI',
       imageryBasemap: 'Imagery',

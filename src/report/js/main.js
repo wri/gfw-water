@@ -72,6 +72,12 @@ const attachEvents = () => {
   document.getElementById('watershed-info-button').addEventListener('click', () => {
     modalActions.showBasicModal(text.watershedSummeryInfo, text.watershedSummeryInfoDescription);
   });
+  document.getElementById('major-dams-info-button').addEventListener('click', () => {
+    modalActions.showBasicModal(text.majorDamsSummeryInfo, text.majorDamsSummeryInfoDescription);
+  });
+  document.getElementById('water-intakes-info-button').addEventListener('click', () => {
+    modalActions.showBasicModal(text.waterIntakeSummeryInfo, text.waterIntakeSummeryInfoDescription);
+  });
   // Print button click.
   document.getElementById('print-icon').addEventListener('click', () => window.print());
   document.getElementById('print-icon-bottom').addEventListener('click', () => window.print());

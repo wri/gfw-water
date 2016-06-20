@@ -84,7 +84,7 @@ html
       div.wrapper 
         h1
         p.
-          The quantity and quality of water sources, and hence the cost to transport and treat water, depend heavily on the health of the source watershed. Healthy forested lands provide critical watershed functions as <strong>natural infrastructure</strong>:  they minimize erosion and pollutants, purify water, and reduce the impact of floods and droughts.
+          A watershed’s health directly affects the quantity and quality of water sources as well as water transport and treatment costs. Healthy forested lands provide critical watershed functions as natural infrastructure by minimizing erosion and pollutants, purifying water, and reducing the impact of floods and droughts.
         div.printed-map Generating:  overview map
     section.relative.dark.stats 
       div.wrapper
@@ -114,6 +114,9 @@ html
                     div.gray.smaller Displaying tree cover with #[span.blue-bubble > #[span.canopy-density]] canopy density 
                 td
                   div major dams
+                    span#major-dams-info-button.info-icon.pointer
+                      svg
+                        use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#dam-count -
                     span.unit Dams
@@ -125,6 +128,9 @@ html
                     span.unit Ha
                 td
                   div water intake
+                    span#water-intakes-info-button.info-icon.pointer
+                      svg
+                        use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#water-withdrawl -
                     span.unit Locations
