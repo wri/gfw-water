@@ -150,9 +150,7 @@ html
             div#risk-chart
           div.info-column
             p.
-              Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.
-            p.
-              #[span.blue We consider four watershed risks and the scores range from 1 – 5.] A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.
+              Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services. 
             p.blue.
               #[a(href='#plan-for-action') Jump] to recommendations according to watershed risk summary.
 
@@ -239,6 +237,19 @@ html
               #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
           div.info-column
             div.printed-map Generating:  baseline water stress map
+          div#ll.report-legend
+            //- div.legend-row
+            //- div.legend-label Low
+            //- img(title=' Low (<10%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf//L/5PiUGMjLGMKAZSC4waOGrgqIGjBtLZQFh5RjUDqQUA0BcEscRvA34AAAAASUVORK5CYII=')
+            //- img(title='Low to medium (10-20%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf+fMfynxCBGKQZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAEckDbYejc9wAAAAASUVORK5CYII=')
+            //- img(title='Medium to high (20-40%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf9nMfynxCDGNAZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAK+kDuUNraskAAAAASUVORK5CYII=')
+            //- img(title='High (40-80%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf8lGf5TYhDjcwZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAWEEEOqCAcLEAAAAASUVORK5CYII=')
+            //- img(title='Extremely high (>80%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgbsZ2P9TYpArw09GFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAdBwEkNC5WDkAAAAASUVORK5CYII=')
+            //- div.legend-label High
+            //- div.legend-row
+            //- div.legend-label Low
+            //-   //- <img key={index} title={legendInfo.label} src={`data:image/png;base64,${legendInfo.imageData}`} />
+            //- div.legend-label High
 
     hr
 

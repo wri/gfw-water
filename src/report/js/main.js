@@ -1,5 +1,6 @@
 import ShareModal from 'components/Modals/ShareModal';
 import BasicModal from 'components/Modals/BasicModal';
+import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
 import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import {loadCSS, loadJS} from 'utils/loaders';
@@ -98,5 +99,6 @@ configureApp();
 lazyloadAssets();
 attachEvents();
 reportMaps.printAll(config);
+ReactDOM.render(<WaterStressLegend url='http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer' layerIds={[1]} />, document.getElementById('ll'));
 ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));
 ReactDOM.render(<BasicModal />, document.getElementById('basic-modal'));
