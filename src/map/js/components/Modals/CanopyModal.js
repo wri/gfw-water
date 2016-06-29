@@ -37,11 +37,17 @@ export default class CanopyModal extends React.Component {
   sliderChanged (data) {
     modalActions.updateCanopyDensity(data.from_value);
     LayersHelper.updateTreeCoverDefinitions(data.from_value);
+    // Update the loss layer as well
+    const {lossFromSelectIndex, lossToSelectIndex} = mapStore.getState();
+    LayersHelper.updateLossLayerDefinitions(lossFromSelectIndex, lossToSelectIndex, data.from_value);
   }
 
   sliderUpdated (data) {
     // Component was reset, reset the default definition as well
     LayersHelper.updateTreeCoverDefinitions(data.from_value);
+    // Update the loss layer as well
+    const {lossFromSelectIndex, lossToSelectIndex} = mapStore.getState();
+    LayersHelper.updateLossLayerDefinitions(lossFromSelectIndex, lossToSelectIndex, data.from_value);
   }
 
   render() {

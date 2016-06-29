@@ -1,13 +1,14 @@
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
-import LandCoverLegend from 'components/LayerPanel/LandCoverLegend';
+// import LandCoverLegend from 'components/LayerPanel/LandCoverLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import DensityDisplay from 'components/LayerPanel/DensityDisplay';
 import WetlandsLegend from 'components/LayerPanel/WetlandsLegend';
 import LayerCheckbox from 'components/LayerPanel/LayerCheckbox';
 import FiresControls from 'components/LayerPanel/FiresControls';
 import LossControls from 'components/LayerPanel/LossControls';
+import SimpleLegend from 'components/LayerPanel/SimpleLegend';
 import LayerGroup from 'components/LayerPanel/LayerGroup';
-import DamsLegend from 'components/LayerPanel/DamsLegend';
+// import DamsLegend from 'components/LayerPanel/DamsLegend';
 import {layersConfig, layerPanelText} from 'js/config';
 import {mapStore} from 'stores/MapStore';
 import KEYS from 'js/constants';
@@ -56,22 +57,25 @@ export default class LayerPanel extends React.Component {
           childComponent = <SedimentLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         case KEYS.majorDams:
-          childComponent = <DamsLegend url={layer.url} layerIds={layer.layerIds} />;
+          childComponent = <SimpleLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         case KEYS.activeFires:
           childComponent = <FiresControls loaded={this.props.loaded} {...this.state} />;
           break;
         case KEYS.loss:
-          childComponent = <LossControls loaded={this.props.loaded} {...this.state} />;
+          childComponent = [<LossControls loaded={this.props.loaded} {...this.state} />, <DensityDisplay {...this.state} />];
           break;
         case KEYS.treeCover:
           childComponent = <DensityDisplay {...this.state} />;
           break;
         case KEYS.landCover:
-          childComponent = <LandCoverLegend url={layer.url} layerIds={layer.layerIds} />;
+          childComponent = <SimpleLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         case KEYS.wetlands:
           childComponent = <WetlandsLegend url={layer.url} layerIds={layer.layerIds} />;
+          break;
+        case KEYS.waterIntake:
+          childComponent = <SimpleLegend url={layer.url} layerIds={layer.layerIds} />;
           break;
         default:
           childComponent = null;

@@ -3,9 +3,10 @@ import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {layerPanelText, layersConfig} from 'js/config';
 import GraphicsHelper from 'helpers/GraphicsHelper';
+import rasterFuncs from 'utils/rasterFunctions';
 import {analysisStore} from 'stores/AnalysisStore';
 import {modalStore} from 'stores/ModalStore';
-import rasterFuncs from 'utils/rasterFunctions';
+import {mapStore} from 'stores/MapStore';
 import Symbols from 'helpers/Symbols';
 import Request from 'utils/request';
 import utils from 'utils/AppUtils';
@@ -77,9 +78,11 @@ let LayersHelper = {
     let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.show(); }
 
-    // If the layer is the potential forest layer (historic loss), show a dialog and ask about the tree cover layer
+    // If the layer is the potential forest layer (historic loss) and tree cover is not on
+    // show a dialog and ask about the tree cover layer
     let {lossCookieValue} = modalStore.getState();
-    if (layerId === KEYS.historicLoss) {
+    let {activeLayers} = mapStore.getState();
+    if (layerId === KEYS.historicLoss && activeLayers.indexOf(KEYS.treeCover) === -1) {
       if (!lossCookieValue) {
         modalActions.showHistoricLossModal();
       } else if (lossCookieValue === KEYS.lossCookieShow) {
