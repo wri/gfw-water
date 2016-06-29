@@ -172,7 +172,7 @@ export const config = {
       className: 'loss',
       visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
-      url: 'http://gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear/ImageServer',
+      url: '//gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear_density/ImageServer',
       interpolation: 'RSP_NearestNeighbor'
     },
     {

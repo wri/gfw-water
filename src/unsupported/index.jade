@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    title #{unsupported.title}
+    include ../templates/meta.jade
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    link(rel='icon', href='../css/images/favicon.ico')
+    style.
+      html, body {
+        font-family: 'Fira Sans', Georgia, serif;
+        background: #DDD;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .unsupported {
+        margin: auto;
+      }
+      .logo-container {
+        justify-content: center;
+        position: relative;
+        display: flex;
+      }
+      .logo {
+        background: url('../css/images/GFW_Water_logo.png') no-repeat center;
+        background-size: 90px;
+        height: 90px;
+        width: 90px;
+      }
+      .logo:after {
+        background: url('../css/images/beta.png');
+        position: relative;
+        display: block;
+        height: 18px;
+        width: 30px;
+        content: '';
+        left: 65px;
+        top: 80px;
+      }
+      .unsupported__message {
+        text-align: center;
+        max-width: 320px;
+        line-height: 21px;
+        font-weight: 400;
+        font-size: 21px;
+      }
+      .supported__browsers {
+        list-style-type: none;
+        padding: 0;
+      }
+      .supported__browsers li {
+        text-align: center;
+      }
+      .supported__browsers a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #4099CE;
+      }
+  body
+    div.unsupported
+      h1.logo-container
+        div.logo
+      h3.unsupported__message #{unsupported.message}
+      ul.supported__browsers
+        each browser in unsupported.browsers
+          li
+            a(href='#{browser.href}')= browser.label
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48182293-1', 'auto');
+      ga('send', 'pageview');
