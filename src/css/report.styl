@@ -10,7 +10,7 @@ $riskOrange = #EA5A00
 
 @require 'modal'
 
-#watershed-info-button
+#watershed-info-button, #major-dams-info-button, #water-intakes-info-button
   position relative
   right auto
   left 10px
@@ -41,6 +41,29 @@ section.report-header
         display flex
         height 100%
         fill $darkGray
+
+.report-controls-bottom
+  background $lightGrayHighlight
+  text-align center
+  width 100%
+
+  border 1px solid #555
+  ul
+    display flex
+    justify-content center
+    align-items center
+    li
+      list-style-type none
+      margin 0 0 0 20px
+      cursor pointer
+      height 40px
+      width 40px
+      svg
+        display flex
+        height 100%
+        fill $darkGray
+      svg:hover
+        fill $statBlue
 
 .report-controls-background
   background $lightGrayHighlight
@@ -311,6 +334,28 @@ section.other-projects
 
 section.other-projects h2
   padding-bottom 0.5em
+
+.report-legend
+  position absolute
+  bottom 0
+  display none
+  border 1px solid rgb(170, 170, 170)
+  background white
+  justify-content center
+  flex-wrap wrap
+  display flex
+  // margin 5px 0
+  .legend-label
+    font-size 12px
+    padding 0 5px
+  & .legend-row
+    margin 5px 0
+    display flex
+    width 100%
+
+.report-legend .no-data-labels div:nth-child(2)
+.report-legend .no-data-labels img:nth-child(4)
+  order 1
 
 .gfw-water-logo
   background url('images/GFW_Water_logo.png') no-repeat center

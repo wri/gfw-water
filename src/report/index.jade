@@ -4,7 +4,8 @@ html
     title #{map.title}
     include ../templates/meta.jade
     script(src='http://www.globalforestwatch.org/gfw-assets' id='loader-gfw')
-    script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
+    //- script(src='../../vendor/jquery/dist/jquery.min.js')
+    //- script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
     style
       :stylus
         @require '../css/base'
@@ -13,7 +14,6 @@ html
     link(rel='stylesheet', href='//js.arcgis.com/#{esriVersion}/esri/css/esri.css')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='../css/images/favicon.ico')
-    //- script(src='vendor/jquery/dist/jquery.min.js')
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
       var mapBase = base.replace('report', 'map');
@@ -84,7 +84,7 @@ html
       div.wrapper 
         h1
         p.
-          The quantity and quality of water sources, and hence the cost to transport and treat water, depend heavily on the health of the source watershed. Healthy forested lands provide critical watershed functions as <strong>natural infrastructure</strong>:  they minimize erosion and pollutants, purify water, and reduce the impact of floods and droughts.
+          A watershed’s health directly affects the quantity and quality of water sources as well as water transport and treatment costs. Healthy forested lands provide critical watershed functions as natural infrastructure by minimizing erosion and pollutants, purifying water, and reducing the impact of floods and droughts.
         div.printed-map Generating:  overview map
     section.relative.dark.stats 
       div.wrapper
@@ -114,6 +114,9 @@ html
                     div.gray.smaller Displaying tree cover with #[span.blue-bubble > #[span.canopy-density]] canopy density 
                 td
                   div major dams
+                    span#major-dams-info-button.info-icon.pointer
+                      svg
+                        use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#dam-count -
                     span.unit Dams
@@ -125,6 +128,9 @@ html
                     span.unit Ha
                 td
                   div water intake
+                    span#water-intakes-info-button.info-icon.pointer
+                      svg
+                        use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#water-withdrawl -
                     span.unit Locations
@@ -144,9 +150,7 @@ html
             div#risk-chart
           div.info-column
             p.
-              Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.
-            p.
-              #[span.blue We consider four watershed risks and the scores range from 1 – 5.] A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.
+              Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services. 
             p.blue.
               #[a(href='#plan-for-action') Jump] to recommendations according to watershed risk summary.
 
@@ -198,6 +202,7 @@ html
               The overall erosion risk of this watershed is #[span.blue#risk-erosion-description].
             p.emphasis.
               Erosion is a significant problem that affects both water quantity and quality. High erosion deteriorates water quality and reduces capacity of reservoirs, increasing cost of water treatment and capital expenses and damaging safety of water supplies. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural land covers to pasture or cropland and other human activities.
+          div#sedimentReport.report-legend
           div.info-column
             div.printed-map Generating:  erosion map
 
@@ -231,8 +236,22 @@ html
             p.
               Learn more about the Global Forest Watch Aqueduct Project: 
               #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+          div#waterStressReport.report-legend
           div.info-column
             div.printed-map Generating:  baseline water stress map
+          
+            //- div.legend-row
+            //- div.legend-label Low
+            //- img(title=' Low (<10%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf//L/5PiUGMjLGMKAZSC4waOGrgqIGjBtLZQFh5RjUDqQUA0BcEscRvA34AAAAASUVORK5CYII=')
+            //- img(title='Low to medium (10-20%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf+fMfynxCBGKQZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAEckDbYejc9wAAAAASUVORK5CYII=')
+            //- img(title='Medium to high (20-40%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf9nMfynxCDGNAZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAK+kDuUNraskAAAAASUVORK5CYII=')
+            //- img(title='High (40-80%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgf8lGf5TYhDjcwZGFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAWEEEOqCAcLEAAAAASUVORK5CYII=')
+            //- img(title='Extremely high (>80%)', src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADFJREFUOI1jYaAyYKGZgbsZ2P9TYpArw09GFAOpBUYNHDVw1MBRA+lsIKw8o5qB1AIAdBwEkNC5WDkAAAAASUVORK5CYII=')
+            //- div.legend-label High
+            //- div.legend-row
+            //- div.legend-label Low
+            //-   //- <img key={index} title={legendInfo.label} src={`data:image/png;base64,${legendInfo.imageData}`} />
+            //- div.legend-label High
 
     hr
 
@@ -297,7 +316,19 @@ html
               td
                 ul
                   li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through controlled burns and mechanical treatment.
-
+                  
+    section
+      div.report-controls-bottom
+        ul
+          li#share-icon-bottom
+            svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#actions-icon-share") 
+          li#print-icon-bottom 
+            svg(preserveAspectRatio='xMidYMid' width='19' height='14')
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#actions-icon-print") 
+          li#csv-export-icon-bottom
+            svg(preserveAspectRatio='xMidYMid' width='16' height='15')
+              use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#actions-icon-csv")
 
     section.blue.plan 
       div.wrapper
@@ -330,7 +361,7 @@ html
           #[a(href='//www.wri.org/our-work/project/aqueduct') Aqueduct]
         p. 
           #[a(href='//www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities') Atlas of Forest and Landscape Restoration Opportunities]
-
+            
     div.hidden
       div.loading-container
         div.loading

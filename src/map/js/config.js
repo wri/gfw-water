@@ -214,15 +214,15 @@ export const config = {
       url: 'http://gis-potico.wri.org/arcgis/rest/services/Fires/Global_Fires/MapServer',
       layerIds: [0, 1, 2, 3]
     },
-    {
-      id: KEYS.burnScars,
-      order: 12,
-      type: 'dynamic',
-      label: 'Burn scars (coming soon)',
-      group: 'watershedRisk',
-      className: 'burn-scars',
-      disabled: true
-    },
+    // {
+    //   id: KEYS.burnScars,
+    //   order: 12,
+    //   type: 'dynamic',
+    //   label: 'Burn scars (coming soon)',
+    //   group: 'watershedRisk',
+    //   className: 'burn-scars',
+    //   disabled: true
+    // },
     {
       id: KEYS.sediment,
       order: 2,
@@ -398,7 +398,7 @@ export const config = {
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
       customTabId: 'customWatershed',
-      customTabLabel: 'Custom Area',
+      customTabLabel: 'Custom Analysis',
       clearAnalysisButton: 'Clear Analysis',
       getAlertsButton: 'Get Alerts',
       pointType: 'point',
@@ -406,7 +406,9 @@ export const config = {
       customAnalysisText: 'To further refine your results go to ',
       customAnalysisLink: 'Custom Area',
       fullReportButton: 'Full Report',
-      watershedSummeryInfo: 'Watershed Risk Summary',
+      watershedSummeryInfo: 'Watershed Risks',
+      majorDamsSummeryInfo: 'MAJOR DAMS',
+      waterIntakeSummeryInfo: 'WATER INTAKES',
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
       latLngGoButton: 'Go',
@@ -431,29 +433,33 @@ export const config = {
       customAreaHeader: 'Create subwatershed from a point',
       customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
       watershedSummeryInfoDescription: `
-        <p>Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.</p>
-        <p>We consider four watershed risks and the scores range from 1 – 5. A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.</p>
-        <div>Below is a description of how the risk scores are calculated per indicator:</div>
+        <p>Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services.</p>
+        <div>We consider four watershed risks:</div>
         <ul>
           <li>
-            <strong>Recent tree cover loss:</strong>
-            <span>Risk score on recent tree cover loss is measured by the area of total tree cover loss from 2001 to 2014 as a share of current tree cover extent. Canopy density for tree cover loss and tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where current tree cover is less than 10% of watershed.</span>
+            <strong>Recent Forest Loss</strong>
           </li>
           <li>
-            <strong>Historical tree cover loss:</strong>
-            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of watershed.</span>
+            <strong>Historical Forest Loss</strong>
           </li>
           <li>
-            <strong>Erosion:</strong>
-            <span>Risk score on erosion is derived from the Revised Universal Soil Loss Equation, including rainfall erosivity, slope steepness, soil erodibility, and land cover factors.</span>
+            <strong>Erosion Risk</strong>
           </li>
           <li>
-            <strong>Fire:</strong>
-            <span>Risk score on fire is measured by average annual fire occurrence per hectare in a watershed.</span>
+            <strong>Fire Risk</strong>
           </li>
         </ul>
-      `
-    },
+        <p>Risk scores range from 1 – 5. A score of 4 and above indicates that the watershed health is more likely to suffer as a result of exposure to that stressor. Further investigation and urgent action could be needed to mitigate the risk.</p>
+        <p>Below is a description of how the risk scores are calculated for each indicator:</p>
+        <p><strong>Recent forest loss risk</strong> was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to watersheds where 80% of the area is arid and total forest extent (year 2000) is less than 10%.</p>
+        <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
+        <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
+        <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
+        <p><a href="http://google.com" target="_blank">Need Help?</p>
+      `,
+      majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
+      waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>'
+  },
     controlPanel: {
       wriBasemap: 'WRI',
       imageryBasemap: 'Imagery',
