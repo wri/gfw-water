@@ -406,7 +406,7 @@ export const config = {
       customAnalysisText: 'To further refine your results go to ',
       customAnalysisLink: 'Custom Area',
       fullReportButton: 'Full Report',
-      watershedSummeryInfo: 'Watershed Risk Summary',
+      watershedSummeryInfo: 'Watershed Risks',
       majorDamsSummeryInfo: 'MAJOR DAMS',
       waterIntakeSummeryInfo: 'WATER INTAKES',
       addPointButton: 'Add point',
@@ -450,6 +450,12 @@ export const config = {
           </li>
         </ul>
         <p>Risk scores range from 1 – 5. A score of 4 and above indicates that the watershed health is more likely to suffer as a result of exposure to that stressor. Further investigation and urgent action could be needed to mitigate the risk.</p>
+        <p>Below is a description of how the risk scores are calculated for each indicator:</p>
+        <p><strong>Recent forest loss risk</strong> was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to watersheds where 80% of the area is arid and total forest extent (year 2000) is less than 10%.</p>
+        <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
+        <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
+        <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
+        <p><a href="http://google.com" target="_blank">Need Help?</p>
       `,
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
       waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>'
