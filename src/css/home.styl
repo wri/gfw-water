@@ -1,4 +1,6 @@
 @require 'config'
+@require 'topNavigation.styl'
+@require 'footerShare.styl'
 
 #headerGfw
   height 0
@@ -88,11 +90,14 @@
     &.slide1
       background-image url('images/slide-gfwwater.png')
     &.slide2
+      opacity 0
       background-image url('images/slide-philadelphia-skyline.jpg')
     &.slide3
+      opacity 0
       background-image url('images/slide-spring.jpg')
     &.slide4
-      background-image url('images/slide-aqueduct.png')
+      opacity 0
+      background-image url('images/aqueduct-water-risk.png')
   & .slick-dots
     position absolute
     list-style none
@@ -194,3 +199,155 @@
       top auto
   .home-slider-container
     min-height 620px
+
+// Page main Content
+.home-section
+  width 1024px
+  margin auto
+  .home-section-block
+    min-height 130px
+    justify-content center
+    display flex
+    flex-direction column
+  img
+    width 100%
+    height auto
+    max-width 450px
+    margin auto
+
+.home-section-block
+  width 50%
+  padding 0 1em .5em
+
+.home-section-block__title
+  font-weight normal
+  margin .5em 0
+
+.home-section-block__content
+  margin .5em 0 .25em 0
+
+// Bottom slider
+.bottom-slider
+  width 1024px
+  margin auto
+  .block-text
+    min-height 300px
+    background-color #239AD0
+    color #fff
+
+.bottom-slider
+  position relative
+  .block-image
+    background-repeat no-repeat
+    background-size cover
+  .bottom-slide1
+    .block-image
+      background-image url('images/footer-utilities.jpg')
+  .bottom-slide2
+    position absolute
+    top 0
+    .block-image
+      background-image url('images/footer-financing-development.jpg')
+  .bottom-slide3
+    position absolute
+    top 0
+    .block-image
+      background-image url('images/footer-research-civil-society.jpg')
+
+.bottom-slider__block
+  width 100%
+  .block-text
+    display flex
+    flex-direction column
+    justify-content center
+    h3
+      margin .4em 0
+      font-weight 500
+    h4
+    p
+      margin 0
+    h4
+      font-weight normal
+  .block-image
+    display none
+
+.switch-button
+  background-image url('images/person-head.svg')
+  background-color #E9E8E4
+  background-position bottom
+  background-repeat no-repeat
+  cursor pointer
+  width 80px
+  height 80px
+  display flex
+  margin auto
+  border-radius 40px
+  border 5px solid #fff
+  &.switch-slide1
+    background-color #476685
+
+.switch-button__label
+  font-size .6em
+  text-transform uppercase
+  padding 0 .5em
+
+.bottom-slider-container
+  width 1024px
+  margin auto
+  height 6em
+  .slide-switch__block
+    flex 1
+    text-align center
+    position: relative;
+    top: -40px;
+
+
+// Media query
+@media (min-width: 1400px)
+  .home-section
+  .bottom-slider
+    max-width 1200px
+    width 75%
+
+@media (max-width: 1024px)
+ .home-section
+ .bottom-slider
+ .bottom-slider-container
+    width 100%
+
+@media (min-width: 851px)
+  .customize-analysis-block
+    min-height 300px
+    background-image url('images/gfw-water-custom-insight.jpg')
+    background-color #DFD9D1
+    background-size: contain;
+    background-repeat: no-repeat;
+  .home-section
+    .block-text
+      padding-right 5em
+      padding-left 5em
+  .bottom-slider__block
+    .block-text
+      padding-right 3em
+      padding-left 3em
+    .block-image
+      display flex
+
+@media (max-width: 850px)
+  .home-section
+    flex-direction column
+  .home-section-block
+    width 100%
+  .customize-analysis-block
+    .block-text
+      //background-image url('images/gfw-water-custom-insight.jpg')
+      //background-repeat: no-repeat;
+      //background-size: contain;
+      background-color #DFD9D1
+    .block-image
+      display none
+
+  .bottom-slider__block
+    .block-text
+      padding-bottom 2em
+
