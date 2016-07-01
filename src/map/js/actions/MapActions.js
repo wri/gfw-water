@@ -1,6 +1,5 @@
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import layerFactory from 'helpers/LayerFactory';
-import LayersHelper from 'helpers/LayersHelper';
 import {layersConfig, errors} from 'js/config';
 import Point from 'esri/geometry/Point';
 import Symbols from 'helpers/Symbols';
@@ -36,6 +35,7 @@ class MapActions {
 
   createLayers () {
     brApp.debug('MapActions >>> createLayers');
+    const deferred = new Deferred();
     //- Remove layers from config that have no url unless they are of type graphic(which have no url)
     //- sort by order from the layer config
     //- return an arcgis layer for each config object
@@ -48,8 +48,10 @@ class MapActions {
       var layerErrors = addedLayers.filter(layer => layer.error);
       if (layerErrors.length > 0) { console.error(layerErrors); }
       // Connect events to the layers that need them
-      LayersHelper.connectLayerEvents();
+      deferred.resolve();
     });
+
+    return deferred;
   }
 
   zoomToUserLocation () {
