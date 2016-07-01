@@ -1,9 +1,44 @@
 .page-aqueduct-link
-  background url("css/images/aqueduct-logo.png") no-repeat center
-  background-size auto 69px
+  background url("images/aqueduct-logo.png") no-repeat center
+  background-size cover
   position absolute
-  height 45px
-  width 268px
+  height 43px
+  width 260px
   left 115px
   z-index 5
-  top 5px
+  top 3px
+
+// Top Navigation
+.top-nav-container
+  position: absolute;
+  width: 100%;
+  height 50px
+  z-index: 3;
+  background-color: rgba(255,255,255,0.8);
+
+.top-nav
+  max-width 1024px
+  width 100%
+  margin 0 auto
+  text-align right
+
+.top-nav__item
+  display inline-block
+  margin 0 .3em
+
+.top-nav__link
+  display block
+  color #555
+  padding: 0 1em
+  text-transform: uppercase;
+  text-decoration none
+  line-height 50px
+
+.top-nav__link:hover
+  color #222
+
+// Media query
+@media (min-width: 1400px)
+  .top-nav
+    max-width 1200px
+    width 75%
