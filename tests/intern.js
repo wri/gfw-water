@@ -39,13 +39,13 @@ define({
 	loaderOptions: {
 		// Packages that should be registered with the loader in each testing environment
 		packages: [
-			{ name: 'js', location: 'build/js/map' },
+			{ name: 'js', location: 'build/map/js' },
 			{ name: 'vendor', location: 'build/vendor' },
-			{ name: 'report', location: 'build/js/report' },
-			{ name: 'utils', location: 'build/js/map/utils' },
-			{ name: 'stores', location: 'build/js/map/stores' },
-			{ name: 'actions', location: 'build/js/map/actions' },
-			{ name: 'components', location: 'build/js/map/components' }
+			{ name: 'report', location: 'build/report/js' },
+			{ name: 'utils', location: 'build/map/js/utils' },
+			{ name: 'stores', location: 'build/map/js/stores' },
+			{ name: 'actions', location: 'build/map/js/actions' },
+			{ name: 'components', location: 'build/map/js/components' }
 		],
 		map: {
 			'*': {
