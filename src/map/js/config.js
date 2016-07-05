@@ -36,11 +36,16 @@ export const config = {
       url: '/',
       title: 'Global Forest Watch Water - Home'
     },
+    about: {
+      url: '/about',
+      title: 'Global Forest Watch Water - Learn More'
+    },
     aqueduct: {
       url: 'http://www.wri.org/our-work/project/aqueduct',
       title: 'Aqueduct Water Risk Atlas'
     }
   },
+
 
   map: {
     id: 'map',
