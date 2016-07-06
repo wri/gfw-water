@@ -1,5 +1,6 @@
 import {layerInformation} from 'js/config';
 import esriRequest from 'esri/request';
+import esriConfig from 'esri/config';
 import urlUtils from 'esri/urlUtils';
 import domClass from 'dojo/dom-class';
 import alt from 'js/alt';
@@ -15,10 +16,13 @@ class ModalActions {
     //   domClass.remove('layer-modal', 'hidden');
     // }
 
-    // urlUtils.addProxyRule({
-    //   urlPrefix: 'http://api.globalforestwatch.org',
-    //   proxyUrl: '/map/php/proxy.php'
-    // });
+    urlUtils.addProxyRule({
+      urlPrefix: 'http://api.globalforestwatch.org',
+      proxyUrl: 'http://wri-gfw-water-staging.herokuapp.com/proxy/proxy.php'
+    });
+
+    esriConfig.defaults.io.corsEnabledServers.push('api.globalforestwatch.org');
+    esriConfig.defaults.io.corsEnabledServers.push('wri-gfw-water.herokuapp.com');
 
     // console.log(metadataIds);
     // console.log(layersConfig);
@@ -28,7 +32,7 @@ class ModalActions {
 
     esriRequest({
       // url: metadataUrl + metadataId,
-      url: 'http://fires.globalforestwatch.org/map/php/proxy.php?http://api.globalforestwatch.org/metadata/noaa18_fires',
+      url: 'http://api.globalforestwatch.org/metadata/noaa18_fires',
       handleAs: 'json',
       callbackParamName: 'callback'
     }, {
