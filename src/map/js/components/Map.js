@@ -37,6 +37,19 @@ export default class Map extends React.Component {
   render () {
     return (
       <div id={mapConfig.id} className={'map'}>
+        <nav className='top-nav-container'>
+          <ul className='top-nav'>
+            <li className='top-nav__item'>
+              <a className='top-nav__link' href={'/map'}>Map</a>
+            </li>
+            <li className='top-nav__item'>
+              <a className='top-nav__link' href={'/partners'}>Partners</a>
+            </li>
+            <li className='top-nav__item'>
+              <a className='top-nav__link' href={'/about'}>Learn More</a>
+            </li>
+          </ul>
+        </nav>
         <Loader active={!this.state.loaded} />
         <a href={links.home.url} title={links.home.title} alt={links.home.title} target='_blank'><div className='gfw-water-logo' /></a>
         <a href={links.aqueduct.url} title={links.aqueduct.title} alt={links.aqueduct.title} target='_blank'><div className='aqueduct-logo' /></a>
