@@ -1,4 +1,6 @@
 import {layerInformation} from 'js/config';
+import esriRequest from 'esri/request';
+import urlUtils from 'esri/urlUtils';
 import domClass from 'dojo/dom-class';
 import alt from 'js/alt';
 
@@ -6,12 +8,41 @@ class ModalActions {
 
   showLayerInfo (layerId) {
     brApp.debug('ModalActions >>> showLayerInfo');
-    let emptyObj = {};
-    let layerInfo = layerInformation[layerId] || emptyObj;
-    this.dispatch(layerInfo);
-    if (layerInfo !== emptyObj) {
+    // let emptyObj = {};
+    // let layerInfo = layerInformation[layerId] || emptyObj;
+    // this.dispatch(layerInfo);
+    // if (layerInfo !== emptyObj) {
+    //   domClass.remove('layer-modal', 'hidden');
+    // }
+
+    // urlUtils.addProxyRule({
+    //   urlPrefix: 'http://api.globalforestwatch.org',
+    //   proxyUrl: '/map/php/proxy.php'
+    // });
+
+    // console.log(metadataIds);
+    // console.log(layersConfig);
+
+    // let metadataId = layersConfig.filter((l) => l.id === layerId)[0].metadataId;
+    // console.log(metadataId);
+
+    esriRequest({
+      // url: metadataUrl + metadataId,
+      url: 'http://fires.globalforestwatch.org/map/php/proxy.php?http://api.globalforestwatch.org/metadata/noaa18_fires',
+      handleAs: 'json',
+      callbackParamName: 'callback'
+    }, {
+      usePost: true
+    }).then(res => {
+      this.dispatch(res);
       domClass.remove('layer-modal', 'hidden');
-    }
+    }, err => {
+      // this.dispatch({});
+      // console.log(layerId)
+      this.dispatch(layerId); //todo: show config's template based on this layerId
+      domClass.remove('layer-modal', 'hidden');
+      console.error(err);
+    });
   }
 
   showShareModal (params) {

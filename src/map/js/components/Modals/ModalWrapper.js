@@ -35,6 +35,13 @@ export default class ModalWrapper extends React.Component {
           </div>
             <div className='modal-content custom-scroll'>
               {this.props.children}
+              {(this.props.children && this.props.children[0]) || !this.props.downloadData ? null :
+              <div className='modal-footer'>
+                <div className="m-btncontainer is-center">
+                  <a href={this.props.downloadData} target="_blank" className="btn green uppercase download-mobile-link">Learn more or download data</a>
+                </div>
+              </div>
+            }
             </div>
         </article>
       </div>
