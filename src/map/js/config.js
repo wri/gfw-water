@@ -15,12 +15,18 @@ export const config = {
     'localhost',
     '54.83.40.92', // Old Erosion Image Server
     '50.19.205.13', // New Erosion Image Server
-    'hydro.arcgis.com' // Esri's Hydrology Tool
+    'hydro.arcgis.com', // Esri's Hydrology Tool
+    'api.globalforestwatch.org' // Esri's Hydrology Tool
   ],
 
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+      },
+      metadata: {
+        urlPrefix: 'api.globalforestwatch.org',
         // proxyUrl: '//localhost/proxy/proxy.php'
         proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
