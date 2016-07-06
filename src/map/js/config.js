@@ -234,6 +234,16 @@ export const config = {
       layerIds: [4]
     },
     {
+      id: KEYS.arid,
+      order: 2,
+      type: 'dynamic',
+      label: 'Arid',
+      group: 'watershedRisk',
+      className: 'arid',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      layerIds: [7]
+    },
+    {
       id: KEYS.waterStress,
       type: 'dynamic',
       order: 1,
@@ -243,6 +253,24 @@ export const config = {
       url: 'http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       layerIds: [1],
       opacity: 0.80
+    },
+    {
+      id: KEYS.caseStudies,
+      type: 'feature',
+      order: 20,
+      label: 'Case Studies',
+      group: 'watershedRisk',
+      className: 'case-studies',
+      layerIds: [0],
+      fields: ['*'],
+      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer',
+      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer/0',
+      visible: true,
+      infoTemplate: {
+        content: '<table><span class="name-field">${Location}</span></tr>' +
+          '<tr><td class="field-name">Strategy: </td><td class="field-value">${Strategies}</td></tr>' +
+          '<tr><td class="field-name">Learn More: </td><td class="field-value">${Learn_More}</td></tr>'
+      },
     },
     // These layers are not in the UI and should be the top most layers
     {
