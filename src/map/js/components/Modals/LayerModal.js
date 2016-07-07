@@ -1,6 +1,6 @@
 import ModalWrapper from 'components/Modals/ModalWrapper';
 import {modalStore} from 'stores/ModalStore';
-import {modalText} from 'js/config';
+import {modalText, fakeMetadata} from 'js/config';
 import React from 'react';
 
 export default class Modal extends React.Component {
@@ -22,15 +22,16 @@ export default class Modal extends React.Component {
 
   render () {
     // let layerInfo = this.state.layerInfo;
-
+    // this.state.layerInfo = fakeMetadata;
     let layerInfo = [];
     for (let layer in this.state.layerInfo) {
       layerInfo.push(this.state.layerInfo[layer]);
     }
+
     return (
       <ModalWrapper downloadData={this.state.layerInfo.download_data}>
         {!this.state.layerInfo.title ? <div className='no-info-available'>{modalText.noInfo}</div> :
-          <div className='modal-content'>
+          <div className='modal-content-layer'>
               <div className='modal-source'>
                 <h2 className='modal-title'>{this.state.layerInfo.title}</h2>
                 <h3 className='modal-subtitle'>{this.state.layerInfo.subtitle}</h3>
