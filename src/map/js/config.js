@@ -308,12 +308,12 @@ export const config = {
       //TODO: acquire metadataId
       className: 'case-studies',
       layerIds: [0],
-      fields: ['*'],
+      outFields: ['FID', 'Location', 'Strategies', 'Learn_More'],
       legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer',
       url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer/0',
       visible: true,
       infoTemplate: {
-        content: '<table><span class="name-field">${Location}</span></tr>' +
+        content: '<table>' +
           '<tr><td class="field-name">Strategy: </td><td class="field-value">${Strategies}</td></tr>' +
           '<tr><td class="field-name">Learn More: </td><td class="field-value">${Learn_More}</td></tr>'
       }

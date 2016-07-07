@@ -81,11 +81,11 @@ let LayersHelper = {
     //- Don't do anything if the drawtoolbar is active
     let {toolbarActive} = analysisStore.getState();
     let graphic = evt.graphic;
-    let layer = brApp.map.getLayer(KEYS.caseStudies);
+
     if (graphic && !toolbarActive) {
       let layerConfig = utils.getObject(layersConfig, 'id', KEYS.caseStudies);
       let content = '<div>' + layerConfig.infoTemplate.content + '</div>';
-      let template = new InfoTemplate('lucas', content);
+      let template = new InfoTemplate(graphic.attributes.Location, content);
       console.log(graphic.attributes);
       graphic.setInfoTemplate(template);
       brApp.map.infoWindow.setFeatures(graphic);
