@@ -32,6 +32,12 @@ class ModalActions {
     domClass.remove('canopy-modal', 'hidden');
   }
 
+  showAboutModal (card) {
+    brApp.debug('ModalActions >>> showAboutModal');
+    this.dispatch(card);
+    domClass.remove('about-modal', 'hidden');
+  }
+
   showBasicModal (title, text) {
     brApp.debug('ModalActions >>> showBasicModal');
     this.dispatch({ title: title, text: text });
