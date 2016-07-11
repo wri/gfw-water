@@ -2,9 +2,6 @@
 @require 'topNavigation.styl'
 @require 'footerShare.styl'
 
-#headerGfw
-  height 0
-
 .home-slider-container
   height 230px
 
@@ -97,7 +94,7 @@
       background-image url('images/slide-spring.jpg')
     &.slide4
       opacity 0
-      background-image url('images/aqueduct-water-risk.png')
+      background-image url('images/slide-aqueduct-water-risk.png')
   & .slick-dots
     position absolute
     list-style none
@@ -202,10 +199,10 @@
 
 // Page main Content
 .home-section
-  width 1024px
+  //width 1024px
   margin auto
   .home-section-block
-    min-height 130px
+    min-height 260px
     justify-content center
     display flex
     flex-direction column
@@ -222,16 +219,29 @@
 .home-section-block__title
   font-weight normal
   margin .5em 0
+  font-size 35px
+  line-height 35px
 
 .home-section-block__content
   margin .5em 0 .25em 0
+  font-size 19px
+  line-height 24px
+
+// Custom Insight
+.customize-analysis-block
+  min-height 400px
+  background-image url('images/gfw-water-custom-insight.jpg')
+  background-color #DFD9D1
+  background-size contain
+  background-repeat no-repeat
+  background-position left bottom
 
 // Bottom slider
 .bottom-slider
-  width 1024px
+  //width 1024px
   margin auto
   .block-text
-    min-height 300px
+    min-height 265px
     background-color #239AD0
     color #fff
 
@@ -240,19 +250,12 @@
   .block-image
     background-repeat no-repeat
     background-size cover
-  .bottom-slide1
-    .block-image
-      background-image url('images/footer-utilities.jpg')
   .bottom-slide2
     position absolute
     top 0
-    .block-image
-      background-image url('images/footer-financing-development.jpg')
   .bottom-slide3
     position absolute
     top 0
-    .block-image
-      background-image url('images/footer-research-civil-society.jpg')
 
 .bottom-slider__block
   width 100%
@@ -261,15 +264,30 @@
     flex-direction column
     justify-content center
     h3
-      margin .4em 0
-      font-weight 500
+      font-weight normal
+      margin .3em 0
+    h4
+      font-weight 700
     h4
     p
-      margin 0
-    h4
-      font-weight normal
+      margin .1em 0
+      line-height 40px
+      font-size 35px
+    p
+      font-weight 300
   .block-image
-    display none
+    display flex
+    background-position bottom right
+
+.bottom-slide1
+  .block-image
+    background-image url('images/footer-utilities.jpg')
+.bottom-slide2
+  .block-image
+    background-image url('images/footer-financing-development.jpg')
+.bottom-slide3
+  .block-image
+    background-image url('images/footer-research-civil-society.jpg')
 
 .switch-button
   background-image url('images/person-head.svg')
@@ -283,13 +301,18 @@
   margin auto
   border-radius 40px
   border 5px solid #fff
+  transition: background-color 300ms ease;
   &.switch-slide1
     background-color #476685
+  &:hover
+    background-color: #476685 !important;
 
 .switch-button__label
-  font-size .6em
+  font-size 12px
   text-transform uppercase
   padding 0 .5em
+  line-height 12px
+  display inline-block
 
 .bottom-slider-container
   width 1024px
@@ -316,38 +339,52 @@
     width 100%
 
 @media (min-width: 851px)
-  .customize-analysis-block
-    min-height 300px
-    background-image url('images/gfw-water-custom-insight.jpg')
-    background-color #DFD9D1
-    background-size: contain;
-    background-repeat: no-repeat;
   .home-section
+    min-height 400px
     .block-text
       padding-right 5em
       padding-left 5em
   .bottom-slider__block
+    min-height 550px
     .block-text
-      padding-right 3em
-      padding-left 3em
-    .block-image
-      display flex
+      padding-right 2em
+      padding-left 2em
 
 @media (max-width: 850px)
   .home-section
     flex-direction column
   .home-section-block
     width 100%
+    &.block-text
+      padding 0 2em 0.5em
   .customize-analysis-block
     .block-text
-      //background-image url('images/gfw-water-custom-insight.jpg')
-      //background-repeat: no-repeat;
-      //background-size: contain;
-      background-color #DFD9D1
     .block-image
-      display none
+      min-height 260px
+    .block-text
+      order -1
 
   .bottom-slider__block
+    display: flex;
+    flex-direction: column;
     .block-text
-      padding-bottom 2em
+      padding-bottom 3em
+      h3
+        line-height 22px
+        font-size 22px
+      h4
+      p
+        font-size 15px
+        line-height 20px
+    .block-image
+      order -1
+      height 265px
+      background-position center
 
+@media (max-width: 450px)
+  .customize-analysis-block
+    background-size 600px
+  .customize-analysis-block
+    .block-text
+    .block-image
+      min-height 220px
