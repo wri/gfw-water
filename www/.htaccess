@@ -21,7 +21,9 @@ SetOutputFilter DEFLATE
 </IfModule>
 
 # Testing browser detection from .htaccess files with no PHP, may need to be adjusted or replaced if this is not sufficient
-# Browser sniffing is probably not the ideal way to go
+# Browser sniffing is probably not the ideal way to go, but we may want to switch the logic around
+# Instead of checking if the chrome version is not we want, we could test for browsers we do not like and force redirect
+# This would require less regex and maintenance
 # Still needs IE regex placed in
 # Chrome 50+
 # Safari > 7
