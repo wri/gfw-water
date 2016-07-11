@@ -335,7 +335,7 @@ export const config = {
       title: 'Spatial mapping tools and platforms',
       bullets: [
         {
-          label: '<a href="http://www.naturalcapitalproject.org/software/">Natural Capital Project:</a>'
+          label: '<a href="http://www.naturalcapitalproject.org/software/" target="_blank">Natural Capital Project:</a>'
         },
         [
           {
@@ -349,17 +349,17 @@ export const config = {
           }
         ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
         },
         {
           label: 'The Nature Conservancy:'
         },
         [
           {
-            label: '<a href="http://watershedtool.org/">Watershed Conservation Screening Tool</a>'
+            label: '<a href="http://watershedtool.org/" target="_blank">Watershed Conservation Screening Tool</a>'
           },
           {
-            label: '<a href="http://water.nature.org/waterblueprint/">Urban Water Blueprint</a>'
+            label: '<a href="http://water.nature.org/waterblueprint/ target="_blank"">Urban Water Blueprint</a>'
           }
         ]
       ]
@@ -372,10 +372,10 @@ export const config = {
         },
         [
           {
-            label: '<a href="http://www.thesolutionsjournal.com/node/1241">Green Gray Analysis</a>'
+            label: '<a href="http://www.thesolutionsjournal.com/node/1241" target="_blank">Green Gray Analysis</a>'
           },
           {
-            label: '<a href="http://www.wri.org/our-work/topics/finance">Finance Center</a>'
+            label: '<a href="http://www.wri.org/our-work/topics/finance" target="_blank">Finance Center</a>'
           }
         ],
         {
@@ -383,10 +383,10 @@ export const config = {
         },
         [
           {
-            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/">ProjectSelectTM</a>'
+            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelectTM</a>'
           },
           {
-            label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104">Guide to Corporate Ecosystem Valuation</a>'
+            label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104" target="_blank">Guide to Corporate Ecosystem Valuation</a>'
           }
         ],
         {
@@ -394,7 +394,7 @@ export const config = {
         },
         [
           {
-            label: '<a href="http://www.naturevesttnc.org/">Nature Vest</a>'
+            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
           }
         ]
       ]
@@ -403,35 +403,19 @@ export const config = {
       title: 'Guidance and roadmaps',
       bullets: [
         {
-          label: '<a href="http://www.naturalcapitalproject.org/software/">Natural Capital Project:</a>'
-        },
-        [
-          {
-            label: 'InVEST'
-          },
-          {
-            label: 'RIOS'
-          },
-          {
-            label: 'OPAL'
-          }
-        ],
-        {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
         },
         {
-          label: 'The Nature Conservancy:'
+          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
         },
-        [
-          {
-            label: '<a href="http://watershedtool.org/">Watershed Conservation Screening Tool</a>'
-          },
-          {
-            label: '<a href="http://water.nature.org/waterblueprint/">Urban Water Blueprint</a>'
-          }
-        ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
+        },
+        {
+          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
         }
       ]
     },
@@ -439,35 +423,22 @@ export const config = {
       title: 'Natural Infrastructure Champions',
       bullets: [
         {
-          label: '<a href="http://www.naturalcapitalproject.org/software/">Natural Capital Project:</a>'
-        },
-        [
-          {
-            label: 'InVEST'
-          },
-          {
-            label: 'RIOS'
-          },
-          {
-            label: 'OPAL'
-          }
-        ],
-        {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
         },
         {
-          label: 'The Nature Conservancy:'
+          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
         },
-        [
-          {
-            label: '<a href="http://watershedtool.org/">Watershed Conservation Screening Tool</a>'
-          },
-          {
-            label: '<a href="http://water.nature.org/waterblueprint/">Urban Water Blueprint</a>'
-          }
-        ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/dir/sowi_2014/" target="_blank">Gaining Depth: State of Water Investment 2014</a>'
+        },
+        {
+          label: '<a href="http://www.iwa-network.org/downloads/1438744856-Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf" target="_blank">Natural Infrastructure in the Nexus</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
         }
       ]
     },
@@ -475,35 +446,19 @@ export const config = {
       title: 'Other WRI Projects',
       bullets: [
         {
-          label: '<a href="http://www.naturalcapitalproject.org/software/">Natural Capital Project:</a>'
-        },
-        [
-          {
-            label: 'InVEST'
-          },
-          {
-            label: 'RIOS'
-          },
-          {
-            label: 'OPAL'
-          }
-        ],
-        {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
         },
         {
-          label: 'The Nature Conservancy:'
+          label: '<a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Aqueduct</a>'
         },
-        [
-          {
-            label: '<a href="http://watershedtool.org/">Watershed Conservation Screening Tool</a>'
-          },
-          {
-            label: '<a href="http://water.nature.org/waterblueprint/">Urban Water Blueprint</a>'
-          }
-        ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html">Watershed Forest Management Information System (WFMIS)</a>'
+          label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
+        },
+        {
+          label: '<a href="http://fires.globalforestwatch.org/home/" target="_blank">Global Forest Watch Fires</a>'
+        },
+        {
+          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
         }
       ]
     }
