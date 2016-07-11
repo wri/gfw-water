@@ -3,6 +3,13 @@ import {modalStore} from 'stores/ModalStore';
 import {aboutModalConfig} from 'js/config';
 import React from 'react';
 
+
+let toolsSvg = '<use xlink:href="#about-icon-tools" />';
+let economicsSvg = '<use xlink:href="#about-icon-economics" />';
+let guidanceSvg = '<use xlink:href="#about-icon-guidance" />';
+let infrastructureSvg = '<use xlink:href="#about-icon-natural-infrastructure" />';
+let otherSvg = '<use xlink:href="#about-icon-other" />';
+
 export default class AboutModal extends React.Component {
 
   constructor (props) {
@@ -23,16 +30,38 @@ export default class AboutModal extends React.Component {
 
   render () {
     let currentSelection = this.state.aboutModalSelection;
-    let displayNumbers;
-    // if (currentSelection) {
+    let displayNumbers, svgSelected;
+
     displayNumbers = aboutModalConfig[currentSelection];
-    //   debugger
-    // }
+    switch (currentSelection) {
+      case 'spatialMapping':
+        svgSelected = toolsSvg;
+        break;
+      case 'economics':
+        svgSelected = economicsSvg;
+        break;
+      case 'guidance':
+        svgSelected = guidanceSvg;
+        break;
+      case 'naturalInfrastructure':
+        svgSelected = infrastructureSvg;
+        break;
+      case 'otherWRI':
+        svgSelected = otherSvg;
+        break;
+      default:
+        svgSelected = null;
+    }
+
     return (
       <AboutWrapper>
         <div className='about-modal-content'>
+          {svgSelected ? <div className='modal-icon'>
+            <div className='top-icon'>
+            <svg dangerouslySetInnerHTML={{ __html: svgSelected }}/>
+          </div></div> : null }
           {displayNumbers ? <div className='modal-title'>{displayNumbers.title}</div> : null}
-          <ul>
+          <ul className='about-modal-list'>
             {displayNumbers ? displayNumbers.bullets.map(this.bulletMap) : null}
           </ul>
         </div>
@@ -41,21 +70,13 @@ export default class AboutModal extends React.Component {
   }
 
   bulletMap (item) {
-    // <ul>
-    //   <p dangerouslySetInnerHTML={{ __html: item }} />;
-    // </ul>
-
     if (item.length) {
       return (
         <ul>
           {item.map(listItem => <li dangerouslySetInnerHTML={{ __html: listItem.label }} />)}
         </ul>
       );
-      // return (
-      //   item.map()
-      // );
     } else {
-      console.log(item)
       return (
         <li dangerouslySetInnerHTML={{ __html: item.label }} />
       );
