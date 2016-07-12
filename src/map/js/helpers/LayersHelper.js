@@ -2,6 +2,7 @@ import {analysisActions} from 'actions/AnalysisActions';
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {layerPanelText, layersConfig} from 'js/config';
+import InfoTemplate from 'esri/InfoTemplate';
 import GraphicsHelper from 'helpers/GraphicsHelper';
 import rasterFuncs from 'utils/rasterFunctions';
 import {analysisStore} from 'stores/AnalysisStore';
@@ -27,6 +28,10 @@ let LayersHelper = {
       //- Testing to see if this stops the request cancelled errors in the console
       watershedLayer.on('zoom-start', () => { watershedLayer.setVisibility(false); });
       watershedLayer.on('zoom-end', () => { watershedLayer.setVisibility(true); });
+    }
+    let caseStudies = brApp.map.getLayer(KEYS.caseStudies);
+    if (caseStudies) {
+      caseStudies.on('click', LayersHelper.caseStudiesClicked);
     }
   },
 
@@ -67,6 +72,24 @@ let LayersHelper = {
     let graphic = evt.graphic;
     if (graphic) {
       graphic.setSymbol(Symbols.getWatershedDefaultSymbol());
+    }
+  },
+
+  caseStudiesClicked (evt) {
+    brApp.debug('LayerHelper >>> caseStudiesClicked');
+    brApp.map.infoWindow.hide();
+    //- Don't do anything if the drawtoolbar is active
+    let {toolbarActive} = analysisStore.getState();
+    let graphic = evt.graphic;
+
+    if (graphic && !toolbarActive) {
+      let layerConfig = utils.getObject(layersConfig, 'id', KEYS.caseStudies);
+      let content = '<div>' + layerConfig.infoTemplate.content + '</div>';
+      let template = new InfoTemplate(graphic.attributes.Location, content);
+      console.log(graphic.attributes);
+      graphic.setInfoTemplate(template);
+      brApp.map.infoWindow.setFeatures(graphic);
+      brApp.map.infoWindow.show(evt.mapPoint);
     }
   },
 

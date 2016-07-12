@@ -54,6 +54,7 @@ export default (layer) => {
     case 'feature':
       options.id = layer.id;
       options.visible = layer.visible || false;
+      options.outFields = layer.outFields || ['*'];
       esriLayer = new FeatureLayer(layer.url, options);
     break;
     case 'graphic':

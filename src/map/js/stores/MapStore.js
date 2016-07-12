@@ -87,10 +87,6 @@ class MapStore {
     this.activeLabelLayer = labelLayer;
   }
 
-  showLayerInfo (layerInfo) {
-    this.modalLayerInfo = layerInfo;
-  }
-
   changeFiresTimeline (activeIndex) {
     this.firesSelectIndex = activeIndex;
   }
