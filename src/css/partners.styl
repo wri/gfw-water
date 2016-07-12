@@ -1,0 +1,58 @@
+$helvetica = "Helvetica Neue", Helvetica, Arial, sans-serif
+$georgia = "Georgia", serif
+$fira-sans = 'Fira Sans', sans-serif
+$fonts = 'helvetica' $helvetica,
+         'georgia' $georgia
+
+// colors
+// NOTE: colors in $colors will generate text-* and back-* utility classes
+$charcoal = #222
+$pebble = #333
+$smoke = #666
+$white = #FFF
+$gfw-blue = #E7002F
+$gfw-blue = #4099ce
+$dark-gray = #555
+$concrete = #F2F2F2
+$red-alert = #C12000
+$map-background = #021331
+$colors = 'charcoal' $charcoal,
+          'smoke' $smoke,
+          'pebble' $pebble,
+          'gfw-red' $gfw-blue,
+          'white' $white
+
+
+#scherman-image
+  background url('../css/images/scherman_foundation.png') no-repeat center
+  // height 290px
+  // width 290px
+  padding 145px
+  z-index 5
+  margin-left calc(50% - 145px)
+
+.partners-table
+  // border-collapse separate
+  // border-spacing 2em 3em
+  border-collapse collapse
+
+  & a
+    text-decoration none
+
+  th
+    text-align left
+  tr
+    border-bottom 1px solid #d6d6d6
+    height 40px
+    background transparent
+    &:last-child
+      border-bottom none
+  td
+    vertical-align top
+    padding-bottom 40px
+    padding-right 125px
+    &:last-child
+      padding-right 0
+
+.content-body h3
+  padding-top 1em
