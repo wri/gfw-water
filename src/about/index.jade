@@ -118,51 +118,57 @@ html
                     svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
                       use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-tools") 
                   header
-                    h2 GFW Interactive Map
-                    small World Resources Institute
+                    h2 Spatial Mapping Tools & Platforms
+                    //- small World Resources Institute
               div.col
                 div#economics.little-card
                   div.icon
                     svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
                       use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-economics") 
                   header
-                    h2 GFW Interactive Map
-                    small World Resources Institute
+                    h2 Economics & Finance
+                    //- small World Resources Institute
               div.col
                 div#guidance.little-card
                   div.icon
                     svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
                       use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-guidance") 
                   header
-                    h2 GFW Interactive Map
-                    small World Resources Institute
+                    h2 Guidance & Roadmaps
+                    //- small World Resources Institute
               div.col
                 div#naturalInfrastructure.little-card
                   div.icon
                     svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
                       use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-natural-infrastructure") 
                   header
-                    h2 GFW Interactive Map
-                    small World Resources Institute
+                    h2 Natural Infrastructure Champions
+                    //- small World Resources Institute
               div.col
                 div#otherWRI.little-card
                   div.icon
                     svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
                       use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-other") 
                   header
-                    h2 GFW Interactive Map
-                    small World Resources Institute
+                    h2 Other WRI Projects
+                    //- small World Resources Institute
 
-          div#three.content-subpage.gfw-partnership
+          div#three.content-subpage.publications-blogs
             h3 #{about.content.publications[0]}
-            p <i>#{about.content.publications[1]}</i>
-            p #{about.content.publications[2]}
-            p #{about.content.publications[3]}
-            p #{about.content.publications[4]}
-            p 
-              a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog' target='_blank') wri.org/our-work/project/natural-infrastructure-water/blog
+            div.image
+              img#publications-image
+            div.detail
+              //- p <i>#{about.content.publications[1]}</i>
+              p #{about.content.publications[2]}
+            h3 #{about.content.publications[3]}
+            div.image
+              img#blogs-image
+            div.detail
+              p #{about.content.publications[4]}
+              p 
+                a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog' target='_blank') wri.org/our-work/project/natural-infrastructure-water/blog
           
-          div#four.content-subpage.gfw-partnership
+          div#four.content-subpage.tutorials
             h3 #{about.content.tutorials[0]}
             p #{about.content.tutorials[1]}
             p

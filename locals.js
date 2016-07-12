@@ -75,7 +75,7 @@ module.exports = {
         }
       },
       publications: [
-        'Publication',
+        'Publications',
         'Global Forest Watch Water Metadata Document',
         'This document explains the underlying science and assumptions of natural infrastructure for water, describes data layers and information, documents data sources, and details the methodology used to generate watershed risk scores in Global Forest Watch Water. All data and maps are publicly available.',
         'Blogs',
@@ -84,7 +84,7 @@ module.exports = {
       tutorials: [
         'Tutorials',
         'Global Forest Watch Water offers a wide range of content and capabilities to serve a variety of users and purposes. Whether you arrive at GFW Water with a clear purpose or are simply exploring different features, we can help you learn to use the platform.'
-      ],
+      ]
     }
   },
   map: {
