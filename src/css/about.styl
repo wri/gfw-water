@@ -271,6 +271,54 @@ h3.partnership-header-title
       width 100%
       height 100%
 
+
+.publications-blogs
+  margin-top 10px
+  // display -webkit-box
+  // display -webkit-flex
+  // display -ms-flexbox
+  // display flex
+  // -webkit-box-orient horizontal
+  // -webkit-box-direction normal
+  // -webkit-flex-direction row
+  // -ms-flex-direction row
+  // flex-direction row
+  h3
+    padding 0
+    &.blogs
+      margin-top 20px
+
+  .image
+    width 193px
+    min-width 193px
+    max-width 193px
+    max-height 260px
+    box-shadow 0 2px 6px 0 rgba(0,0,0,0.2)
+    margin-top 5px
+    overflow hidden
+    display inline-block
+
+    #publications-image
+      background url('../css/images/publications.jpg')
+      width 100%
+      height 260px
+
+    #blogs-image
+      background url('../css/images/blogs.jpg') no-repeat center
+      width 100%
+      height 260px
+
+  .detail
+    -webkit-box-orient vertical
+    -webkit-box-direction normal
+    -webkit-flex-direction column
+    -ms-flex-direction column
+    flex-direction column
+    margin-left 30px
+    display inline-block
+    width calc(100% - 235px)
+    vertical-align top
+
 .icon
   display block
   height 25px

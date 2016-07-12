@@ -160,7 +160,7 @@ html
             div.detail
               //- p <i>#{about.content.publications[1]}</i>
               p #{about.content.publications[2]}
-            h3 #{about.content.publications[3]}
+            h3.blogs #{about.content.publications[3]}
             div.image
               img#blogs-image
             div.detail
@@ -172,7 +172,8 @@ html
             h3 #{about.content.tutorials[0]}
             p #{about.content.tutorials[1]}
             p
-              a(href='http://globalforestwatch.org' target='_blank') GFW Home Page
+              span #{about.content.tutorials[2]}
+              a(href='http://www.globalforestwatch.org/howto' target='_blank') #{about.content.tutorials[3]}
               
       div
         svg
