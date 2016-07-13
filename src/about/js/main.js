@@ -3,7 +3,8 @@ import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {analysisPanelText as text} from 'js/config';
+
+alert('LSDJNFLKJDSNF');
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
@@ -42,7 +43,6 @@ const attachEvents = () => {
   });
 
 };
-
 
 attachEvents();
 ReactDOM.render(<AboutModal />, document.getElementById('about-modal'));
