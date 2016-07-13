@@ -4,8 +4,6 @@ import babelPolyfill from 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-alert('LSDJNFLKJDSNF');
-
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
 // Set up globals
