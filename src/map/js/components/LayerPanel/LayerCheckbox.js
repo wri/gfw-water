@@ -25,6 +25,10 @@ export default class LayerCheckbox extends React.Component {
   render() {
     let layer = this.props.layer;
 
+    //todo: on info-icon click, css tranisiton via adding a class: 'spinner-info' and 'start'
+    //this.$current.find('svg').attr('class','spinner-info start');
+    //then when the data comes back from the api or the request fails, remove those two classes
+
     return (
       <div className={`layer-checkbox relative ${layer.className}${this.props.checked ? ' active' : ''}${layer.disabled ? ' disabled' : ''}`} >
         <span onClick={this.toggleLayer.bind(this)} className='toggle-switch pointer'><span/></span>

@@ -30,7 +30,7 @@ var config = {
   },
   stylus: {
     watch: 'src/css/**/*.styl',
-    src: ['src/css/home.styl', 'src/css/map.styl', 'src/css/report.styl', 'src/css/report-print.styl', 'src/css/about.styl', ],
+    src: ['src/css/home.styl', 'src/css/map.styl', 'src/css/report.styl', 'src/css/report-print.styl', 'src/css/about.styl', 'src/css/partners.styl'],
     build: 'build/css',
     dist: 'dist/css'
   },

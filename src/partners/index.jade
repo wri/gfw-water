@@ -1,7 +1,69 @@
 doctype html
-html(lang='en')
+html
   head
-    meta(charset='UTF-8')
-    title Partners | Global Forest Watch
+    title #{partners.title}
+    include ../templates/meta.jade
+    style
+      :stylus
+        @require '../css/base'
+        @require '../css/about'
+        @require '../css/partners'
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    link(rel='icon', href='../css/images/favicon.ico')
+  
   body
-    h1 Test Partners - Global Forest Watch
+    include ../templates/svgAssets.jade
+    div#headerGfw
+    div.gfw-water-logo
+    a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
+    include ../templates/topNavigation
+    div#title.back-pebble
+      section
+        div.content-header
+          h1.page-title #{partners.header}
+          h2.page-description #{partners.description}
+          img#scherman-image
+          
+    section
+      div.content-body
+        h3 #{partners.tableOne.title}
+        table.partners-table
+          th #{partners.tableOne.headers[0]}
+          th #{partners.tableOne.headers[1]}
+          th #{partners.tableOne.headers[2]}
+          tr
+            td 
+              a(href='http://ecoton.org/' target='_blank') #{partners.tableOne.rowOne[0]}
+            td #{partners.tableOne.rowOne[1]}
+            td #{partners.tableOne.rowOne[2]}
+          tr
+            td 
+              a(href='http://mitrainsani.or.id/' target='_blank') #{partners.tableOne.rowTwo[0]}
+            td #{partners.tableOne.rowTwo[1]}
+            td #{partners.tableOne.rowTwo[2]}
+          tr
+            td 
+              a(href='http://hutanriau.org/' target='_blank') #{partners.tableOne.rowThree[0]}
+            td #{partners.tableOne.rowThree[1]}
+            td #{partners.tableOne.rowThree[2]}
+            
+        h3 #{partners.tableTwo.title}
+        table.partners-table
+          th #{partners.tableTwo.headers[0]}
+          th #{partners.tableTwo.headers[1]}
+          th #{partners.tableTwo.headers[2]}  
+          tr
+            td 
+              a(href='http://www.ecological-society.org/' target='_blank') #{partners.tableTwo.rowOne[0]}
+            td #{partners.tableTwo.rowOne[1]}
+            td #{partners.tableTwo.rowOne[2]}
+          tr
+            td 
+              a(href='http://cedarhimalaya.org/' target='_blank') #{partners.tableTwo.rowTwo[0]}
+            td #{partners.tableTwo.rowTwo[1]}
+            td #{partners.tableTwo.rowTwo[2]}
+            
+    div#footerGfw
+    div#root.layout-content
+    include ../templates/gfwAssets.jade
+    

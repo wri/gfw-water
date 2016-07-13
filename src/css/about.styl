@@ -242,3 +242,180 @@ h3.partnership-header-title
 
 .text-list
   padding 1em 0 1.5em
+
+.about-modal-list
+  color #aaa
+  a
+    text-decoration none
+
+.modal-arrows
+  display block
+
+  .icon-arrow
+    position absolute
+    top 50%
+    -webkit-transform translate(0, -50%)
+    transform translate(0, -50%)
+    padding 10px
+    width 60px
+    height 60px
+    display block
+    cursor pointer
+    &.is-left
+      right calc(50% + 275px)
+    &.is-right
+      left calc(50% + 275px)
+
+    svg
+      stroke white
+      width 100%
+      height 100%
+
+
+.publications-blogs
+  margin-top 10px
+  // display -webkit-box
+  // display -webkit-flex
+  // display -ms-flexbox
+  // display flex
+  // -webkit-box-orient horizontal
+  // -webkit-box-direction normal
+  // -webkit-flex-direction row
+  // -ms-flex-direction row
+  // flex-direction row
+  h3
+    padding 0
+    &.blogs
+      margin-top 20px
+
+  .image
+    width 127px
+    min-width 127px
+    max-width 127px
+    max-height 154px
+    box-shadow 0 2px 6px 0 rgba(0,0,0,0.2)
+    margin-top 5px
+    overflow hidden
+    display inline-block
+
+    #publications-image
+      background url('../css/images/publications_1.png')
+      width 100%
+      height 154px
+
+    #blogs-image
+      background url('../css/images/blogs_1.png')
+      width 100%
+      height 154px
+
+  .detail
+    -webkit-box-orient vertical
+    -webkit-box-direction normal
+    -webkit-flex-direction column
+    -ms-flex-direction column
+    flex-direction column
+    margin-left 30px
+    display inline-block
+    width calc(100% - 235px)
+    vertical-align top
+
+.icon
+  display block
+  height 25px
+  width 25px
+
+.modal-icon
+  width 100%
+  position relative
+  padding 15px 20px 0px
+
+  .top-icon
+    width 100%
+    height 70px
+    margin 0 auto 20px
+
+    svg
+      fill #555555
+      width 100%
+      height 100%
+
+#gridView
+  display -webkit-box
+  display -ms-flexbox
+  display flex
+  -webkit-box-pack start
+  -ms-flex-pack start
+  justify-content flex-start
+  -webkit-box-align stretch
+  -ms-flex-align stretch
+  align-items stretch
+  -ms-flex-wrap wrap
+  flex-wrap wrap
+
+  .col
+    // width 100%
+    padding 0 20px
+    margin 0px 0 25px
+    min-height 1px
+
+    .little-card
+      width 100%
+      min-height 120px
+      position relative
+      padding 20px
+      padding-left 100px
+      box-shadow 0 0 0 1px #e5e5df
+      cursor pointer
+      display -webkit-box
+      display -ms-flexbox
+      display flex
+      -webkit-box-align center
+      -ms-flex-align center
+      align-items center
+
+      &:hover
+        box-shadow 0 0 0 2px #4099ce
+
+      .icon
+        position absolute
+        top 50%
+        left 0
+        width 100px
+        height 45px
+        -webkit-transform translate(0, -50%)
+        transform translate(0, -50%)
+
+        svg
+          fill #555555
+          width 100%
+          height 100%
+          -webkit-transition all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+          transition all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+
+      header
+        width 100%
+        display block
+
+        h2
+          text-transform none
+          padding 0
+          text-align left
+          font-size 21px
+          font-weight 400
+          color #555555
+          margin 0
+
+        small
+          color #AAA
+          font-size 10px
+
+@media (min-width: 850px)
+  .row .col
+    width 33.3333%
+    display -webkit-box
+    display -ms-flexbox
+    display flex
+
+@media (min-width: 600px)
+  .row .col
+    width 50%

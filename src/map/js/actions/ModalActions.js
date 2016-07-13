@@ -1,4 +1,7 @@
-import {layerInformation} from 'js/config';
+import {layerInformation, layersConfig, metadataUrl} from 'js/config';
+import esriRequest from 'esri/request';
+import esriConfig from 'esri/config';
+import urlUtils from 'esri/urlUtils';
 import domClass from 'dojo/dom-class';
 import alt from 'js/alt';
 
@@ -6,12 +9,50 @@ class ModalActions {
 
   showLayerInfo (layerId) {
     brApp.debug('ModalActions >>> showLayerInfo');
-    let emptyObj = {};
-    let layerInfo = layerInformation[layerId] || emptyObj;
-    this.dispatch(layerInfo);
-    if (layerInfo !== emptyObj) {
+    // let emptyObj = {};
+    // let layerInfo = layerInformation[layerId] || emptyObj;
+    // this.dispatch(layerInfo);
+    // if (layerInfo !== emptyObj) {
+    //   domClass.remove('layer-modal', 'hidden');
+    // }
+
+
+
+    //TODO: Add all this below back in once we have styled the layer modal properly with all the data we need
+    urlUtils.addProxyRule({
+      urlPrefix: 'http://api.globalforestwatch.org',
+      proxyUrl: 'http://wri-gfw-water-staging.herokuapp.com/proxy/proxy.php'
+      // proxyUrl: '//localhost/gfw-water/www/proxy/proxy.php'
+    });
+
+    esriConfig.defaults.io.corsEnabledServers.push('api.globalforestwatch.org');
+    esriConfig.defaults.io.corsEnabledServers.push('wri-gfw-water.herokuapp.com');
+
+    // console.log(metadataIds);
+    // console.log(layersConfig);
+
+    let metadataId = layersConfig.filter((l) => l.id === layerId)[0].metadataId;
+    console.log(metadataId);
+
+    esriRequest({
+      url: metadataUrl + metadataId,
+      // url: 'http://api.globalforestwatch.org/metadata/noaa18_fires',
+      handleAs: 'json',
+      callbackParamName: 'callback'
+    }, {
+      usePost: true
+    }).then(res => {
+      this.dispatch(res);
       domClass.remove('layer-modal', 'hidden');
-    }
+    }, err => {
+      let emptyObj = {};
+      let layerInfo = layerInformation[layerId] || emptyObj;
+      this.dispatch(layerInfo);
+      if (layerInfo !== emptyObj) {
+        domClass.remove('layer-modal', 'hidden');
+      }
+      console.error(err);
+    });
   }
 
   showShareModal (params) {
@@ -30,6 +71,12 @@ class ModalActions {
   showCanopyModal () {
     brApp.debug('ModalActions >>> showCanopyModal');
     domClass.remove('canopy-modal', 'hidden');
+  }
+
+  showAboutModal (card) {
+    brApp.debug('ModalActions >>> showAboutModal');
+    this.dispatch(card);
+    domClass.remove('about-modal', 'hidden');
   }
 
   showBasicModal (title, text) {

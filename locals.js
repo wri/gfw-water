@@ -75,7 +75,7 @@ module.exports = {
         }
       },
       publications: [
-        'Publication',
+        'Publications',
         'Global Forest Watch Water Metadata Document',
         'This document explains the underlying science and assumptions of natural infrastructure for water, describes data layers and information, documents data sources, and details the methodology used to generate watershed risk scores in Global Forest Watch Water. All data and maps are publicly available.',
         'Blogs',
@@ -83,12 +83,60 @@ module.exports = {
       ],
       tutorials: [
         'Tutorials',
-        'Global Forest Watch Water offers a wide range of content and capabilities to serve a variety of users and purposes. Whether you arrive at GFW Water with a clear purpose or are simply exploring different features, we can help you learn to use the platform.'
-      ],
+        'Global Forest Watch Water offers a wide range of content and capabilities to serve a variety of users and purposes. Whether you arrive at GFW Water with a clear purpose or are simply exploring different features, we can help you learn to use the platform.',
+        'For more information, visit our How To page - ',
+        'http://www.globalforestwatch.org/howto'
+      ]
     }
   },
   map: {
     title: 'Map | Global Forest Watch Water'
+  },
+  partners: {
+    title: 'Partners | Global Forest Watch',
+    header: 'Partners',
+    description: 'The World Resources Institute (WRI) is currently piloting the Global Forest Watch Water platform for use by civil society groups in India and Indonesia. Through the Small Grants Opportunity, WRI provides financial and technical support to use GFW Water to enrich ongoing forest restoration or watershed management research, advocacy, and fieldwork. GFW Water is generously supported by the Scherman Foundation Rosin Fund.',
+    tableOne: {
+      title: 'Small Grants projects in Indonesia.',
+      headers: [
+        'Organization',
+        'Project',
+        'Overview'
+      ],
+      rowOne: [
+        'ECOTON',
+        'Participatory Monitoring for a Healthy Brantas Watershed',
+        'After decades of degradation in the Brantas River Basin West Java, Indonesia ECOTON will introduce the GFW Water mapping platform to the local community and collectively analyze the impact of sedimentation on the biotic community.  Through Focus Group Discussions, field visits, and building engagement with local community stakeholders, ECOTON will use the tools analytical features to enhance development of an action plan for participatory watershed restoration and conservation solutions. '
+      ],
+      rowTwo: [
+        'Yayasan Mitra Insani',
+        'Creating an Integrated Watershed Management Plan in Kampar',
+        'The Kampar River basin is in the best condition of the four major watersheds in the province of Riau, Indonesia and holds special cultural significance for the people living around it.  This project will use the GFW Water platform to inform development of a stakeholder driven integrated watershed management plan that respects the local and cultural knowledge and preserves the current conditions in the face of growing oil palm plantation and other development threats.'
+      ],
+      rowThree: [
+        'Hutan Riau',
+        'Using Indigenous Knowledge along the Bio Watershed',
+        'This project will identify problems and constraints related to the catchment area in the Bio Watershed including the Wildlife Reserves Bukit Rimbang Bulkit Baling (SM BRBB) along the Subayang and Bio rivers in Riau, Indonesia. '
+      ]
+    },
+    tableTwo: {
+      title: 'Small Grants projects in India.',
+      headers: [
+        'Organization',
+        'Project',
+        'Overview'
+      ],
+      rowOne: [
+        'Ecological Society',
+        'Prepare Floral Conservation and Restoration Plan for the Mayureshwar Wildlife Sanctuary (MWLS)',
+        'MWLS is located in the eastern part of Pune District, Maharashtra.  The project will prepare a report of water use and availability in the area and prepare a plan for conservation and restoration of the flora in the MWLS.  This plan will be submitted to the State Forest Department for possible implementation.'
+      ],
+      rowTwo: [
+        'Centre for Ecology Development and Research',
+        'Assessing Water Catchment and Forest Cover of Aravailli Hills of Gurgaon and Faridabad to identify protection and restoration opportunities.',
+        'The cities of Guraon and Faridabad are rapidly expanding urban metropolitan areas that border Dehli, putting enormous stress on the natural watershed area.  This project will identify the role of Aravalli hill catchments and forests that contribute to groundwater recharge and surface water runoff to local lakes, drying up in the area.  It will identify current and potential forest cover, the impacts of urbanization, and overlay administrative and tenure boundaries to enhance conservation and restoration proposals for this urban/peri-urban area.'
+      ]
+    }
   },
   unsupported: {
     title: 'Browser not supported | Global Forest Watch Water',
