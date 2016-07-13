@@ -13,7 +13,8 @@
     "dist-www": "npm run dist; cp -r dist/* www; echo $HTPASSWD > .htpasswd",
     "postinstall": "bower install; if [ \"$NODE_ENV\" = 'production' ]; then npm run dist-www; fi",
     "babel": "babel src --modules amd --out-dir build",
-    "optimize": "npm run babel; r.js -o map.build.js; r.js -o home.build.js; r.js -o report.build.js;"
+    "optimize": "npm run babel; r.js -o map.build.js; r.js -o home.build.js; r.js -o report.build.js; r.js -o about.build.js;",
+    "about": "r.js -o about.build.js"
   },
   "author": "BlueRaster <http://www.blueraster.com/>",
   "license": "MIT",
