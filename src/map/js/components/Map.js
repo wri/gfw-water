@@ -52,7 +52,7 @@ export default class Map extends React.Component {
         </nav>
         <Loader active={!this.state.loaded} />
         <a href={links.home.url} title={links.home.title} alt={links.home.title} target='_blank'><div className='gfw-water-logo' /></a>
-        <a href={links.aqueduct.url} title={links.aqueduct.title} alt={links.aqueduct.title} target='_blank'><div className='aqueduct-logo' /></a>
+        <a href={links.aqueduct.url} title={links.aqueduct.title} alt={links.aqueduct.title}><div className='aqueduct-logo' /></a>
         <LayerPanel loaded={this.state.loaded} />
         <ControlPanel />
         <EsriSearch loaded={this.state.loaded} />
