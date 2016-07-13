@@ -14,7 +14,8 @@ html
   body
     include ../templates/svgAssets.jade
     div#headerGfw
-    div.gfw-water-logo
+    a(href="../index.html")
+      div.gfw-water-logo
     a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
     include ../templates/topNavigation
     div#title.back-pebble
@@ -33,17 +34,20 @@ html
           th #{partners.tableOne.headers[2]}
           tr
             td 
-              a(href='http://ecoton.org/' target='_blank') #{partners.tableOne.rowOne[0]}
+              a(href='http://ecoton.org/' target='_blank')
+                div#ecoton.table-image
             td #{partners.tableOne.rowOne[1]}
             td #{partners.tableOne.rowOne[2]}
           tr
             td 
-              a(href='http://mitrainsani.or.id/' target='_blank') #{partners.tableOne.rowTwo[0]}
+              a(href='http://mitrainsani.or.id/' target='_blank')
+                div#mitrainsani.table-image
             td #{partners.tableOne.rowTwo[1]}
             td #{partners.tableOne.rowTwo[2]}
           tr
             td 
-              a(href='http://hutanriau.org/' target='_blank') #{partners.tableOne.rowThree[0]}
+              a(href='http://hutanriau.org/' target='_blank')
+                div#hutanriau.table-image
             td #{partners.tableOne.rowThree[1]}
             td #{partners.tableOne.rowThree[2]}
             
@@ -54,12 +58,14 @@ html
           th #{partners.tableTwo.headers[2]}  
           tr
             td 
-              a(href='http://www.ecological-society.org/' target='_blank') #{partners.tableTwo.rowOne[0]}
+              a(href='http://www.ecological-society.org/' target='_blank')
+                div#ecological.table-image
             td #{partners.tableTwo.rowOne[1]}
             td #{partners.tableTwo.rowOne[2]}
           tr
             td 
-              a(href='http://cedarhimalaya.org/' target='_blank') #{partners.tableTwo.rowTwo[0]}
+              a(href='http://cedarhimalaya.org/' target='_blank')
+                div#cedarHimalaya.table-image
             td #{partners.tableTwo.rowTwo[1]}
             td #{partners.tableTwo.rowTwo[2]}
             
