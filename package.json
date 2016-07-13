@@ -8,7 +8,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
-    "test": "intern-client config=tests/intern --reporters=Pretty;eslint src/js/*;",
+    "test": "intern-client config=tests/intern --reporters=Pretty;eslint src;",
     "dist": "rm -rf dist; gulp dist; npm run optimize; node scripts/prerender;",
     "dist-www": "npm run dist; cp -r dist/* www; echo $HTPASSWD > .htpasswd",
     "postinstall": "bower install; if [ \"$NODE_ENV\" = 'production' ]; then npm run dist-www; fi",

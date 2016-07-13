@@ -49,18 +49,18 @@ export const config = {
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
-        // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '//localhost/proxy/proxy.php'
+        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       metadata: {
         urlPrefix: 'api.globalforestwatch.org',
-        // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '//localhost/proxy/proxy.php'
+        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
-        // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '//localhost/proxy/proxy.php'
+        // proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
       }
   },
 
@@ -540,6 +540,7 @@ export const config = {
 
   analysis: {
     upstream: {
+      url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed',
       title: 'Spatial mapping tools and platforms',
       params: {
         f: 'json',
@@ -641,6 +642,9 @@ export const config = {
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',
       watershedAreaField: 'ws_ha',
+      watershedBasinField: 'maj_bas',
+      surroundingBasinField: 'parent_basin',
+      surroundingNameField: 'parent_name',
       hydrologyServiceAreaField: 'AreaSqKm',
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',

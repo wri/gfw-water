@@ -49,6 +49,10 @@ class AnalysisStore {
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
       this.isLoading = false;
+      // If we are analyzing the surrounding watershed, use it's name
+      if (attributes[text.surroundingNameField]) {
+        this.customAreaName = attributes[text.surroundingNameField];
+      }
       this.emitChange();
     });
   }
