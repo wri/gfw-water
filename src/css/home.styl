@@ -198,9 +198,13 @@
     min-height 620px
 
 // Page main Content
+.home-main-container
+  background-color #fff
+
 .home-section
   //width 1024px
   margin auto
+  background-color rgba(216,216,216,0.2)
   .home-section-block
     min-height 260px
     justify-content center
@@ -239,6 +243,7 @@
 // Bottom slider
 .bottom-slider
   //width 1024px
+  background-color #fff
   margin auto
   .block-text
     min-height 265px
@@ -324,13 +329,23 @@
     position: relative;
     top: -40px;
 
+#headerGfw,
+.home-slider-container,
+.home-main-container,
+#footerGfw
+  max-width 1600px
+  margin auto
+  width 100%
 
 // Media query
 @media (min-width: 1400px)
   .home-section
   .bottom-slider
-    max-width 1200px
-    width 75%
+    max-width 1600px
+    width 100%
+
+  .home-section
+    padding 0 6em !important
 
 @media (max-width: 1024px)
  .home-section
@@ -340,10 +355,11 @@
 
 @media (min-width: 851px)
   .home-section
-    min-height 400px
+    padding 0 2em
+    min-height 500px
     .block-text
-      padding-right 5em
-      padding-left 5em
+      padding-right 8em
+      padding-left 8em
   .bottom-slider__block
     min-height 550px
     .block-text
