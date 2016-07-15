@@ -608,6 +608,7 @@ export const config = {
       sourceName: 'Watersheds',
       searchWidgetId: 'esri-search-widget',
       analyzeButton: 'Analyze Watershed',
+      analysisTutorialLink: 'http://www.globalforestwatch.org/howto/analyze-data/analyze-a-watershed.html',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
@@ -636,7 +637,7 @@ export const config = {
         2: 'Low to medium',
         3: 'Medium',
         4: 'Medium to high',
-        5: 'Extremely high',
+        5: 'High',
         10: 'Not applicable'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
@@ -725,10 +726,11 @@ export const config = {
       treeCoverFromYear: (year) => `Tree cover loss: From: ${year}`,
       treeCoverToYear: (year) => `Tree cover loss: To: ${year}`,
       toggleLayer: (layerName) => `Layer: ${layerName}`,
-      analyzeWatershed: (id) => `Watershed: maj_name: ${id}`,
-      analyzeCustomArea: (id) => `Custom Area: ${id}`,
-      analyzeAddPoint: 'Add Point',
-      analyzeSearchCoords: 'Search Lat/Lon'
+      infoWindow: (layerName) => `User clicks on Info Window: ${layerName}`,
+      analyzeWatershed: (id) => `User clicks on Full Report: ${id}`,
+      analyzeCustomArea: (id) => `User clicks on Custom Area: ${id}`,
+      analyzeAddPoint: 'User clicks on Add Point',
+      analyzeSearchCoords: 'User clicks on Go'
     },
     // Fill in below so I can use the keys as Ids
     layerInformation: {}

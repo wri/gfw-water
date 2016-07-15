@@ -45,13 +45,6 @@ class MapStore {
       layers.push(layerId);
       this.activeLayers = layers;
     }
-    //- Send of Google Analytics
-    let layerConfig = utils.getObject(layersConfig, 'id', layerId);
-    analytics(
-      KEYS.analyticsCategory,
-      KEYS.analyticsToggleAction,
-      analyticsLabels.toggleLayer(layerConfig.label)
-    );
   }
 
   removeActiveLayer (layerId) {
@@ -62,13 +55,6 @@ class MapStore {
       layers.splice(index, 1);
       this.activeLayers = layers;
     }
-    //- Send of Google Analytics
-    let layerConfig = utils.getObject(layersConfig, 'id', layerId);
-    analytics(
-      KEYS.analyticsCategory,
-      KEYS.analyticsToggleAction,
-      analyticsLabels.toggleLayer(layerConfig.label)
-    );
   }
 
   setBasemap (basemap) {

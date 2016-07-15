@@ -204,7 +204,7 @@ const text = {
       2: 'Low to medium',
       3: 'Medium',
       4: 'Medium to high',
-      5: 'Extremely high',
+      5: 'High',
       10: 'Not applicable'
     }
   },
@@ -213,6 +213,14 @@ const text = {
   },
   fields: {
     area: 'ws_ha'
+  },
+  analytics: {
+    infoWindow: 'User clicked on info window',
+    getAlerts: 'User clicked on Get Alerts',
+    print: 'User clicked on Print within full report',
+    download: 'User clicked on Download within full report',
+    content: 'User clicked on publication links',
+    share: 'User clicked on Share withn full report'
   }
 };
 
@@ -414,4 +422,5 @@ export const modalText = text.modal;
 export const chartText = text.charts;
 export const reportText = text.report;
 export const fieldConfig = text.fields;
+export const analyticsConfig = text.analytics;
 export const analysisConfig = analysis;

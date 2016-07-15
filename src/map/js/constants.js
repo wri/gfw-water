@@ -37,6 +37,7 @@ const KEYS = {
   lossCookieHide: 'hide',
   //- Google Analytics keys
   analyticsCategory: 'Map',
+  analyticsInfoAction: 'Info',
   analyticsToggleAction: 'Toggle',
   analyticsAnalysisAction: 'Analysis',
   analyticsSettingsAction: 'Settings'

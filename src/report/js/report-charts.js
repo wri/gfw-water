@@ -81,28 +81,28 @@ const makeCharts = (watershed) => {
     credits: { enabled: false },
     series: [{
       type: 'column',
-      name: 'Recent tree cover loss',
+      name: 'Recent forest loss',
       data: [rs_tl_c],
       color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Historical tree cover loss',
+      name: 'Historical forest loss',
       data: [rs_pf_c],
       color: '#D2DF2E',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Erosion',
+      name: 'Erosion risk',
       data: [rs_sed_c],
       color: '#A79261',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Fire',
+      name: 'Fire risk',
       data: [rs_fire_c],
       color: '#EA5A00',
       pointPlacement: 'between'

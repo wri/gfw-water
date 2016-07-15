@@ -1,6 +1,9 @@
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import LayersHelper from 'helpers/LayersHelper';
+import analytics from 'utils/googleAnalytics';
+import {analyticsLabels} from 'js/config';
+import KEYS from 'js/constants';
 import React from 'react';
 
 // Info Icon Markup for innerHTML
@@ -49,7 +52,13 @@ export default class LayerCheckbox extends React.Component {
   showInfo () {
     let layer = this.props.layer;
     if (layer.disabled) { return; }
-    modalActions.showLayerInfo(this.props.layer.id);
+    modalActions.showLayerInfo(layer.id);
+    //- Send off analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsInfoAction,
+      analyticsLabels.infoWindow(layer.label)
+    );
   }
 
   toggleLayer () {
@@ -60,6 +69,12 @@ export default class LayerCheckbox extends React.Component {
     } else {
       layerActions.addActiveLayer(layer.id);
     }
+    //- Send of Google Analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsToggleAction,
+      analyticsLabels.toggleLayer(layer.label)
+    );
   }
 
 }
