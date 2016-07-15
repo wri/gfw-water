@@ -3,7 +3,6 @@ import {modalActions} from 'actions/ModalActions';
 import babelPolyfill from 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {analysisPanelText as text} from 'js/config';
 
 if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
@@ -32,11 +31,6 @@ window.requestAnimationFrame = (function () {
 
 const attachEvents = () => {
 
-  // document.getElementById('share-icon-bottom').addEventListener('click', () => {
-  //   let queryString = document.location.search.slice(1);
-  //   modalActions.showShareModal(queryString);
-  // });
-
   let cards = document.getElementsByClassName('little-card');
   Array.prototype.forEach.call(cards, elem => {
     elem.addEventListener('click', evt => {
@@ -47,7 +41,6 @@ const attachEvents = () => {
   });
 
 };
-
 
 attachEvents();
 ReactDOM.render(<AboutModal />, document.getElementById('about-modal'));
