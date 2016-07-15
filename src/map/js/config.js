@@ -50,17 +50,17 @@ export const config = {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: './proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       },
       metadata: {
         urlPrefix: 'api.globalforestwatch.org',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: './proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: './proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       }
   },
 
