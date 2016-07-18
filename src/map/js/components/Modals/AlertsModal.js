@@ -48,6 +48,7 @@ export default class AlertsModal extends React.Component {
   }
 
   formaSubmit (geoJson, subscriptionName, email) {
+
     var deferred = new Deferred(),
         url = alertsModalConfig.requests.forma.url,
         options = clone(alertsModalConfig.requests.forma.options),
@@ -100,12 +101,16 @@ export default class AlertsModal extends React.Component {
         feature = analysisStore.getState().activeWatershed,
         subscriptionName = model['subscription-name'] || 'My Subscription';
 
+        console.log(model);
+        console.log(this);
+
     //- If honeyPot has a value, bail out now, will probably never happen, as site crawlers wont see forms generated in JS
-    if (this.refs.password && this.refs.password.value !== '') {
-      return;
-    }
+    // if (this.refs.password && this.refs.password.value !== '') {
+    //   return;
+    // }
 
     feature = new Graphic(GeoHelper.simplify(feature.geometry));
+    console.log(feature);
 
     if (this.state.formaSubscription === true) {
       subscriptions.push(this.formaSubmit(GeoHelper.convertGeometryToGeometric(feature.geometry), subscriptionName, model.email));
@@ -115,7 +120,8 @@ export default class AlertsModal extends React.Component {
     }
 
     all(subscriptions).then(function (responses) {
-      alert(responses.join('\n'));
+      console.log(responses);
+      // alert(responses.join('\n'));
     });
 
     ::this.close();
@@ -140,7 +146,7 @@ export default class AlertsModal extends React.Component {
             {subscriptionValid === true ? null : <div className='alerts-modal__error-label'>Required</div>}
             <br />
             <button className='alerts-modal__button--blue' type='submit' disabled={!subscriptionValid || !this.state.textValid}>Subscribe</button>
-            <input ref='password' name='password' type='password' hidden />
+            <input id='password-submit' ref='password' name='password' type='password' hidden />
           </Form>
         </div>
       </ModalWrapper>
