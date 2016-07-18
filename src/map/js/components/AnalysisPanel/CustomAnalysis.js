@@ -164,7 +164,7 @@ export default class CustomAnalysis extends React.Component {
                 placeholder={config.customAreaNamePlaceholder}
                 value={customAreaName}
                 onChange={this.nameChanged}
-                disabled={canEditName} />
+                disabled={!canEditName} />
 
               <div className='custom-area-title-edit pointer' onClick={::this.selectAreaTitle}>
                 <svg viewBox="0 0 528.899 528.899" dangerouslySetInnerHTML={{ __html: editSvg }}/>
