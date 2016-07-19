@@ -22,7 +22,7 @@ section.report-header
 
 .report-controls
   background $lightGrayHighlight
-  margin-top -48px
+  margin-top 55px
   min-height 40px
   text-align right
   ul
@@ -56,14 +56,16 @@ section.report-header
       list-style-type none
       margin 0 0 0 20px
       cursor pointer
-      height 40px
-      width 40px
+      width 150px
+      height 34px
       svg
-        display flex
-        height 100%
-        fill $darkGray
-      svg:hover
+        display inline
         fill $statBlue
+        // fill $white
+        margin-left 10px
+      // svg:hover
+      //   fill $statBlue
+
 
 .report-controls-background
   background $lightGrayHighlight
@@ -183,7 +185,7 @@ section.dark
     margin 0 0 1em 0
 
 section.dark.map.overview
-  margin-top 25px
+  margin-top -10px
 
 div#risk-chart
   height 200px
@@ -303,6 +305,16 @@ section.plan
       display none
     tr.applicable
       display table-row
+
+.gfw-btn.blue-switch
+  color $statBlue
+  background $white
+  border 1px solid $statBlue
+  :hover
+    background #f2f2f2
+
+.blue-switch:hover
+  background #ccc
 
 section.blue
 section.blue a
