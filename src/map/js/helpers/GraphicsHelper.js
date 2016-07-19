@@ -118,7 +118,7 @@ const graphicsHelper = {
       });
     }
   },
-  
+
   /**
   * Clear all features from the map
   * TODO: May be able to delete this as this may not be necessary

@@ -1,28 +1,41 @@
 .alerts-modal
-  width 300px
-  
+  .alert-title
+    text-align center
   input
-    width 100%  
+    width 100%
     transition .25s border, .25s background-color
 
   input.invalid
     border 1px solid #E03029
     background-color #EFDADA
 
+  input.longer
+    line-height 2.5
+    font-size 12px
+
   &__button
     &, &--blue
+      transition background 0.15s linear
+      width 150px
+      margin-left calc(50% - 75px)
+      cursor pointer
       border none
       padding 10px 10px
       transition .25s opacity
+      font-size 17px
 
       &[disabled]
         opacity .5
-    
+        cursor default
+        &:hover
+          background-color $gfwBlue
+
     &--blue
       color #FFF
       border-radius 35px
       background-color $gfwBlue
+      &:hover
+        background-color #2974a1
 
   &__error-label
-    color #E03029 
-
+    color #E03029

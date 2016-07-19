@@ -3,7 +3,6 @@ import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import {mapActions} from 'actions/MapActions';
 import analytics from 'utils/googleAnalytics';
-import utils from 'utils/AppUtils';
 import KEYS from 'js/constants';
 import alt from 'js/alt';
 
