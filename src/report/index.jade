@@ -45,13 +45,18 @@ html
   body
     include ../templates/svgAssets.jade
     div#headerGfw
+    a(href="../index.html")
+      div.gfw-water-logo
+    a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
+    include ../templates/topNavigation
     
-    section.relative.report-header
+    section.relative
+      //- a(href='../index.html')
+      //-   div.gfw-water-logo.relative
+      //- a(href='http://www.wri.org/our-work/project/aqueduct')
+      //-   div.aqueduct-logo
+      //- include ../templates/topNavigation
       div.wrapper
-        a(href='../map.html')
-          div.gfw-water-logo.relative
-        a(href='http://www.wri.org/our-work/project/aqueduct')
-          div.aqueduct-logo
         div.report-controls
           ul
             li#share-icon 
