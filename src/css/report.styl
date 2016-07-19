@@ -356,7 +356,11 @@ section.other-projects h2
   justify-content center
   flex-wrap wrap
   display flex
-  // margin 5px 0
+  &.historical-loss-legend
+    bottom 48px
+    margin-left -1px
+  .historical-loss-holder
+    width 175px
   .legend-label
     font-size 12px
     padding 0 5px
@@ -364,6 +368,20 @@ section.other-projects h2
     margin 5px 0
     display flex
     width 100%
+  &.recent-loss
+    bottom 300px
+  .report-legend-label
+    font-size 12px
+    padding 5px
+    text-align center
+  .report-legend-data
+    font-size 10px
+    display inline-block
+    padding-left 5px
+    padding-right 5px
+    vertical-align middle
+  .report-legend-svg
+    padding 5px
 
 .report-legend .no-data-labels div:nth-child(2)
 .report-legend .no-data-labels img:nth-child(4)
