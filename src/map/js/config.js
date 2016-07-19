@@ -20,33 +20,6 @@ export const config = {
     'gfw-fires.wri.org/subscribe_by_polygon' // GFW Fires Subscription call
   ],
 
-  fakeMetadata: {
-    agol_id: "",
-    amazon_link: "",
-    cautions: "<p>For the purpose of this study, \u201ctree cover\u201d was defined as all vegetation taller than 5 meters in height. \u201cTree cover\u201d is the biophysical presence of trees and may take the form of natural forests or plantations existing over a range of canopy densities.</p>",
-    citation: "<p>Use the following credit when these data are displayed:<br>Source: Hansen/UMD/Google/USGS/NASA, accessed through Global Forest Watch</p><p>Use the following credit when these data are cited:<br>Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. \u201cHigh-Resolution Global Maps of 21st-Century Forest Cover Change.\u201d Science 342 (15 November): 850\u201353. Data available on-line from:http://earthenginepartners.appspot.com/science-2013-global-forest. Accessed through Global Forest Watch on [date]. www.globalforestwatch.org </p>",
-    date_of_content: "<p>2000</p>",
-    download_data: "http://earthenginepartners.appspot.com/science-2013-global-forest",
-    frequency_of_updates: "",
-    function: "<p>Identifies areas of tree cover</p>",
-    geographic_coverage: "<p>Global land (excluding Antarctica and Arctic islands)</p>",
-    learn_more: "http://science.sciencemag.org/content/342/6160/850",
-    license: "<p><a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>",
-    map_service: "http://gis-treecover.wri.org/arcgis/rest/services/TreeCover2000/ImageServer",
-    other: "",
-    overview: "<p>This data set, a collaboration between the <a href=\"http://glad.geog.umd.edu/\">GLAD</a> (Global Land Analysis &amp; Discovery) lab at the University of Maryland, Google, USGS, and NASA, displays tree cover over all global land (except for Antarctica and a number of Arctic islands) for the year 2000 at 30 \u00d7 30 meter resolution. \u201cPercent tree cover\u201d is defined as the density of tree canopy coverage of the land surface and is color-coded by density bracket (see legend).</p><p>Data in this layer were generated using multispectral satellite imagery from the <a href=\"http://landsat.usgs.gov/\">Landsat 7</a> thematic mapper plus (ETM+) sensor. The clear surface observations from over 600,000 images were analyzed using Google Earth Engine, a cloud platform for earth observation and data analysis, to determine per pixel tree cover using a supervised learning algorithm.</p><p>The tree cover canopy density of the displayed data varies according to the selection - use the legend on the map to change the minimum tree cover canopy density threshold.</p>",
-    resolution: "<p>30 \u00d7 30 meters</p>",
-    source: "<p>Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. \u201cHigh-Resolution Global Maps of 21st-Century Forest Cover Change.\u201d Science 342 (15 November): 850\u201353. Data available from: <a href=\"http://earthenginepartners.appspot.com/science-2013-global-forest\">earthenginepartners.appspot.com/science-2013-global-forest</a>.</p>",
-    sql_api: "",
-    subtitle: "(2000, Hansen/UMD/Google/USGS/NASA)",
-    tags: "Land Cover",
-    title: "Tree cover",
-    translated_function: "",
-    translated_overview: "",
-    translated_title: ""
-  },
-
-
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
@@ -1039,7 +1012,6 @@ config.text.layerInformation[KEYS.burnScars] = {
 };
 
 // Exports
-export const fakeMetadata = config.fakeMetadata;
 export const metadataUrl = config.metadataUrl;
 
 export const links = config.links;

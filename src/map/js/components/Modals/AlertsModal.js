@@ -128,9 +128,6 @@ export default class AlertsModal extends React.Component {
       subscriptionName = model['subscription-name'] || 'My Subscription';
 
     //- If honeyPot has a value, bail out now, will probably never happen, as site crawlers wont see forms generated in JS
-    // if (this.refs.password && this.refs.password.value !== '') {
-    //   return;
-    // }
     if (this.state.honeyValue.length > 0) {
       return;
     }
@@ -166,9 +163,9 @@ export default class AlertsModal extends React.Component {
           <div className='alert-title'><strong>{alertsText.title}</strong></div>
           <br />
           <Form onSubmit={::this.submit} onChange={this.validateForm} onValid={::this.validateText} onInvalid={::this.invalidateText}>
-            <TextInput class='longer' name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
+            <TextInput className='longer' name='email' type='text' label={alertsText.descriptions.email} validations='isEmail' validationErrors={{isEmail: 'Invalid address'}} required />
             <br />
-            <TextInput class='longer' name='subscription-name' type='text' label={alertsText.descriptions.subscription} placeholder='My Subscription' maxLength={50}/>
+            <TextInput className='longer' name='subscription-name' type='text' label={alertsText.descriptions.subscription} placeholder='My Subscription' maxLength={50}/>
             <br />
             <label>{alertsText.descriptions.subscriptionTypes}</label>
             <CheckboxInput label='Fire Alerts' className='active-fires' checked={this.state.fireSubscription} clickHandle={::this.togglefire} />
