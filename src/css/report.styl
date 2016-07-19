@@ -183,7 +183,7 @@ section.dark
     margin 0 0 1em 0
 
 section.dark.map.overview
-  margin-top -1em
+  margin-top 25px
 
 div#risk-chart
   height 200px
@@ -358,15 +358,17 @@ section.other-projects h2
   order 1
 
 .gfw-water-logo
-  background url('images/GFW_Water_logo.png') no-repeat center
+  background url('../css/images/GFW_Water_logo.png') no-repeat center
   background-size 90px
-  display inline-block
+  position absolute
   height 90px
   width 90px
-  left 0
-  top 0
+  z-index 5
+  left 20px
+  top 35px
+  cursor pointer
   &:after
-    background url('images/beta.png')
+    background url('../css/images/beta.png')
     position absolute
     display block
     bottom -5px
@@ -375,15 +377,29 @@ section.other-projects h2
     right -5px
     content ''
 
-.aqueduct-logo
-  background url('images/aqueduct-logo.png') no-repeat center
-  background-size auto 65px
-  display inline-block
-  height 50px
-  margin-top 1em
-  vertical-align top
-  width 250px
+.page-aqueduct-link
+  background url("../css/images/aqueduct-logo.png") no-repeat center
+  background-size cover
+  top 38px
+
+.back-pebble
+  background-color #333
 
 @media (min-width: 850px)
   #headerGfw
     height 34px
+
+@media (max-width: 850px)
+  .report-controls-background
+    margin-top 0
+
+  .top-nav-container
+    display none
+
+@media (max-width: 1300px)
+  section.dark.map.overview .wrapper
+    max-width 75%
+
+@media (max-width: 1000px)
+  section.dark.map.overview .wrapper
+    max-width 70%
