@@ -52,7 +52,21 @@ body
   top 0px
 
 .esriPopup .sizer
-  width 400px !important
+  width 250px !important
+
+.esriPopup .pointer.top, .esriPopup .pointer, .esriPopup .outerPointer, .esriPopup .pointer.bottom, .esriPopup .pointer.left, .esriPopup .pointer.right, .esriPopup .contentPane
+  background black !important
+  .field-value
+    color white
+    font-size 14px
+    font-weight bold
+  .popup-link a
+    color #97bd3d
+    text-decoration none
+    font-size 12px
+
+.esriPopup .titlePane, .esriPopup .actionsPane
+  display none
 
 // Require any Map Content
 @require 'modal'
