@@ -14,6 +14,10 @@ export default class TextInput extends React.Component {
           <div className='alerts-modal__error-label'>{this.props.getErrorMessage() || 'Required'}</div>
         );
 
+        if (this.props.class) {
+          className += ' ' + this.props.class;
+        }
+
     return (
       <div>
         <label>{this.props.label}</label>
