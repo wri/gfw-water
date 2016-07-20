@@ -33,6 +33,11 @@ let LayersHelper = {
     if (caseStudies) {
       caseStudies.on('click', LayersHelper.caseStudiesClicked);
     }
+    brApp.map.on('click', evt => {
+      if (!evt.graphic) {
+        brApp.map.infoWindow.hide();
+      }
+    });
   },
 
   watershedClicked (evt) {
@@ -83,8 +88,10 @@ let LayersHelper = {
     let graphic = evt.graphic;
 
     if (graphic && !toolbarActive) {
-      let layerConfig = utils.getObject(layersConfig, 'id', KEYS.caseStudies);
-      let content = '<div>' + layerConfig.infoTemplate.content + '</div>';
+      // let layerConfig = utils.getObject(layersConfig, 'id', KEYS.caseStudies);
+      // let content = layerConfig.infoTemplate.content;
+      let content = '<div id="popup-content"><p class="field-value">' + graphic.attributes.Learn_More + '</p>' +
+        '<p class="field-value popup-link"><a href=' + graphic.attributes.url + ' target="_blank">read more</a></p></div>';
       let template = new InfoTemplate(graphic.attributes.Location, content);
       console.log(graphic.attributes);
       graphic.setInfoTemplate(template);

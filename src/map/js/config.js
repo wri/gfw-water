@@ -287,14 +287,13 @@ export const config = {
       //TODO: acquire metadataId
       className: 'case-studies',
       layerIds: [0],
-      outFields: ['FID', 'Location', 'Strategies', 'Learn_More'],
+      outFields: ['FID', 'Location', 'Strategies', 'Learn_More', 'url'],
       legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer',
       url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer/0',
       // visible: true,
       infoTemplate: {
-        content: '<table>' +
-          '<tr><td class="field-name">Strategy: </td><td class="field-value">${Strategies}</td></tr>' +
-          '<tr><td class="field-name">Learn More: </td><td class="field-value">${Learn_More}</td></tr>'
+        content: '<div id="popup-content"><p class="field-value">${Learn_More}</p>' +
+          '<p class="field-value popup-link"><a target="_blank" href=${url}>read more</a></p></div>'
       }
     },
     // These layers are not in the UI and should be the top most layers

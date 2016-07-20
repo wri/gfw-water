@@ -85,7 +85,7 @@ module.exports = {
         'Tutorials',
         'Global Forest Watch Water offers a wide range of content and capabilities to serve a variety of users and purposes. Whether you arrive at GFW Water with a clear purpose or are simply exploring different features, we can help you learn to use the platform.',
         'For more information, visit our How To page - ',
-        'http://www.globalforestwatch.org/howto'
+        'http://www.globalforestwatch.org/howto/tags/water/'
       ]
     }
   },

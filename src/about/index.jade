@@ -10,6 +10,12 @@ html
         @require '../css/modal'
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='../css/images/favicon.ico')
+    script.
+      window.liveSettings = {
+        api_key: "d2679f30b37246c4ab8272ff1860b274",
+        detectlang: false,
+        picker: '#transifexTranslateElement'
+      };
   
   body
     include ../templates/svgAssets.jade
@@ -168,14 +174,15 @@ html
             div.detail
               p #{about.content.publications[4]}
               p 
-                a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog' target='_blank') wri.org/our-work/project/natural-infrastructure-water/blog
+                a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog')
+                  div.blog-button.gfw-btn.blue.pointer GO TO BLOG
           
           div#four.content-subpage.tutorials
             h3 #{about.content.tutorials[0]}
             p #{about.content.tutorials[1]}
             p
               span #{about.content.tutorials[2]}
-              a(href='http://www.globalforestwatch.org/howto' target='_blank') #{about.content.tutorials[3]}
+              a(href='http://www.globalforestwatch.org/howto/tags/water/' target='_blank') #{about.content.tutorials[3]}
               
       div
         svg
