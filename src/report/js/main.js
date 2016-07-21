@@ -1,5 +1,6 @@
 import ShareModal from 'components/Modals/ShareModal';
 import BasicModal from 'components/Modals/BasicModal';
+import AboutModal from 'components/Modals/AboutModal';
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import ReportLegend from 'components/LayerPanel/ReportLegend';
@@ -93,6 +94,11 @@ const attachEvents = () => {
     //- Send off analytics
     analytics(KEYS.analyticsCategory, KEYS.analyticsInfoAction, analyticsConfig.infoWindow);
   });
+  document.getElementById('landscape-info-button').addEventListener('click', () => {
+    modalActions.showBasicModal(text.landscapeSummeryInfo, text.landscapeSummeryInfoDescription);
+    //- Send off analytics
+    analytics(KEYS.analyticsCategory, KEYS.analyticsInfoAction, analyticsConfig.infoWindow);
+  });
   // Print button click.
   document.getElementById('print-icon').addEventListener('click', () => {
     window.print();
@@ -117,16 +123,25 @@ const attachEvents = () => {
     //- Send off analytics
     analytics(KEYS.analyticsCategory, KEYS.analyticsDownloadAction, analyticsConfig.print);
   });
+
+  let cards = document.getElementsByClassName('little-card');
+  Array.prototype.forEach.call(cards, elem => {
+    elem.addEventListener('click', evt => {
+      let card = evt.currentTarget.id;
+      console.log(card);
+      modalActions.showAboutModal(card);
+    });
+  });
   // Add Analytics Listener for all publications
-  var list = document.querySelector('.publications-list'), node, i;
-  var publicationCallback = function publicationCallback () {
-    //- Send off analytics
-    analytics(KEYS.analyticsCategory, KEYS.analyticsContentAction, analyticsConfig.content);
-  };
-  for (i = 0; i < list.children.length; i++) {
-    node = list.children[i];
-    node.addEventListener('click', publicationCallback);
-  }
+  // var list = document.querySelector('.publications-list'), node, i;
+  // var publicationCallback = function publicationCallback () {
+  //   //- Send off analytics
+  //   analytics(KEYS.analyticsCategory, KEYS.analyticsContentAction, analyticsConfig.content);
+  // };
+  // for (i = 0; i < list.children.length; i++) {
+  //   node = list.children[i];
+  //   node.addEventListener('click', publicationCallback);
+  // }
 };
 
 configureApp();
@@ -140,3 +155,4 @@ ReactDOM.render(<ReportLegend title='Active Fires' />, document.getElementById('
 ReactDOM.render(<SedimentLegend url='http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer' layerIds={[4]} />, document.getElementById('sedimentReport'));
 ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));
 ReactDOM.render(<BasicModal />, document.getElementById('basic-modal'));
+ReactDOM.render(<AboutModal />, document.getElementById('about-modal'));
