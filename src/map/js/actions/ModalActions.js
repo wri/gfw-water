@@ -21,7 +21,7 @@ class ModalActions {
     //TODO: Add all this below back in once we have styled the layer modal properly with all the data we need
     urlUtils.addProxyRule({
       urlPrefix: 'http://api.globalforestwatch.org',
-      proxyUrl: 'http://water-staging.globalforestwatch.org/proxy/proxy.php'
+      proxyUrl: '/proxy/proxy.php'
       // proxyUrl: '//localhost/gfw-water/www/proxy/proxy.php'
     });
 
