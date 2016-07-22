@@ -16,51 +16,25 @@ export const config = {
     '54.83.40.92', // Old Erosion Image Server
     '50.19.205.13', // New Erosion Image Server
     'hydro.arcgis.com', // Esri's Hydrology Tool
-    'api.globalforestwatch.org' // Esri's Hydrology Tool
+    'api.globalforestwatch.org', // Esri's Hydrology Tool
+    'gfw-fires.wri.org/subscribe_by_polygon' // GFW Fires Subscription call
   ],
-
-  fakeMetadata: {
-    agol_id: "",
-    amazon_link: "",
-    cautions: "<p>For the purpose of this study, \u201ctree cover\u201d was defined as all vegetation taller than 5 meters in height. \u201cTree cover\u201d is the biophysical presence of trees and may take the form of natural forests or plantations existing over a range of canopy densities.</p>",
-    citation: "<p>Use the following credit when these data are displayed:<br>Source: Hansen/UMD/Google/USGS/NASA, accessed through Global Forest Watch</p><p>Use the following credit when these data are cited:<br>Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. \u201cHigh-Resolution Global Maps of 21st-Century Forest Cover Change.\u201d Science 342 (15 November): 850\u201353. Data available on-line from:http://earthenginepartners.appspot.com/science-2013-global-forest. Accessed through Global Forest Watch on [date]. www.globalforestwatch.org </p>",
-    date_of_content: "<p>2000</p>",
-    download_data: "http://earthenginepartners.appspot.com/science-2013-global-forest",
-    frequency_of_updates: "",
-    function: "<p>Identifies areas of tree cover</p>",
-    geographic_coverage: "<p>Global land (excluding Antarctica and Arctic islands)</p>",
-    learn_more: "http://science.sciencemag.org/content/342/6160/850",
-    license: "<p><a href=\"http://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>",
-    map_service: "http://gis-treecover.wri.org/arcgis/rest/services/TreeCover2000/ImageServer",
-    other: "",
-    overview: "<p>This data set, a collaboration between the <a href=\"http://glad.geog.umd.edu/\">GLAD</a> (Global Land Analysis &amp; Discovery) lab at the University of Maryland, Google, USGS, and NASA, displays tree cover over all global land (except for Antarctica and a number of Arctic islands) for the year 2000 at 30 \u00d7 30 meter resolution. \u201cPercent tree cover\u201d is defined as the density of tree canopy coverage of the land surface and is color-coded by density bracket (see legend).</p><p>Data in this layer were generated using multispectral satellite imagery from the <a href=\"http://landsat.usgs.gov/\">Landsat 7</a> thematic mapper plus (ETM+) sensor. The clear surface observations from over 600,000 images were analyzed using Google Earth Engine, a cloud platform for earth observation and data analysis, to determine per pixel tree cover using a supervised learning algorithm.</p><p>The tree cover canopy density of the displayed data varies according to the selection - use the legend on the map to change the minimum tree cover canopy density threshold.</p>",
-    resolution: "<p>30 \u00d7 30 meters</p>",
-    source: "<p>Hansen, M. C., P. V. Potapov, R. Moore, M. Hancher, S. A. Turubanova, A. Tyukavina, D. Thau, S. V. Stehman, S. J. Goetz, T. R. Loveland, A. Kommareddy, A. Egorov, L. Chini, C. O. Justice, and J. R. G. Townshend. 2013. \u201cHigh-Resolution Global Maps of 21st-Century Forest Cover Change.\u201d Science 342 (15 November): 850\u201353. Data available from: <a href=\"http://earthenginepartners.appspot.com/science-2013-global-forest\">earthenginepartners.appspot.com/science-2013-global-forest</a>.</p>",
-    sql_api: "",
-    subtitle: "(2000, Hansen/UMD/Google/USGS/NASA)",
-    tags: "Land Cover",
-    title: "Tree cover",
-    translated_function: "",
-    translated_overview: "",
-    translated_title: ""
-  },
-
 
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       },
       metadata: {
         urlPrefix: 'api.globalforestwatch.org',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       }
   },
 
@@ -287,7 +261,7 @@ export const config = {
       type: 'dynamic',
       label: 'Arid',
       group: 'watershedRisk',
-      //TODO: acquire metadataId
+      metadataId: 'arid_regions',
       className: 'arid',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [7]
@@ -310,18 +284,12 @@ export const config = {
       order: 20,
       label: 'Case Studies',
       group: 'watershedRisk',
-      //TODO: acquire metadataId
+      metadataId: 'nifw_case_studies',
       className: 'case-studies',
       layerIds: [0],
-      outFields: ['FID', 'Location', 'Strategies', 'Learn_More'],
-      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer',
-      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/case_studies/FeatureServer/0',
-      visible: true,
-      infoTemplate: {
-        content: '<table>' +
-          '<tr><td class="field-name">Strategy: </td><td class="field-value">${Strategies}</td></tr>' +
-          '<tr><td class="field-name">Learn More: </td><td class="field-value">${Learn_More}</td></tr>'
-      }
+      outFields: ['FID', 'Location', 'Strategies', 'Learn_More', 'url'],
+      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer',
+      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer/0'
     },
     // These layers are not in the UI and should be the top most layers
     {
@@ -477,26 +445,6 @@ export const config = {
       title: 'Guidance and roadmaps',
       bullets: [
         {
-          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
-        },
-        {
-          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
-        },
-        {
-          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
-        },
-        {
-          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
-        },
-        {
-          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
-        }
-      ]
-    },
-    naturalInfrastructure: {
-      title: 'Natural Infrastructure Champions',
-      bullets: [
-        {
           label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
         },
         {
@@ -513,6 +461,26 @@ export const config = {
         },
         {
           label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
+        }
+      ]
+    },
+    naturalInfrastructure: {
+      title: 'Natural Infrastructure Champions',
+      bullets: [
+        {
+          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
+        },
+        {
+          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
+        },
+        {
+          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
+        },
+        {
+          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
         }
       ]
     },
@@ -540,6 +508,7 @@ export const config = {
 
   analysis: {
     upstream: {
+      url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed',
       title: 'Spatial mapping tools and platforms',
       params: {
         f: 'json',
@@ -607,6 +576,7 @@ export const config = {
       sourceName: 'Watersheds',
       searchWidgetId: 'esri-search-widget',
       analyzeButton: 'Analyze Watershed',
+      analysisTutorialLink: 'http://www.globalforestwatch.org/howto/analyze-data/analyze-a-watershed.html',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
@@ -619,9 +589,10 @@ export const config = {
       customAnalysisText: 'To further refine your results go to ',
       customAnalysisLink: 'Custom Area',
       fullReportButton: 'Full Report',
-      watershedSummeryInfo: 'Watershed Risks',
+      watershedSummeryInfo: 'Watershed Risk Summary',
       majorDamsSummeryInfo: 'MAJOR DAMS',
       waterIntakeSummeryInfo: 'WATER INTAKES',
+      landscapeSummeryInfo: 'What does the risk score mean?',
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
       latLngGoButton: 'Go',
@@ -635,12 +606,15 @@ export const config = {
         2: 'Low to medium',
         3: 'Medium',
         4: 'Medium to high',
-        5: 'Extremely high',
+        5: 'High',
         10: 'Not applicable'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',
       watershedAreaField: 'ws_ha',
+      watershedBasinField: 'maj_bas',
+      surroundingBasinField: 'parent_basin',
+      surroundingNameField: 'parent_name',
       hydrologyServiceAreaField: 'AreaSqKm',
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
@@ -668,10 +642,47 @@ export const config = {
         <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
         <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
         <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
-        <p><a href="http://google.com" target="_blank">Need Help?</p>
+        <p><a href="http://www.globalforestwatch.org/howto/tags/water/" target="_blank">Need Help?</p>
       `,
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
-      waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>'
+      waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>',
+      landscapeSummeryInfoDescription: `
+      <table class='risk-score-table'>
+        <th>
+          Score (x)
+        </th>
+        <th>
+          Category
+        </th>
+        <th>
+          Description
+        </th>
+        <tr>
+          <td>1</td>
+          <td>Low</td>
+          <td>Low probability of adverse effect from stressor. Further inquiry not recommended.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Low to Medium</td>
+          <td>Low to medium probability of adverse effect from stressor. Further inquiry not recommended.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Medium</td>
+          <td>Medium probability of adverse effect from stressor. Consider further analysis to evaluate local conditions.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Medium to High</td>
+          <td>Medium to high probability of adverse effect from stressor. Further investigation and appropriate action recommended.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>High</td>
+          <td>High probability of adverse effect from stressor. Further investigation and immediate appropriate action highly recommended.</td>
+        </tr>
+      </table>`
   },
     controlPanel: {
       wriBasemap: 'WRI',
@@ -721,10 +732,11 @@ export const config = {
       treeCoverFromYear: (year) => `Tree cover loss: From: ${year}`,
       treeCoverToYear: (year) => `Tree cover loss: To: ${year}`,
       toggleLayer: (layerName) => `Layer: ${layerName}`,
-      analyzeWatershed: (id) => `Watershed: maj_name: ${id}`,
-      analyzeCustomArea: (id) => `Custom Area: ${id}`,
-      analyzeAddPoint: 'Add Point',
-      analyzeSearchCoords: 'Search Lat/Lon'
+      infoWindow: (layerName) => `User clicks on Info Window: ${layerName}`,
+      analyzeWatershed: (id) => `User clicks on Full Report: ${id}`,
+      analyzeCustomArea: (id) => `User clicks on Custom Area: ${id}`,
+      analyzeAddPoint: 'User clicks on Add Point',
+      analyzeSearchCoords: 'User clicks on Go'
     },
     // Fill in below so I can use the keys as Ids
     layerInformation: {}
@@ -1032,7 +1044,6 @@ config.text.layerInformation[KEYS.burnScars] = {
 };
 
 // Exports
-export const fakeMetadata = config.fakeMetadata;
 export const metadataUrl = config.metadataUrl;
 
 export const links = config.links;

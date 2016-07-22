@@ -89,6 +89,21 @@
     width 20px
     fill $gfwBlue
 
+.analysis-tools__tutorial-link
+  text-decoration none
+  background $gfwBlue
+  display inline-block
+  border-radius 50%
+  text-align center
+  line-height 16px
+  font-size 12px
+  margin 0 5px
+  color white
+  height 14px
+  width 14px
+  &:hover
+    background darken($lightGray, 10%)
+
 .lat-lng-tool
   & .lat-lng-form
     justify-content center
@@ -215,6 +230,12 @@
       fill $gfwBlue
       height 18px
       width 18px
+
+.custom-area-title.disabled
+  & input
+    padding-left 0
+  & .custom-area-title-edit
+    display none
 
 /* IE10+ CSS styles go here */
 // @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)

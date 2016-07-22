@@ -22,6 +22,8 @@ $colors = 'charcoal' $charcoal,
           'gfw-red' $gfw-blue,
           'white' $white
 
+body
+  background-color white
 
 #scherman-image
   background url('../css/images/scherman_foundation.png') no-repeat center
@@ -50,9 +52,33 @@ $colors = 'charcoal' $charcoal,
   td
     vertical-align top
     padding-bottom 40px
-    padding-right 125px
+    padding-right 35px
     &:last-child
       padding-right 0
+    .table-image
+      height 100px
+      width 185px
+      margin-top 20px
+
+#ecoton
+  background url('../css/images/logo-ecoton.png') no-repeat center
+#mitrainsani
+  background url('../css/images/yayasan-mitra-insani.png') no-repeat center
+#hutanriau
+  background url('../css/images/hutanriau.png') no-repeat center
+#ecological
+  background url('../css/images/ecological-society.png') no-repeat center
+  background-size 170px
+#cedarHimalaya
+  background url('../css/images/cedar.jpg') no-repeat center
+  background-size 150px
 
 .content-body h3
   padding-top 1em
+
+@media (max-width: 850px)
+  .gfw-water-logo, .page-aqueduct-link
+    top 0px
+
+  .content-header
+    margin 4em 0em

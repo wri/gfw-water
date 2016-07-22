@@ -15,7 +15,7 @@ body
   display none !important
 
 .map
-  height calc(100% - 50px)
+  height 100%
   width 100%
 
 .map-component
@@ -52,7 +52,30 @@ body
   top 0px
 
 .esriPopup .sizer
-  width 400px !important
+  width 250px !important
+
+.esriPopup .pointer.top, .esriPopup .pointer, .esriPopup .outerPointer, .esriPopup .pointer.bottom, .esriPopup .pointer.left, .esriPopup .pointer.right, .esriPopup .contentPane
+  background black !important
+  .field-value
+    color white
+    font-size 14px
+    font-weight bold
+  .popup-link a
+    color #97bd3d
+    text-decoration none
+    font-size 12px
+
+.esriPopup .titlePane, .esriPopup .actionsPane
+  display none
+
+.infoWindow-close.close-icon
+  z-index 500
+  padding-right 3px
+  padding-top 3px
+  height 30px
+  width 30px
+  cursor pointer
+  fill white
 
 // Require any Map Content
 @require 'modal'

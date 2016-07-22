@@ -46,7 +46,7 @@ export default class LatLngTool extends React.Component {
       //- Send off analytics
       analytics(
         KEYS.analyticsCategory,
-        KEYS.analyticsAnalysisAction,
+        KEYS.analyticsSettingsAction,
         analyticsLabels.analyzeSearchCoords
       );
 

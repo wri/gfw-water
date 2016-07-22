@@ -11,6 +11,12 @@ html
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='css/images/favicon.ico')
     script(src='vendor/jquery/dist/jquery.min.js')
+    script.
+      window.liveSettings = {
+        api_key: "d2679f30b37246c4ab8272ff1860b274",
+        detectlang: false,
+        picker: '#transifexTranslateElement'
+      };
   body
     div#headerGfw
     section.relative.home-slider-container
@@ -109,7 +115,7 @@ html
         div.slide-switch__block
           span.switch-button.switch-slide3
           span.switch-button__label Researcher, NGO
-    include templates/footerShare
+      include templates/footerShare
     div#footerGfw
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
@@ -135,5 +141,5 @@ html
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-48182293-1', 'auto');
+      ga('create', 'UA-48182293-1', 'auto', { cookieDomain: "'water.globalforestwatch.org']"});
       ga('send', 'pageview');
