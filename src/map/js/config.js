@@ -261,7 +261,7 @@ export const config = {
       type: 'dynamic',
       label: 'Arid',
       group: 'watershedRisk',
-      //TODO: acquire metadataId
+      metadataId: 'arid_regions',
       className: 'arid',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [7]
