@@ -144,7 +144,7 @@ module.exports = {
     browsers: [
       {label: 'Chrome > 49', href: 'https://www.google.com/intl/en/chrome/browser/desktop/index.html'},
       {label: 'Firefox > 45', href: 'https://www.mozilla.org/en-US/firefox/all/'},
-      {label: 'Safari > 7', href: 'http://www.apple.com/safari/'},
+      {label: 'Safari > 8', href: 'http://www.apple.com/safari/'},
       {label: 'Internet Explorer 10', href: 'https://support.microsoft.com/en-us/help/18520/download-internet-explorer-11-offline-installer'}
     ]
   }
