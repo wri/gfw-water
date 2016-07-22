@@ -647,7 +647,7 @@ export const config = {
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
       waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>',
       landscapeSummeryInfoDescription: `
-      <table>
+      <table class='risk-score-table'>
         <th>
           Score (x)
         </th>
@@ -665,7 +665,7 @@ export const config = {
         <tr>
           <td>2</td>
           <td>Low to Medium</td>
-          <td>Low to medium probability of adverse effect from stressor. . Further inquiry not recommended.</td>
+          <td>Low to medium probability of adverse effect from stressor. Further inquiry not recommended.</td>
         </tr>
         <tr>
           <td>3</td>

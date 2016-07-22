@@ -132,16 +132,6 @@ const attachEvents = () => {
       modalActions.showAboutModal(card);
     });
   });
-  // Add Analytics Listener for all publications
-  // var list = document.querySelector('.publications-list'), node, i;
-  // var publicationCallback = function publicationCallback () {
-  //   //- Send off analytics
-  //   analytics(KEYS.analyticsCategory, KEYS.analyticsContentAction, analyticsConfig.content);
-  // };
-  // for (i = 0; i < list.children.length; i++) {
-  //   node = list.children[i];
-  //   node.addEventListener('click', publicationCallback);
-  // }
 };
 
 configureApp();
