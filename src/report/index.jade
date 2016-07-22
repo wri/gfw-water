@@ -154,11 +154,19 @@ html
           div.info-column 
             div#risk-chart
           div.info-column
+            p.
+              Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services. 
+            ul.watershed-list We consider four watershed risks: 
+              li Recent Forest Loss
+              li Historical Forest Loss
+              li Erosion Risk
+              li Fire Risk
+            
             span#landscape-info-button.info-icon.pointer
               svg
                 use(xlink:href="#shape-info")
             p.
-              Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services. 
+              Risk scores range from 1 – 5. A score of 4 and above indicates that the watershed health is more likely to suffer as a result of exposure to that stressor. Further investigation and urgent action could be needed to mitigate the risk.
             p.blue.
               #[a(href='#plan-for-action') Jump] to recommendations according to watershed risk summary.
 
@@ -178,7 +186,7 @@ html
             //- p.emphasis.
             //-   As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination.
             p.
-              Recent forest loss risk was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density]] across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to arid areas and areas where total forest extent (year 2000) is less than 10% of watershed. 
+              #[span.bold-text Recent forest loss risk] was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density]] across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to arid areas and areas where total forest extent (year 2000) is less than 10% of watershed. 
             p.emphasis.
               Recent forest loss estimates the potential of damaging impact from recent changes (2001 – 2014) in the extent of forest cover in a watershed. As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination. In addition to the area of forest removed, the duration and magnitude of a watershed’s response depends on various factors, including age and type of forest removed, climate, topography, and size of the watershed.
           div#recentLossReport.report-legend.recent-loss
@@ -199,7 +207,7 @@ html
             p.
               This watershed was covered by #[span.blue#past-loss-amount --] #[span.blue Ha] of forest, accounting for #[span.blue#past-loss-percent -] of watershed area. The total tree cover (2000) accounts for #[span.blue#past-loss-rate --] of potential forest.
             p.
-              Historical forest loss risk is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density] %] across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of the watershed. 
+              #[span.bold-text Historical forest loss risk] is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density] %] across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of the watershed. 
             p.emphasis.
               Historical forest loss measures the potential threat on a watershed’s capacity to deliver ecosystem services as a result of forest cover change in the past (prior to 2000). Compared to recent forest loss, forest loss that took place decades ago may lead to different hydrological responses with greater uncertainty in a watershed. In addition to the extent of forest removed, other factors that contribute to a watershed’s capacity to regulate flow and control water quality include age and type of forest removed, climate, and land management since forest removal.
           div#historicalLossReport.report-legend.historical-loss-legend
@@ -217,7 +225,7 @@ html
             p.
               The overall erosion risk of this watershed is #[span.blue#risk-erosion-description].
             p.
-              Erosion risk is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.
+              #[span.bold-text Erosion risk] is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.
             p.emphasis.
               Erosion is a significant problem that affects both water quality and quantity. High erosion deteriorates water quality and reduces reservoir capacity, increasing cost of water treatment and capital expenses, and damaging safety of water supplies. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural lands to pasture, cropland, and other human developments.
           div#sedimentReport.report-legend
@@ -234,14 +242,13 @@ html
             h2 Risk Score: #[span.blue#risk-fire -]
             p.
               There were #[span.blue#recent-fire-count -] fire alerts over the past #[span.blue 24 hours]. An average of #[span.blue#average-fire-count -] fires occurred annually for the past ten years.
-              // todo: above: it was three years, now its 10!
             //- p.
             //-   There are #[span.blue#average-fire-count -] fires occuring annually on average over the past #[span.blue three years (2013 - 2015)].
             p.
-              Learn more about Global Forest Watch Fires: 
-              #[a(href='http://fires.globalforestwatch.org/') fires.globalforestwatch.org/]
+              Learn more about  
+              #[a(href='http://fires.globalforestwatch.org/' target='_blank') Global Forest Watch Fires]
             p.
-              Fire risk is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).
+              #[span.bold-text Fire risk] is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).
             p.emphasis.
               Fires are a common form of disturbance in some forested watersheds. High intensity or large fires can result in significant increases in runoff, erosion, and tree mortality, all of which can negatively impact water quality. Although the effects are usually short-lived, long-term effects, magnitude, and persistence of downstream effects are uncertain.
           div#fireLegendReport.report-legend.fire-risk-legend
@@ -254,12 +261,12 @@ html
         div.info-wrapper
           div.info-column
             p.
-              Baseline water stress (BWS) measures the ratio of total water withdrawals to annual available renewable surface water supplies. 
+              #[span.bold-text Baseline water stress] (BWS) measures the ratio of total water withdrawals to annual available renewable surface water supplies. 
             p.emphasis.
               We use this data to set the context for landscape water-related risk for a given watershed. BWS serves as a good proxy for water-related challenges more broadly, given that areas of higher water stress will likely be subject to higher depletion of surface and groundwater resources and more competition amongst users, as well as the associated impacts on water quality and other ecosystem services. Watersheds with high baseline water stress may warrant urgent, appropriate action to respond to the watershed risks listed above.
             p.
-              Learn more about the Global Forest Watch Aqueduct Project: 
-              #[a(href='www.wri.org/our-work/project/aqueduct') www.wri.org/our-work/project/aqueduct]
+              Learn more about the 
+              #[a(href='www.wri.org/our-work/project/aqueduct') Global Forest Watch Aqueduct Project]
           div#waterStressReport.report-legend
           div.info-column
             div.printed-map Generating:  baseline water stress map
@@ -271,7 +278,7 @@ html
       div.wrapper
         h2 plan for action
         h4 recommended natural infrastructure strategies
-        p Risks identified as four or higher should be addressed by specific actions. Below is the list of recommendations for this watershed to mitigate high risks.
+        p Risks scores of 4 or higher should be addressed by specific actions. Highlighted is the list of recommendations and case studies to mitigate high risks to this watershed.
         div.info-wrapper
           table
             tr 
@@ -279,32 +286,55 @@ html
               th risk
               th strategy
               th description
+              th Case Studies
             tr.no-risk
               td(colspan='4') No significant risks for this watershed.
             tr.risk-info.tree-loss-risk
               td
                 div.square.square-pink
               td.
-                #[span.risk-category Recent forest loss]
+                #[span.risk-category Recent Tree Cover Loss]
               td.
-                Forest Protection
+                Ecosystem Protection
               td
                 ul
-                  li #[span.strategy-example Conservation zones]:  Setting aside forested areas with high conservation value to preserve biodiversity.
-                  li #[span.strategy-example Sustainable forestry]:  Engaging in best forestry practices to minimize negative environmental impacts.
-                  li #[span.strategy-example Road network regulation]:  Limiting road creation near vulnerable forests, which has been linked heavily to deforestation risks. This includes addressing the problem of illegal road-building, as well as the sustainable development of legal road networks.
+                  li #[span.strategy-example Conservation zones]:  Setting aside natural areas with high conservation value to preserve biodiversity and maintain forests, wetlands, and other open lands as natural infrastructure to regulate water flow and improve quality.
+                  li #[span.strategy-example Sustainable forestry]:  Engaging in best forestry practices to minimize negative environmental impacts and disturbance to forests to deliver critical watershed services such as water purification and flood mitigation.
+                  li #[span.strategy-example Road network regulation]:  Limiting road creation near vulnerable forests, which has been heavily linked to deforestation that diminishes forests’ ability to regulate flow and purify water.
+              td
+                ul
+                  li 
+                    a(href='http://www.nyc.gov/html/dep/html/watershed_protection/index.shtml') New York, NY, United States
+                  li 
+                    a(href='https://www.pwd.org/watershed-protection') Portland, ME, United States
+                  li 
+                    a(href='http://cdkn.org/resource/private-conservation-agreements-support-climate-action-ecuadors-socio-bosque-programme/?loclang=en_gb') Quito, Ecuador
+
             tr.risk-info.past-loss-risk
               td
                 div.square.square-yellow
               td.
-                #[span.risk-category Historical forest loss]
+                #[span.risk-category Historical Tree Cover Loss]
               td.
-                Restoration
+                Landscape Restoration
               td
                 ul
                   li #[span.strategy-example Reforestation]:  Planting seedlings in burnt or deforested areas to stem the rate of erosion and restore the land.
-                  li #[span.strategy-example Assisted natural regeneration]:  Enhancing the establishment of secondary forest from degraded grassland and shrub vegetation by protecting and nurturing the mother trees and their wildlings inherently present in the area.
+                  li #[span.strategy-example Assisted natural regeneration]:  Enhancing the establishment of secondary forest from degraded grassland and shrub vegetation by protecting and nurturing the mother trees and their wildlings inherently present in the area which may enhance aquifer recharge.
                   li #[span.strategy-example Agroforestry]:  Managing forests together with crops and/or animal production systems in agricultural settings.
+              td
+                ul
+                  li
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_China.pdf') Beijing, China
+                  li
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_India_1.pdf') Multiple locations, India
+                  li
+                    a(href='http://www.watershedconnect.org/programs/Projeto-Produtores-de-A-gua-e-Floresta-Rio-de-Janeiro') Rio de Janeiro, Brazil
+                  li
+                    a(href='http://www.watershedmarkets.org/casestudies/Costa_Rica_National_PES_eng.html') Multiple locations, Costa Rica
+                  li
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_Ethiopia.pdf') Humbo, Ethiopia
+
             tr.risk-info.erosion-risk
               td
                 div.square.square-brown
@@ -317,6 +347,15 @@ html
                   li #[span.strategy-example Vegetation buffering]:  Planting or maintaining trees/ shrubs along the sides of roads and waterways to capture runoff and pollutants.
                   li #[span.strategy-example Slope erosion reduction]:  Slowing the rate of erosion on steep sloped lands by creating various barriers to sediment movement. Examples include contour felling of trees, silt fences, and terracing.
                   li #[span.strategy-example Agricultural best management practices]:  Reducing the amount of pesticides, fertilizers, animal waste, and other pollutants entering water resources, and conserving water supply. Examples include contour farming, cover crops, and terrace construction.
+              td
+                ul
+                  li
+                    a(href='http://www.eweb.org/sourceprotection/vip') Eugene, OR, United States
+                  li
+                    a(href='http://www.forest-trends.org/documents/files/doc_4896.pdf') Lima, Peru
+                  li
+                    a(href='http://www.watershedconnect.org/programs/The-Catchment-Sensitive-Farming-Capital-Grant-Scheme') Paris, France
+
             tr.risk-info.fire-risk
               td
                 div.square.square-orange
@@ -327,6 +366,14 @@ html
               td
                 ul
                   li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through controlled burns and mechanical treatment.
+              td
+                ul
+                  li
+                    a(href='http://sustainablecommunitiesleadershipacademy.org/resource_files/documents/denver-forests-to-faucets-partnership.pdf') Denver, CO, United States
+                  li
+                    a(href='http://www.fs.fed.us/rm/pubs_other/rmrs_2009_smith_d001.pdf') Middle Rio Grande, NM, United States
+                  li
+                    a(href='http://www.wri.org/blog/2014/04/preventing-forest-fires-indonesia-focus-riau-province-peatland-and-illegal-burning') Riau, Indonesia
                   
     section
       div.report-controls-bottom
