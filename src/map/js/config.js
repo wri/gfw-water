@@ -445,26 +445,6 @@ export const config = {
       title: 'Guidance and roadmaps',
       bullets: [
         {
-          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
-        },
-        {
-          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
-        },
-        {
-          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
-        },
-        {
-          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
-        },
-        {
-          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
-        }
-      ]
-    },
-    naturalInfrastructure: {
-      title: 'Natural Infrastructure Champions',
-      bullets: [
-        {
           label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
         },
         {
@@ -481,6 +461,26 @@ export const config = {
         },
         {
           label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
+        }
+      ]
+    },
+    naturalInfrastructure: {
+      title: 'Natural Infrastructure Champions',
+      bullets: [
+        {
+          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
+        },
+        {
+          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
+        },
+        {
+          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
+        },
+        {
+          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
         }
       ]
     },
