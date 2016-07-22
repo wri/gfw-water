@@ -21,12 +21,15 @@ class ModalActions {
     //TODO: Add all this below back in once we have styled the layer modal properly with all the data we need
     urlUtils.addProxyRule({
       urlPrefix: 'http://api.globalforestwatch.org',
-      proxyUrl: 'http://wri-gfw-water-staging.herokuapp.com/proxy/proxy.php'
+      proxyUrl: 'http://water-staging.globalforestwatch.org/proxy/proxy.php'
       // proxyUrl: '//localhost/gfw-water/www/proxy/proxy.php'
     });
 
+    //http://water-staging.globalforestwatch.org
+
     esriConfig.defaults.io.corsEnabledServers.push('api.globalforestwatch.org');
     esriConfig.defaults.io.corsEnabledServers.push('wri-gfw-water.herokuapp.com');
+    esriConfig.defaults.io.corsEnabledServers.push('water-staging.globalforestwatch.org');
 
     // console.log(metadataIds);
     // console.log(layersConfig);
