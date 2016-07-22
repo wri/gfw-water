@@ -357,7 +357,7 @@ section.other-projects h2
   flex-wrap wrap
   display flex
   &.historical-loss-legend
-    bottom 48px
+    bottom 131px
     margin-left -1px
   .historical-loss-holder
     width 175px
@@ -369,7 +369,17 @@ section.other-projects h2
     display flex
     width 100%
   &.recent-loss
-    bottom 300px
+    // bottom 300px
+    top 444px
+    bottom inherit
+    .report-legend-label
+      display inline-block
+    span
+      padding 10px
+  &.fire-risk-legend
+    bottom 49px
+    .report-legend-label
+      display inline-block
   .report-legend-label
     font-size 12px
     padding 5px
@@ -382,6 +392,10 @@ section.other-projects h2
     vertical-align middle
   .report-legend-svg
     padding 5px
+  .report-legend-fire
+    width 20px
+    height 20px
+    margin-bottom -5px
 
 .report-legend .no-data-labels div:nth-child(2)
 .report-legend .no-data-labels img:nth-child(4)
