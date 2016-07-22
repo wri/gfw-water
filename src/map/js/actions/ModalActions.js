@@ -29,6 +29,7 @@ class ModalActions {
 
     esriConfig.defaults.io.corsEnabledServers.push('api.globalforestwatch.org');
     esriConfig.defaults.io.corsEnabledServers.push('wri-gfw-water.herokuapp.com');
+    esriConfig.defaults.io.corsEnabledServers.push('water.globalforestwatch.org');
     esriConfig.defaults.io.corsEnabledServers.push('water-staging.globalforestwatch.org');
 
     // console.log(metadataIds);
