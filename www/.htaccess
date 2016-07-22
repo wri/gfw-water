@@ -31,7 +31,7 @@ SetOutputFilter DEFLATE
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTP_USER_AGENT} !Chrome\/([5-9]\d)
-  RewriteCond %{HTTP_USER_AGENT} !Version\/[8-9][^\s]* Safari
+  RewriteCond %{HTTP_USER_AGENT} !Version\/[8-9][^\s]*\sSafari
   RewriteCond %{HTTP_USER_AGENT} !Firefox\/([4-9][5-9]|[5-9]\d)
   RewriteCond %{HTTP_USER_AGENT} !Trident\/([6-9])
   RewriteCond %{HTTP_USER_AGENT} !Edge\/([1][2-9])
