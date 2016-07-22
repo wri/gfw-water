@@ -21,13 +21,11 @@ SetOutputFilter DEFLATE
 </IfModule>
 
 # Testing browser detection from .htaccess files with no PHP, may need to be adjusted or replaced if this is not sufficient
-# Browser sniffing is probably not the ideal way to go, but we may want to switch the logic around
-# Instead of checking if the chrome version is not we want, we could test for browsers we do not like and force redirect
-# This would require less regex and maintenance
-# Still needs IE regex placed in
 # Chrome 50+
-# Safari > 7
+# Safari > 8
 # Firefox greater than 45
+# IE greater than 10
+# Edge greater than 12
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTP_USER_AGENT} !Chrome\/([5-9]\d)
