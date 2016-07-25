@@ -61,6 +61,7 @@ export default class AnalysisTools extends React.Component {
         <div className='analyze-header no-shrink'>
           <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
           <span>{text.analyzeButton}</span>
+          <a className='analysis-tools__tutorial-link' href={text.analysisTutorialLink} target='_blank'>?</a>
         </div>
         <TabControls activeTab={this.state.activeTab} />
         <div className='tab-container custom-scroll'>

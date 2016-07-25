@@ -3,10 +3,10 @@ import React from 'react';
 
 let generateChart = (id, feature) => {
   /**
-  * rs_tl_c - Recent Tree cover loss
-  * rs_pf_c - Historic Tree cover loss
-  * rs_sed_c - Erosion
-  * rs_fire_c - Fire
+  * rs_tl_c - Recent forest loss
+  * rs_pf_c - Historic forest loss
+  * rs_sed_c - Erosion risk
+  * rs_fire_c - Fire risk
   */
   let { rs_tl_c, rs_pf_c, rs_sed_c, rs_fire_c } = feature.attributes;
 
@@ -70,28 +70,28 @@ let generateChart = (id, feature) => {
     credits: { enabled: false },
     series: [{
       type: 'column',
-      name: 'Recent tree cover loss',
+      name: 'Recent forest loss',
       data: [rs_tl_c],
       color: '#FF6097',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Historical tree cover loss',
+      name: 'Historical forest loss',
       data: [rs_pf_c],
       color: '#D2DF2E',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Erosion',
+      name: 'Erosion risk',
       data: [rs_sed_c],
       color: '#A79261',
       pointPlacement: 'between'
     },
     {
       type: 'column',
-      name: 'Fire',
+      name: 'Fire risk',
       data: [rs_fire_c],
       color: '#EA5A00',
       pointPlacement: 'between'

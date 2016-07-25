@@ -34,6 +34,7 @@ class AnalysisStore {
   clearCustomArea () {
     this.toolbarActive = false;
     this.activeCustomArea = null;
+    this.customAreaName = text.customAreaNamePlaceholder;
   }
 
   analyzeCurrentWatershed (feature) {
@@ -46,9 +47,14 @@ class AnalysisStore {
     let area = feature.attributes[text.watershedAreaField];
     let geometry = feature.geometry;
     performRiskAnalysis(geometry, area, surroundingWatershed).then((attributes) => {
+      console.dir(attributes);
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
       this.isLoading = false;
+      // If we are analyzing the surrounding watershed, use it's name
+      if (attributes[text.surroundingNameField]) {
+        this.customAreaName = attributes[text.surroundingNameField];
+      }
       this.emitChange();
     });
   }

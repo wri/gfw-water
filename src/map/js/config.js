@@ -15,19 +15,26 @@ export const config = {
     'localhost',
     '54.83.40.92', // Old Erosion Image Server
     '50.19.205.13', // New Erosion Image Server
-    'hydro.arcgis.com' // Esri's Hydrology Tool
+    'hydro.arcgis.com', // Esri's Hydrology Tool
+    'api.globalforestwatch.org', // Esri's Hydrology Tool
+    'gfw-fires.wri.org/subscribe_by_polygon' // GFW Fires Subscription call
   ],
 
   proxy: {
       hydro: {
         urlPrefix: 'hydro.arcgis.com',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
+      },
+      metadata: {
+        urlPrefix: 'api.globalforestwatch.org',
+        // proxyUrl: '//localhost/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       },
       featureServer: {
         urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
         // proxyUrl: '//localhost/proxy/proxy.php'
-        proxyUrl: '//wri-gfw-water.herokuapp.com/proxy/proxy.php'
+        proxyUrl: '/proxy/proxy.php'
       }
   },
 
@@ -36,11 +43,16 @@ export const config = {
       url: '/',
       title: 'Global Forest Watch Water - Home'
     },
+    about: {
+      url: '/about',
+      title: 'Global Forest Watch Water - Learn More'
+    },
     aqueduct: {
       url: 'http://www.wri.org/our-work/project/aqueduct',
       title: 'Aqueduct Water Risk Atlas'
     }
   },
+
 
   map: {
     id: 'map',
@@ -108,6 +120,7 @@ export const config = {
       type: 'dynamic',
       label: 'Wetlands and Waterbodies',
       group: 'watershed',
+      metadataId: 'wetlands_waterbodies',
       className: 'wetlands',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [2]
@@ -120,6 +133,7 @@ export const config = {
       sublabel: '(year 2000, 30m global, Hansen/UMD/Google/USGS/NASA)',
       group: 'watershed',
       className: 'tree-cover',
+      metadataId: 'tree_cover',
       url: 'http://gis-treecover.wri.org/arcgis/rest/services/TreeCover2000/ImageServer',
       colormap: [[1, 174, 203, 107]],
       inputRange: [30, 101],
@@ -132,6 +146,7 @@ export const config = {
       type: 'dynamic',
       label: 'Land cover',
       group: 'watershed',
+      metadataId: 'usa_land_cover',
       className: 'land-cover',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [6]
@@ -142,6 +157,7 @@ export const config = {
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
+      metadataId: 'dam_hotspots',
       className: 'dams',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/infrastructure/MapServer',
       layerIds: [0]
@@ -151,6 +167,7 @@ export const config = {
       order: 11,
       type: 'dynamic',
       label: 'Urban water intakes',
+      metadataId: 'urban_water_intakes',
       group: 'watershed',
       className: 'intake',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
@@ -169,6 +186,7 @@ export const config = {
       type: 'image',
       label: 'Tree cover loss',
       group: 'watershedRisk',
+      metadataId: 'tree_cover_loss',
       className: 'loss',
       visible: true,
       sublabel: '(annual, 30m, global, Hansen/UMD/Google/USGS/NASA)',
@@ -180,6 +198,7 @@ export const config = {
       order: 8,
       type: 'tiled',
       label: 'Tree cover gain',
+      metadataId: 'tree_cover_gain',
       group: 'watershedRisk',
       className: 'gain',
       visible: true,
@@ -191,6 +210,7 @@ export const config = {
       order: 4,
       type: 'dynamic',
       label: 'Potential forest coverage',
+      metadataId: 'potential_forest',
       group: 'watershedRisk',
       className: 'historic-loss',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/forest_cover/MapServer',
@@ -209,40 +229,67 @@ export const config = {
       type: 'dynamic',
       label: 'Active fires',
       group: 'watershedRisk',
+      metadataId: 'firms_active_fires',
       className: 'active-fires',
       sublabel: '(daily, 1km, global, NASA)',
       url: 'http://gis-potico.wri.org/arcgis/rest/services/Fires/Global_Fires/MapServer',
       layerIds: [0, 1, 2, 3]
     },
-    {
-      id: KEYS.burnScars,
-      order: 12,
-      type: 'dynamic',
-      label: 'Burn scars (coming soon)',
-      group: 'watershedRisk',
-      className: 'burn-scars',
-      disabled: true
-    },
+    // {
+    //   id: KEYS.burnScars,
+    //   order: 12,
+    //   type: 'dynamic',
+    //   label: 'Burn scars (coming soon)',
+    //   group: 'watershedRisk',
+    //   className: 'burn-scars',
+    //   disabled: true
+    // },
     {
       id: KEYS.sediment,
       order: 2,
       type: 'dynamic',
       label: 'Erosion',
+      metadataId: 'erosion',
       group: 'watershedRisk',
       className: 'sediment',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [4]
     },
     {
+      id: KEYS.arid,
+      order: 2,
+      type: 'dynamic',
+      label: 'Arid',
+      group: 'watershedRisk',
+      metadataId: 'arid_regions',
+      className: 'arid',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      layerIds: [7]
+    },
+    {
       id: KEYS.waterStress,
       type: 'dynamic',
       order: 1,
       label: 'Baseline water stress',
+      metadataId: 'baseline_water_stress',
       group: 'watershedRisk',
       className: 'water-stress',
       url: 'http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       layerIds: [1],
       opacity: 0.80
+    },
+    {
+      id: KEYS.caseStudies,
+      type: 'feature',
+      order: 20,
+      label: 'Case Studies',
+      group: 'watershedRisk',
+      metadataId: 'nifw_case_studies',
+      className: 'case-studies',
+      layerIds: [0],
+      outFields: ['FID', 'Location', 'Strategies', 'Learn_More', 'url'],
+      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer',
+      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer/0'
     },
     // These layers are not in the UI and should be the top most layers
     {
@@ -325,9 +372,144 @@ export const config = {
     }
   },
 
+  aboutModal: {
+    spatialMapping: {
+      title: 'Spatial mapping tools and platforms',
+      bullets: [
+        {
+          label: '<a href="http://www.naturalcapitalproject.org/software/" target="_blank">Natural Capital Project:</a>'
+        },
+        [
+          {
+            label: 'InVEST'
+          },
+          {
+            label: 'RIOS'
+          },
+          {
+            label: 'OPAL'
+          }
+        ],
+        {
+          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
+        },
+        {
+          label: 'The Nature Conservancy:'
+        },
+        [
+          {
+            label: '<a href="http://watershedtool.org/" target="_blank">Watershed Conservation Screening Tool</a>'
+          },
+          {
+            label: '<a href="http://water.nature.org/waterblueprint/ target="_blank"">Urban Water Blueprint</a>'
+          }
+        ]
+      ]
+    },
+    economics: {
+      title: 'Economics and finance',
+      bullets: [
+        {
+          label: 'WRI'
+        },
+        [
+          {
+            label: '<a href="http://www.thesolutionsjournal.com/node/1241" target="_blank">Green Gray Analysis</a>'
+          },
+          {
+            label: '<a href="http://www.wri.org/our-work/topics/finance" target="_blank">Finance Center</a>'
+          }
+        ],
+        {
+          label: 'WBCSD'
+        },
+        [
+          {
+            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelectTM</a>'
+          },
+          {
+            label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104" target="_blank">Guide to Corporate Ecosystem Valuation</a>'
+          }
+        ],
+        {
+          label: 'The Nature Conservancy:'
+        },
+        [
+          {
+            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
+          }
+        ]
+      ]
+    },
+    guidance: {
+      title: 'Guidance and roadmaps',
+      bullets: [
+        {
+          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
+        },
+        {
+          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/dir/sowi_2014/" target="_blank">Gaining Depth: State of Water Investment 2014</a>'
+        },
+        {
+          label: '<a href="http://www.iwa-network.org/downloads/1438744856-Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf" target="_blank">Natural Infrastructure in the Nexus</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
+        }
+      ]
+    },
+    naturalInfrastructure: {
+      title: 'Natural Infrastructure Champions',
+      bullets: [
+        {
+          label: '<a href="http://www.carpediemwest.org/" target="_blank">Carpe Diem West </a>'
+        },
+        {
+          label: '<a href="http://encouragecapital.com/" target="_blank">Encourage Capital</a>'
+        },
+        {
+          label: '<a href="http://www.blueforestconservation.com/" target="_blank">Blue Forest Conservation</a>'
+        },
+        {
+          label: '<a href="http://www.forest-trends.org/" target="_blank">Forest Trends</a>'
+        },
+        {
+          label: '<a href="http://www.nature.org/ourinitiatives/habitats/riverslakes/water-funds-investing-in-nature-and-clean-water-1.xml" target="_blank">Water Funds - The Nature Conservancy </a>'
+        }
+      ]
+    },
+    otherWRI: {
+      title: 'Other WRI Projects',
+      bullets: [
+        {
+          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Aqueduct</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
+        },
+        {
+          label: '<a href="http://fires.globalforestwatch.org/home/" target="_blank">Global Forest Watch Fires</a>'
+        },
+        {
+          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
+        }
+      ]
+    }
+  },
+
   analysis: {
     upstream: {
       url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed',
+      title: 'Spatial mapping tools and platforms',
       params: {
         f: 'json',
         Generalize: true,
@@ -394,11 +576,12 @@ export const config = {
       sourceName: 'Watersheds',
       searchWidgetId: 'esri-search-widget',
       analyzeButton: 'Analyze Watershed',
+      analysisTutorialLink: 'http://www.globalforestwatch.org/howto/analyze-data/analyze-a-watershed.html',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
       customTabId: 'customWatershed',
-      customTabLabel: 'Custom Area',
+      customTabLabel: 'Custom Analysis',
       clearAnalysisButton: 'Clear Analysis',
       getAlertsButton: 'Get Alerts',
       pointType: 'point',
@@ -407,6 +590,9 @@ export const config = {
       customAnalysisLink: 'Custom Area',
       fullReportButton: 'Full Report',
       watershedSummeryInfo: 'Watershed Risk Summary',
+      majorDamsSummeryInfo: 'MAJOR DAMS',
+      waterIntakeSummeryInfo: 'WATER INTAKES',
+      landscapeSummeryInfo: 'What does the risk score mean?',
       addPointButton: 'Add point',
       latLngInstructions: 'Enter latitude & longitude',
       latLngGoButton: 'Go',
@@ -420,40 +606,84 @@ export const config = {
         2: 'Low to medium',
         3: 'Medium',
         4: 'Medium to high',
-        5: 'Extremely high',
+        5: 'High',
         10: 'Not applicable'
       },
       getWatershedTitle: feature => (feature.attributes && feature.attributes.maj_name) || 'No Name',
       watershedNameField: 'maj_name',
       watershedAreaField: 'ws_ha',
+      watershedBasinField: 'maj_bas',
+      surroundingBasinField: 'parent_basin',
+      surroundingNameField: 'parent_name',
       hydrologyServiceAreaField: 'AreaSqKm',
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
       customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
       watershedSummeryInfoDescription: `
-        <p>Watershed risk is defined as the change of damaging effects to watershed health and its potential to deliver critical functions in regulating water quantity and quality.</p>
-        <p>We consider four watershed risks and the scores range from 1 – 5. A high risk score indicates that the watershed health is more likely to be impacted as a result of exposure to that stressor and more urgent action is needed to mitigate the risk.</p>
-        <div>Below is a description of how the risk scores are calculated per indicator:</div>
+        <p>Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services.</p>
+        <div>We consider four watershed risks:</div>
         <ul>
           <li>
-            <strong>Recent tree cover loss:</strong>
-            <span>Risk score on recent tree cover loss is measured by the area of total tree cover loss from 2001 to 2014 as a share of current tree cover extent. Canopy density for tree cover loss and tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where current tree cover is less than 10% of watershed.</span>
+            <strong>Recent Forest Loss</strong>
           </li>
           <li>
-            <strong>Historical tree cover loss:</strong>
-            <span>Risk score on historical tree cover loss is approximated by comparing current tree cover to potential tree coverage. Canopy density for tree cover is set to > 30% across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of watershed.</span>
+            <strong>Historical Forest Loss</strong>
           </li>
           <li>
-            <strong>Erosion:</strong>
-            <span>Risk score on erosion is derived from the Revised Universal Soil Loss Equation, including rainfall erosivity, slope steepness, soil erodibility, and land cover factors.</span>
+            <strong>Erosion Risk</strong>
           </li>
           <li>
-            <strong>Fire:</strong>
-            <span>Risk score on fire is measured by average annual fire occurrence per hectare in a watershed.</span>
+            <strong>Fire Risk</strong>
           </li>
         </ul>
-      `
-    },
+        <p>Risk scores range from 1 – 5. A score of 4 and above indicates that the watershed health is more likely to suffer as a result of exposure to that stressor. Further investigation and urgent action could be needed to mitigate the risk.</p>
+        <p>Below is a description of how the risk scores are calculated for each indicator:</p>
+        <p><strong>Recent forest loss risk</strong> was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to watersheds where 80% of the area is arid and total forest extent (year 2000) is less than 10%.</p>
+        <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
+        <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
+        <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
+        <p><a href="http://www.globalforestwatch.org/howto/tags/water/" target="_blank">Need Help?</p>
+      `,
+      majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
+      waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>',
+      landscapeSummeryInfoDescription: `
+      <table class='risk-score-table'>
+        <th>
+          Score (x)
+        </th>
+        <th>
+          Category
+        </th>
+        <th>
+          Description
+        </th>
+        <tr>
+          <td>1</td>
+          <td>Low</td>
+          <td>Low probability of adverse effect from stressor. Further inquiry not recommended.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Low to Medium</td>
+          <td>Low to medium probability of adverse effect from stressor. Further inquiry not recommended.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Medium</td>
+          <td>Medium probability of adverse effect from stressor. Consider further analysis to evaluate local conditions.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Medium to High</td>
+          <td>Medium to high probability of adverse effect from stressor. Further investigation and appropriate action recommended.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>High</td>
+          <td>High probability of adverse effect from stressor. Further investigation and immediate appropriate action highly recommended.</td>
+        </tr>
+      </table>`
+  },
     controlPanel: {
       wriBasemap: 'WRI',
       imageryBasemap: 'Imagery',
@@ -502,14 +732,16 @@ export const config = {
       treeCoverFromYear: (year) => `Tree cover loss: From: ${year}`,
       treeCoverToYear: (year) => `Tree cover loss: To: ${year}`,
       toggleLayer: (layerName) => `Layer: ${layerName}`,
-      analyzeWatershed: (id) => `Watershed: maj_name: ${id}`,
-      analyzeCustomArea: (id) => `Custom Area: ${id}`,
-      analyzeAddPoint: 'Add Point',
-      analyzeSearchCoords: 'Search Lat/Lon'
+      infoWindow: (layerName) => `User clicks on Info Window: ${layerName}`,
+      analyzeWatershed: (id) => `User clicks on Full Report: ${id}`,
+      analyzeCustomArea: (id) => `User clicks on Custom Area: ${id}`,
+      analyzeAddPoint: 'User clicks on Add Point',
+      analyzeSearchCoords: 'User clicks on Go'
     },
     // Fill in below so I can use the keys as Ids
     layerInformation: {}
-  }
+  },
+  metadataUrl: 'http://api.globalforestwatch.org/metadata/'
 
 };
 
@@ -812,6 +1044,8 @@ config.text.layerInformation[KEYS.burnScars] = {
 };
 
 // Exports
+export const metadataUrl = config.metadataUrl;
+
 export const links = config.links;
 export const assetUrls = config.assets;
 export const proxyRules = config.proxy;
@@ -831,4 +1065,5 @@ export const symbolConfig = config.symbol;
 export const analysisConfig = config.analysis;
 export const queryConfig = config.queryOptions;
 export const alertsModalConfig = config.alertsModal;
+export const aboutModalConfig = config.aboutModal;
 export const layerInformation = config.text.layerInformation;

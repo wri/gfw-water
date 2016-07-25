@@ -1,6 +1,7 @@
 import Formatters from 'report/custom-formatters';
 import Histogram from 'report/compute-histogram';
 import {analysisConfig} from 'report/config';
+import {analysisPanelText} from 'js/config';
 import esriRequest from 'esri/request';
 import Deferred from 'dojo/Deferred';
 import lang from 'dojo/_base/lang';
@@ -238,6 +239,14 @@ export const performRiskAnalysis = (geometry, area, surroundingWatershed) => {
       lang.mixin(attributes, Formatters.formatErosionRisk(results[KEYS.R_EROSION].data));
     } else {
       attributes[analysisConfig[KEYS.R_EROSION].field] = 10;
+    }
+
+    // Mixin a special attribute if the surrounding watershed analysis was used instead
+    // This is so the report can use the surrounding watershed and not the custom feature
+    // May need to check against more properties if this produces false negatives
+    if (errorIsInvalidImageSize(results[KEYS.TCL_30].error)) {
+      attributes[analysisPanelText.surroundingBasinField] = surroundingWatershed.attributes[analysisPanelText.watershedBasinField];
+      attributes[analysisPanelText.surroundingNameField] = surroundingWatershed.attributes[analysisPanelText.watershedNameField];
     }
 
     promise.resolve(attributes);

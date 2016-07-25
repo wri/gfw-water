@@ -8,6 +8,7 @@ class ModalStore {
   constructor () {
     this.bitlyUrl = '';
     this.modalLayerInfo = {};
+    this.aboutModalSelection = '';
     this.basicModalText = '';
     this.basicModalTitle = '';
     this.lossCookieValue = cookie ? cookie(modalText.historicLoss.cookieName) : false;
@@ -16,12 +17,17 @@ class ModalStore {
       showLayerInfo: modalActions.showLayerInfo,
       updateBitlyUrl: modalActions.showShareModal,
       showBasicModal: modalActions.showBasicModal,
+      showAboutModal: modalActions.showAboutModal,
       saveLossCookie: modalActions.saveLossCookie
     });
   }
 
-  showLayerInfo (layerInfo) {
+  showLayerInfo(layerInfo) {
     this.modalLayerInfo = layerInfo;
+  }
+
+  showAboutModal (selection) {
+    this.aboutModalSelection = selection;
   }
 
   updateBitlyUrl (bitlyUrl) {

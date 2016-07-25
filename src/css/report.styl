@@ -10,7 +10,7 @@ $riskOrange = #EA5A00
 
 @require 'modal'
 
-#watershed-info-button
+#watershed-info-button, #major-dams-info-button, #water-intakes-info-button
   position relative
   right auto
   left 10px
@@ -22,7 +22,7 @@ section.report-header
 
 .report-controls
   background $lightGrayHighlight
-  margin-top -48px
+  margin-top 55px
   min-height 40px
   text-align right
   ul
@@ -41,6 +41,31 @@ section.report-header
         display flex
         height 100%
         fill $darkGray
+
+.report-controls-bottom
+  background $lightGrayHighlight
+  text-align center
+  width 100%
+
+  border 1px solid #555
+  ul
+    display flex
+    justify-content center
+    align-items center
+    li
+      list-style-type none
+      margin 0 0 0 20px
+      cursor pointer
+      width 150px
+      height 34px
+      svg
+        display inline
+        fill $statBlue
+        // fill $white
+        margin-left 10px
+      // svg:hover
+      //   fill $statBlue
+
 
 .report-controls-background
   background $lightGrayHighlight
@@ -160,7 +185,7 @@ section.dark
     margin 0 0 1em 0
 
 section.dark.map.overview
-  margin-top -1em
+  margin-top -10px
 
 div#risk-chart
   height 200px
@@ -266,11 +291,13 @@ section.plan
         &:nth-child(1)
           width 5%
         &:nth-child(2)
-          width 20%
+          width 15%
         &:nth-child(3)
-          width 20%
+          width 15%
         &:nth-child(4)
-          width 55%
+          width 50%
+        &:nth-child(5)
+          width 15%
         span.risk-category
         span.strategy-example
           font-weight 700
@@ -280,6 +307,16 @@ section.plan
       display none
     tr.applicable
       display table-row
+
+.gfw-btn.blue-switch
+  color $statBlue
+  background $white
+  border 1px solid $statBlue
+  :hover
+    background #f2f2f2
+
+.blue-switch:hover
+  background #ccc
 
 section.blue
 section.blue a
@@ -312,16 +349,88 @@ section.other-projects
 section.other-projects h2
   padding-bottom 0.5em
 
+.report-legend
+  position absolute
+  bottom 0
+  display none
+  border 1px solid rgb(170, 170, 170)
+  background white
+  justify-content center
+  flex-wrap wrap
+  display flex
+  &.historical-loss-legend
+    // bottom 131px
+    top 447px
+    bottom inherit
+    margin-left -1px
+    .report-legend-label
+      float right
+  .legend-label
+    font-size 12px
+    padding 0 5px
+  & .legend-row
+    margin 5px 0
+    display flex
+    width 100%
+  &.recent-loss
+    // bottom 300px
+    top 446px
+    bottom inherit
+    .report-legend-label
+      display inline-block
+      float right
+      line-height 17px
+    span
+      padding 10px
+  &.fire-risk-legend
+    // bottom 49px
+    top 444px
+    bottom inherit
+    .report-legend-label
+      display inline-block
+  .report-legend-label
+    font-size 12px
+    padding 5px
+    text-align center
+    float right
+  .report-legend-data
+    font-size 10px
+    display inline-block
+    padding 5px
+    vertical-align middle
+    span
+      padding 3px
+      line-height 4px
+  .report-legend-svg
+    padding 5px
+    float left
+  .report-legend-fire
+    width 20px
+    height 20px
+    margin-bottom -6px
+
+.report-legend .no-data-labels div:nth-child(2)
+.report-legend .no-data-labels img:nth-child(4)
+  order 1
+
+.watershed-list
+  list-style-type inherit
+  text-transform capitalize
+  li
+    margin-left 40px
+
 .gfw-water-logo
-  background url('images/GFW_Water_logo.png') no-repeat center
+  background url('../css/images/GFW_Water_logo.png') no-repeat center
   background-size 90px
-  display inline-block
+  position absolute
   height 90px
   width 90px
-  left 0
-  top 0
+  z-index 5
+  left 20px
+  top 34px
+  cursor pointer
   &:after
-    background url('images/beta.png')
+    background url('../css/images/beta.png')
     position absolute
     display block
     bottom -5px
@@ -330,15 +439,208 @@ section.other-projects h2
     right -5px
     content ''
 
-.aqueduct-logo
-  background url('images/aqueduct-logo.png') no-repeat center
-  background-size auto 65px
+.page-aqueduct-link
+  background url("../css/images/aqueduct-logo.png") no-repeat center
+  background-size cover
+  top 38px
+
+.back-pebble
+  background-color #333
+
+#landscape-info-button
+  right auto
+  top auto
   display inline-block
-  height 50px
-  margin-top 1em
-  vertical-align top
-  width 250px
+  margin-left -20px
+  margin-top 5px
+
+#gridView
+  display -webkit-box
+  display -ms-flexbox
+  display flex
+  -webkit-box-pack start
+  -ms-flex-pack start
+  justify-content flex-start
+  -webkit-box-align stretch
+  -ms-flex-align stretch
+  align-items stretch
+  -ms-flex-wrap wrap
+  flex-wrap wrap
+
+  .col
+    // width 100%
+    padding 0 20px
+    margin 0px 0 25px
+    min-height 1px
+
+    .little-card
+      width 100%
+      min-height 120px
+      position relative
+      padding 20px
+      padding-left 100px
+      box-shadow 0 0 0 1px white
+      cursor pointer
+      display -webkit-box
+      display -ms-flexbox
+      display flex
+      -webkit-box-align center
+      -ms-flex-align center
+      align-items center
+
+      &:hover
+        box-shadow 0 0 0 2px #555
+
+      .icon
+        position absolute
+        top 50%
+        left 0
+        width 100px
+        height 45px
+        -webkit-transform translate(0, -50%)
+        transform translate(0, -50%)
+
+        svg
+          fill white
+          width 100%
+          height 100%
+          -webkit-transition all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+          transition all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95)
+
+      header
+        width 100%
+        display block
+
+        h2
+          text-transform none
+          padding 0
+          text-align left
+          font-size 21px
+          font-weight 400
+          color white
+          margin 0
+
+        small
+          color #AAA
+          font-size 10px
+
+
+.risk-score-table
+  font-size 14px
+  margin-top 10px
+  border-collapse collapse
+  td, th
+    padding-left 5px
+    text-align left
+  th:nth-child(1)
+    width 70px
+  th:nth-child(3)
+    width 300px
+  td:nth-child(1)
+    text-align center
+    border-right 1px solid black
+  td:nth-child(2)
+    border-right 1px solid black
+  tr
+    border 1px solid black
+    border-top none
+  tr:nth-child(1)
+    border none
+    border-bottom 1px solid black
+    padding-left 5px
+
+
+.about-modal-list
+  color #aaa
+  list-style-type initial
+  text-transform initial
+  padding-left 40px
+  a
+    text-decoration none
+
+.modal-arrows
+  display block
+
+  .icon-arrow
+    position absolute
+    top 50%
+    -webkit-transform translate(0, -50%)
+    transform translate(0, -50%)
+    padding 10px
+    width 60px
+    height 60px
+    display block
+    cursor pointer
+    &.is-left
+      right calc(50% + 275px)
+    &.is-right
+      left calc(50% + 275px)
+
+    svg
+      stroke white
+      width 100%
+      height 100%
+
+.modal-icon
+  width 100%
+  position relative
+  padding 15px 20px 0px
+
+  .top-icon
+    width 100%
+    height 70px
+    margin 0 auto 20px
+
+    svg
+      fill #555555
+      width 100%
+      height 100%
+
+#tree-loss-trend
+  color $statBlue
+
+.bold-text
+  font-weight bold
+
+.ie .report-legend
+  &.historical-loss-legend
+    top 441px
+  &.recent-loss
+    .report-legend-label
+      line-height 11px
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+   .report-legend
+     &.historical-loss-legend
+       top 441px
+     &.recent-loss
+       .report-legend-label
+         line-height 11px
 
 @media (min-width: 850px)
   #headerGfw
     height 34px
+  .row .col
+    width 33.3333%
+    display -webkit-box
+    display -ms-flexbox
+    display flex
+
+@media (max-width: 850px)
+  .report-controls-background
+    margin-top 0
+
+  .top-nav-container
+    display none
+
+@media (max-width: 1300px)
+  section.dark.map.overview .wrapper
+    max-width 75%
+
+@media (max-width: 1000px)
+  section.dark.map.overview .wrapper
+    max-width 70%
+
+@media (min-width: 600px)
+  .row .col
+    width 50%

@@ -1,7 +1,89 @@
 doctype html
-html(lang='en')
+html
   head
-    meta(charset='UTF-8')
-    title Partners | Global Forest Watch
+    title #{partners.title}
+    include ../templates/meta.jade
+    style
+      :stylus
+        @require '../css/base'
+        @require '../css/about'
+        @require '../css/partners'
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
+    link(rel='icon', href='../css/images/favicon.ico')
+    script.
+      window.liveSettings = {
+        api_key: "d2679f30b37246c4ab8272ff1860b274",
+        detectlang: false,
+        picker: '#transifexTranslateElement'
+      };
+  
   body
-    h1 Test Partners - Global Forest Watch
+    include ../templates/svgAssets.jade
+    div#headerGfw
+    a(href="../index.html")
+      div.gfw-water-logo
+    a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
+    include ../templates/topNavigation
+    div#title.back-pebble
+      section
+        div.content-header
+          h1.page-title #{partners.header}
+          h2.page-description #{partners.description}
+          img#scherman-image
+          
+    section
+      div.content-body
+        h3 #{partners.tableOne.title}
+        table.partners-table
+          th #{partners.tableOne.headers[0]}
+          th #{partners.tableOne.headers[1]}
+          th #{partners.tableOne.headers[2]}
+          tr
+            td 
+              a(href='http://ecoton.org/' target='_blank')
+                div#ecoton.table-image
+            td #{partners.tableOne.rowOne[1]}
+            td #{partners.tableOne.rowOne[2]}
+          tr
+            td 
+              a(href='http://mitrainsani.or.id/' target='_blank')
+                div#mitrainsani.table-image
+            td #{partners.tableOne.rowTwo[1]}
+            td #{partners.tableOne.rowTwo[2]}
+          tr
+            td 
+              a(href='http://hutanriau.org/' target='_blank')
+                div#hutanriau.table-image
+            td #{partners.tableOne.rowThree[1]}
+            td #{partners.tableOne.rowThree[2]}
+            
+        h3 #{partners.tableTwo.title}
+        table.partners-table
+          th #{partners.tableTwo.headers[0]}
+          th #{partners.tableTwo.headers[1]}
+          th #{partners.tableTwo.headers[2]}  
+          tr
+            td 
+              a(href='http://www.ecological-society.org/' target='_blank')
+                div#ecological.table-image
+            td #{partners.tableTwo.rowOne[1]}
+            td #{partners.tableTwo.rowOne[2]}
+          tr
+            td 
+              a(href='http://cedarhimalaya.org/' target='_blank')
+                div#cedarHimalaya.table-image
+            td #{partners.tableTwo.rowTwo[1]}
+            td #{partners.tableTwo.rowTwo[2]}
+            
+    div#footerGfw
+    div#root.layout-content
+    include ../templates/gfwAssets.jade
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48182293-1', 'auto', { cookieDomain: "'water.globalforestwatch.org']"});
+      ga('send', 'pageview');
+    

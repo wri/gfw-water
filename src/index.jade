@@ -11,6 +11,12 @@ html
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,300')
     link(rel='icon', href='css/images/favicon.ico')
     script(src='vendor/jquery/dist/jquery.min.js')
+    script.
+      window.liveSettings = {
+        api_key: "d2679f30b37246c4ab8272ff1860b274",
+        detectlang: false,
+        picker: '#transifexTranslateElement'
+      };
   body
     div#headerGfw
     section.relative.home-slider-container
@@ -54,7 +60,7 @@ html
                   span.mobile-hide more info
                   span.mobile-show +
         li.slide4.slide.pointer
-          a(href='http://www.wri.org/applications/maps/aqueduct-atlas/', target='_blank')
+          a(href='http://www.wri.org/our-work/project/aqueduct', target='_blank')
             div.inner.relative
               aside
                 h2 aqueduct
@@ -83,20 +89,20 @@ html
     div#bottom-slider.bottom-slider
       section.bottom-slider__block.flex.bottom-slide1
         div.home-section-block.block-text
-          h4 Explore how you can use GFW water
-          h3 Downstream beneficiaries: Are you a utility, municipality, or business?
+          h3 Explore how you can use GFW water
+          h4 Downstream beneficiaries: Are you a utility, municipality, or business?
           p Make smart water infrastructure investments. Explore natural infrastructure options and find the information you need to improve operations and protect water at a lower cost.
         div.home-section-block.block-image
       section.bottom-slider__block.flex.bottom-slide2.invisible
         div.home-section-block.block-text
-          h4 Financing & Development: Are you part of a financing & development institution?
-          h3 Downstream beneficiaries: Are you a utility, municipality, or business?
+          h3 Financing & Development: Are you part of a financing & development institution?
+          h4 Downstream beneficiaries: Are you a utility, municipality, or business?
           p Obtain data, explore trends, and gain insights about the regions you support.
         div.home-section-block.block-image
       section.bottom-slider__block.flex.bottom-slide3.invisible
         div.home-section-block.block-text
-          h4 Research & Civil Society: Are you a researcher, NGO or citizen?
-          h3 Use data to support your projects.
+          h3 Research & Civil Society: Are you a researcher, NGO or citizen?
+          h4 Use data to support your projects.
           p Explore new project ideas and find the information you need to advance your research and campaigns to protect watersheds.
         div.home-section-block.block-image
       div.bottom-slider-container.flex
@@ -109,7 +115,7 @@ html
         div.slide-switch__block
           span.switch-button.switch-slide3
           span.switch-button__label Researcher, NGO
-    include templates/footerShare
+      include templates/footerShare
     div#footerGfw
     script.
       var base = location.href.replace(/\/[^/]+$/, '');
@@ -135,5 +141,5 @@ html
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-48182293-1', 'auto');
+      ga('create', 'UA-48182293-1', 'auto', { cookieDomain: "'water.globalforestwatch.org']"});
       ga('send', 'pageview');

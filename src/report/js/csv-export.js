@@ -18,8 +18,8 @@ tree cover (Ha),${attributes[canopyDensity('tc_g##_ha', `${canopy}`)]}
 wetland (Ha),${attributes.wet_ha}
 major dams,${attributes.dams_c}
 water intake locations ,${attributes.wd_c}
-recent tree cover loss risk score,${attributes.rs_tl_c}
-historical tree cover loss risk score,${attributes.rs_pf_c}
+recent forest loss risk score,${attributes.rs_tl_c}
+historical forest loss risk score,${attributes.rs_pf_c}
 erosion risk score,${attributes.rs_sed_c}
 fire risk score,${attributes.rs_fire_c}
 total tree cover loss area (ha) 2001-2014,${attributes[canopyDensity('tl_g##_all_ha', `${canopy}`)]}

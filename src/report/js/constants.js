@@ -15,7 +15,15 @@ const KEYS = {
   'R_HTCL': 'risk-htcl',
   'TCD_30': 'tcd_30',
   'TCL_30': 'tcl_30',
-  'ARID': 'arid'
+  'ARID': 'arid',
+  // Analytics
+  analyticsCategory: 'Full Report',
+  analyticsInfoAction: 'Info',
+  analyticsPrintAction: 'Print',
+  analyticsShareAction: 'Share',
+  analyticsContentAction: 'Content',
+  analyticsDownloadAction: 'Download',
+  analyticsSubscribeAction: 'Subscribe'
 };
 
 export { KEYS as default };

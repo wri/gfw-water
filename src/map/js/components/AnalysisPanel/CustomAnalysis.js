@@ -21,9 +21,24 @@ let runReport = () => {
   let {activeCustomArea, customAreaName} = analysisStore.getState();
   let {canopyDensity} = mapStore.getState();
 
+  //- If this feature was too large to perform custom analysis on, redirect to the
+  //- surrounding watersheds analysis using the surroundingBasinField field added
+  const parentBasin = activeCustomArea.attributes[config.surroundingBasinField];
+  if (parentBasin) {
+    analysisActions.launchReport(`W_${parentBasin}`, canopyDensity);
+    //- Send off analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsAnalysisAction,
+      analyticsLabels.analyzeWatershed(parentBasin)
+    );
+    return;
+  }
+
   //- Save the name before saving the feature
   activeCustomArea.attributes[config.watershedNameField] = customAreaName;
 
+  //- Save custom feature and run report
   analysisActions.saveFeature(activeCustomArea).then(res => {
     if (res.length > 0 && res[0].success) {
       analysisActions.launchReport(`C_${res[0].objectId}`, canopyDensity);
@@ -115,13 +130,25 @@ export default class CustomAnalysis extends React.Component {
   }
 
   render () {
+    const {
+      activeCustomArea,
+      customAreaName,
+      toolbarActive,
+      isLoading,
+      active
+    } = this.props;
+
+    // If the active feature has a surroundingNameField, it is analyzing a Known Watershed and we need to prevent them from
+    // Editing the name
+    const canEditName = activeCustomArea && activeCustomArea.attributes[config.surroundingBasinField] === undefined;
+
     return (
-      <div className={`custom-analysis relative ${this.props.active ? '' : 'hidden'}`}>
-        {!this.props.activeCustomArea ?
+      <div className={`custom-analysis relative ${active ? '' : 'hidden'}`}>
+        {!activeCustomArea ?
           <div>
-            <Loader active={this.props.isLoading} />
+            <Loader active={isLoading} />
             <CustomAreaHeader />
-            <div className={`gfw-btn blue pointer add-point-btn ${this.props.toolbarActive ? 'active' : ''}`} onClick={::this.addPoint}>
+            <div className={`gfw-btn blue pointer add-point-btn ${toolbarActive ? 'active' : ''}`} onClick={::this.addPoint}>
               {config.addPointButton}
             </div>
             <div className='custom-analysis-spacer text-center'>or</div>
@@ -129,9 +156,16 @@ export default class CustomAnalysis extends React.Component {
           </div>
           :
           <div>
-            <div className='custom-area-title relative'>
-              <input ref='customAreaTitle' name='customAreaTitle' type='text' placeholder={config.customAreaNamePlaceholder}
-                value={this.props.customAreaName} onChange={this.nameChanged} />
+            <div className={`custom-area-title relative ${canEditName ? '' : 'disabled'}`}>
+              <input
+                ref='customAreaTitle'
+                name='customAreaTitle'
+                type='text'
+                placeholder={config.customAreaNamePlaceholder}
+                value={customAreaName}
+                onChange={this.nameChanged}
+                disabled={!canEditName} />
+
               <div className='custom-area-title-edit pointer' onClick={::this.selectAreaTitle}>
                 <svg viewBox="0 0 528.899 528.899" dangerouslySetInnerHTML={{ __html: editSvg }}/>
               </div>

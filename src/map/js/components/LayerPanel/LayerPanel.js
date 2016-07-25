@@ -1,5 +1,5 @@
 import WaterStressLegend from 'components/LayerPanel/WaterStressLegend';
-// import LandCoverLegend from 'components/LayerPanel/LandCoverLegend';
+import CaseStudiesLegend from 'components/LayerPanel/CaseStudiesLegend';
 import SedimentLegend from 'components/LayerPanel/SedimentLegend';
 import DensityDisplay from 'components/LayerPanel/DensityDisplay';
 import WetlandsLegend from 'components/LayerPanel/WetlandsLegend';
@@ -52,6 +52,9 @@ export default class LayerPanel extends React.Component {
       switch (layer.id) {
         case KEYS.waterStress:
           childComponent = <WaterStressLegend url={layer.url} layerIds={layer.layerIds} />;
+          break;
+        case KEYS.caseStudies:
+          childComponent = <CaseStudiesLegend url={layer.legendUrl} layerIds={layer.layerIds} />;
           break;
         case KEYS.sediment:
           childComponent = <SedimentLegend url={layer.url} layerIds={layer.layerIds} />;

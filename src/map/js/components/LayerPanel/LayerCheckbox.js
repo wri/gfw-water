@@ -1,6 +1,9 @@
 import {layerActions} from 'actions/LayerActions';
 import {modalActions} from 'actions/ModalActions';
 import LayersHelper from 'helpers/LayersHelper';
+import analytics from 'utils/googleAnalytics';
+import {analyticsLabels} from 'js/config';
+import KEYS from 'js/constants';
 import React from 'react';
 
 // Info Icon Markup for innerHTML
@@ -25,6 +28,10 @@ export default class LayerCheckbox extends React.Component {
   render() {
     let layer = this.props.layer;
 
+    //todo: on info-icon click, css tranisiton via adding a class: 'spinner-info' and 'start'
+    //this.$current.find('svg').attr('class','spinner-info start');
+    //then when the data comes back from the api or the request fails, remove those two classes
+
     return (
       <div className={`layer-checkbox relative ${layer.className}${this.props.checked ? ' active' : ''}${layer.disabled ? ' disabled' : ''}`} >
         <span onClick={this.toggleLayer.bind(this)} className='toggle-switch pointer'><span/></span>
@@ -45,7 +52,13 @@ export default class LayerCheckbox extends React.Component {
   showInfo () {
     let layer = this.props.layer;
     if (layer.disabled) { return; }
-    modalActions.showLayerInfo(this.props.layer.id);
+    modalActions.showLayerInfo(layer.id);
+    //- Send off analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsInfoAction,
+      analyticsLabels.infoWindow(layer.label)
+    );
   }
 
   toggleLayer () {
@@ -56,6 +69,12 @@ export default class LayerCheckbox extends React.Component {
     } else {
       layerActions.addActiveLayer(layer.id);
     }
+    //- Send of Google Analytics
+    analytics(
+      KEYS.analyticsCategory,
+      KEYS.analyticsToggleAction,
+      analyticsLabels.toggleLayer(layer.label)
+    );
   }
 
 }
