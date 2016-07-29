@@ -102,19 +102,19 @@ html
                   div total watershed area
                   div.blue-stat 
                     span.stat#watershed-area --
-                    span.unit Ha
+                    span.unit#watershed-area-unit Ha
                 td 
                   div wetland
                   div.blue-stat
                     span.stat#wetland-area --
-                    span.unit Ha
+                    span.unit#wetland-area-unit Ha
                     //- span.unit Ha (#[span#wetland-percent -])
               tr
                 td
                   div tree cover (2000)
                   div.blue-stat
                     span.stat#tree-cover --
-                    span.unit Ha
+                    span.unit#tree-cover-unit Ha
                     //- span.unit Ha (#[span#tree-cover-percent -])
                     div.gray.smaller Displaying tree cover with #[span.blue-bubble > #[span.canopy-density]] canopy density 
                 td
@@ -124,13 +124,13 @@ html
                         use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#dam-count -
-                    span.unit Dams
+                    span.unit#dam-count-unit Dams
               tr
                 td 
                   div potential tree cover
                   div.blue-stat
                     span.stat#past-cover --
-                    span.unit Ha
+                    span.unit#past-cover-unit Ha
                 td
                   div water intake
                     span#water-intakes-info-button.info-icon.pointer
@@ -138,7 +138,7 @@ html
                         use(xlink:href="#shape-info")
                   div.blue-stat
                     span.stat#water-withdrawl -
-                    span.unit Locations
+                    span.unit#water-withdrawl-unit Locations
           div.info-column
             div land cover
             div#land-cover-chart
@@ -177,14 +177,9 @@ html
         h4 recent forest loss
         div.info-wrapper
           div.info-column
-            //- p.
-            //-   Displaying tree cover loss with #[span.blue-bubble > #[span.canopy-density]]  canopy density
             h2 Risk Score: #[span.blue#risk-tree-loss -]
             p.
-              This watershed experienced #[span.blue#tree-loss-amount --] #[span.blue Ha] of tree cover loss from 2001 to 2014, accounting for #[span.blue#tree-loss-percent -] of total tree cover (2000), presenting a #[span#tree-loss-trend --] trend.
-            //- This watershed experienced #[span.blue#tree-loss-amount --] #[span.blue Ha] of tree cover loss from 2001 to 2014, accounting for #[span.blue#tree-loss-percent -] of total tree cover (2000), The average rate of tree cover loss is #[span.blue#tree-loss-rate --], presenting a #[span#tree-loss-trend --] trend.
-            //- p.emphasis.
-            //-   As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination.
+              This watershed experienced #[span.blue#tree-loss-amount --] #[span#tree-loss-amount-unit.blue Ha] of tree cover loss from 2001 to 2014, accounting for #[span.blue#tree-loss-percent -] of total tree cover (2000), presenting a #[span#tree-loss-trend --] trend.
             p.
               #[span.bold-text Recent forest loss risk] was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density]] across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to arid areas and areas where total forest extent (year 2000) is less than 10% of watershed. 
             p.emphasis.
@@ -201,11 +196,9 @@ html
         h4 historical forest loss
         div.info-wrapper
           div.info-column
-            //- p.
-            //-   Displaying tree cover loss with #[span.blue-bubble > #[span.canopy-density] %] canopy density
             h2 Risk Score: #[span.blue#risk-past-loss -]
             p.
-              This watershed was covered by #[span.blue#past-loss-amount --] #[span.blue Ha] of forest, accounting for #[span.blue#past-loss-percent -] of watershed area. The total tree cover (2000) accounts for #[span.blue#past-loss-rate --] of potential forest.
+              This watershed was covered by #[span.blue#past-loss-amount --] #[span#past-loss-amount-unit.blue Ha] of forest, accounting for #[span.blue#past-loss-percent -] of watershed area. The total tree cover (2000) accounts for #[span.blue#past-loss-rate --] of potential forest.
             p.
               #[span.bold-text Historical forest loss risk] is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density] %] across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of the watershed. 
             p.emphasis.
@@ -242,8 +235,6 @@ html
             h2 Risk Score: #[span.blue#risk-fire -]
             p.
               There were #[span.blue#recent-fire-count -] fire alerts over the past #[span.blue 24 hours]. An average of #[span.blue#average-fire-count -] fires occurred annually for the past ten years.
-            //- p.
-            //-   There are #[span.blue#average-fire-count -] fires occuring annually on average over the past #[span.blue three years (2013 - 2015)].
             p.
               Learn more about  
               #[a(href='http://fires.globalforestwatch.org/' target='_blank') Global Forest Watch Fires]
@@ -303,11 +294,11 @@ html
                   li #[span.strategy-example Road network regulation]:  Limiting road creation near vulnerable forests, which has been heavily linked to deforestation that diminishes forests’ ability to regulate flow and purify water.
               td
                 ul
-                  li 
+                  li.report-location 
                     a(href='http://www.nyc.gov/html/dep/html/watershed_protection/index.shtml') New York, NY, United States
-                  li 
+                  li.report-location 
                     a(href='https://www.pwd.org/watershed-protection') Portland, ME, United States
-                  li 
+                  li.report-location 
                     a(href='http://cdkn.org/resource/private-conservation-agreements-support-climate-action-ecuadors-socio-bosque-programme/?loclang=en_gb') Quito, Ecuador
 
             tr.risk-info.past-loss-risk
@@ -324,15 +315,15 @@ html
                   li #[span.strategy-example Agroforestry]:  Managing forests together with crops and/or animal production systems in agricultural settings.
               td
                 ul
-                  li
+                  li.report-location
                     a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_China.pdf') Beijing, China
-                  li
+                  li.report-location
                     a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_India_1.pdf') Multiple locations, India
-                  li
+                  li.report-location
                     a(href='http://www.watershedconnect.org/programs/Projeto-Produtores-de-A-gua-e-Floresta-Rio-de-Janeiro') Rio de Janeiro, Brazil
-                  li
+                  li.report-location
                     a(href='http://www.watershedmarkets.org/casestudies/Costa_Rica_National_PES_eng.html') Multiple locations, Costa Rica
-                  li
+                  li.report-location
                     a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_Ethiopia.pdf') Humbo, Ethiopia
 
             tr.risk-info.erosion-risk
@@ -349,11 +340,11 @@ html
                   li #[span.strategy-example Agricultural best management practices]:  Reducing the amount of pesticides, fertilizers, animal waste, and other pollutants entering water resources, and conserving water supply. Examples include contour farming, cover crops, and terrace construction.
               td
                 ul
-                  li
+                  li.report-location
                     a(href='http://www.eweb.org/sourceprotection/vip') Eugene, OR, United States
-                  li
+                  li.report-location
                     a(href='http://www.forest-trends.org/documents/files/doc_4896.pdf') Lima, Peru
-                  li
+                  li.report-location
                     a(href='http://www.watershedconnect.org/programs/The-Catchment-Sensitive-Farming-Capital-Grant-Scheme') Paris, France
 
             tr.risk-info.fire-risk
@@ -368,11 +359,11 @@ html
                   li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through controlled burns and mechanical treatment.
               td
                 ul
-                  li
+                  li.report-location
                     a(href='http://sustainablecommunitiesleadershipacademy.org/resource_files/documents/denver-forests-to-faucets-partnership.pdf') Denver, CO, United States
-                  li
+                  li.report-location
                     a(href='http://www.fs.fed.us/rm/pubs_other/rmrs_2009_smith_d001.pdf') Middle Rio Grande, NM, United States
-                  li
+                  li.report-location
                     a(href='http://www.wri.org/blog/2014/04/preventing-forest-fires-indonesia-focus-riau-province-peatland-and-illegal-burning') Riau, Indonesia
                   
     section
