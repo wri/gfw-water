@@ -411,14 +411,19 @@ export const config = {
       title: 'Economics and finance',
       bullets: [
         {
-          label: 'WRI'
+          label: 'Blue Forest Conservation, Encourage Capital, and WRI'
         },
         [
           {
-            label: '<a href="http://www.thesolutionsjournal.com/node/1241" target="_blank">Green Gray Analysis</a>'
-          },
+            label: '<a href="http://www.blueforestconservation.com/#frb" target="_blank">Forest Resilience Bond</a>'
+          }
+        ],
+        {
+          label: 'The Nature Conservancy:'
+        },
+        [
           {
-            label: '<a href="http://www.wri.org/our-work/topics/finance" target="_blank">Finance Center</a>'
+            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
           }
         ],
         {
@@ -433,11 +438,14 @@ export const config = {
           }
         ],
         {
-          label: 'The Nature Conservancy:'
+          label: 'WRI'
         },
         [
           {
-            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
+            label: '<a href="http://www.thesolutionsjournal.com/node/1241" target="_blank">Green Gray Analysis</a>'
+          },
+          {
+            label: '<a href="http://www.wri.org/our-work/topics/finance" target="_blank">Finance Center</a>'
           }
         ]
       ]
@@ -499,6 +507,9 @@ export const config = {
         },
         {
           label: '<a href="http://fires.globalforestwatch.org/home/" target="_blank">Global Forest Watch Fires</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/our-work/project/global-restoration-initiative" target="_blank">Global Restoration Initiative</a>'
         },
         {
           label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
@@ -870,7 +881,7 @@ config.text.layerInformation[KEYS.waterStress] = {
     {label: 'Function', html: 'This dataset measures relative water demand. Higher values indicate more competition among users.'},
     {label: 'Resolution/Scale', html: ''},
     {label: 'Geographic Coverage', html: 'Global land (excluding Antarctica and Arctic islands)'},
-    {label: 'Source Data', html: '<p>Based on a combination of various sources: Food and Agriculture Organization of the United Nations (FAO) AQUASTAT 2008-2012, National Aeronautics and Space Administration (NASA) GLDAS-2 2012, <a href="http://catdir.loc.gov/catdir/samples/cam034/2002031201.pdf" alt="Shiklomanov and Rodda 2004">Shiklomanov and Rodda 2004</a>, <a href="http://www.sciencedirect.com/science/article/pii/S0959378012001318" alt="Flörke et al. 2012">Flörke et al. 2012</a>, and <a href="http://www.cger.nies.go.jp/db/gdbd/" alt="cger">Matsutomi et al. 2009</a>.</p>'},
+    {label: 'Source Data', html: '<p>Based on a combination of various sources: Food and Agriculture Organization of the United Nations (FAO) AQUASTAT 2008-2012, National Aeronautics and Space Administration (NASA) GLDAS-2 2012, <a href="http://catdir.loc.gov/catdir/samples/cam034/2002031201.pdf" alt="Shiklomanov and Rodda 2004" target="_blank">Shiklomanov and Rodda 2004</a>, <a href="http://www.sciencedirect.com/science/article/pii/S0959378012001318" target="_blank" alt="Flörke et al. 2012">Flörke et al. 2012</a>, and <a href="http://www.cger.nies.go.jp/db/gdbd/" target="_blank" alt="cger">Matsutomi et al. 2009</a>.</p>'},
     {label: 'Frequency of Updates', html: 'None planned'},
     {label: 'Date of Content', html: '2014'},
     {label: 'Cautions', html: 'The scoring of baseline water stress indicators, based on established guidelines, is subjective. Meanings were assigned to the ratio values. To understand the relationship between raw values and categories, see description below.'},
@@ -896,20 +907,20 @@ config.text.layerInformation[KEYS.majorDams] = {
     {label: 'Function', html: 'Identifies dam locations for the world’s 50 major river basins.'},
     {label: 'Resolution/Scale', html: 'Varies by country'},
     {label: 'Geographic Coverage', html: 'This data set is not global. The data is confined to the world’s 50 major river basins.'},
-    {label: 'Source Data', html: 'Dams data are compiled from various sources, including: the <a href="http://atlas.gwsp.org/index.php?option=com_content&amp;task=view&amp;id=207&amp;Itemid=68">Global Reservoir and Dam (GRanD) Database</a>, the <a href="http://waterandfood.org/">Consultative Group on International Agricultural Research (CGIAR) Challenge Program on Water and Food - Mekong</a> (for Mekong basin dams only), the <a href="http://geo.usace.army.mil/pgis/f?p=397:101:32175502090367::NO:::">United States National Inventory of Dams (NID)</a>, other government dam inventories, and original data collection by International Rivers.'},
+    {label: 'Source Data', html: 'Dams data are compiled from various sources, including: the <a href="http://atlas.gwsp.org/index.php?option=com_content&amp;task=view&amp;id=207&amp;Itemid=68" target="_blank">Global Reservoir and Dam (GRanD) Database</a>, the <a href="http://waterandfood.org/" target="_blank">Consultative Group on International Agricultural Research (CGIAR) Challenge Program on Water and Food - Mekong</a> (for Mekong basin dams only), the <a href="http://geo.usace.army.mil/pgis/f?p=397:101:32175502090367::NO:::" target="_blank">United States National Inventory of Dams (NID)</a>, other government dam inventories, and original data collection by International Rivers.'},
     {label: 'Frequency of Updates', html: 'As new data becomes available'},
     {label: 'Date of Content', html: '2014'},
     {label: 'Cautions', html: 'Data results are biased towards public available data, so gaps may exist.'}
   ],
   overview: [
-    'The <a href="http://www.v-c-s.org">State of the World\'s Rivers</a> is an interactive web database that illustrates data on ecological health in the world’s 50 major river basins. Indicators of ecosystem health are grouped into the categories of river fragmentation, biodiversity, and water quality. The database was created and published by International Rivers in 2014.',
+    'The <a href="http://www.v-c-s.org" target="_blank">State of the World\'s Rivers</a> is an interactive web database that illustrates data on ecological health in the world’s 50 major river basins. Indicators of ecosystem health are grouped into the categories of river fragmentation, biodiversity, and water quality. The database was created and published by International Rivers in 2014.',
     'The Dam Hotspots data contains over 5,000 dam locations determined by latitude and longitude coordinates. These locations were confined to the world’s 50 major river basins. The data set comes from multiple sources, and was corrected for location errors by International Rivers. The “project status”—a moving target—was determined by acquiring official government data, as well as through primary research from Berkeley and five International Rivers’ regional offices.'
   ],
   customContent: [
     '<div class="layer-details layer-details-dam_hotspots"><ul class="layer-colors"><li><i class="circle" style="color:#F78300;"></i>Operational: Already existing dams.</li><li><i class="circle" style="color:#D5CB12;"></i>Under construction: Dams which are currently being constructed.</li><li><i class="circle" style="color:#1F78B4;"></i>Planned: Dams whose studies or licensing have been completed, but construction has yet to begin.</li><li><i class="circle" style="color:#85AB63;"></i>Inventoried: Dams whose potential site has been selected, but neither studies nor licensing have occurred.</li><li><i class="circle" style="color:#E31A1C;"></i>Suspended: Dams which have been temporarily or permanently suspended, deactivated, cancelled, or revoked.</li><li><i class="circle" style="color:#746969;"></i>Unknown: No data are currently available.</li></ul></div>'
   ],
   citation: [
-    '<strong>Citation:</strong>International Rivers, The State of the World’s Rivers, August 2014 available at <a href="http://tryse.net/googleearth/irivers-dev3/">http://tryse.net/googleearth/irivers-dev3/</a>.'
+    '<strong>Citation:</strong>International Rivers, The State of the World’s Rivers, August 2014 available at <a href="http://tryse.net/googleearth/irivers-dev3/" target="_blank">http://tryse.net/googleearth/irivers-dev3/</a>.'
   ],
   moreContent: [
     '<p class="read-more"><em><a href="http://data.globalforestwatch.org/datasets/537361e2df59486e898cd4e024af57ea_0" class="download-mobile-link" target="_blank">Learn more or download data.</a></em></p>'
