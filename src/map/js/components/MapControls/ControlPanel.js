@@ -88,6 +88,10 @@ export default class ControlPanel extends React.Component {
             <div className={'basemap-thumbnail imagery-basemap' + (this.state.activeBasemap === KEYS.imageryBasemap ? ' active' : '')} />
             <div className='basemap-label'>{controlPanelText.imageryBasemap}</div>
           </div>
+          <div className='basemap-item pointer' onClick={this.clickedBasemap.bind(this, KEYS.topoBasemap)}>
+            <div className={'basemap-thumbnail topo-basemap' + (this.state.activeBasemap === KEYS.topoBasemap ? ' active' : '')} />
+            <div className='basemap-label'>{controlPanelText.topoBasemap}</div>
+          </div>
         </div>
       </div>
     );

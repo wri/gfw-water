@@ -65,13 +65,14 @@ export const config = {
       slider: false,
       logo: false,
       minZoom: 2,
-      zoom: 3
+      zoom: 3,
+      basemap: KEYS.topoBasemap
     },
     customBasemap: {
       url: 'https://api.tiles.mapbox.com/v4/wri.c974eefc/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
       options: {
         id: KEYS.wriBasemap,
-        visible: true
+        visible: false
       }
     },
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
@@ -92,7 +93,7 @@ export const config = {
   defaults: {
     canopyDensity: 30,
     lossFromSelectIndex: 0,
-    activeBasemap: KEYS.wriBasemap,
+    activeBasemap: KEYS.topoBasemap,
     activeLabelLayer: KEYS.rivers
   },
 
@@ -283,7 +284,7 @@ export const config = {
       type: 'feature',
       order: 20,
       label: 'Case Studies',
-      group: 'watershedRisk',
+      group: 'actionPlan',
       metadataId: 'nifw_case_studies',
       className: 'case-studies',
       layerIds: [0],
@@ -532,6 +533,7 @@ export const config = {
     layerPanel: {
       watershed: 'Know your watershed',
       watershedRisk: 'Identify Watershed Risks',
+      actionPlan: 'Plan for Action',
       waterStressLegend: {
         min: 'Low',
         max: 'High',
@@ -587,7 +589,7 @@ export const config = {
       pointType: 'point',
       lossFootnote: '* Tree cover loss ',
       customAnalysisText: 'To further refine your results go to ',
-      customAnalysisLink: 'Custom Area',
+      customAnalysisLink: 'Custom Analysis',
       fullReportButton: 'Full Report',
       watershedSummeryInfo: 'Watershed Risk Summary',
       majorDamsSummeryInfo: 'MAJOR DAMS',
@@ -618,7 +620,7 @@ export const config = {
       hydrologyServiceAreaField: 'AreaSqKm',
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
-      customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
+      customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>* Please note that the output subwatershed may not align with the scale of your area of interest or management implications. Try adjusting the point to obtain a new subwatershed you are interested in or download the data for desktop analysis.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
       watershedSummeryInfoDescription: `
         <p>Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services.</p>
         <div>We consider four watershed risks:</div>
@@ -687,6 +689,7 @@ export const config = {
     controlPanel: {
       wriBasemap: 'WRI',
       imageryBasemap: 'Imagery',
+      topoBasemap: 'Topographic',
       hydrologyLabel: 'Hydrology',
       administrativeLabel: 'Administrative'
     },
