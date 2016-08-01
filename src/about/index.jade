@@ -93,13 +93,13 @@ html
 
           div#three.content-subpage.publications-blogs
             h3 #{about.content.publications[0]}
-            h5 
-              a(href='http://www.globalforestwatch.org/about/the-gfw-partnership' target='_blank') Global Forest Watch Water Metadata Document
             div.image
               img#publications-image
             div.detail
-              //- p <i>#{about.content.publications[1]}</i>
               p #{about.content.publications[2]}
+              p 
+                a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog' target='_blank')
+                  div.blog-button.gfw-btn.blue.pointer GO TO METADATA
             h3.blogs #{about.content.publications[3]}
             div.image
               img#blogs-image
