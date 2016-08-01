@@ -10,6 +10,9 @@
     "modules": true,
     "jsx": true
   },
+  "parserOptions": {
+
+  },
   "globals": {
     "$": true,
     "ga": true,
@@ -27,6 +30,7 @@
   "rules": {
     "quotes": [1, "single", "avoid-escape"],
     "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 2,
     "no-alert": 0,
     "no-console": 0,
     "no-debugger": 1,

@@ -347,6 +347,7 @@ analysis[KEYS.WATER] = {
 let grader = {};
 
 //- These functions should return a value ready to be dropped in the UI
+//- Return 10 if no valid value is present, 10 indicates not applicable
 grader[KEYS.R_FIRES] = (value) => {
   if (value <= 0.000018) {
     return 1;
@@ -358,6 +359,8 @@ grader[KEYS.R_FIRES] = (value) => {
     return 4;
   } else if (value >= 0.00037) {
     return 5;
+  } else {
+    return 10;
   }
 };
 
@@ -376,6 +379,8 @@ grader[KEYS.R_EROSION] = (value) => {
     return 4;
   } else if (value >= 3.49) {
     return 5;
+  } else {
+    return 10;
   }
 };
 
@@ -394,6 +399,8 @@ grader[KEYS.R_TCL] = (value) => {
     return 4;
   } else if (value >= 0.11) {
     return 5;
+  } else {
+    return 10;
   }
 };
 
@@ -412,6 +419,8 @@ grader[KEYS.R_HTCL] = (value) => {
     return 4;
   } else if (value <= 0.16) {
     return 5;
+  } else {
+    return 10;
   }
 };
 
