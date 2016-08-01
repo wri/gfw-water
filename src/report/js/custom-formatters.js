@@ -156,7 +156,7 @@ export default {
     let currentValue;
     //- Save the individual values for the TCL bar chart, indices 1 - 14 represents 2001 - 2014
     //- Histograms from image service drop trailing 0's, so terminator must be config.fieldMax and not array length
-    for(index; index <= config.fieldMax; index++) {
+    for (index; index <= config.fieldMax; index++) {
       currentValue = counts[index] || 0;
       // Format is tl_g_${density}_${two digit index}_ha
       attributes[config.field(canopyDensity, index)] = currentValue;

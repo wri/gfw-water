@@ -207,30 +207,15 @@ export const performRiskAnalysis = (geometry, area, surroundingWatershed) => {
         tc_g30_ha,
         ptc_ha;
 
-    // If the error is invalid size, use the results from the surrounding watershed
-    tl_g30_all_ha = errorIsInvalidImageSize(results[KEYS.TCL_30].error) ?
-      surroundingWatershed.attributes.tl_g30_all_ha :
-      Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha;
+    tl_g30_all_ha = results[KEYS.TCL_30].data ? Formatters.formatTreeCoverLoss(results[KEYS.TCL_30].data, 30).tl_g30_all_ha : 0;
+    tc_g30_ha = results[KEYS.TCD_30].data ? Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha : 0;
+    ptc_ha = results[KEYS.PTC].data ? Formatters.formatPotentialTreeCover(results[KEYS.PTC].data).ptc_ha : 0;
 
-    tc_g30_ha = errorIsInvalidImageSize(results[KEYS.TCD_30].error) ?
-      surroundingWatershed.attributes.tc_g30_ha :
-      Formatters.formatTreeCoverDensity(results[KEYS.TCD_30].data, 30).tc_g30_ha;
-
-    ptc_ha = errorIsInvalidImageSize(results[KEYS.PTC].error) ?
-      surroundingWatershed.attributes.ptc_ha :
-      Formatters.formatPotentialTreeCover(results[KEYS.PTC].data).ptc_ha;
-
-    // Same as above, if there is an invalid size error, use values from surrounding watershed
-    if (errorIsInvalidImageSize(results[KEYS.R_FIRES].error)) {
-      attributes[analysisConfig[KEYS.R_FIRES].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_FIRES].field];
-    } else {
+    if (results[KEYS.R_FIRES].data) {
       lang.mixin(attributes, Formatters.formatFiresRisk(results[KEYS.R_FIRES].data, area)); //rs_fire_c
     }
 
-    if (errorIsInvalidImageSize(results[KEYS.ARID].error)) {
-      attributes[analysisConfig[KEYS.R_TCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_TCL].field];
-      attributes[analysisConfig[KEYS.R_HTCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_HTCL].field];
-    } else {
+    if (results[KEYS.ARID].data) {
       lang.mixin(attributes, Formatters.formatTCLRisk(results[KEYS.ARID].data, area, tl_g30_all_ha, tc_g30_ha));
       lang.mixin(attributes, Formatters.formatHTCLRisk(results[KEYS.ARID].data, area, tc_g30_ha, ptc_ha));
     }
@@ -241,12 +226,19 @@ export const performRiskAnalysis = (geometry, area, surroundingWatershed) => {
       attributes[analysisConfig[KEYS.R_EROSION].field] = 10;
     }
 
-    // Mixin a special attribute if the surrounding watershed analysis was used instead
+    // Mixin attributes if the surrounding watershed analysis was used instead
     // This is so the report can use the surrounding watershed and not the custom feature
     // May need to check against more properties if this produces false negatives
     if (errorIsInvalidImageSize(results[KEYS.TCL_30].error)) {
       attributes[analysisPanelText.surroundingBasinField] = surroundingWatershed.attributes[analysisPanelText.watershedBasinField];
       attributes[analysisPanelText.surroundingNameField] = surroundingWatershed.attributes[analysisPanelText.watershedNameField];
+      //- ARID
+      attributes[analysisConfig[KEYS.R_TCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_TCL].field];
+      attributes[analysisConfig[KEYS.R_HTCL].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_HTCL].field];
+      //- Fires
+      attributes[analysisConfig[KEYS.R_FIRES].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_FIRES].field];
+      //- Erosion
+      attributes[analysisConfig[KEYS.R_EROSION].field] = surroundingWatershed.attributes[analysisConfig[KEYS.R_EROSION].field];
     }
 
     promise.resolve(attributes);

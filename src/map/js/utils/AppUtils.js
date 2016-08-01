@@ -13,6 +13,7 @@ const utils = {
         obj = item;
         return true;
       }
+      return false;
     });
     return obj;
   },

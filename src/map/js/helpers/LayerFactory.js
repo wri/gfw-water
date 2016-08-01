@@ -19,7 +19,7 @@ import {errors} from 'js/config';
 export default (layer) => {
   if ((!layer.url && layer.type !== 'graphic') || !layer.type) { throw new Error(errors.missingLayerConfig); }
 
-  let esriLayer, options = {};
+  let esriLayer, options = {}, imageParameters;
 
   switch (layer.type) {
     case 'tiled':
@@ -40,7 +40,7 @@ export default (layer) => {
     break;
     case 'dynamic':
       // Create some image parameters
-      let imageParameters = new ImageParameters();
+      imageParameters = new ImageParameters();
       imageParameters.layerOption = ImageParameters.LAYER_OPTION_SHOW;
       imageParameters.layerIds = layer.layerIds;
       imageParameters.format = 'png32';
