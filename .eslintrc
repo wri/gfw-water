@@ -10,9 +10,6 @@
     "modules": true,
     "jsx": true
   },
-  "parserOptions": {
-
-  },
   "globals": {
     "$": true,
     "ga": true,
