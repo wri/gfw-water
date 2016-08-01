@@ -102,15 +102,7 @@ export default class Modal extends React.Component {
   }
 
   summaryMap (item: any) {
-    if (typeof item === 'string') {
-      return <p dangerouslySetInnerHTML={{ __html: item }} />;
-    } else {
-      return (
-        <ul>
-          {item.map(listItem => <li dangerouslySetInnerHTML={{ __html: listItem }} />)}
-        </ul>
-      );
-    }
+    return <div dangerouslySetInnerHTML={{ __html: item }} />;
   }
 
   paragraphMap (item: string) {
