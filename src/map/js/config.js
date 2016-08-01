@@ -655,6 +655,43 @@ export const config = {
         <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
         <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
         <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
+        <div class='modal-title'>What does the risk score mean?</div>
+        <table class='risk-score-table'>
+          <th>
+            Score (x)
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Description
+          </th>
+          <tr>
+            <td>1</td>
+            <td>Low</td>
+            <td>Low probability of adverse effect from stressor. Further inquiry not recommended.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Low to Medium</td>
+            <td>Low to medium probability of adverse effect from stressor. Further inquiry not recommended.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Medium</td>
+            <td>Medium probability of adverse effect from stressor. Consider further analysis to evaluate local conditions.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Medium to High</td>
+            <td>Medium to high probability of adverse effect from stressor. Further investigation and appropriate action recommended.</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>High</td>
+            <td>High probability of adverse effect from stressor. Further investigation and immediate appropriate action highly recommended.</td>
+          </tr>
+        </table>
         <p><a href="http://www.globalforestwatch.org/howto/tags/water/" target="_blank">Need Help?</p>
       `,
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',

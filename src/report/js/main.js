@@ -94,11 +94,6 @@ const attachEvents = () => {
     //- Send off analytics
     analytics(KEYS.analyticsCategory, KEYS.analyticsInfoAction, analyticsConfig.infoWindow);
   });
-  document.getElementById('landscape-info-button').addEventListener('click', () => {
-    modalActions.showBasicModal(text.landscapeSummeryInfo, text.landscapeSummeryInfoDescription);
-    //- Send off analytics
-    analytics(KEYS.analyticsCategory, KEYS.analyticsInfoAction, analyticsConfig.infoWindow);
-  });
   // Print button click.
   document.getElementById('print-icon').addEventListener('click', () => {
     window.print();
