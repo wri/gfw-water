@@ -15,11 +15,13 @@ import Request from 'utils/request';
 import utils from 'utils/AppUtils';
 import KEYS from 'js/constants';
 
+let timer;
+
 let LayersHelper = {
 
   connectLayerEvents () {
     brApp.debug('LayersHelper >>> connectLayerEvents');
-    // Enable Mouse Events for al graphics layers
+    // Enable Mouse Events for all graphics layers
     brApp.map.graphics.enableMouseEvents();
     // Get the watershed layer and add mouse events to it
     let watershedLayer = brApp.map.getLayer(KEYS.watershed);
@@ -35,6 +37,7 @@ let LayersHelper = {
     if (caseStudies) {
       caseStudies.on('click', LayersHelper.caseStudiesClicked);
     }
+
     brApp.map.on('click', evt => {
       if (!evt.graphic) {
         brApp.map.infoWindow.hide();
@@ -44,25 +47,42 @@ let LayersHelper = {
 
   watershedClicked (evt) {
     brApp.debug('LayerHelper >>> watershedClicked');
-    //- Don't do anything if the drawtoolbar is active
-    let {activeWatershed, toolbarActive} = analysisStore.getState();
-    let graphic = evt.graphic;
-    let layer = brApp.map.getLayer(KEYS.watershed);
-    if (graphic && !toolbarActive) {
-      //- If we currently have a feature in analysis, clear the analyis, then run the query
-      if (activeWatershed) { analysisActions.clearActiveWatershed(); }
-      // Get a reference to the objectid field
-      let oidField = layer.objectIdField;
-      let objectid = graphic.attributes[oidField];
-      Request.getWatershedById(objectid).then(featureJSON => {
-        //- Convert JSON to feature
-        let feature = GraphicsHelper.makePolygon(featureJSON);
-        //- Start the analysis process
-        analysisActions.analyzeCurrentWatershed(feature);
-        brApp.map.setExtent(feature.geometry.getExtent(), true);
-      }, err => {
-        console.log(err);
-      });
+
+    function executeHandler () {
+      //- Don't do anything if the drawtoolbar is active
+      let {activeWatershed, toolbarActive} = analysisStore.getState();
+      let graphic = evt.graphic;
+      let layer = brApp.map.getLayer(KEYS.watershed);
+      if (graphic && !toolbarActive) {
+        //- If we currently have a feature in analysis, clear the analyis, then run the query
+        if (activeWatershed) { analysisActions.clearActiveWatershed(); }
+        // Get a reference to the objectid field
+        let oidField = layer.objectIdField;
+        let objectid = graphic.attributes[oidField];
+        Request.getWatershedById(objectid).then(featureJSON => {
+          //- Convert JSON to feature
+          let feature = GraphicsHelper.makePolygon(featureJSON);
+          //- Start the analysis process
+          analysisActions.analyzeCurrentWatershed(feature);
+          brApp.map.setExtent(feature.geometry.getExtent(), true);
+        }, err => {
+          console.log(err);
+        });
+      }
+    }
+
+    //- Bail if this is followed by another click within 250ms
+    //- DblClicks should zoom in as that is the default behavior on a map, but single clicks should
+    //- trigger this feature
+    if (timer) {
+      window.clearTimeout(timer);
+      timer = undefined;
+    } else {
+      timer = setTimeout(() => {
+        //- reset timer
+        timer = undefined;
+        executeHandler();
+      }, 250);
     }
   },
 
