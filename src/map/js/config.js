@@ -65,14 +65,13 @@ export const config = {
       slider: false,
       logo: false,
       minZoom: 2,
-      zoom: 3,
-      basemap: KEYS.topoBasemap
+      zoom: 3
     },
     customBasemap: {
       url: 'https://api.tiles.mapbox.com/v4/wri.c974eefc/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
       options: {
         id: KEYS.wriBasemap,
-        visible: false
+        visible: true
       }
     },
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
@@ -93,7 +92,7 @@ export const config = {
   defaults: {
     canopyDensity: 30,
     lossFromSelectIndex: 0,
-    activeBasemap: KEYS.topoBasemap,
+    activeBasemap: KEYS.wriBasemap,
     activeLabelLayer: KEYS.rivers
   },
 
