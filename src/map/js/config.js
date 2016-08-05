@@ -122,7 +122,7 @@ export const config = {
       group: 'watershed',
       metadataId: 'wetlands_waterbodies',
       className: 'wetlands',
-      // url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [2]
     },
     {
