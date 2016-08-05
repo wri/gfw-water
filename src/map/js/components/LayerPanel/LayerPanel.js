@@ -37,9 +37,14 @@ export default class LayerPanel extends React.Component {
         </LayerGroup>
         <LayerGroup activeLayers={this.state.activeLayers} label={layerPanelText.actionPlan}>
           {layersConfig.map(this.checkboxMap('actionPlan'), this)}
+          <div onClick={this.goToAbout} className='blue pointer beyond-numbers-btn'>Beyond the Numbers</div>
         </LayerGroup>
       </div>
     );
+  }
+
+  goToAbout () {
+    window.open('../about/index.html');
   }
 
   checkboxMap (group) {

@@ -74,14 +74,14 @@ html
                   header
                     h2 Guidance & Roadmaps
                     //- small World Resources Institute
-              div.col
-                div#naturalInfrastructure.little-card
-                  div.icon
-                    svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
-                      use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-natural-infrastructure") 
-                  header
-                    h2 Natural Infrastructure Champions
-                    //- small World Resources Institute
+              //- div.col
+              //-   div#naturalInfrastructure.little-card
+              //-     div.icon
+              //-       svg(preserveAspectRatio='xMidYMid' width='12' height='13') 
+              //-         use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-natural-infrastructure") 
+              //-     header
+              //-       h2 Natural Infrastructure Champions
+              //-       //- small World Resources Institute
               div.col
                 div#otherWRI.little-card
                   div.icon
@@ -96,6 +96,7 @@ html
             div.image
               img#publications-image
             div.detail
+              p#publications-title #{about.content.publications[1]}
               p #{about.content.publications[2]}
               p 
                 a(href='http://www.wri.org/our-work/project/natural-infrastructure-water/blog' target='_blank')

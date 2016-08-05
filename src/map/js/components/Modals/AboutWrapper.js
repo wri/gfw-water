@@ -38,11 +38,11 @@ export default class AboutWrapper extends React.Component {
         nextCard = 'guidance';
         break;
       case 'guidance':
-        nextCard = 'naturalInfrastructure';
-        break;
-      case 'naturalInfrastructure':
         nextCard = 'otherWRI';
         break;
+      // case 'naturalInfrastructure':
+      //   nextCard = 'otherWRI';
+      //   break;
       case 'otherWRI':
         nextCard = 'spatialMapping';
         break;
@@ -64,11 +64,11 @@ export default class AboutWrapper extends React.Component {
       case 'guidance':
         previousCard = 'economics';
         break;
-      case 'naturalInfrastructure':
-        previousCard = 'guidance';
-        break;
+      // case 'naturalInfrastructure':
+      //   previousCard = 'guidance';
+      //   break;
       case 'otherWRI':
-        previousCard = 'naturalInfrastructure';
+        previousCard = 'guidance';
         break;
       default:
         break;

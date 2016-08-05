@@ -6,7 +6,7 @@
   width 320px
   right 40px
   z-index 6
-  top 110px
+  top 70px
   & .arcgisSearch
     margin auto auto 0
     border-radius 0
@@ -23,13 +23,13 @@
       border-radius 0
 
 .analysis-tools
-  max-height calc(100% - 280px)
+  max-height calc(100% - 245px)
   flex-direction column
   overflow hidden
   display flex
   width 320px
   right 40px
-  top 150px
+  top 110px
   & .no-shrink
     flex-shrink 0
   & .tab-container
@@ -206,13 +206,16 @@
 
 .watershed-chart
   margin 0 10px
-  height 150px
+  height 120px
   width 300px
   padding 0
   // Style the fourth line in the grid with a bright red line
   & .highcharts-grid path:nth-child(5)
     stroke #FF0800
     stroke-width 2
+
+.highcharts-legend
+  height 100%
 
 .custom-area-title
   & input

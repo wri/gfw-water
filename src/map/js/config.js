@@ -65,14 +65,13 @@ export const config = {
       slider: false,
       logo: false,
       minZoom: 2,
-      zoom: 3,
-      basemap: KEYS.topoBasemap
+      zoom: 3
     },
     customBasemap: {
       url: 'https://api.tiles.mapbox.com/v4/wri.c974eefc/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
       options: {
         id: KEYS.wriBasemap,
-        visible: false
+        visible: true
       }
     },
     geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
@@ -93,7 +92,7 @@ export const config = {
   defaults: {
     canopyDensity: 30,
     lossFromSelectIndex: 0,
-    activeBasemap: KEYS.topoBasemap,
+    activeBasemap: KEYS.wriBasemap,
     activeLabelLayer: KEYS.rivers
   },
 
@@ -297,7 +296,8 @@ export const config = {
       id: KEYS.watershed,
       order: 13,
       type: 'feature',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+      url: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
+      // url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     {
@@ -378,6 +378,12 @@ export const config = {
       title: 'Spatial mapping tools and platforms',
       bullets: [
         {
+          label: 'Earth Genome: <a href="http://www.earthgenome.org/gist" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
+        },
+        {
+          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
+        },
+        {
           label: '<a href="http://www.naturalcapitalproject.org/software/" target="_blank">Natural Capital Project:</a>'
         },
         [
@@ -392,9 +398,6 @@ export const config = {
           }
         ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
-        },
-        {
           label: 'The Nature Conservancy:'
         },
         [
@@ -402,7 +405,7 @@ export const config = {
             label: '<a href="http://watershedtool.org/" target="_blank">Watershed Conservation Screening Tool</a>'
           },
           {
-            label: '<a href="http://water.nature.org/waterblueprint/ target="_blank"">Urban Water Blueprint</a>'
+            label: '<a href="http://water.nature.org/waterblueprint/" target="_blank">Urban Water Blueprint</a>'
           }
         ]
       ]
@@ -431,7 +434,7 @@ export const config = {
         },
         [
           {
-            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelectTM</a>'
+            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelect<sup>TM</sup></a>'
           },
           {
             label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104" target="_blank">Guide to Corporate Ecosystem Valuation</a>'
@@ -454,22 +457,28 @@ export const config = {
       title: 'Guidance and roadmaps',
       bullets: [
         {
-          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
-        },
-        {
-          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
-        },
-        {
-          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
-        },
-        {
           label: '<a href="http://www.forest-trends.org/dir/sowi_2014/" target="_blank">Gaining Depth: State of Water Investment 2014</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
         },
         {
           label: '<a href="http://www.iwa-network.org/downloads/1438744856-Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf" target="_blank">Natural Infrastructure in the Nexus</a>'
         },
         {
+          label: 'Protecting Drinking Water: Lessons from Watershed Investment Programs in the United States (Coming soon)'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
+        },
+        {
+          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
+        },
+        {
           label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
+        },
+        {
+          label: '<a href="http://water.nature.org/waterblueprint/#/section=overview&c=3:6.40265:-37.17773" target="_blank">Urban Water Blueprint: Mapping conservation solutions to the global water challenge</a>'
         }
       ]
     },
@@ -497,13 +506,10 @@ export const config = {
       title: 'Other WRI Projects',
       bullets: [
         {
-          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
+          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
         },
         {
           label: '<a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Aqueduct</a>'
-        },
-        {
-          label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
         },
         {
           label: '<a href="http://fires.globalforestwatch.org/home/" target="_blank">Global Forest Watch Fires</a>'
@@ -512,8 +518,11 @@ export const config = {
           label: '<a href="http://www.wri.org/our-work/project/global-restoration-initiative" target="_blank">Global Restoration Initiative</a>'
         },
         {
-          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
+          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
         }
+        // {
+        //   label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
+        // },
       ]
     }
   },
@@ -693,6 +702,7 @@ export const config = {
           </tr>
         </table>
         <p><a href="http://www.globalforestwatch.org/howto/tags/water/" target="_blank">Need Help?</p>
+        <p><a href="http://www.wri.org/publication/GFW_Water_metadata" target="_blank">Download the metadata document</p>
       `,
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
       waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>',

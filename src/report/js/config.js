@@ -51,7 +51,8 @@ export default {
   watershedIdField: 'maj_bas',
   watershedName: 'maj_name',
   watershedQueryStringParam: 'fid',
-  watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+  // watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+  watershedUrl: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
   customAnalysisAreasUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
   watershedSymbol: {
     'color': [255, 255, 255, 0],
