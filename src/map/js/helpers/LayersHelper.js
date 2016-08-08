@@ -167,22 +167,7 @@ let LayersHelper = {
     let layer = brApp.map.getLayer(layerId);
     if (layer) { layer.hide(); }
   },
-  /**
-  * @param {string} layerId - id of layer to show, need to hide other label layer
-  */
-  updateLabelLayers (layerId) {
-    brApp.debug(`LayersHelper >>> updateLabelLayers - ${layerId}`);
-    let layer = brApp.map.getLayer(layerId);
-    if (layer) { layer.show(); }
-    //- Since we showed layer id, hide the other label layer
-    if (layerId === KEYS.adminLabels) {
-      layer = brApp.map.getLayer(KEYS.rivers);
-      if (layer) { layer.hide(); }
-    } else {
-      layer = brApp.map.getLayer(KEYS.adminLabels);
-      if (layer) { layer.hide(); }
-    }
-  },
+
   /**
   * @param {string} basemap - id of basemap to show
   */
