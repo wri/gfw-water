@@ -153,7 +153,7 @@ export const config = {
     },
     {
       id: KEYS.majorDams,
-      order: 10,
+      order: 16,
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
@@ -164,7 +164,7 @@ export const config = {
     },
     {
       id: KEYS.waterIntake,
-      order: 11,
+      order: 16,
       type: 'dynamic',
       label: 'Urban water intakes',
       metadataId: 'urban_water_intakes',
@@ -301,18 +301,19 @@ export const config = {
       visible: true
     },
     {
-      id: KEYS.rivers,
+      id: KEYS.adminLabels,
       order: 15,
-      type: 'tiled',
-      url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
+      layerIds: [0],
+      type: 'dynamic',
+      url: 'http://gis-stage.wri.org/arcgis/rest/services/gfw/gfw_water_city_labels/MapServer',
       visible: true
     },
     {
-      id: KEYS.adminLabels,
+      id: KEYS.rivers,
       order: 14,
-      type: 'webtiled',
-      url: 'https://api.tiles.mapbox.com/v4/wri.acf5a04e/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
-      visible: false
+      type: 'tiled',
+      url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
+      visible: true
     },
     {
       id: KEYS.watershedAnalysis,
