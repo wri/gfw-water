@@ -81,7 +81,7 @@ const esriQuery = (url, content, geometry) => {
     url: `${url}/query`,
     content: content,
     handleAs: 'json',
-    timeout: 30000
+    timeout: 60000
   }, { usePost: true });
 };
 

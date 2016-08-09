@@ -22,7 +22,7 @@ const computeHistogram = (url, content) => {
     callbackParamName: 'callback',
     content: content,
     handleAs: 'json',
-    timeout: 30000
+    timeout: 150000
   }, { usePost: true });
 };
 
@@ -47,7 +47,7 @@ const computeStatisticsHistograms = (url, content) => {
     callbackParamName: 'callback',
     content: content,
     handleAs: 'json',
-    timeout: 30000
+    timeout: 150000
   }, { usePost: true });
 };
 
