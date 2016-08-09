@@ -36,10 +36,10 @@ html
         div.content-aside
           div.content-menu
             ul#menu
-              li.pointer.active ABOUT GFW WATER
-              li.pointer BEYOND THE NUMBERS
-              li.pointer PUBLICATIONS AND BLOGS
-              li.pointer TUTORIALS
+              li#water.pointer.active ABOUT GFW WATER
+              li#numbers.pointer BEYOND THE NUMBERS
+              li#publications.pointer PUBLICATIONS AND BLOGS
+              li#tutorials.pointer TUTORIALS
 
         div.content-body
           div#one.content-subpage.active
@@ -169,34 +169,7 @@ html
         callback: function () {
           require(['about/main']); }
       };
-    script.
-      var links = [
-        'one',
-        'two',
-        'three',
-        'four'
-      ];
-      var menuItems = [].slice.call(document.querySelectorAll('#menu li'));
 
-      document.addEventListener('DOMContentLoaded', function (event) {
-        menuItems.forEach(function (item, index) {
-          item.onclick = function () {
-
-            menuItems.forEach(function (item) {
-              item.classList.remove('active');
-            });
-
-            this.classList.add('active');
-
-            links.forEach(function (link) {
-              document.getElementById(link).className = document.getElementById(link).className.replace('active', '');
-            });
-            var element = document.getElementById(links[index])
-            element.className = element.className + ' active'
-            //-element.scrollIntoView();
-          };
-        });
-      });
     div#footerGfw
     div#root.layout-content
     div#about-modal.modal-wrapper.hidden
