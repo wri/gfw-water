@@ -58,7 +58,6 @@ const getFireCount = () => {
   fireQuery.where = firesOneDayAgo;
   fireQueryTask.executeForIds(fireQuery).then(
     (results) => {
-      console.log('fire results', results);
       if (results) {
         fireCount = results.length;
       } else {
@@ -82,7 +81,6 @@ const calculateOffset = (result) => {
 };
 
 const handleWatershed = (result) => {
-  console.log('watershed', result.features[0]);
   if ( result.features.length ) {
     // Keep a reference to the watershed graphic.
     config.watershed = result.features[0];

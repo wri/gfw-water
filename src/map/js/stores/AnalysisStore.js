@@ -72,9 +72,9 @@ class AnalysisStore {
 
   toggleLoader (status) {
     this.isLoading = status;
-    //- Give it a timeout of 30 secs if we are enabling the loader
+    //- Give it a timeout of 60 secs if we are enabling the loader
     if (status) {
-      this.applyTimeout('isLoading', 30000);
+      this.applyTimeout('isLoading', 60000);
     }
   }
 
