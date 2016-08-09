@@ -153,7 +153,7 @@ export const config = {
     },
     {
       id: KEYS.majorDams,
-      order: 10,
+      order: 16,
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
@@ -164,7 +164,7 @@ export const config = {
     },
     {
       id: KEYS.waterIntake,
-      order: 11,
+      order: 16,
       type: 'dynamic',
       label: 'Urban water intakes',
       metadataId: 'urban_water_intakes',
