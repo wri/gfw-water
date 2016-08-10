@@ -352,13 +352,13 @@ let grader = {};
 grader[KEYS.R_FIRES] = (value) => {
   if (value <= 0.000018) {
     return 1;
-  } else if (value >= 0.000019 && value <= 0.000071) {
+  } else if (value >= 0.000018 && value <= 0.000071) {
     return 2;
-  } else if (value >= 0.000072 && value <= 0.00016) {
+  } else if (value >= 0.000071 && value <= 0.00016) {
     return 3;
-  } else if (value >= 0.00017 && value <= 0.00036) {
+  } else if (value >= 0.00016 && value <= 0.00036) {
     return 4;
-  } else if (value >= 0.00037) {
+  } else if (value >= 0.00036) {
     return 5;
   } else {
     return 10;
@@ -372,11 +372,11 @@ grader[KEYS.R_EROSION] = (value) => {
     return 10;
   } else if (value <= 0.28) {
     return 1;
-  } else if (value >= 0.29 && value <= 1.33) {
+  } else if (value >= 0.28 && value <= 1.33) {
     return 2;
-  } else if (value >= 1.34 && value <= 2.56) {
+  } else if (value >= 1.33 && value <= 2.56) {
     return 3;
-  } else if (value >= 2.57 && value < 3.49) {
+  } else if (value >= 2.56 && value < 3.49) {
     return 4;
   } else if (value >= 3.49) {
     return 5;
@@ -392,13 +392,13 @@ grader[KEYS.R_TCL] = (value) => {
     return 10;
   } else if (value <= 0.025) {
     return 1;
-  } else if (value >= 0.026 && value <= 0.042) {
+  } else if (value >= 0.025 && value <= 0.042) {
     return 2;
-  } else if (value >= 0.043 && value <= 0.060) {
+  } else if (value >= 0.042 && value <= 0.060) {
     return 3;
-  } else if (value >= 0.061 && value <= 0.1) {
+  } else if (value >= 0.060 && value <= 0.1) {
     return 4;
-  } else if (value >= 0.11) {
+  } else if (value >= 0.1) {
     return 5;
   } else {
     return 10;
@@ -412,13 +412,13 @@ grader[KEYS.R_HTCL] = (value) => {
     return value;
   } else if (value >= 0.75) {
     return 1;
-  } else if (value >= 0.55 && value <= 0.74) {
+  } else if (value >= 0.55 && value <= 0.75) {
     return 2;
-  } else if (value >= 0.36 && value <= 0.54) {
+  } else if (value >= 0.36 && value <= 0.55) {
     return 3;
-  } else if (value >= 0.17 && value <= 0.35) {
+  } else if (value >= 0.17 && value <= 0.36) {
     return 4;
-  } else if (value <= 0.16) {
+  } else if (value <= 0.17) {
     return 5;
   } else {
     return 10;
