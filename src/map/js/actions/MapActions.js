@@ -88,11 +88,6 @@ class MapActions {
     this.dispatch(basemap);
   }
 
-  setLabelLayer (labelLayerId) {
-    brApp.debug(`MapActions >>> setLabelLayer - ${labelLayerId}`);
-    this.dispatch(labelLayerId);
-  }
-
   /**
   * NOTE: DEPRECATED
   */

@@ -133,7 +133,9 @@ div.wrapper
   width 1024px
 
   div.printed-map
-    height 300px
+    height 450px
+    width 450px
+    position relative
 
 div.smaller
   font-size 80%
@@ -189,10 +191,19 @@ section.dark.map.overview
 
 div#risk-chart
   height 200px
+  margin-top 140px //100px
   // Style the fourth line in the grid with a bright red line
   & .highcharts-grid path:nth-child(5)
     stroke #FF0800
     stroke-width 2
+
+.risk-chart-head
+  position absolute
+  top 90px //70px
+
+.risk-chart-head-title
+  position absolute
+  top 0px
 
 section.stats
 section.risks
@@ -224,6 +235,8 @@ section.other-projects
     padding 0 0 2em 0
 
     div.info-column
+      // padding-bottom 25px
+      // position relative
       color $lightGray
       flex-basis 50%
       &:first-child
@@ -352,17 +365,16 @@ section.other-projects h2
 .report-legend
   position absolute
   bottom 0
-  display none
+  // display none
   border 1px solid rgb(170, 170, 170)
   background white
-  justify-content center
-  flex-wrap wrap
-  display flex
+  // justify-content center
+  // flex-wrap wrap
+  // display flex
   &.historical-loss-legend
-    // bottom 131px
-    top 447px
-    bottom inherit
-    margin-left -1px
+    // margin-left -1px
+    // top 447px
+    // bottom inherit
     .report-legend-label
       float right
   .legend-label
@@ -373,9 +385,8 @@ section.other-projects h2
     display flex
     width 100%
   &.recent-loss
-    // bottom 300px
-    top 446px
-    bottom inherit
+    // bottom inherit
+    // top 446px
     .report-legend-label
       display inline-block
       float right
@@ -384,8 +395,8 @@ section.other-projects h2
       padding 10px
   &.fire-risk-legend
     // bottom 49px
-    top 444px
-    bottom inherit
+    // top 444px
+    // bottom inherit
     .report-legend-label
       display inline-block
   .report-legend-label
@@ -601,6 +612,12 @@ section.other-projects h2
 
 .bold-text
   font-weight bold
+
+li.report-location
+  padding-top 15px
+
+li.report-location:first-of-type
+  padding-top 0px
 
 .ie .report-legend
   &.historical-loss-legend

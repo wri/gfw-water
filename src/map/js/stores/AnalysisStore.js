@@ -47,7 +47,6 @@ class AnalysisStore {
     let area = feature.attributes[text.watershedAreaField];
     let geometry = feature.geometry;
     performRiskAnalysis(geometry, area, surroundingWatershed).then((attributes) => {
-      console.dir(attributes);
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
       this.isLoading = false;
@@ -73,9 +72,9 @@ class AnalysisStore {
 
   toggleLoader (status) {
     this.isLoading = status;
-    //- Give it a timeout of 30 secs if we are enabling the loader
+    //- Give it a timeout of 60 secs if we are enabling the loader
     if (status) {
-      this.applyTimeout('isLoading', 30000);
+      this.applyTimeout('isLoading', 60000);
     }
   }
 

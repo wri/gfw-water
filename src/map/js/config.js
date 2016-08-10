@@ -153,7 +153,7 @@ export const config = {
     },
     {
       id: KEYS.majorDams,
-      order: 10,
+      order: 16,
       type: 'dynamic',
       label: 'Major dams',
       group: 'watershed',
@@ -164,7 +164,7 @@ export const config = {
     },
     {
       id: KEYS.waterIntake,
-      order: 11,
+      order: 16,
       type: 'dynamic',
       label: 'Urban water intakes',
       metadataId: 'urban_water_intakes',
@@ -283,7 +283,7 @@ export const config = {
       type: 'feature',
       order: 20,
       label: 'Case Studies',
-      group: 'watershedRisk',
+      group: 'actionPlan',
       metadataId: 'nifw_case_studies',
       className: 'case-studies',
       layerIds: [0],
@@ -296,22 +296,24 @@ export const config = {
       id: KEYS.watershed,
       order: 13,
       type: 'feature',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
-      visible: true
-    },
-    {
-      id: KEYS.rivers,
-      order: 15,
-      type: 'tiled',
-      url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
+      url: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
+      // url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     {
       id: KEYS.adminLabels,
+      order: 15,
+      layerIds: [0],
+      type: 'dynamic',
+      url: 'http://gis-stage.wri.org/arcgis/rest/services/gfw/gfw_water_city_labels/MapServer',
+      visible: true
+    },
+    {
+      id: KEYS.rivers,
       order: 14,
-      type: 'webtiled',
-      url: 'https://api.tiles.mapbox.com/v4/wri.acf5a04e/${level}/${col}/${row}.png?access_token=pk.eyJ1Ijoid3JpIiwiYSI6IjU3NWNiNGI4Njc4ODk4MmIyODFkYmJmM2NhNDgxMWJjIn0.v1tciCeBElMdpnrikGDrPg',
-      visible: false
+      type: 'tiled',
+      url: 'http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer',
+      visible: true
     },
     {
       id: KEYS.watershedAnalysis,
@@ -377,6 +379,12 @@ export const config = {
       title: 'Spatial mapping tools and platforms',
       bullets: [
         {
+          label: 'Earth Genome: <a href="http://www.earthgenome.org/gist" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
+        },
+        {
+          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
+        },
+        {
           label: '<a href="http://www.naturalcapitalproject.org/software/" target="_blank">Natural Capital Project:</a>'
         },
         [
@@ -391,9 +399,6 @@ export const config = {
           }
         ],
         {
-          label: 'Forest to Faucet Partnership: <a href="http://forest-to-faucet.org/projects_tools1.html" target="_blank">Watershed Forest Management Information System (WFMIS)</a>'
-        },
-        {
           label: 'The Nature Conservancy:'
         },
         [
@@ -401,7 +406,7 @@ export const config = {
             label: '<a href="http://watershedtool.org/" target="_blank">Watershed Conservation Screening Tool</a>'
           },
           {
-            label: '<a href="http://water.nature.org/waterblueprint/ target="_blank"">Urban Water Blueprint</a>'
+            label: '<a href="http://water.nature.org/waterblueprint/" target="_blank">Urban Water Blueprint</a>'
           }
         ]
       ]
@@ -409,6 +414,33 @@ export const config = {
     economics: {
       title: 'Economics and finance',
       bullets: [
+        {
+          label: 'Blue Forest Conservation, Encourage Capital, and WRI'
+        },
+        [
+          {
+            label: '<a href="http://www.blueforestconservation.com/#frb" target="_blank">Forest Resilience Bond</a>'
+          }
+        ],
+        {
+          label: 'The Nature Conservancy:'
+        },
+        [
+          {
+            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
+          }
+        ],
+        {
+          label: 'WBCSD'
+        },
+        [
+          {
+            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelect<sup>TM</sup></a>'
+          },
+          {
+            label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104" target="_blank">Guide to Corporate Ecosystem Valuation</a>'
+          }
+        ],
         {
           label: 'WRI'
         },
@@ -419,25 +451,6 @@ export const config = {
           {
             label: '<a href="http://www.wri.org/our-work/topics/finance" target="_blank">Finance Center</a>'
           }
-        ],
-        {
-          label: 'WBCSD'
-        },
-        [
-          {
-            label: '<a href="http://www.naturalinfrastructureforbusiness.org/projectselect-tm/" target="_blank">ProjectSelectTM</a>'
-          },
-          {
-            label: '<a href="http://www.wbcsd.org/pages/edocument/edocumentdetails.aspx?id=104" target="_blank">Guide to Corporate Ecosystem Valuation</a>'
-          }
-        ],
-        {
-          label: 'The Nature Conservancy:'
-        },
-        [
-          {
-            label: '<a href="http://www.naturevesttnc.org/" target="_blank">Nature Vest</a>'
-          }
         ]
       ]
     },
@@ -445,22 +458,28 @@ export const config = {
       title: 'Guidance and roadmaps',
       bullets: [
         {
-          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
-        },
-        {
-          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
-        },
-        {
-          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
-        },
-        {
           label: '<a href="http://www.forest-trends.org/dir/sowi_2014/" target="_blank">Gaining Depth: State of Water Investment 2014</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/natural-infrastructure" target="_blank">Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States</a>'
         },
         {
           label: '<a href="http://www.iwa-network.org/downloads/1438744856-Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf" target="_blank">Natural Infrastructure in the Nexus</a>'
         },
         {
+          label: 'Protecting Drinking Water: Lessons from Watershed Investment Programs in the United States (Coming soon)'
+        },
+        {
+          label: '<a href="http://www.wri.org/publication/restoration-diagnostic" target="_blank">The Restoration Diagnostics and Case Studies</a>'
+        },
+        {
+          label: '<a href="https://www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/" target="_blank">Restoration Opportunities Assessment Methodology (ROAM)</a>'
+        },
+        {
           label: '<a href="http://www.wri.org/publication/revaluing-ecosystems" target="_blank">Revaluing Ecosystems: Pathways For Scaling up the Inclusion of Ecosystem Value in Decision Making</a>'
+        },
+        {
+          label: '<a href="http://water.nature.org/waterblueprint/#/section=overview&c=3:6.40265:-37.17773" target="_blank">Urban Water Blueprint: Mapping conservation solutions to the global water challenge</a>'
         }
       ]
     },
@@ -488,20 +507,23 @@ export const config = {
       title: 'Other WRI Projects',
       bullets: [
         {
-          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
+          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
         },
         {
           label: '<a href="http://www.wri.org/our-work/project/aqueduct" target="_blank">Aqueduct</a>'
         },
         {
-          label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
-        },
-        {
           label: '<a href="http://fires.globalforestwatch.org/home/" target="_blank">Global Forest Watch Fires</a>'
         },
         {
-          label: '<a href="http://www.accessinitiative.org/" target="_blank">The Access Initiative</a>'
+          label: '<a href="http://www.wri.org/our-work/project/global-restoration-initiative" target="_blank">Global Restoration Initiative</a>'
+        },
+        {
+          label: '<a href="http://www.wri.org/our-work/project/natural-infrastructure-water" target="_blank">Natural Infrastructure for Water</a>'
         }
+        // {
+        //   label: '<a href="http://www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities" target="_blank">Atlas of Forest and Landscape Restoration Opportunities</a>'
+        // },
       ]
     }
   },
@@ -532,6 +554,7 @@ export const config = {
     layerPanel: {
       watershed: 'Know your watershed',
       watershedRisk: 'Identify Watershed Risks',
+      actionPlan: 'Plan for Action',
       waterStressLegend: {
         min: 'Low',
         max: 'High',
@@ -587,7 +610,7 @@ export const config = {
       pointType: 'point',
       lossFootnote: '* Tree cover loss ',
       customAnalysisText: 'To further refine your results go to ',
-      customAnalysisLink: 'Custom Area',
+      customAnalysisLink: 'Custom Analysis',
       fullReportButton: 'Full Report',
       watershedSummeryInfo: 'Watershed Risk Summary',
       majorDamsSummeryInfo: 'MAJOR DAMS',
@@ -618,7 +641,7 @@ export const config = {
       hydrologyServiceAreaField: 'AreaSqKm',
       squareKilometersToHectares: value => value * 100,
       customAreaHeader: 'Create subwatershed from a point',
-      customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
+      customAreaContent: '<p>Delineation of subwatershed from a point of interest is based on local topographic condition and hydrologic models.</p><p>* Please note that the output subwatershed may not align with the scale of your area of interest or management implications. Try adjusting the point to obtain a new subwatershed you are interested in or download the data for desktop analysis.</p><p>Learn more about this <a target="_blank" href="http://www.arcgis.com/home/item.html?id=8e48f6209d5c4be98ebbf90502f41077">geoprocessing service by esri</a>.</p>',
       watershedSummeryInfoDescription: `
         <p>Changes in the landscape, such as deforestation, can threaten a watershed’s ability to regulate water flows, control water quality, and provide other critical ecosystem services.</p>
         <div>We consider four watershed risks:</div>
@@ -642,7 +665,45 @@ export const config = {
         <p><strong>Historical forest loss risk</strong> is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to > 30% across the globe. This risk score is not applicable to watershed where 80% of the area is arid and potential forest coverage is less than 10%.</p>
         <p><strong>Erosion risk</strong> is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.</p>
         <p><strong>Fire risk</strong> is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).</p>
+        <div class='modal-title'>What does the risk score mean?</div>
+        <table class='risk-score-table'>
+          <th>
+            Score (x)
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Description
+          </th>
+          <tr>
+            <td>1</td>
+            <td>Low</td>
+            <td>Low probability of adverse effect from stressor. Further inquiry not recommended.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Low to Medium</td>
+            <td>Low to medium probability of adverse effect from stressor. Further inquiry not recommended.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Medium</td>
+            <td>Medium probability of adverse effect from stressor. Consider further analysis to evaluate local conditions.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Medium to High</td>
+            <td>Medium to high probability of adverse effect from stressor. Further investigation and appropriate action recommended.</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>High</td>
+            <td>High probability of adverse effect from stressor. Further investigation and immediate appropriate action highly recommended.</td>
+          </tr>
+        </table>
         <p><a href="http://www.globalforestwatch.org/howto/tags/water/" target="_blank">Need Help?</p>
+        <p><a href="http://www.wri.org/publication/GFW_Water_metadata" target="_blank">Download the metadata document</p>
       `,
       majorDamsSummeryInfoDescription: '<p>This data set is not global. The data is confined to the world’s 50 major river basins.</p>',
       waterIntakeSummeryInfoDescription: '<p>This data set is not global. The data is confined to over 250 cities with a population greater than 750,000.</p>',
@@ -687,6 +748,7 @@ export const config = {
     controlPanel: {
       wriBasemap: 'WRI',
       imageryBasemap: 'Imagery',
+      topoBasemap: 'Topographic',
       hydrologyLabel: 'Hydrology',
       administrativeLabel: 'Administrative'
     },
@@ -867,7 +929,7 @@ config.text.layerInformation[KEYS.waterStress] = {
     {label: 'Function', html: 'This dataset measures relative water demand. Higher values indicate more competition among users.'},
     {label: 'Resolution/Scale', html: ''},
     {label: 'Geographic Coverage', html: 'Global land (excluding Antarctica and Arctic islands)'},
-    {label: 'Source Data', html: '<p>Based on a combination of various sources: Food and Agriculture Organization of the United Nations (FAO) AQUASTAT 2008-2012, National Aeronautics and Space Administration (NASA) GLDAS-2 2012, <a href="http://catdir.loc.gov/catdir/samples/cam034/2002031201.pdf" alt="Shiklomanov and Rodda 2004">Shiklomanov and Rodda 2004</a>, <a href="http://www.sciencedirect.com/science/article/pii/S0959378012001318" alt="Flörke et al. 2012">Flörke et al. 2012</a>, and <a href="http://www.cger.nies.go.jp/db/gdbd/" alt="cger">Matsutomi et al. 2009</a>.</p>'},
+    {label: 'Source Data', html: '<p>Based on a combination of various sources: Food and Agriculture Organization of the United Nations (FAO) AQUASTAT 2008-2012, National Aeronautics and Space Administration (NASA) GLDAS-2 2012, <a href="http://catdir.loc.gov/catdir/samples/cam034/2002031201.pdf" alt="Shiklomanov and Rodda 2004" target="_blank">Shiklomanov and Rodda 2004</a>, <a href="http://www.sciencedirect.com/science/article/pii/S0959378012001318" target="_blank" alt="Flörke et al. 2012">Flörke et al. 2012</a>, and <a href="http://www.cger.nies.go.jp/db/gdbd/" target="_blank" alt="cger">Matsutomi et al. 2009</a>.</p>'},
     {label: 'Frequency of Updates', html: 'None planned'},
     {label: 'Date of Content', html: '2014'},
     {label: 'Cautions', html: 'The scoring of baseline water stress indicators, based on established guidelines, is subjective. Meanings were assigned to the ratio values. To understand the relationship between raw values and categories, see description below.'},
@@ -893,20 +955,20 @@ config.text.layerInformation[KEYS.majorDams] = {
     {label: 'Function', html: 'Identifies dam locations for the world’s 50 major river basins.'},
     {label: 'Resolution/Scale', html: 'Varies by country'},
     {label: 'Geographic Coverage', html: 'This data set is not global. The data is confined to the world’s 50 major river basins.'},
-    {label: 'Source Data', html: 'Dams data are compiled from various sources, including: the <a href="http://atlas.gwsp.org/index.php?option=com_content&amp;task=view&amp;id=207&amp;Itemid=68">Global Reservoir and Dam (GRanD) Database</a>, the <a href="http://waterandfood.org/">Consultative Group on International Agricultural Research (CGIAR) Challenge Program on Water and Food - Mekong</a> (for Mekong basin dams only), the <a href="http://geo.usace.army.mil/pgis/f?p=397:101:32175502090367::NO:::">United States National Inventory of Dams (NID)</a>, other government dam inventories, and original data collection by International Rivers.'},
+    {label: 'Source Data', html: 'Dams data are compiled from various sources, including: the <a href="http://atlas.gwsp.org/index.php?option=com_content&amp;task=view&amp;id=207&amp;Itemid=68" target="_blank">Global Reservoir and Dam (GRanD) Database</a>, the <a href="http://waterandfood.org/" target="_blank">Consultative Group on International Agricultural Research (CGIAR) Challenge Program on Water and Food - Mekong</a> (for Mekong basin dams only), the <a href="http://geo.usace.army.mil/pgis/f?p=397:101:32175502090367::NO:::" target="_blank">United States National Inventory of Dams (NID)</a>, other government dam inventories, and original data collection by International Rivers.'},
     {label: 'Frequency of Updates', html: 'As new data becomes available'},
     {label: 'Date of Content', html: '2014'},
     {label: 'Cautions', html: 'Data results are biased towards public available data, so gaps may exist.'}
   ],
   overview: [
-    'The <a href="http://www.v-c-s.org">State of the World\'s Rivers</a> is an interactive web database that illustrates data on ecological health in the world’s 50 major river basins. Indicators of ecosystem health are grouped into the categories of river fragmentation, biodiversity, and water quality. The database was created and published by International Rivers in 2014.',
+    'The <a href="http://www.v-c-s.org" target="_blank">State of the World\'s Rivers</a> is an interactive web database that illustrates data on ecological health in the world’s 50 major river basins. Indicators of ecosystem health are grouped into the categories of river fragmentation, biodiversity, and water quality. The database was created and published by International Rivers in 2014.',
     'The Dam Hotspots data contains over 5,000 dam locations determined by latitude and longitude coordinates. These locations were confined to the world’s 50 major river basins. The data set comes from multiple sources, and was corrected for location errors by International Rivers. The “project status”—a moving target—was determined by acquiring official government data, as well as through primary research from Berkeley and five International Rivers’ regional offices.'
   ],
   customContent: [
     '<div class="layer-details layer-details-dam_hotspots"><ul class="layer-colors"><li><i class="circle" style="color:#F78300;"></i>Operational: Already existing dams.</li><li><i class="circle" style="color:#D5CB12;"></i>Under construction: Dams which are currently being constructed.</li><li><i class="circle" style="color:#1F78B4;"></i>Planned: Dams whose studies or licensing have been completed, but construction has yet to begin.</li><li><i class="circle" style="color:#85AB63;"></i>Inventoried: Dams whose potential site has been selected, but neither studies nor licensing have occurred.</li><li><i class="circle" style="color:#E31A1C;"></i>Suspended: Dams which have been temporarily or permanently suspended, deactivated, cancelled, or revoked.</li><li><i class="circle" style="color:#746969;"></i>Unknown: No data are currently available.</li></ul></div>'
   ],
   citation: [
-    '<strong>Citation:</strong>International Rivers, The State of the World’s Rivers, August 2014 available at <a href="http://tryse.net/googleearth/irivers-dev3/">http://tryse.net/googleearth/irivers-dev3/</a>.'
+    '<strong>Citation:</strong>International Rivers, The State of the World’s Rivers, August 2014 available at <a href="http://tryse.net/googleearth/irivers-dev3/" target="_blank">http://tryse.net/googleearth/irivers-dev3/</a>.'
   ],
   moreContent: [
     '<p class="read-more"><em><a href="http://data.globalforestwatch.org/datasets/537361e2df59486e898cd4e024af57ea_0" class="download-mobile-link" target="_blank">Learn more or download data.</a></em></p>'

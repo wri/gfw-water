@@ -31,10 +31,6 @@ export default class ControlPanel extends React.Component {
       LayersHelper.changeBasemap(newState.activeBasemap);
     }
 
-    // If the label layer in the store changed, update it on the map now
-    if (newState.activeLabelLayer !== this.state.activeLabelLayer) {
-      LayersHelper.updateLabelLayers(newState.activeLabelLayer);
-    }
   }
 
   render() {
@@ -61,25 +57,6 @@ export default class ControlPanel extends React.Component {
           </li>
         </ul>
         <div className={'basemap-switcher shadow' + (this.state.basemapGalleryOpen ? ' open' : '')}>
-          <div className='basemap-item basemap-item__label-layer-picker'>
-            <div className='basemap-item__label-layer-picker__header'>Label Layers:</div>
-            <label className='pointer'>
-              <input checked={KEYS.rivers === this.state.activeLabelLayer}
-                type='radio'
-                name='label-layer'
-                onChange={this.changeLabelLayer.bind(this, KEYS.rivers)}
-              />
-              {controlPanelText.hydrologyLabel}
-            </label>
-            <label className='pointer'>
-              <input checked={KEYS.adminLabels === this.state.activeLabelLayer}
-                type='radio'
-                name='label-layer'
-                onChange={this.changeLabelLayer.bind(this, KEYS.adminLabels)}
-              />
-              {controlPanelText.administrativeLabel}
-            </label>
-          </div>
           <div className='basemap-item pointer' onClick={this.clickedBasemap.bind(this, KEYS.wriBasemap)}>
             <div className={'basemap-thumbnail wri-basemap' + (this.state.activeBasemap === KEYS.wriBasemap ? ' active' : '')} />
             <div className='basemap-label'>{controlPanelText.wriBasemap}</div>
@@ -119,10 +96,6 @@ export default class ControlPanel extends React.Component {
 
   locateMe () {
     mapActions.zoomToUserLocation();
-  }
-
-  changeLabelLayer (layerId) {
-    mapActions.setLabelLayer(layerId);
   }
 
 }

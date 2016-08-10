@@ -73,26 +73,75 @@ export default {
     const fireCount = attributes._fireCount;
     const avgFireCount = attributes.fire_c;
 
-    dom.byId('watershed-area').innerHTML = number.format(wsArea, noDecimal);
-    dom.byId('wetland-area').innerHTML = number.format(wetArea, noDecimal);
-    // dom.byId('wetland-percent').innerHTML = number.format(wetPercent, twoDecimals);
+    let watershedAreaValue = wsArea;
+    if (watershedAreaValue > 1000000) {
+      watershedAreaValue = Math.floor(watershedAreaValue / 1000000);
+      dom.byId('watershed-area-unit').innerHTML = 'MHa';
+    } else {
+      watershedAreaValue = number.format(wsArea, noDecimal);
+    }
+    dom.byId('watershed-area').innerHTML = watershedAreaValue;
 
-    dom.byId('tree-cover').innerHTML = number.format(treeCover, noDecimal);
-    // dom.byId('tree-cover-percent').innerHTML = number.format(treePercent, twoDecimals);
+    let wetlandAreaValue = wetArea;
+    if (wetlandAreaValue > 1000000) {
+      wetlandAreaValue = Math.floor(wetlandAreaValue / 1000000);
+      dom.byId('wetland-area-unit').innerHTML = 'MHa';
+    } else {
+      wetlandAreaValue = number.format(wetArea, noDecimal);
+    }
+    dom.byId('wetland-area').innerHTML = wetlandAreaValue;
+
+    let treeCoverValue = treeCover;
+    if (treeCoverValue > 1000000) {
+      treeCoverValue = Math.floor(treeCoverValue / 1000000);
+      dom.byId('tree-cover-unit').innerHTML = 'MHa';
+    } else {
+      treeCoverValue = number.format(treeCover, noDecimal);
+    }
+    dom.byId('tree-cover').innerHTML = treeCoverValue;
+
+    // dom.byId('tree-cover').innerHTML = number.format(treeCover, noDecimal);
     dom.byId('dam-count').innerHTML = dams;
 
-    dom.byId('past-cover').innerHTML = number.format(pastCover, noDecimal);
+    let pastCoverValue = pastCover;
+    if (pastCoverValue > 1000000) {
+      pastCoverValue = Math.floor(pastCoverValue / 1000000);
+      dom.byId('past-cover-unit').innerHTML = 'MHa';
+    } else {
+      pastCoverValue = number.format(pastCover, noDecimal);
+    }
+    dom.byId('past-cover').innerHTML = pastCoverValue;
+
+    // dom.byId('past-cover').innerHTML = number.format(pastCover, noDecimal);
     dom.byId('water-withdrawl').innerHTML = waterWithdrawl;
 
     dom.byId('risk-tree-loss').innerHTML = (treeLossRisk !== 10 ? `${treeLossRisk}/5` : reportText.na);
-    dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, noDecimal);
+
+    let treeLossValue = treeLossAmount;
+    if (treeLossValue > 1000000) {
+      treeLossValue = Math.floor(treeLossValue / 1000000);
+      dom.byId('tree-loss-amount-unit').innerHTML = 'MHa';
+    } else {
+      treeLossValue = number.format(treeLossAmount, noDecimal);
+    }
+    dom.byId('tree-loss-amount').innerHTML = treeLossValue;
+    // dom.byId('tree-loss-amount').innerHTML = number.format(treeLossAmount, noDecimal);
     dom.byId('tree-loss-percent').innerHTML = number.format(treeLossPercent, percentTwoDecimals);
     //- Removed at WRI's request
     // dom.byId('tree-loss-rate').innerHTML = treeLossRate;
     dom.byId('tree-loss-trend').innerHTML = treeLossTrend;
 
     dom.byId('risk-past-loss').innerHTML = (pastLossRisk !== 10 ? `${pastLossRisk}/5` : reportText.na);
-    dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, noDecimal);
+
+    let pastLossValue = pastLossAmount;
+    if (pastLossValue > 1000000) {
+      pastLossValue = Math.floor(pastLossValue / 1000000);
+      dom.byId('past-loss-amount-unit').innerHTML = 'MHa';
+    } else {
+      pastLossValue = number.format(pastLossAmount, noDecimal);
+    }
+    dom.byId('past-loss-amount').innerHTML = pastLossValue;
+    // dom.byId('past-loss-amount').innerHTML = number.format(pastLossAmount, noDecimal);
     let correctedPastLossPercent = pastLossPercent > 1 ? 1 : pastLossPercent;
     dom.byId('past-loss-percent').innerHTML = number.format(correctedPastLossPercent, percentTwoDecimals);
     dom.byId('past-loss-rate').innerHTML = number.format(pastLossRate, percentTwoDecimals);

@@ -37,7 +37,11 @@ esriConfig.defaults.io.corsEnabledServers.push('gis-potico.wri.org');
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
   const div = domQuery('.' + mapName + ' div.printed-map')[0];
-  div.innerHTML = '';
+  // div.innerHTML = '';
+  // let oldLoading = domQuery('div.loading-container')[0];
+  div.querySelector('.loading-container').remove();
+  div.querySelector('.labelToRemove').remove();
+
   domConstruct.create('img', {
     src: response.results[0].value.url
   }, div);
@@ -58,7 +62,6 @@ const getFireCount = () => {
   fireQuery.where = firesOneDayAgo;
   fireQueryTask.executeForIds(fireQuery).then(
     (results) => {
-      console.log('fire results', results);
       if (results) {
         fireCount = results.length;
       } else {
@@ -82,7 +85,6 @@ const calculateOffset = (result) => {
 };
 
 const handleWatershed = (result) => {
-  console.log('watershed', result.features[0]);
   if ( result.features.length ) {
     // Keep a reference to the watershed graphic.
     config.watershed = result.features[0];
