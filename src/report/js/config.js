@@ -303,9 +303,8 @@ analysis[KEYS.R_FIRES_AVG] = {
 };
 
 analysis[KEYS.R_FIRES] = {
-  rasterId: 551,
-  field: 'rs_fire_c',
-  pixelSize: 4308.246486
+  url: 'http://gis-gfw.wri.org/arcgis/rest/services/image_services/fires_c_avg_water/ImageServer/computeHistograms',
+  field: 'rs_fire_c'
 };
 
 analysis[KEYS.R_EROSION] = {
