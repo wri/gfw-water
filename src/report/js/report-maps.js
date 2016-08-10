@@ -37,7 +37,11 @@ esriConfig.defaults.io.corsEnabledServers.push('gis-potico.wri.org');
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
   const div = domQuery('.' + mapName + ' div.printed-map')[0];
-  div.innerHTML = '';
+  // div.innerHTML = '';
+  // let oldLoading = domQuery('div.loading-container')[0];
+  div.querySelector('.loading-container').remove();
+  div.querySelector('.labelToRemove').remove();
+
   domConstruct.create('img', {
     src: response.results[0].value.url
   }, div);

@@ -133,7 +133,9 @@ div.wrapper
   width 1024px
 
   div.printed-map
-    height 300px
+    height 450px
+    width 450px
+    position relative
 
 div.smaller
   font-size 80%
@@ -233,8 +235,8 @@ section.other-projects
     padding 0 0 2em 0
 
     div.info-column
-      padding-bottom 25px
-      position relative
+      // padding-bottom 25px
+      // position relative
       color $lightGray
       flex-basis 50%
       &:first-child
@@ -363,15 +365,16 @@ section.other-projects h2
 .report-legend
   position absolute
   bottom 0
-  display none
+  // display none
   border 1px solid rgb(170, 170, 170)
   background white
-  justify-content center
-  flex-wrap wrap
-  display flex
+  // justify-content center
+  // flex-wrap wrap
+  // display flex
   &.historical-loss-legend
-    margin-left -1px
-    bottom 0
+    // margin-left -1px
+    // top 447px
+    // bottom inherit
     .report-legend-label
       float right
   .legend-label
@@ -382,7 +385,8 @@ section.other-projects h2
     display flex
     width 100%
   &.recent-loss
-    bottom 0
+    // bottom inherit
+    // top 446px
     .report-legend-label
       display inline-block
       float right
@@ -391,8 +395,8 @@ section.other-projects h2
       padding 10px
   &.fire-risk-legend
     // bottom 49px
-    top 444px
-    bottom inherit
+    // top 444px
+    // bottom inherit
     .report-legend-label
       display inline-block
   .report-legend-label

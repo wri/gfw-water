@@ -90,7 +90,8 @@ html
         h1
         p.
           A watershed’s health directly affects the quantity and quality of water sources as well as water transport and treatment costs. Healthy forested lands provide critical watershed functions as natural infrastructure by minimizing erosion and pollutants, purifying water, and reducing the impact of floods and droughts.
-        div.printed-map Generating:  overview map
+        div.printed-map 
+          span.labelToRemove Generating:  overview map
     section.relative.dark.stats 
       div.wrapper
         h2 know your watershed
@@ -181,9 +182,10 @@ html
               #[span.bold-text Recent forest loss risk] was measured by the area of total forest loss from 2001 to 2014 as a share of total forest extent (year 2000). The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density]] across the globe, which may include natural forest, plantations and other forms of vegetation depending on the region. This risk score is not applicable to arid areas and areas where total forest extent (year 2000) is less than 10% of watershed. 
             p.emphasis.
               Recent forest loss estimates the potential of damaging impact from recent changes (2001 – 2014) in the extent of forest cover in a watershed. As forests are converted to other land uses or are unnaturally disturbed, their ability to regulate flow and purify water diminishes, putting communities at risk of flood, drought, higher cost of treatment, and greater incidence of drinking water contamination. In addition to the area of forest removed, the duration and magnitude of a watershed’s response depends on various factors, including age and type of forest removed, climate, topography, and size of the watershed.
-            div#recentLossReport.report-legend.recent-loss
           div.info-column
-            div.printed-map Generating:  recent tree loss map
+            div.printed-map
+              span.labelToRemove Generating:  recent tree loss map
+              div#recentLossReport.report-legend.recent-loss
         div#tree-cover-loss-chart
 
     hr
@@ -200,10 +202,10 @@ html
               #[span.bold-text Historical forest loss risk] is approximated by comparing total forest extent (year 2000) to potential forest coverage. The threshold of canopy density for identifying forest and forest loss is set to #[span.blue-bubble > #[span.canopy-density] %] across the globe. This risk score is not applicable to arid areas and areas where potential forest coverage is less than 10% of the watershed. 
             p.emphasis.
               Historical forest loss measures the potential threat on a watershed’s capacity to deliver ecosystem services as a result of forest cover change in the past (prior to 2000). Compared to recent forest loss, forest loss that took place decades ago may lead to different hydrological responses with greater uncertainty in a watershed. In addition to the extent of forest removed, other factors that contribute to a watershed’s capacity to regulate flow and control water quality include age and type of forest removed, climate, and land management since forest removal.
-          div#historicalLossReport.report-legend.historical-loss-legend
           div.info-column
-            div.printed-map Generating:  historical tree loss map
-
+            div.printed-map 
+              span.labelToRemove Generating:  historical tree loss map
+              div#historicalLossReport.report-legend.historical-loss-legend
     hr
 
     section.relative.map.erosion 
@@ -218,9 +220,10 @@ html
               #[span.bold-text Erosion risk] is derived from the Revised Universal Soil Loss Equation, adjusted to extend its applicability to a global scale. Factors include rainfall erosivity, slope steepness, soil erodibility, and land cover.
             p.emphasis.
               Erosion is a significant problem that affects both water quality and quantity. High erosion deteriorates water quality and reduces reservoir capacity, increasing cost of water treatment and capital expenses, and damaging safety of water supplies. High erosion risk is usually linked to erodible soil, intense rainfall, steep topography, and conversion of forest and other natural lands to pasture, cropland, and other human developments.
-          div#sedimentReport.report-legend
           div.info-column
-            div.printed-map Generating:  erosion map
+            div.printed-map 
+              span.labelToRemove Generating:  erosion map
+              div#sedimentReport.report-legend
 
     hr
 
@@ -239,9 +242,10 @@ html
               #[span.bold-text Fire risk] is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).
             p.emphasis.
               Fires are a common form of disturbance in some forested watersheds. High intensity or large fires can result in significant increases in runoff, erosion, and tree mortality, all of which can negatively impact water quality. Although the effects are usually short-lived, long-term effects, magnitude, and persistence of downstream effects are uncertain.
-          div#fireLegendReport.report-legend.fire-risk-legend
           div.info-column
-            div.printed-map Generating:  recent fires map
+            div.printed-map 
+              span.labelToRemove Generating:  recent fires map
+              div#fireLegendReport.report-legend.fire-risk-legend
     hr
     section.relative.map.water-stress
       div.wrapper
@@ -255,9 +259,10 @@ html
             p.
               Learn more about the 
               #[a(href='www.wri.org/our-work/project/aqueduct') Global Forest Watch Aqueduct Project]
-          div#waterStressReport.report-legend
           div.info-column
-            div.printed-map Generating:  baseline water stress map
+            div.printed-map 
+              span.labelToRemove Generating:  baseline water stress map
+              div#waterStressReport.report-legend
 
     hr
 
