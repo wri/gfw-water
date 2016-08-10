@@ -121,7 +121,7 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
   //- Risk Analysis Queries below
   // Fires for Risk Analysis
   let firesRiskConfig = analysisConfig[KEYS.R_FIRES];
-  promises[KEYS.R_FIRES] = Histogram.getWithMosaic(firesRiskConfig.rasterId, geometry, firesRiskConfig.pixelSize);
+  promises[KEYS.R_FIRES] = Histogram.getFireRaster(firesRiskConfig.url, geometry);
   // Erosion for Risk Analysis
   // let erosionConfig = analysisConfig[KEYS.R_EROSION];
   // promises[KEYS.R_EROSION] = Histogram.getStatisitcs(erosionConfig.url, geometry, erosionConfig.pixelSize);
@@ -193,7 +193,7 @@ export const performRiskAnalysis = (geometry, area, surroundingWatershed) => {
   // Potential Tree Cover -- Needed for Historic Tree Cover Loss Risk Analysis
   promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
   // Fires for Risk Analysis
-  promises[KEYS.R_FIRES] = Histogram.getWithMosaic(analysisConfig[KEYS.R_FIRES].rasterId, geometry, 4308.246486);
+  promises[KEYS.R_FIRES] = Histogram.getFireRaster(analysisConfig[KEYS.R_FIRES].url, geometry);
   // Erosion for Risk Analysis
   let erosionConfig = analysisConfig[KEYS.R_EROSION];
   promises[KEYS.R_EROSION] = Histogram.getStatisitcs(erosionConfig.url, geometry, erosionConfig.pixelSize);
