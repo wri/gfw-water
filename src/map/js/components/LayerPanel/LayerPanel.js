@@ -44,7 +44,7 @@ export default class LayerPanel extends React.Component {
   }
 
   goToAbout () {
-    window.open('../about/index.html');
+    window.open('../about/index.html#about=numbers');
   }
 
   checkboxMap (group) {
