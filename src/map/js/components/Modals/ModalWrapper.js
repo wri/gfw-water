@@ -31,10 +31,12 @@ export default class ModalWrapper extends Component {
 
   render() {
 
+    console.log(this.props);
+
     return (
       <div className='modal-container'>
         <div className='modal-background' onClick={this.close} />
-        <div className='modal-window'>
+        <div className={`modal-window ${this.props.canopy ? 'canopy' : ''}`}>
           <div title='close' className='modal-close close-icon pointer' onClick={this.close}>
             <svg dangerouslySetInnerHTML={{ __html: closeSvg }}/>
           </div>
