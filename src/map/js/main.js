@@ -1,4 +1,4 @@
-import babelPolyfill from 'babel-polyfill';
+// import babelPolyfill from 'babel-polyfill';
 import LayerModal from 'components/Modals/LayerModal';
 import ShareModal from 'components/Modals/ShareModal';
 import BasicModal from 'components/Modals/BasicModal';
@@ -16,7 +16,7 @@ import React from 'react';
 // import GeoProcessor from 'esri/tasks/Geoprocessor';
 // import SR from 'esri/SpatialReference';
 
-if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
+// if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
 // Set up globals
 window.brApp = {

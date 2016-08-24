@@ -1,11 +1,11 @@
 import AboutModal from 'components/Modals/AboutModal';
 import {modalActions} from 'actions/ModalActions';
-import babelPolyfill from 'babel-polyfill';
+// import babelPolyfill from 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import hash from 'dojo/hash';
 
-if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
+// if (!babelPolyfill) { console.log('Missing Babel Polyfill.  May experience some weirdness in IE < 9.'); }
 
 // Set up globals
 window.brApp = {
