@@ -1,6 +1,6 @@
 {
   "name": "gfw-water",
-  "version": "0.1.51",
+  "version": "0.1.52",
   "engines": {
     "node": " 4.2.1"
   },
@@ -11,7 +11,7 @@
     "build": "npm run babel",
     "test": "npm run build; intern-client config=tests/intern --reporters=Pretty;eslint src;",
     "dist": "rm -rf dist; gulp dist; npm run optimize; node scripts/prerender;",
-    "dist-www": "npm run dist; cp -r dist/* www; echo $HTPASSWD > .htpasswd",
+    "dist-www": "npm run dist; cp -r dist/* www;",
     "postinstall": "bower install; if [ \"$NODE_ENV\" = 'production' ] || [ \"$NODE_ENV\" = 'staging' ]; then npm run dist-www; fi",
     "babel": "babel src --modules amd --out-dir build",
     "optimize": "npm run babel; r.js -o map.build.js; r.js -o home.build.js; r.js -o report.build.js; r.js -o about.build.js;",
