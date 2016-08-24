@@ -2,6 +2,8 @@ module.exports = {
   author: 'WRI, BlueRaster',
   version: '{override in gulpfile.js from package.json}',
   esriVersion: '3.15',
+  headerScriptProd: '//gfw-assets.s3.amazonaws.com/static/gfw-assets.latest.js',
+  headerScriptStage: '//gfw-assets.s3.amazonaws.com/static/gfw-assets.nightly.js',
   home: {
     title: 'Global Forest Watch Water'
   },
