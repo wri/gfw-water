@@ -349,7 +349,9 @@ let grader = {};
 //- These functions should return a value ready to be dropped in the UI
 //- Return 10 if no valid value is present, 10 indicates not applicable
 grader[KEYS.R_FIRES] = (value) => {
-  if (value <= 0.000014) {
+  if (value === 10) {
+    return 10;
+  } else if (value <= 0.000014) {
     return 1;
   } else if (value >= 0.000014 && value <= 0.000061) {
     return 2;
