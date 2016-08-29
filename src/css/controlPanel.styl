@@ -84,3 +84,44 @@
     background url('images/wri-basemap.png') no-repeat center
   &.imagery-basemap
     background url('images/imagery-basemap.jpg') no-repeat center
+
+.mobile-controls
+  position absolute
+  bottom 0
+  right 0
+  left 0
+
+.mobile-controls__list
+  list-style-type none
+  display flex
+  padding 0
+  margin 0
+
+.mobile-controls__item
+  border-left 1px solid #aaa
+  border-top 1px solid #aaa
+  flex-direction column
+  justify-content center
+  background #EEE
+  align-items center
+  display flex
+  height 50px
+  flex 1
+  &:hover
+    background #FFF
+
+.mobile-controls__item-label
+  text-transform uppercase
+  font-size 10px
+  padding 1px 0
+
+@media (max-width: 850px)
+  .control-panel
+    bottom 70px
+    right 20px
+    width 38px
+    & li
+      border-right 1px solid $lightGray
+      border-left 1px solid $lightGray
+    & li.mobile-hide
+      display none

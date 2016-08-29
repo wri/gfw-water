@@ -1,10 +1,12 @@
 import AnalysisTools from 'components/AnalysisPanel/AnalysisTools';
+import MobileControls from 'components/MapControls/MobileControls';
 import EsriSearch from 'components/AnalysisPanel/EsriSearch';
 import ControlPanel from 'components/MapControls/ControlPanel';
 import LayerPanel from 'components/LayerPanel/LayerPanel';
 import {applyStateFromUrl} from 'helpers/ShareHelper';
 import LayersHelper from 'helpers/LayersHelper';
 import {mapActions} from 'actions/MapActions';
+import Scalebar from 'esri/dijit/Scalebar';
 import {mapConfig, links} from 'js/config';
 import {getUrlParams} from 'utils/params';
 import Loader from 'components/Loader';
@@ -31,6 +33,9 @@ export default class Map extends React.Component {
       //- Use the helper to take the params and use actions to apply shared state, don't set these params
       //- as default state, otherwise the reset button will reset to shared state and not default state
       applyStateFromUrl(urlParams);
+
+      //- Add a scalebar
+      const scalebar = new Scalebar({ map: brApp.map, scalebarUnit: 'metric' }, this.refs.scalebar);
     });
   }
 
@@ -57,6 +62,8 @@ export default class Map extends React.Component {
         <ControlPanel />
         <EsriSearch loaded={this.state.loaded} />
         <AnalysisTools />
+        <MobileControls />
+        <div ref='scalebar' />
       </div>
     );
   }

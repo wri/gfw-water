@@ -52,12 +52,14 @@ export default class AnalysisTools extends React.Component {
   }
 
   render () {
+    let mapState = mapStore.getState();
     let customTabActive = this.state.activeTab === text.customTabId;
     let watershedTabActive = this.state.activeTab === text.watershedTabId;
     let showOptions = (this.state.activeWatershed && watershedTabActive) || (this.state.activeCustomArea && customTabActive);
+    let mobileClass = mapState.mobileShowAnalysis ? 'mobile-show' : 'mobile-hide';
 
     return (
-      <div className={`analysis-tools map-component shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
+      <div className={`analysis-tools map-component shadow ${mobileClass}${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <div className='analyze-header no-shrink'>
           <svg dangerouslySetInnerHTML={{ __html: analysisSvg }}/>
           <span>{text.analyzeButton}</span>
