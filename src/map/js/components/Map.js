@@ -35,7 +35,9 @@ export default class Map extends React.Component {
       applyStateFromUrl(urlParams);
 
       //- Add a scalebar
+      /* eslint no-unused-vars: 0 */
       const scalebar = new Scalebar({ map: brApp.map, scalebarUnit: 'metric' }, this.refs.scalebar);
+      /* eslint no-unused-vars: 0 */
     });
   }
 
