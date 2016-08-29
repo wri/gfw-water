@@ -85,8 +85,11 @@ export default class EsriSearch extends React.Component {
   }
 
   render() {
+    let {mobileShowAnalysis} = this.state;
+    let mobileClass = mobileShowAnalysis ? 'mobile-show' : 'mobile-hide';
+
     return (
-      <div className={`search-tools map-component side-shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
+      <div className={`search-tools map-component side-shadow ${mobileClass}${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <div id={analysisPanelText.searchWidgetId} />
       </div>
     );
