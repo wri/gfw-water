@@ -83,6 +83,14 @@ class MapActions {
     this.dispatch(status);
   }
 
+  toggleMobileLayerList () {
+    this.dispatch();
+  }
+
+  toggleMobileAnalysis () {
+    this.dispatch();
+  }
+
   setBasemap (basemap) {
     brApp.debug(`MapActions >>> setBasemap - ${basemap}`);
     this.dispatch(basemap);

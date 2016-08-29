@@ -27,8 +27,11 @@ export default class LayerPanel extends React.Component {
   }
 
   render() {
+    let {mobileShowLayers} = this.state;
+    let mobileClass = mobileShowLayers ? 'mobile-show' : 'mobile-hide';
+
     return (
-      <div className={`layer-panel map-component custom-scroll shadow${!this.state.controlsVisible ? ' hidden' : ''}`}>
+      <div className={`layer-panel map-component custom-scroll shadow ${mobileClass}${!this.state.controlsVisible ? ' hidden' : ''}`}>
         <LayerGroup activeLayers={this.state.activeLayers} label={layerPanelText.watershed}>
           {layersConfig.map(this.checkboxMap('watershed'), this)}
         </LayerGroup>
