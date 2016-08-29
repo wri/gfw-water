@@ -57,7 +57,7 @@ let generateSearchWidget = () => {
           brApp.map.setExtent(watershed.geometry.getExtent(), true);
         });
       } else {
-        Request.getWatershedById(feature.attributes.objectid).then((watershed) => {
+        Request.getWatershedById(feature.attributes.OBJECTID).then((watershed) => {
           brApp.map.setExtent(evt.result.extent, true);
           analysisActions.analyzeCurrentWatershed(GraphicsHelper.makePolygon(watershed));
         });
