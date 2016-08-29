@@ -52,7 +52,7 @@ export default class CanopyModal extends React.Component {
 
   render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper theme={'canopy'}>
         <div className='canopy-modal-title'>{modalText.canopy.title}</div>
         <div className='trees'>
           <div className='tree-icon' />

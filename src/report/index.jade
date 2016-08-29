@@ -241,7 +241,7 @@ html
             p.
               #[span.bold-text Fire risk] is measured by average annual fire occurrence per unit area in a watershed in the most recent past ten years (January 1st, 2006 to December 31st, 2015).
             p.emphasis.
-              Fires are a common form of disturbance in some forested watersheds. High intensity or large fires can result in significant increases in runoff, erosion, and tree mortality, all of which can negatively impact water quality. Although the effects are usually short-lived, long-term effects, magnitude, and persistence of downstream effects are uncertain.
+              Fires are a common form of disturbance in some forested watersheds. High intensity or large fires can result in significant increases in runoff, erosion, and tree mortality, all of which can negatively impact water quality and flow regulation. Although the effects are usually short-lived, long-term effects, magnitude, and persistence of downstream effects are uncertain.
           div.info-column
             div.printed-map 
               span.labelToRemove Generating:  recent fires map
@@ -297,11 +297,11 @@ html
               td
                 ul
                   li.report-location 
-                    a(href='http://www.nyc.gov/html/dep/html/watershed_protection/index.shtml') New York, NY, United States
+                    a(href='http://www.nyc.gov/html/dep/html/watershed_protection/index.shtml', target='_blank') New York, NY, United States
                   li.report-location 
-                    a(href='https://www.pwd.org/watershed-protection') Portland, ME, United States
+                    a(href='https://www.pwd.org/watershed-protection', target='_blank') Portland, ME, United States
                   li.report-location 
-                    a(href='http://www.ecosystemmarketplace.com/articles/decade-old-ecuadorian-water-fund-br-providing-template-for-entire-region/') Quito, Ecuador
+                    a(href='http://www.ecosystemmarketplace.com/articles/decade-old-ecuadorian-water-fund-br-providing-template-for-entire-region/', target='_blank') Quito, Ecuador
 
             tr.risk-info.past-loss-risk
               td
@@ -318,15 +318,15 @@ html
               td
                 ul
                   li.report-location
-                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_China.pdf') Beijing, China
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_China.pdf', target='_blank') Beijing, China
                   li.report-location
-                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_India_1.pdf') Multiple locations, India
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_India_1.pdf', target='_blank') Multiple locations, India
                   li.report-location
-                    a(href='http://www.watershedconnect.org/programs/Projeto-Produtores-de-A-gua-e-Floresta-Rio-de-Janeiro') Rio de Janeiro, Brazil
+                    a(href='http://www.watershedconnect.org/programs/Projeto-Produtores-de-A-gua-e-Floresta-Rio-de-Janeiro', target='_blank') Rio de Janeiro, Brazil
                   li.report-location
-                    a(href='http://www.watershedmarkets.org/casestudies/Costa_Rica_National_PES_eng.html') Multiple locations, Costa Rica
+                    a(href='http://www.watershedmarkets.org/casestudies/Costa_Rica_National_PES_eng.html', target='_blank') Multiple locations, Costa Rica
                   li.report-location
-                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_Ethiopia.pdf') Humbo, Ethiopia
+                    a(href='http://www.wri.org/sites/default/files/WRI_Restoration_Diagnostic_Case_Example_Ethiopia.pdf', target='_blank') Humbo, Ethiopia
 
             tr.risk-info.erosion-risk
               td
@@ -343,11 +343,11 @@ html
               td
                 ul
                   li.report-location
-                    a(href='http://www.eweb.org/sourceprotection/vip') Eugene, OR, United States
+                    a(href='http://www.eweb.org/sourceprotection/vip', target='_blank') Eugene, OR, United States
                   li.report-location
-                    a(href='http://www.forest-trends.org/documents/files/doc_4896.pdf') Lima, Peru
+                    a(href='http://www.forest-trends.org/documents/files/doc_4896.pdf', target='_blank') Lima, Peru
                   li.report-location
-                    a(href='http://www.watershedconnect.org/programs/The-Catchment-Sensitive-Farming-Capital-Grant-Scheme') Paris, France
+                    a(href='http://www.watershedconnect.org/programs/The-Catchment-Sensitive-Farming-Capital-Grant-Scheme', target='_blank') Paris, France
 
             tr.risk-info.fire-risk
               td
@@ -358,15 +358,16 @@ html
                 Fire Management
               td
                 ul
-                  li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through controlled burns and mechanical treatment.
+                  li #[span.strategy-example Forest fuel reduction]:  Reducing wildfire severity and related sediment and ash pollution through mechanical forest thinning and controlled burns.
+                  li #[span.strategy-example Alternative land clearing]:  Preventing fire from slash-and-burn by using alternative land-clearing and management solutions such as alley cropping.
               td
                 ul
                   li.report-location
-                    a(href='http://www.denverwater.org/SupplyPlanning/WaterSupply/PartnershipUSFS/') Denver, CO, United States
+                    a(href='http://www.denverwater.org/SupplyPlanning/WaterSupply/PartnershipUSFS/', target='_blank') Denver, CO, United States
                   li.report-location
-                    a(href='http://www.nature.org/ourinitiatives/regions/northamerica/unitedstates/newmexico/new-mexico-rio-grande-water-fund.xml') Rio Grande, NM, United States
+                    a(href='http://www.nature.org/ourinitiatives/regions/northamerica/unitedstates/newmexico/new-mexico-rio-grande-water-fund.xml', target='_blank') Rio Grande, NM, United States
                   li.report-location
-                    a(href='http://www.wri.org/blog/2014/04/preventing-forest-fires-indonesia-focus-riau-province-peatland-and-illegal-burning') Riau, Indonesia
+                    a(href='http://www.wri.org/blog/2014/04/preventing-forest-fires-indonesia-focus-riau-province-peatland-and-illegal-burning', target='_blank') Riau, Indonesia
                   
     section
       div.report-controls-bottom
@@ -425,35 +426,6 @@ html
                   use(xmlns:xlink="http://www.w3.org/1999/xlink", xlink:href="#about-icon-other") 
               header
                 h2 Other WRI Projects
-        
-        //- h4 Publications
-        //- 
-        //- ul.publications-list
-        //-   li.
-        //-     #[a(href='//www.wri.org/publication/natural-infrastructure') Natural Infrastructure: Investing in Forested Landscapes for Source Water Protection in the United States]
-        //-   li. 
-        //-     #[a(href='//www.fs.fed.us/rm/pubs/rmrs_p071/rmrs_p071_313_327.pdf') Adaptation: Forests as Water Infrastructure in a Changing Climate]
-        //-   li. 
-        //-     #[a(href='//www.thesolutionsjournal.com/node/1241') Green versus Gray: Nature’s Solutions to Infrastructure Demands]
-        //-   li. 
-        //-     #[a(href='//www.unepdhi.org/-/media/microsite_unepdhi/publications/documents/unep/web-unep-dhigroup-green-infrastructure-guide-en-20140814.pdf') Green Infrastructure Guide to Help Address Complex Challenges of Water Management]
-        //-   li. 
-        //-     #[a(href='//www.iwa-network.org/filemanager-uploads/Natural%20Infrastrucure%20in%20the%20Nexus_Final%20Dialogue%20Synthesis%20Paper%202015.pdf') Natural Infrastructure in the Water, Energy and Food Nexus]
-        //- 
-        //- h4 Roadmaps
-        //- ul
-        //-   li.
-        //-     #[a(href='//www.iucn.org/about/work/programmes/forest/fp_our_work/fp_our_work_thematic/fp_our_work_flr/approach_to_forest_landscape_restoration/restoration_opportunities_assessment_methodology/') Restoration Opportunities Assessment Methodology (ROAM)]
-
-    //- section.dark.other-projects
-    //-   div.wrapper
-    //-     h2 other wri projects
-    //-     p. 
-    //-       #[a(href='//www.wri.org/our-work/project/natural-infrastructure-water') Natural Infrastructure for Water]
-    //-     p. 
-    //-       #[a(href='//www.wri.org/our-work/project/aqueduct') Aqueduct]
-    //-     p. 
-    //-       #[a(href='//www.wri.org/resources/maps/atlas-forest-and-landscape-restoration-opportunities') Atlas of Forest and Landscape Restoration Opportunities]
             
     div.hidden
       div.loading-container
