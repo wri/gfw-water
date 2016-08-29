@@ -351,15 +351,15 @@ let grader = {};
 grader[KEYS.R_FIRES] = (value) => {
   if (value === 10) {
     return 10;
-  } else if (value <= 0.000014) {
+  } else if (value <= 0.000011) {
     return 1;
-  } else if (value >= 0.000014 && value <= 0.000061) {
+  } else if (value >= 0.000011 && value <= 0.000054) {
     return 2;
-  } else if (value >= 0.000061 && value <= 0.000153) {
+  } else if (value >= 0.000054 && value <= 0.000147) {
     return 3;
-  } else if (value >= 0.000153 && value <= 0.000354) {
+  } else if (value >= 0.000147 && value <= 0.000357) {
     return 4;
-  } else if (value >= 0.000354) {
+  } else if (value >= 0.000357) {
     return 5;
   } else {
     return 10;
