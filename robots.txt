@@ -1,1 +1,2 @@
-Disallow: /unsupported/
+User-agent: *
+Disallow:
