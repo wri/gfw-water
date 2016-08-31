@@ -146,7 +146,7 @@ export const config = {
       type: 'dynamic',
       label: 'Land cover',
       group: 'watershed',
-      metadataId: 'usa_land_cover',
+      metadataId: 'global_landcover',
       className: 'land-cover',
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
       layerIds: [6]

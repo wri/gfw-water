@@ -136,7 +136,7 @@ module.exports = {
       rowTwo: [
         'Centre for Ecology Development and Research',
         'Assessing Water Catchment and Forest Cover of Aravailli Hills of Gurgaon and Faridabad to identify protection and restoration opportunities.',
-        'The cities of Guraon and Faridabad are rapidly expanding urban metropolitan areas that border Dehli, putting enormous stress on the natural watershed area.  This project will identify the role of Aravalli hill catchments and forests that contribute to groundwater recharge and surface water runoff to local lakes, drying up in the area.  It will identify current and potential forest cover, the impacts of urbanization, and overlay administrative and tenure boundaries to enhance conservation and restoration proposals for this urban/peri-urban area.'
+        'The cities of Gurgaon and Faridabad are rapidly expanding urban metropolitan areas that border Delhi, putting enormous stress on the natural watershed area.  This project will identify the role of Aravalli hill catchments and forests that contribute to groundwater recharge and surface water runoff to local lakes, drying up in the area.  It will identify current and potential forest cover, the impacts of urbanization, and overlay administrative and tenure boundaries to enhance conservation and restoration proposals for this urban/peri-urban area.'
       ]
     }
   },
