@@ -6,6 +6,8 @@ dist
 www/*
 !www/proxy
 !www/.htaccess
+!www/robots.txt
+!www/sitemap.xml
 
 # Ignore these, just do it
 node_modules
