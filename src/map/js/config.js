@@ -599,7 +599,7 @@ export const config = {
       sourceName: 'Watersheds',
       searchWidgetId: 'esri-search-widget',
       analyzeButton: 'Analyze Watershed',
-      analysisTutorialLink: 'http://www.globalforestwatch.org/howto/analyze-data/analyze-a-watershed.html',
+      analysisTutorialLink: 'http://www.globalforestwatch.org/howto/analyze-data/analyze-water-watershed-risk.html',
       watershedTabId: 'currentWatershed', // Can be anything as long as its different from analysisTabId
       watershedTabLabel: 'Current Watershed',
       watershedTabPlaceholder: 'To analyze, use the search bar to find your watershed or click on your watershed via the map.',
