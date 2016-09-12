@@ -24,11 +24,11 @@ SetOutputFilter DEFLATE
 # Edge greater than 12
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{HTTP_USER_AGENT} Chrome\/([1-4]\d)
-  RewriteCond %{HTTP_USER_AGENT} Version\/[1-7][^\s]*\sSafari
-  RewriteCond %{HTTP_USER_AGENT} Firefox\/([1-3])
-  RewriteCond %{HTTP_USER_AGENT} Trident\/([1-5])
-  RewriteCond %{HTTP_USER_AGENT} MSIE\s([7-9])
-  RewriteCond %{REQUEST_URI} unsupported/
+  RewriteCond %{HTTP_USER_AGENT} Chrome\/([1-4]\d) [OR]
+  RewriteCond %{HTTP_USER_AGENT} Version\/[1-7][^\s]*\sSafari [OR]
+  RewriteCond %{HTTP_USER_AGENT} Firefox\/([1-3]) [OR]
+  RewriteCond %{HTTP_USER_AGENT} Trident\/([1-5]) [OR]
+  RewriteCond %{HTTP_USER_AGENT} MSIE\s([7-9]) [OR]
+  RewriteCond %{REQUEST_URI} unsupported/ [OR]
   RewriteRule ^(.*) unsupported [L]
 </IfModule>
