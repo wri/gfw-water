@@ -3,6 +3,10 @@ html
   head
     title #{about.title}
     include ../templates/meta.jade
+    meta(name='title', content='Learn More - Global Forest Watch Water')
+    meta(name='description', content='Learn about the data and methodology used in Global Forest Watch Water and other useful resources. ')
+    meta(name='keywords', content='analysis, scientific, science, peer reviewed, publications, report, products, data, read, forests, deforestation, GFW, erosion, fire, water stress, water, watershed, natural infrastructure, risk')
+    
     style
       :stylus
         @require '../css/base'
@@ -181,5 +185,5 @@ html
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-48182293-1', 'auto', { cookieDomain: "'water.globalforestwatch.org']"});
+      ga('create', 'UA-48182293-1', 'auto');
       ga('send', 'pageview');
