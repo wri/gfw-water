@@ -5,10 +5,10 @@ module.exports = {
   headerScriptProd: '//gfw-assets.s3.amazonaws.com/static/gfw-assets.latest.js',
   headerScriptStage: '//gfw-assets.s3.amazonaws.com/static/gfw-assets.nightly.js',
   home: {
-    title: 'Global Forest Watch Water'
+    title: 'Explore the connections between forests and water - Global Forest Watch Water'
   },
   about: {
-    title: 'Learn More | Global Forest Watch Water',
+    title: 'Learn More - Global Forest Watch Water',
     header: 'Learn More',
     description: 'Global Forest Watch Water (GFW Water) joins the Global Forest Watch suite of interactive online forest monitoring tools designed to empower people everywhere with the information they need to better manage and conserve forest landscapes. GFW Water provides powerful information to help catalyze a global movement to enhance water security and bolster economic development through natural infrastructure.',
     content: {
@@ -92,10 +92,10 @@ module.exports = {
     }
   },
   map: {
-    title: 'Map | Global Forest Watch Water'
+    title: 'Interactive Map — Global Forest Watch Water'
   },
   partners: {
-    title: 'Partners | Global Forest Watch',
+    title: 'Partners - Global Forest Watch Water',
     header: 'Partners',
     description: 'The World Resources Institute (WRI) is currently piloting the Global Forest Watch Water platform for use by civil society groups in India and Indonesia. Through the Small Grants Opportunity, WRI provides financial and technical support to use GFW Water to enrich ongoing forest restoration or watershed management research, advocacy, and fieldwork. GFW Water is generously supported by the Scherman Foundation Rosin Fund.',
     tableOne: {
