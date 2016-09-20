@@ -40,6 +40,13 @@ Runs Intern and eslint based on the rules defined in ```.eslintrc```.
 npm test
 ```
 
+If you have a case where it cannot pass an `eslint` rule, instead of turning the rule off for the entire project, turn it off for the one line like so:
+```javascript
+/* eslint no-unused-vars: 0 */
+const scalebar = new Scalebar({ map: brApp.map, scalebarUnit: 'metric' }, this.refs.scalebar);
+/* eslint no-unused-vars: 0 */
+```
+
 ### Contributing
 Please branch off of the develop branch.  Do all of your development in a feature branch and once you are ready to merge to develop, commit your branch and submit a pull request.
 
