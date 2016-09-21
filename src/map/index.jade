@@ -3,7 +3,7 @@ html
   head
     title #{map.title}
     include ../templates/meta.jade
-    meta(name='title', content='Interactive Map — Global Forest Watch Water')
+    //- meta(name='title', content='Interactive Map — Global Forest Watch Water')
     meta(name='description', content='Explore the status of watersheds worldwide by visualizing critical data and obtain analytical results ')
     meta(name='keywords', content='map, forest map, visualization, data, forest data, geospatial, gis, geo, spatial, analysis, local data, global data, forest analysis, explore, layer, terrain, alerts, tree, cover, loss, search, water, water stress, watersheds, erosion, fire, natural infrastructure, risk')
     style
@@ -52,6 +52,11 @@ html
         detectlang: false,
         picker: '#transifexTranslateElement'
       };
+    script(type='text/javascript').
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0027/6897.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
     
   body
     include ../templates/svgAssets.jade
@@ -70,7 +75,6 @@ html
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-48182293-1', 'auto');
       ga('send', 'pageview');
