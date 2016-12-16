@@ -13,23 +13,3 @@ SetOutputFilter DEFLATE
   ExpiresByType text/javascript M1209600
   ExpiresByType application/x-javascript M1209600
 </IfModule>
-
-# Testing browser detection from .htaccess files with no PHP, may need to be adjusted or replaced if this is not sufficient
-# Android 4 and up
-# iOS 7 and up
-# Chrome 50+
-# Safari > 8
-# Firefox greater than 45
-# IE greater than 10
-# Edge greater than 12
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteCond %{REQUEST_URI} !unsupported/ [NC]
-  RewriteCond %{HTTP_USER_AGENT} !Googlebot
-  RewriteCond %{HTTP_USER_AGENT} Chrome\/([1-4]\d) [OR]
-  RewriteCond %{HTTP_USER_AGENT} Version\/[1-7][^\s]*\sSafari [OR]
-  RewriteCond %{HTTP_USER_AGENT} Firefox\/([1-3]) [OR]
-  RewriteCond %{HTTP_USER_AGENT} Trident\/([1-5]) [OR]
-  RewriteCond %{HTTP_USER_AGENT} MSIE\s([7-9])
-  RewriteRule ^(.*).html unsupported [L]
-</IfModule>
