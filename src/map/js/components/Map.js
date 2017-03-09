@@ -23,9 +23,8 @@ export default class Map extends React.Component {
     let urlParams = getUrlParams(location.search);
     //- Mixin the map config with the url params, make sure to create a new object and not
     //- overwrite the mapConfig, again so reset sets the state back to default and not shared,
-    //- TODO: this may not be necessary, remove this if I dont neet to override params, currently I am setting them after load
-    let newMapConfig = Object.assign({}, mapConfig);
-    mapActions.createMap(newMapConfig).then(() => {
+
+    mapActions.createMap(mapConfig).then(() => {
       this.setState({ loaded: true });
       mapActions.createLayers().then(() => {
         LayersHelper.connectLayerEvents();
