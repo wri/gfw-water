@@ -52,6 +52,15 @@ const Symbols = {
     return svgMarkerSymbol;
   },
 
+  getGrantsPointSymbol: () => {
+    if (svgMarkerSymbol) { return svgMarkerSymbol; }
+    svgMarkerSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 8,
+    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+    new Color([128, 128, 128]), 1),
+    new Color([255, 255, 0, 0.75]));
+    return svgMarkerSymbol;
+  },
+
   getPointSymbol: () => {
     if (pointSymbol) { return pointSymbol; }
     pointSymbol = new PictureMarkerSymbol({

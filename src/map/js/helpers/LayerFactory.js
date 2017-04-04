@@ -5,6 +5,8 @@ import ImageParameters from 'esri/layers/ImageParameters';
 import WebTiledLayer from 'esri/layers/WebTiledLayer';
 import GraphicsLayer from 'esri/layers/GraphicsLayer';
 import FeatureLayer from 'esri/layers/FeatureLayer';
+import SimpleRenderer from 'esri/renderers/SimpleRenderer';
+import Symbols from 'helpers/Symbols';
 import {errors} from 'js/config';
 
 /**
@@ -56,6 +58,12 @@ export default (layer) => {
       options.visible = layer.visible || false;
       options.outFields = layer.outFields || ['*'];
       esriLayer = new FeatureLayer(layer.url, options);
+      if (layer.customSymbol) {
+        const pointSymbol = Symbols.getGrantsPointSymbol();
+        const renderer = new SimpleRenderer(pointSymbol);
+        esriLayer.renderer = renderer;
+        console.log(esriLayer);
+      }
     break;
     case 'graphic':
       options.id = layer.id;

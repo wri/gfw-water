@@ -153,8 +153,11 @@ let LayersHelper = {
     let closeHandles = [];
 
     if (graphic && !toolbarActive) {
-      let content = '<div id="popup-content"><p class="cases-title">' + graphic.attributes.Project + '</p><p class="field-value grants">' + graphic.attributes.Description + '</p>' +
+      let content = '<div id="popup-content"><p class="cases-title">' + graphic.attributes.Project + '</p>' +
         '<div class="field-value grants"><img class="popup-image" src=' + graphic.attributes.Image + ' /></div>' +
+        '<p class="field-value grants">' + graphic.attributes.Location + '</p>' +
+        '<p class="field-value grants">Partner: ' + graphic.attributes.CSO + '</p>' +
+        '<p class="field-value grants">' + graphic.attributes.Description + '</p>' +
         '<div title="close" class="infoWindow-close close-icon"><svg viewBox="0 0 100 100"><use xlink:href="#shape-close" /></use></svg></div></div>';
       let template = new InfoTemplate(graphic.attributes.Project, content);
 
