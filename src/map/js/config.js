@@ -291,6 +291,19 @@ export const config = {
       legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer',
       url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/nifw_case_studies/FeatureServer/0'
     },
+    {
+      id: KEYS.smallGrants,
+      type: 'feature',
+      order: 21,
+      label: 'Small Grants',
+      group: 'actionPlan',
+      metadataId: 'nifw_case_studies',
+      className: 'case-studies',
+      layerIds: [0],
+      outFields: ['FID', 'Country', 'Project', 'Description', 'Image'],
+      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/GFW_Water_Small_Grants_2016/FeatureServer',
+      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/GFW_Water_Small_Grants_2016/FeatureServer/0'
+    },
     // These layers are not in the UI and should be the top most layers
     {
       id: KEYS.watershed,

@@ -37,6 +37,10 @@ let LayersHelper = {
     if (caseStudies) {
       caseStudies.on('click', LayersHelper.caseStudiesClicked);
     }
+    let smallGrants = brApp.map.getLayer(KEYS.smallGrants);
+    if (smallGrants) {
+      smallGrants.on('click', LayersHelper.smallGrantsClicked);
+    }
 
     brApp.map.on('click', evt => {
       if (!evt.graphic) {
@@ -116,6 +120,43 @@ let LayersHelper = {
         '<p class="field-value popup-link"><a href=' + graphic.attributes.url + ' target="_blank">read more</a></p>' +
         '<div title="close" class="infoWindow-close close-icon"><svg viewBox="0 0 100 100"><use xlink:href="#shape-close" /></use></svg></div></div>';
       let template = new InfoTemplate(graphic.attributes.Location, content);
+
+      graphic.setInfoTemplate(template);
+      brApp.map.infoWindow.setFeatures(graphic);
+      brApp.map.infoWindow.show(evt.mapPoint);
+      on(brApp.map.infoWindow, 'selection-change', () => {
+        if (brApp.map.infoWindow.features) {
+          dojoQuery('.infoWindow-close').forEach((rowData) => {
+            var handle = on(rowData, 'click', function() {
+              brApp.map.infoWindow.hide();
+            });
+            closeHandles.push(handle);
+          });
+          on(brApp.map.infoWindow, 'hide', function() {
+            closeHandles.forEach(handleFunction => {
+              handleFunction.remove();
+            });
+          });
+        }
+      });
+
+    }
+  },
+
+  smallGrantsClicked (evt) {
+    brApp.debug('LayerHelper >>> smallGrantsClicked');
+    // brApp.map.infoWindow.hide();
+    brApp.map.infoWindow.clearFeatures();
+    //- Don't do anything if the drawtoolbar is active
+    let {toolbarActive} = analysisStore.getState();
+    let graphic = evt.graphic;
+    let closeHandles = [];
+
+    if (graphic && !toolbarActive) {
+      let content = '<div id="popup-content"><p class="cases-title">' + graphic.attributes.Project + '</p><p class="field-value grants">' + graphic.attributes.Description + '</p>' +
+        '<div class="field-value grants"><img class="popup-image" src=' + graphic.attributes.Image + ' /></div>' +
+        '<div title="close" class="infoWindow-close close-icon"><svg viewBox="0 0 100 100"><use xlink:href="#shape-close" /></use></svg></div></div>';
+      let template = new InfoTemplate(graphic.attributes.Project, content);
 
       graphic.setInfoTemplate(template);
       brApp.map.infoWindow.setFeatures(graphic);

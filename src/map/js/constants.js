@@ -30,6 +30,7 @@ const KEYS = {
   watershedAnalysis: 'watershedAnalysis',
   customAnalysis: 'customAnalysis',
   customAreaFeatures: 'customAreaFeatures',
+  smallGrants: 'smallGrants',
   //- Miscellaneous keys
   watershedChartId: 'watershed-chart',
   customAreaChartId: 'custom-area-chart',
