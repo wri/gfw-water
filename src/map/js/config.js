@@ -301,9 +301,9 @@ export const config = {
       className: 'small-grants',
       layerIds: [0],
       customSymbol: true,
-      outFields: ['FID', 'Project', 'CSO', 'Location', 'Description', 'Image'],
-      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/GFW_Water_Small_Grants_2016/FeatureServer',
-      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/arcgis/rest/services/GFW_Water_Small_Grants_2016/FeatureServer/0'
+      outFields: ['FID', 'Project', 'CSO', 'Location', 'Description', 'Link', 'Image'],
+      legendUrl: 'http://services2.arcgis.com/g8WusZB13b9OegfU/ArcGIS/rest/services/GFWWater_SmallGrants_2016/FeatureServer',
+      url: 'http://services2.arcgis.com/g8WusZB13b9OegfU/ArcGIS/rest/services/GFWWater_SmallGrants_2016/FeatureServer/0'
     },
     // These layers are not in the UI and should be the top most layers
     {

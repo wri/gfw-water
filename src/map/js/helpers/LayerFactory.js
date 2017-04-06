@@ -62,7 +62,6 @@ export default (layer) => {
         const pointSymbol = Symbols.getGrantsPointSymbol();
         const renderer = new SimpleRenderer(pointSymbol);
         esriLayer.renderer = renderer;
-        console.log(esriLayer);
       }
     break;
     case 'graphic':

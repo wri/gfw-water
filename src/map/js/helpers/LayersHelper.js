@@ -158,6 +158,7 @@ let LayersHelper = {
         '<p class="field-value grants">' + graphic.attributes.Location + '</p>' +
         '<p class="field-value grants">Partner: ' + graphic.attributes.CSO + '</p>' +
         '<p class="field-value grants">' + graphic.attributes.Description + '</p>' +
+        '<p class="field-value grants"><a href=' + graphic.attributes.Link + ' target="_blank">More Info</a></p>' +
         '<div title="close" class="infoWindow-close close-icon"><svg viewBox="0 0 100 100"><use xlink:href="#shape-close" /></use></svg></div></div>';
       let template = new InfoTemplate(graphic.attributes.Project, content);
 
