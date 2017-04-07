@@ -314,14 +314,14 @@ export const config = {
       // url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
-    {
-      id: KEYS.adminLabels,
-      order: 15,
-      layerIds: [0],
-      type: 'dynamic',
-      url: 'http://gis-stage.wri.org/arcgis/rest/services/gfw/gfw_water_city_labels/MapServer',
-      visible: true
-    },
+    // {
+    //   id: KEYS.adminLabels,
+    //   order: 15,
+    //   layerIds: [0],
+    //   type: 'dynamic',
+    //   url: 'http://gis-stage.wri.org/arcgis/rest/services/gfw/gfw_water_city_labels/MapServer',
+    //   visible: true
+    // },
     {
       id: KEYS.rivers,
       order: 14,
