@@ -65,9 +65,10 @@ const makeCharts = (watershed) => {
     },
     exporting: {
       buttons: {
-        contextButton: { enabled: false },
-        exportButton: {
+        contextButton: {
           _titleKey: 'downloadTooltip',
+          symbolX: 19.5,
+          symbolY: 17.5,
           menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
           symbol: exportButtonImage
         }
@@ -149,9 +150,10 @@ const makeCharts = (watershed) => {
     },
     exporting: {
       buttons: {
-        contextButton: { enabled: false },
-        exportButton: {
+        contextButton: {
           _titleKey: 'downloadTooltip',
+          symbolX: 19.5,
+          symbolY: 17.5,
           menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
           symbol: exportButtonImage
         }
@@ -237,9 +239,10 @@ const makeCharts = (watershed) => {
     },
     exporting: {
       buttons: {
-        contextButton: { enabled: false },
-        exportButton: {
+        contextButton: {
           _titleKey: 'downloadTooltip',
+          symbolX: 19.5,
+          symbolY: 17.5,
           menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems,
           symbol: exportButtonImage
         }
