@@ -54,7 +54,7 @@ const Symbols = {
 
   getGrantsPointSymbol: () => {
     if (svgMarkerSymbol) { return svgMarkerSymbol; }
-    svgMarkerSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 8,
+    svgMarkerSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_SQUARE, 8,
     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
     new Color([128, 128, 128]), 1),
     new Color([233, 131, 0, 0.75]));
