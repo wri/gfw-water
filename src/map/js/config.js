@@ -548,7 +548,7 @@ export const config = {
       title: 'Spatial mapping tools and platforms',
       params: {
         f: 'json',
-        Generalize: true,
+        Generalize: 'True',
         SnapDistance: 5000,
         SnapDistanceUnits: 'Meters'
       },
