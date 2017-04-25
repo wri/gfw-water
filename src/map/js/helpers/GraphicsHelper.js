@@ -44,7 +44,7 @@ const graphicsHelper = {
     if (layer) {
       layer.add(new Graphic(
         geometry,
-        Symbols.getSVGPointSymbol()
+        Symbols.getPointSymbol()
       ));
     }
   },

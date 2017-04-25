@@ -7,6 +7,7 @@ import GraphicsLayer from 'esri/layers/GraphicsLayer';
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import SimpleRenderer from 'esri/renderers/SimpleRenderer';
 import Symbols from 'helpers/Symbols';
+import KEYS from 'js/constants';
 import {errors} from 'js/config';
 
 /**
@@ -58,7 +59,7 @@ export default (layer) => {
       options.visible = layer.visible || false;
       options.outFields = layer.outFields || ['*'];
       esriLayer = new FeatureLayer(layer.url, options);
-      if (layer.customSymbol) {
+      if (layer.id === KEYS.smallGrants) {
         const pointSymbol = Symbols.getGrantsPointSymbol();
         const renderer = new SimpleRenderer(pointSymbol);
         esriLayer.renderer = renderer;
