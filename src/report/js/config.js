@@ -51,8 +51,8 @@ export default {
   watershedIdField: 'maj_bas',
   watershedName: 'maj_name',
   watershedQueryStringParam: 'fid',
-  // watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
-  watershedUrl: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
+  watershedUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+  // watershedUrl: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
   customAnalysisAreasUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
   watershedSymbol: {
     'color': [255, 255, 255, 0],
@@ -145,7 +145,7 @@ export default {
       'opacity': 0.8,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
+      'url': 'http://52.0.207.221/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       'layers': [{
         'id': 1,
         'layerDefinition': {

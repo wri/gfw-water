@@ -274,7 +274,7 @@ export const config = {
       metadataId: 'baseline_water_stress',
       group: 'watershedRisk',
       className: 'water-stress',
-      url: 'http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
+      url: 'http://52.0.207.221/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       layerIds: [1],
       opacity: 0.80
     },
@@ -310,8 +310,8 @@ export const config = {
       id: KEYS.watershed,
       order: 13,
       type: 'feature',
-      url: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
-      // url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+      // url: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
+      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     // {

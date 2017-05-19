@@ -133,7 +133,7 @@ configureApp();
 lazyloadAssets();
 attachEvents();
 reportMaps.printAll(config);
-ReactDOM.render(<WaterStressLegend url='http://gis.wri.org/arcgis/rest/services/Aqueduct/aqueduct_global_2014/MapServer' layerIds={[1]} />, document.getElementById('waterStressReport'));
+ReactDOM.render(<WaterStressLegend url='http://52.0.207.221/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer' layerIds={[1]} />, document.getElementById('waterStressReport'));
 ReactDOM.render(<ReportLegend title='Recent Forest Loss' />, document.getElementById('recentLossReport'));
 ReactDOM.render(<ReportLegend title='Historical Forest Loss' />, document.getElementById('historicalLossReport'));
 ReactDOM.render(<ReportLegend title='Active Fires' />, document.getElementById('fireLegendReport'));
