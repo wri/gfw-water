@@ -32,7 +32,7 @@ export const config = {
         proxyUrl: '/proxy/proxy.php'
       },
       featureServer: {
-        urlPrefix: 'gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer',
+        urlPrefix: 'gfw.blueraster.io/arcgis/rest/services/user_features/FeatureServer',
         // proxyUrl: '//localhost/proxy/proxy.php'
         proxyUrl: '/proxy/proxy.php'
       }
@@ -74,7 +74,7 @@ export const config = {
         visible: true
       }
     },
-    geometryServiceUrl: 'http://gis-gfw.wri.org/arcgis/rest/services/Utilities/Geometry/GeometryServer'
+    geometryServiceUrl: 'http://gfw.blueraster.io/arcgis/rest/services/Utilities/Geometry/GeometryServer'
   },
 
   queryOptions: {
@@ -122,7 +122,7 @@ export const config = {
       group: 'watershed',
       metadataId: 'wetlands_waterbodies',
       className: 'wetlands',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer',
       layerIds: [2]
     },
     {
@@ -148,7 +148,7 @@ export const config = {
       group: 'watershed',
       metadataId: 'global_landcover',
       className: 'land-cover',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer',
       layerIds: [6]
     },
     {
@@ -159,7 +159,7 @@ export const config = {
       group: 'watershed',
       metadataId: 'dam_hotspots',
       className: 'dams',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/infrastructure/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/infrastructure/MapServer',
       layerIds: [0]
     },
     {
@@ -170,7 +170,7 @@ export const config = {
       metadataId: 'urban_water_intakes',
       group: 'watershed',
       className: 'intake',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer',
       layerIds: [0]
     },
     // {
@@ -213,7 +213,7 @@ export const config = {
       metadataId: 'potential_forest',
       group: 'watershedRisk',
       className: 'historic-loss',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/forest_cover/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/forest_cover/MapServer',
       layerIds: [6]
     },
     // {
@@ -232,8 +232,9 @@ export const config = {
       metadataId: 'firms_active_fires',
       className: 'active-fires',
       sublabel: '(daily, 1km, global, NASA)',
-      url: 'http://gis-potico.wri.org/arcgis/rest/services/Fires/Global_Fires/MapServer',
-      layerIds: [0, 1, 2, 3]
+      defaultDefinitionExpression: ['ACQ_DATE', 1], //"ACQ_DATE > date'" + new window.Kalendae.moment().subtract(1, 'd').format('YYYY-MM-DD') + "'",
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/Fires/FIRMS_Global/MapServer',
+      layerIds: [9]
     },
     // {
     //   id: KEYS.burnScars,
@@ -252,7 +253,7 @@ export const config = {
       metadataId: 'erosion',
       group: 'watershedRisk',
       className: 'sediment',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer',
       layerIds: [4]
     },
     {
@@ -263,7 +264,7 @@ export const config = {
       group: 'watershedRisk',
       metadataId: 'arid_regions',
       className: 'arid',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer',
       layerIds: [7]
     },
     {
@@ -311,7 +312,7 @@ export const config = {
       order: 13,
       type: 'feature',
       // url: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
     // {
@@ -341,7 +342,7 @@ export const config = {
     },
     {
       id: KEYS.customAreaFeatures,
-      url: 'http://gis-gfw.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
+      url: 'http://gfw.blueraster.io/arcgis/rest/services/user_features/FeatureServer/0',
       type: 'feature',
       visible: false,
       order: 16

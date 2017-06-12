@@ -30,9 +30,9 @@ let watersheds;
 let fireQueryTask;
 let printed = 0;
 let firesOneDayAgo = queryUtils.oneDayAgo();
+console.log('firesOneDayAgo', firesOneDayAgo);
 
-esriConfig.defaults.io.corsEnabledServers.push('gis-gfw.wri.org');
-esriConfig.defaults.io.corsEnabledServers.push('gis-potico.wri.org');
+esriConfig.defaults.io.corsEnabledServers.push('gfw.blueraster.io');
 
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
@@ -56,18 +56,13 @@ const errorHandler = (error) => {
 };
 
 const getFireCount = () => {
-  let fireCount;
   let fireQuery = new Query();
   fireQuery.geometry = watershedGeometry;
   fireQuery.where = firesOneDayAgo;
-  fireQueryTask.executeForIds(fireQuery).then(
-    (results) => {
-      if (results) {
-        fireCount = results.length;
-      } else {
-        fireCount = 0;
-      }
-      config.watershed.attributes._fireCount = fireCount;
+
+  fireQueryTask.executeForCount(fireQuery).then(
+    (count) => {
+      config.watershed.attributes._fireCount = count;
       printMap();
       populateReport.use({ config: config });
     },
@@ -146,8 +141,10 @@ const printMap = () => {
   if (config.mapsToPrint[printed].layers) {
     const layers = config.mapsToPrint[printed].layers;
     //- Fires has one layer and needs a custom layer def, add it here
+    console.log(config.mapsToPrint[printed].name);
     if (config.mapsToPrint[printed].name === 'fire') {
       const layer = layers[0];
+      console.log('dfdssdf', layer);
       // Add layer definitions to only show fires within last 24 hours.
       layer.layers = layer.visibleLayers.map((id) => {
         return {

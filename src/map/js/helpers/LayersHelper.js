@@ -247,6 +247,7 @@ let LayersHelper = {
   updateFiresLayerDefinitions (optionIndex, dontRefresh) {
     brApp.debug('LayersHelper >>> updateFiresLayerDefinitions');
     let value = layerPanelText.firesOptions[optionIndex].value || 1; // 1 is the default value, means last 24 hours
+    console.log('value', value);
     let queryString = this.generateFiresQuery(value);
     let firesLayer = brApp.map.getLayer(KEYS.activeFires);
     let defs = [];
@@ -308,15 +309,11 @@ let LayersHelper = {
   */
   generateFiresQuery (filterValue) {
     brApp.debug('LayersHelper >>> generateFiresQuery');
-    // The service only has data for the last week, so if filter is 7 days, just set to 1 = 1
-    if (filterValue >= 7) {
-      return '1 = 1';
-    }
 
-    let date = new Date();
-    // Set the date to filterValue amount of days before today
+    const date = new Date();
     date.setDate(date.getDate() - filterValue);
-    let dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    const dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
     return 'ACQ_DATE > date \'' + dateString + '\'';
   }
 

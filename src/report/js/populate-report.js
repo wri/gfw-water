@@ -71,6 +71,7 @@ export default {
 
     const fireRisk = attributes.rs_fire_c;
     const fireCount = attributes._fireCount;
+    console.log('fireCount', fireCount);
     const avgFireCount = attributes.fire_c;
 
     let watershedAreaValue = wsArea;

@@ -137,7 +137,7 @@ ReactDOM.render(<WaterStressLegend url='http://52.0.207.221/server/rest/services
 ReactDOM.render(<ReportLegend title='Recent Forest Loss' />, document.getElementById('recentLossReport'));
 ReactDOM.render(<ReportLegend title='Historical Forest Loss' />, document.getElementById('historicalLossReport'));
 ReactDOM.render(<ReportLegend title='Active Fires' />, document.getElementById('fireLegendReport'));
-ReactDOM.render(<SedimentLegend url='http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer' layerIds={[4]} />, document.getElementById('sedimentReport'));
+ReactDOM.render(<SedimentLegend url='http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer' layerIds={[4]} />, document.getElementById('sedimentReport'));
 ReactDOM.render(<ShareModal />, document.getElementById('share-modal'));
 ReactDOM.render(<BasicModal />, document.getElementById('basic-modal'));
 ReactDOM.render(<AboutModal />, document.getElementById('about-modal'));

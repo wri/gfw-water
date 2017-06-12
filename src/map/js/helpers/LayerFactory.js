@@ -52,6 +52,20 @@ export default (layer) => {
       options.visible = layer.visible || false;
       options.opacity = layer.opacity || 1.0;
       options.imageParameters = imageParameters;
+      if (layer.defaultDefinitionExpression) {
+        var layerDefs = [];
+        layer.layerIds.forEach(val => {
+          // ['ACQ_DATE', 1]
+          // "ACQ_DATE > date'" + new window.Kalendae.moment().subtract(1, 'd').format('YYYY-MM-DD') + "'",
+          const date = new Date();
+          date.setDate(date.getDate() - layer.defaultDefinitionExpression[1]);
+          const dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+          layerDefs[val] = layer.defaultDefinitionExpression[0] + ' > date \'' + dateString + '\'';
+
+          // layerDefs[val] = layer.defaultDefinitionExpression;
+        });
+        imageParameters.layerDefinitions = layerDefs;
+      }
       esriLayer = new DynamicLayer(layer.url, options);
     break;
     case 'feature':
