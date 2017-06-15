@@ -38,7 +38,7 @@ export default {
   },
   proxy: {
     featureServer: {
-      urlPrefix: 'gfw.blueraster.io/arcgis/rest/services/user_features/FeatureServer',
+      urlPrefix: 'gfw-staging.wri.org/arcgis/rest/services/user_features/FeatureServer',
       // proxyUrl: 'http://localhost/proxy/proxy.php'
       proxyUrl: '/proxy/proxy.php'
     }
@@ -51,9 +51,9 @@ export default {
   watershedIdField: 'maj_bas',
   watershedName: 'maj_name',
   watershedQueryStringParam: 'fid',
-  watershedUrl: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer/1',
+  watershedUrl: 'http://gfw-staging.wri.org/arcgis/rest/services/hydrology/MapServer/1',
   // watershedUrl: 'http://gis.wri.org/arcgis/rest/services/gfw/river_basins/MapServer/0',
-  customAnalysisAreasUrl: 'http://gfw.blueraster.io/arcgis/rest/services/user_features/FeatureServer/0',
+  customAnalysisAreasUrl: 'http://gfw-staging.wri.org/arcgis/rest/services/user_features/FeatureServer/0',
   watershedSymbol: {
     'color': [255, 255, 255, 0],
     'outline': {
@@ -65,7 +65,7 @@ export default {
     'type': 'esriSFS',
     'style': 'esriSFSSolid'
   },
-  fireUrl: 'http://gfw.blueraster.io/arcgis/rest/services/Fires/FIRMS_Global/MapServer/9',
+  fireUrl: 'http://gfw-staging.wri.org/arcgis/rest/services/Fires/FIRMS_Global/MapServer/9',
 
   mapsToPrint: [{
     name: 'overview'
@@ -104,7 +104,7 @@ export default {
       'opacity': 1,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://gfw.blueraster.io/arcgis/rest/services/forest_cover/MapServer',
+      'url': 'http://gfw-staging.wri.org/arcgis/rest/services/forest_cover/MapServer',
       'layers': [{
         'id': 6,
         'layerDefinition': {
@@ -123,7 +123,7 @@ export default {
       'opacity': 1,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer/',
+      'url': 'http://gfw-staging.wri.org/arcgis/rest/services/hydrology/MapServer/',
       'visibleLayers': [4]
     }]
   }, {
@@ -134,7 +134,7 @@ export default {
       'opacity': 1,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://gfw.blueraster.io/arcgis/rest/services/Fires/FIRMS_Global/MapServer',
+      'url': 'http://gfw-staging.wri.org/arcgis/rest/services/Fires/FIRMS_Global/MapServer',
       'visibleLayers': [9]
     }]
   }, {
@@ -145,7 +145,7 @@ export default {
       'opacity': 0.8,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://52.0.207.221/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
+      'url': 'http://gis-stage.wri.org/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       'layers': [{
         'id': 1,
         'layerDefinition': {
@@ -158,7 +158,7 @@ export default {
     }]
   }],
 
-  printer: 'http://gfw.blueraster.io/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
+  printer: 'http://gfw-staging.wri.org/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute',
   simplifyGuess: 1000,
   mapPrintHeight: 300,
   mapPrintSizeSquare: 450,
@@ -226,7 +226,7 @@ const text = {
 };
 
 let analysis = {
-  imageService: 'http://gfw.blueraster.io/arcgis/rest/services/image_services/analysis/ImageServer',
+  imageService: 'http://gfw-staging.wri.org/arcgis/rest/services/image_services/analysis/ImageServer',
   mosaicRule: rasterId => {
     return {
       'mosaicMethod': 'esriMosaicLockRaster',
@@ -303,7 +303,7 @@ analysis[KEYS.R_FIRES_AVG] = {
 };
 
 analysis[KEYS.R_FIRES] = {
-  url: 'http://gfw.blueraster.io/arcgis/rest/services/image_services/fires_c_avg_water/ImageServer/computeHistograms',
+  url: 'http://gfw-staging.wri.org/arcgis/rest/services/image_services/fires_c_avg_water/ImageServer/computeHistograms',
   field: 'rs_fire_c'
 };
 
@@ -327,7 +327,7 @@ analysis[KEYS.ARID] = {
 };
 
 analysis[KEYS.DAMS] = {
-  url: 'http://gfw.blueraster.io/arcgis/rest/services/infrastructure/MapServer/0',
+  url: 'http://gfw-staging.wri.org/arcgis/rest/services/infrastructure/MapServer/0',
   content: {
     returnIdsOnly: true,
     where: '1 = 1'
@@ -336,7 +336,7 @@ analysis[KEYS.DAMS] = {
 };
 
 analysis[KEYS.WATER] = {
-  url: 'http://gfw.blueraster.io/arcgis/rest/services/hydrology/MapServer/0',
+  url: 'http://gfw-staging.wri.org/arcgis/rest/services/hydrology/MapServer/0',
   content: {
     returnIdsOnly: true,
     where: '1 = 1'

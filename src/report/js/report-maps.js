@@ -32,7 +32,7 @@ let printed = 0;
 let firesOneDayAgo = queryUtils.oneDayAgo();
 console.log('firesOneDayAgo', firesOneDayAgo);
 
-esriConfig.defaults.io.corsEnabledServers.push('gfw.blueraster.io');
+esriConfig.defaults.io.corsEnabledServers.push('gfw-staging.wri.org');
 
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
