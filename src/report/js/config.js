@@ -145,7 +145,7 @@ export default {
       'opacity': 0.8,
       'minScale': 0,
       'maxScale': 0,
-      'url': 'http://gis-stage.wri.org/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
+      'url': 'http://gis.wri.org/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       'layers': [{
         'id': 1,
         'layerDefinition': {
