@@ -14,7 +14,7 @@ export const config = {
   corsEnabledServers: [
     'localhost',
     '54.83.40.92', // Old Erosion Image Server
-    '50.19.205.13', // New Erosion Image Server
+    'gfw-staging.wri.org', // New Erosion Image Server
     'hydro.arcgis.com', // Esri's Hydrology Tool
     'api.globalforestwatch.org', // Esri's Hydrology Tool
     'gfw-fires.wri.org/subscribe_by_polygon' // GFW Fires Subscription call

@@ -1,6 +1,6 @@
 import KEYS from 'report/constants';
 
-let erosionImageServer = 'http://50.19.205.13/arcgis/rest/services/erosion/ImageServer';
+let erosionImageServer = 'https://gfw-staging.wri.org/arcgis/rest/services/image_services/erosion/ImageServer';
 
 export default {
   assetUrls: {
