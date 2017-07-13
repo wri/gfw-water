@@ -1,8 +1,8 @@
 {
   "name": "gfw-water",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "engines": {
-    "node": " 4.2.1"
+    "node": "4.8.4"
   },
   "description": "Global Forest Watch for Water Application.",
   "main": "gulpfile.js",
