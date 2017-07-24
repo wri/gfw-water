@@ -280,7 +280,7 @@ analysis[KEYS.PTC] = {
 };
 
 analysis[KEYS.LC] = {
-  rasterId: 548,
+  rasterId: 568,
   fields: ['lc_crop_ha', 'lc_for_ha', 'lc_grass_ha', 'lc_dev_ha', 'lc_bar_ha', 'lc_other_ha'],
   labels: ['Cropland', 'Forest', 'Grassland', 'Developed', 'Barren', 'Other']
 };
