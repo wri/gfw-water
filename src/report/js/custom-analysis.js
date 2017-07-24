@@ -149,6 +149,8 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
     lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD], canopyDensity));
     lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC]));
     lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC]));
+    console.log(response[KEYS.LC]);
+    console.log(Formatters.formatLandCover(response[KEYS.LC]));
     lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL], canopyDensity));
 
     // Mixin the risk analysis

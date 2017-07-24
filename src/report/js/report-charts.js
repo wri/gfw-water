@@ -117,6 +117,7 @@ const makeCharts = (watershed) => {
   let dataSeries = fields.map((field, index) => {
     return { y: watershed.attributes[field], name: fieldLabels[index], color: categoryColors[index] };
   });
+  console.log('dataSeries', dataSeries);
   let landCoverChart = new Highcharts.Chart('land-cover-chart', {
     chart: {
       backgroundColor: 'transparent',
