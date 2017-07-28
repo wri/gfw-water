@@ -113,7 +113,7 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
   // Potential Tree Cover
   promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
   // Land Cover
-  promises[KEYS.LC] = Histogram.getWithMosaic2(analysisConfig[KEYS.LC].rasterId, geometry);
+  promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC].rasterId, geometry);
   // Tree Cover Density Analysis
   promises[KEYS.TCD] = Histogram.getWithMosaic(treeDensityConfig.rasterId, geometry);
   // Tree Cover Loss
@@ -149,8 +149,6 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
     lang.mixin(attributes, Formatters.formatTreeCoverDensity(response[KEYS.TCD], canopyDensity));
     lang.mixin(attributes, Formatters.formatPotentialTreeCover(response[KEYS.PTC]));
     lang.mixin(attributes, Formatters.formatLandCover(response[KEYS.LC]));
-    console.log(response[KEYS.LC]);
-    console.log(Formatters.formatLandCover(response[KEYS.LC]));
     lang.mixin(attributes, Formatters.formatTreeCoverLoss(response[KEYS.TCL], canopyDensity));
 
     // Mixin the risk analysis

@@ -33,7 +33,6 @@ let firesOneDayAgo = queryUtils.oneDayAgo();
 console.log('firesOneDayAgo', firesOneDayAgo);
 
 esriConfig.defaults.io.corsEnabledServers.push('gis-gfw.wri.org');
-esriConfig.defaults.io.corsEnabledServers.push('gfw-staging.wri.org');
 
 const insertMap = (response) => {
   const mapName = config.mapsToPrint[printed].name;
