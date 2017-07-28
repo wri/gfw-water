@@ -280,7 +280,8 @@ analysis[KEYS.PTC] = {
 };
 
 analysis[KEYS.LC] = {
-  rasterId: 568,
+  tempUrl: 'http://gfw-staging.wri.org/arcgis/rest/services/image_services/analysis/ImageServer',
+  rasterId: 570,
   fields: ['lc_crop_ha', 'lc_for_ha', 'lc_grass_ha', 'lc_dev_ha', 'lc_bar_ha', 'lc_other_ha'],
   labels: ['Cropland', 'Forest', 'Grassland', 'Developed', 'Barren', 'Other']
 };

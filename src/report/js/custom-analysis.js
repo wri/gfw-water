@@ -113,7 +113,7 @@ export const performCustomAnalysis = (geometry, area, canopyDensity) => {
   // Potential Tree Cover
   promises[KEYS.PTC] = Histogram.getWithMosaic(analysisConfig[KEYS.PTC].rasterId, geometry);
   // Land Cover
-  promises[KEYS.LC] = Histogram.getWithMosaic(analysisConfig[KEYS.LC].rasterId, geometry);
+  promises[KEYS.LC] = Histogram.getWithMosaic2(analysisConfig[KEYS.LC].rasterId, geometry);
   // Tree Cover Density Analysis
   promises[KEYS.TCD] = Histogram.getWithMosaic(treeDensityConfig.rasterId, geometry);
   // Tree Cover Loss

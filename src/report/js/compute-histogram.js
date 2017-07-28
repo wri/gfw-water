@@ -67,6 +67,14 @@ const query = {
     });
   },
 
+  getWithMosaic2: (rasterId, geometry, pixelSize) => {
+    return computeHistogram('http://gfw-staging.wri.org/arcgis/rest/services/image_services/analysis/ImageServer', {
+      mosaicRule: analysisConfig.mosaicRule(rasterId),
+      geometry: geometry,
+      pixelSize: pixelSize || 100
+    });
+  },
+
   getWithRasterFuncAndDensity: (rasterId, density, geometry) => {
     return computeHistogram(analysisConfig.imageService, {
       renderingRule: analysisConfig.rasterRemapForTCD(rasterId, density),
