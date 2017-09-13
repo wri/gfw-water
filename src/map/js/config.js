@@ -17,7 +17,8 @@ export const config = {
     'gis-gfw.wri.org', // New Erosion Image Server
     'hydro.arcgis.com', // Esri's Hydrology Tool
     'api.globalforestwatch.org', // Esri's Hydrology Tool
-    'gfw-fires.wri.org/subscribe_by_polygon' // GFW Fires Subscription call
+    'gfw-fires.wri.org/subscribe_by_polygon', // GFW Fires Subscription call
+    'production-api.globalforestwatch.org/v1/gfw-metadata' //GFW metadata API
   ],
 
   proxy: {
@@ -818,7 +819,7 @@ export const config = {
     // Fill in below so I can use the keys as Ids
     layerInformation: {}
   },
-  metadataUrl: 'http://api.globalforestwatch.org/metadata/'
+  metadataUrl: 'https://production-api.globalforestwatch.org/v1/gfw-metadata/'
 
 };
 
