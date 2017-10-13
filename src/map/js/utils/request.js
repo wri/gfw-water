@@ -114,13 +114,17 @@ const request = {
     let features = [];
     let featureSet = new FeatureSet();
 
+    geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
     features.push(pointGraphic);
     featureSet.features = features;
     params.InputPoints = featureSet;
 
-    geoprocessor.setOutputSpatialReference(new SpatialReference(outputSR));
+    console.log(params);
     geoprocessor.submitJob(params, results => {
+      console.log(results.jobId);
+      console.log(jobId);
       geoprocessor.getResultData(results.jobId, jobId, data => {
+        console.log('data', data);
         deferred.resolve(data.value);
       }, deferred.reject);
     }, () => {
