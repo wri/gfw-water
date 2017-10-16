@@ -12,7 +12,7 @@
 		'react': 'vendor/react/react.min',
 		'react-dom': 'vendor/react/react-dom.min',
     'lodash': 'vendor/lodash/lodash.min',
-    'babel-polyfill': 'vendor/browser-polyfill',
+    'babel-polyfill': 'vendor/babel-polyfill/browser-polyfill',
 		'FileSaver': 'vendor/file-saver/FileSaver.min',
 		// Configured Packages
 		'js': 'map/js',

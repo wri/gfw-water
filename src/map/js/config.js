@@ -276,7 +276,7 @@ export const config = {
       metadataId: 'baseline_water_stress',
       group: 'watershedRisk',
       className: 'water-stress',
-      url: 'http://gis.wri.org.wri.org/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
+      url: 'https://gis.wri.org/server/rest/services/Aqueduct/aqueduct_global_2014/MapServer',
       layerIds: [1],
       opacity: 0.80
     },
@@ -316,14 +316,6 @@ export const config = {
       url: 'http://gis-gfw.wri.org/arcgis/rest/services/hydrology/MapServer/1',
       visible: true
     },
-    // {
-    //   id: KEYS.adminLabels,
-    //   order: 15,
-    //   layerIds: [0],
-    //   type: 'dynamic',
-    //   url: 'http://gis.wri.org.wri.org/arcgis/rest/services/gfw/gfw_water_city_labels/MapServer',
-    //   visible: true
-    // },
     {
       id: KEYS.rivers,
       order: 14,
@@ -549,10 +541,14 @@ export const config = {
       url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed',
       title: 'Spatial mapping tools and platforms',
       params: {
-        f: 'json',
-        Generalize: 'True',
         SnapDistance: 5000,
-        SnapDistanceUnits: 'Meters'
+        SnapDistanceUnits: 'Meters',
+        DataSourceResolution: '',
+        Generalize: 'true',
+        ReturnSnappedPoints: '',
+        returnZ: false,
+        returnM: false,
+        f: 'json'
       },
       outputSR: 102100,
       jobId: 'WatershedArea'
