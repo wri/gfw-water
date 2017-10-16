@@ -12,6 +12,7 @@ var gulp = require('gulp');
 var isProd = process.env.HEADER_ENV === 'production';
 locals.headerScript = isProd ? locals.headerScriptProd : locals.headerScriptStage;
 console.log(process.env.NODE_ENV);
+console.log('process.env', process.env);
 console.log(locals.headerScript);
 var version = require('./package.json').version;
 locals.version = version;
