@@ -18,25 +18,6 @@ html
       window.liveSettings = {
         api_key: "d2679f30b37246c4ab8272ff1860b274",
         detectlang: false,
-        site: 'gfw-water',
-        menuOptions: {
-          options: [{
-            title: 'logo',
-            url: '/'
-          }, {
-            title: 'gfw water',
-            url: '/'
-          }, {
-            title: 'map',
-            url: '/map'
-          }, {
-            title: 'partners',
-            url: '/partners'
-          }, {
-            title: 'learn more',
-            url: '/about'
-          }]
-        },
         picker: '#transifexTranslateElement'
       };
     script(type='text/javascript').
@@ -48,11 +29,11 @@ html
   body
     include ../templates/svgAssets.jade
     div#headerGfw
-    //- a(href="../index.html")
-    //-   div.gfw-water-logo
-    //-   
-    //- a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
-    //- include ../templates/topNavigation
+    a(href="../index.html")
+      div.gfw-water-logo
+      
+    a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
+    include ../templates/topNavigation
     div#title.back-pebble
       section
         div.content-header
