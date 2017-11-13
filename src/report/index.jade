@@ -3,7 +3,7 @@ html
   head
     title #{map.title}
     include ../templates/meta.jade
-    script(src='http://gfw-assets.s3.amazonaws.com/static/gfw-assets.nightly.js' id='loader-gfw')
+    script(src='http://www.globalforestwatch.org/gfw-assets.latest.js' id='loader-gfw')
     //- script(src='../../vendor/jquery/dist/jquery.min.js')
     //- script(src='//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js')
     style
@@ -45,10 +45,10 @@ html
   body
     include ../templates/svgAssets.jade
     div#headerGfw
-    a(href="../index.html")
-      div.gfw-water-logo
-    a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
-    include ../templates/topNavigation
+    //- a(href="../index.html")
+    //-   div.gfw-water-logo
+    //- a.page-aqueduct-link(href="http://www.wri.org/our-work/project/aqueduct", target="_blank")
+    //- include ../templates/topNavigation
     
     section.relative
       //- a(href='../index.html')
