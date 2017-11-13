@@ -1,6 +1,6 @@
 {
   "name": "gfw-water",
-  "version": "1.0.50",
+  "version": "1.0.51",
   "engines": {
     "node": "4.8.4"
   },
