@@ -18,7 +18,8 @@ export const config = {
     'hydro.arcgis.com', // Esri's Hydrology Tool
     'api.globalforestwatch.org', // Esri's Hydrology Tool
     'gfw-fires.wri.org/subscribe_by_polygon', // GFW Fires Subscription call
-    'production-api.globalforestwatch.org/v1/gfw-metadata' //GFW metadata API
+    'production-api.globalforestwatch.org/v1/gfw-metadata', //GFW metadata API
+    'hbod098di4.execute-api.us-east-1.amazonaws.com'
   ],
 
   proxy: {

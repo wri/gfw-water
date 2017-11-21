@@ -107,7 +107,7 @@ const request = {
   */
   getUpstreamAnalysis: geometry => {
     brApp.debug('Request >>> getUpstreamAnalysis');
-    let {url, params, outputSR, jobId} = analysisConfig.upstream;
+    let {url, params, outputSR} = analysisConfig.upstream;
     let geoprocessor = new GeoProcessor(url);
     let deferred = new Deferred();
     let pointGraphic = GraphicsHelper.makePoint(geometry);
@@ -119,17 +119,67 @@ const request = {
     featureSet.features = features;
     params.InputPoints = featureSet;
 
-    console.log(params);
-    geoprocessor.submitJob(params, results => {
-      console.log(results.jobId);
-      console.log(jobId);
-      geoprocessor.getResultData(results.jobId, jobId, data => {
-        console.log('data', data);
-        deferred.resolve(data.value);
-      }, deferred.reject);
-    }, () => {
-      // status callback, put console.debug(arguments) if needed
-    }, deferred.reject);
+      esriRequest({
+        url: `https://hbod098di4.execute-api.us-east-1.amazonaws.com/v1/gettoken?referrer=water-staging.globalforestwatch.org`
+      }).then(response => {
+        const token = response.token;
+        params.token = token;
+        esriRequest({
+          url: 'http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed/submitJob',
+          handleAs: 'json',
+          callbackParamName: 'callback',
+          content: params
+        }).then(submitJobResponse => {
+          const timer = setInterval(() => {
+            esriRequest({
+              url: `http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed/jobs/${submitJobResponse.jobId}`,
+              callbackParamName: 'callback',
+              content: { token: token, f: 'json' }
+            }).then(jobsResponse => {
+              if (jobsResponse.jobStatus === 'esriJobSucceeded') clearInterval(timer);
+              if (jobsResponse.jobStatus === 'esriJobFailed') {
+                clearInterval(timer);
+                deferred.reject();
+              }
+              esriRequest({
+                url: `http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed/jobs/${submitJobResponse.jobId}/results/WatershedArea?f=json&returnType=data`,
+                callbackParamName: 'callback',
+                content: {token: token}
+              }).then(watershedAreaResponse => {
+                deferred.resolve(watershedAreaResponse.value);
+              });
+              // geoprocessor.getResultData(submitJobResponse.jobId, jobId, data => {
+              //   console.log('data', data);
+              //   deferred.resolve(data.value);
+              // }, deferred.reject);
+            }, deferred.reject);
+          }, 1000);
+        });
+      });
+
+      // esriRequest.setRequestPreCallback((reqArgs) => {
+      //   console.log(reqArgs);
+      //   if (reqArgs.url.indexOf('http://hydro.arcgis.com/arcgis/rest/services/Tools/Hydrology/GPServer/Watershed/jobs') > -1) {
+      //     reqArgs.content = reqArgs.content || {};
+      //     reqArgs.content.token = res.token;
+      //   }
+
+      //   return reqArgs;
+      // });
+
+      // geoprocessor.submitJob(params, results => {
+      //   console.log(results.jobId);
+      //   console.log(jobId);
+      //   geoprocessor.getResultData(results.jobId, jobId, data => {
+      //     console.log('data', data);
+      //     deferred.resolve(data.value);
+      //   }, deferred.reject);
+      // }, () => {
+      //   // status callback, put console.debug(arguments) if needed
+      // }, deferred.reject);
+    // }, err => {
+    //   console.log(err);
+    // });
 
     return deferred;
   }

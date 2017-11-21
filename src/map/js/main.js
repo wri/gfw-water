@@ -48,7 +48,7 @@ let lazyloadAssets = () => {
 let configureApp = () => {
   brApp.debug('main >>> configureApp');
   corsServers.forEach((server) => { esriConfig.defaults.io.corsEnabledServers.push(server); });
-  urlUtils.addProxyRule(proxyRules.hydro);
+  // urlUtils.addProxyRule(proxyRules.hydro);
   urlUtils.addProxyRule(proxyRules.featureServer);
 };
 
