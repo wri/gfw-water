@@ -58,9 +58,7 @@ let runReport = () => {
 
   //- Save custom feature and run report
   analysisActions.saveFeature(activeCustomArea).then(res => {
-    console.log('res', res);
     if (res.length > 0 && res[0].success) {
-      console.log('in');
       analysisActions.launchReport(`C_${res[0].objectId}`, canopyDensity);
     }
 

@@ -68,14 +68,11 @@ class AnalysisActions {
     let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
     let deferred = new Deferred();
     if (!featureLayer) { deferred.reject(); return deferred; }
-    console.log('feature', feature);
     const tempGraphic = new Graphic(feature.geometry);
     tempGraphic.attributes = feature.attributes;
     featureLayer.applyEdits([tempGraphic], null, null, (res) => {
-      console.log('in here tho?', res);
       deferred.resolve(res);
     }, (err) => {
-      console.log('applyEdits', err);
       deferred.reject(err);
     });
     return deferred;
