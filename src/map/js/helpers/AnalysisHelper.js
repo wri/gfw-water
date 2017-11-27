@@ -36,6 +36,7 @@ const AnalysisHelper = {
           });
           GraphicsHelper.addUpstreamGraphic(feat);
         });
+        console.log('dataValue.features[0]', dataValue.features[0]);
         // dataValue.features.forEach(GraphicsHelper.addUpstreamGraphic);
         deferred.resolve(dataValue.features[0]);
       }
