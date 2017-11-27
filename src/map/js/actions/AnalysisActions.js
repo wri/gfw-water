@@ -67,6 +67,7 @@ class AnalysisActions {
     let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
     let deferred = new Deferred();
     if (!featureLayer) { deferred.reject(); return deferred; }
+    console.log('feature', feature);
     featureLayer.applyEdits([feature], null, null, (res) => {
       deferred.resolve(res);
     }, (err) => {

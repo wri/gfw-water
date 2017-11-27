@@ -44,8 +44,6 @@ let runReport = () => {
 
   console.log('config.watershedNameField', config.watershedNameField);
 
-  console.log();
-
   //- Save custom feature and run report
   analysisActions.saveFeature(activeCustomArea).then(res => {
     console.log('res', res);
