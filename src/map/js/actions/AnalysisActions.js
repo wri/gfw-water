@@ -2,6 +2,7 @@ import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisPanelText} from 'js/config';
 import registry from 'dijit/registry';
 import Deferred from 'dojo/Deferred';
+import Graphic from 'esri/graphic';
 import KEYS from 'js/constants';
 import alt from 'js/alt';
 
@@ -68,7 +69,10 @@ class AnalysisActions {
     let deferred = new Deferred();
     if (!featureLayer) { deferred.reject(); return deferred; }
     console.log('feature', feature);
-    featureLayer.applyEdits([feature], null, null, (res) => {
+    const tempGraphic = new Graphic(feature.geometry);
+    tempGraphic.attributes = feature.attributes;
+    featureLayer.applyEdits([tempGraphic], null, null, (res) => {
+      console.log('in here tho?', res);
       deferred.resolve(res);
     }, (err) => {
       console.log('applyEdits', err);
