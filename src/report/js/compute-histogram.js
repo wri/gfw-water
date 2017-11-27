@@ -41,6 +41,8 @@ const computeStatisticsHistograms = (url, content) => {
   content.pixelSize = content.pixelSize || 100;
   content.f = content.f || 'json';
 
+  console.log('content', content);
+
   return esriRequest({
     url: `${url}/computeStatisticsHistograms`,
     callbackParamName: 'callback',
@@ -80,6 +82,7 @@ const query = {
   * This method signature may change but it is only temporary since it is using 10.4 Preview server
   */
   getStatisitcs: (url, geometry, pixelSize) => {
+    console.log('getStatisitcs', geometry);
     return computeStatisticsHistograms(url, {
       geometry: geometry,
       pixelSize: pixelSize
