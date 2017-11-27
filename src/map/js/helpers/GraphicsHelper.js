@@ -27,6 +27,7 @@ const graphicsHelper = {
   addUpstreamGraphic: feature => {
     let layer = brApp.map.getLayer(KEYS.customAnalysis);
     if (layer) {
+      console.log('feature.geometry', feature.geometry);
       layer.add(new Graphic(
         feature.geometry,
         Symbols.getUpstreamSymbol(),

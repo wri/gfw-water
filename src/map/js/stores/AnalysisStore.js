@@ -47,6 +47,7 @@ class AnalysisStore {
     let area = feature.attributes[text.watershedAreaField];
     let geometry = feature.geometry;
     performRiskAnalysis(geometry, area, surroundingWatershed).then((attributes) => {
+      console.log('attributes', attributes);
       lang.mixin(feature.attributes, attributes);
       this.activeCustomArea = feature;
       this.isLoading = false;
