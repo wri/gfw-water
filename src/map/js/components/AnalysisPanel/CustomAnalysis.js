@@ -21,9 +21,11 @@ let runReport = () => {
   let {activeCustomArea, customAreaName} = analysisStore.getState();
   let {canopyDensity} = mapStore.getState();
 
+
   //- If this feature was too large to perform custom analysis on, redirect to the
   //- surrounding watersheds analysis using the surroundingBasinField field added
   const parentBasin = activeCustomArea.attributes[config.surroundingBasinField];
+  console.log('parentBasin', parentBasin);
   if (parentBasin) {
     analysisActions.launchReport(`W_${parentBasin}`, canopyDensity);
     //- Send off analytics
@@ -37,6 +39,12 @@ let runReport = () => {
 
   //- Save the name before saving the feature
   activeCustomArea.attributes[config.watershedNameField] = customAreaName;
+
+  console.log('customAreaName', customAreaName);
+
+  console.log('config.watershedNameField', config.watershedNameField);
+
+  console.log();
 
   //- Save custom feature and run report
   analysisActions.saveFeature(activeCustomArea).then(res => {
@@ -53,7 +61,9 @@ let runReport = () => {
       analyticsLabels.analyzeCustomArea(res[0].objectId)
     );
 
-  }, console.error);
+  }, err => {
+    console.log('err err', err);
+  });
 };
 
 let editSvg = '<use xlink:href="#icon-edit-text" />';
