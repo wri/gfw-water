@@ -2,6 +2,7 @@ import GraphicsHelper from 'helpers/GraphicsHelper';
 import {analysisPanelText} from 'js/config';
 import registry from 'dijit/registry';
 import Deferred from 'dojo/Deferred';
+import Graphic from 'esri/graphic';
 import KEYS from 'js/constants';
 import alt from 'js/alt';
 
@@ -63,13 +64,17 @@ class AnalysisActions {
   * @return {deferred} deferred
   */
   saveFeature (feature) {
-    brApp.debug('MapActions >>> saveFeature');
+    brApp.debug('AnalysisActions >>> saveFeature');
     let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
     let deferred = new Deferred();
     if (!featureLayer) { deferred.reject(); return deferred; }
-    featureLayer.applyEdits([feature], null, null, (res) => {
+    const tempGraphic = new Graphic(feature.geometry);
+    tempGraphic.attributes = feature.attributes;
+    featureLayer.applyEdits([tempGraphic], null, null, (res) => {
       deferred.resolve(res);
-    }, (err) => { deferred.reject(err); });
+    }, (err) => {
+      deferred.reject(err);
+    });
     return deferred;
   }
 
