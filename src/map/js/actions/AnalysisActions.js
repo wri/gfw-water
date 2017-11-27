@@ -63,13 +63,16 @@ class AnalysisActions {
   * @return {deferred} deferred
   */
   saveFeature (feature) {
-    brApp.debug('MapActions >>> saveFeature');
+    brApp.debug('AnalysisActions >>> saveFeature');
     let featureLayer = brApp.map.getLayer(KEYS.customAreaFeatures);
     let deferred = new Deferred();
     if (!featureLayer) { deferred.reject(); return deferred; }
     featureLayer.applyEdits([feature], null, null, (res) => {
       deferred.resolve(res);
-    }, (err) => { deferred.reject(err); });
+    }, (err) => {
+      console.log('applyEdits', err);
+      deferred.reject(err);
+    });
     return deferred;
   }
 
