@@ -1,6 +1,6 @@
 {
   "name": "gfw-water",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "engines": {
     "node": "4.8.4"
   },
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npm run babel -- -w & gulp start & gulp serve",
     "build": "npm run babel",
-    "test": "npm run build; intern-client config=tests/intern --reporters=Pretty;eslint src;",
+    "test": "npm run build; intern-client config=tests/intern --reporters=Pretty;",
     "dist": "rm -rf dist; gulp dist; npm run optimize; node scripts/prerender;",
     "dist-www": "npm run dist; cp -r dist/* www;",
     "postinstall": "bower install; if [ \"$NODE_ENV\" = 'production' ] || [ \"$NODE_ENV\" = 'staging' ]; then npm run dist-www; fi",
